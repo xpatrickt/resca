@@ -38,8 +38,8 @@ active
                   <td width="1px">{{ $prov->idprovincia}}</td>
                   <td>{{ $prov->nombreprovincia}}</td>
                   <td>{{ $prov->departamento}}</td>
-                  <td><a href="{{URL::action('ProvinciaController@edit',$prov->idprovincia)}}"><button class="btn btn-info">Editar &nbsp</button></a>
-                  <a href="" data-target="#modal-delete-{{$prov->idprovincia}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                  <td><a href="{{URL::action('ProvinciaController@edit',$prov->idprovincia)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$prov->idprovincia}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
                 </tr>
          @include('admin.provincia.modal')

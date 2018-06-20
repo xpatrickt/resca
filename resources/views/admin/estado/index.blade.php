@@ -36,8 +36,8 @@ active
                 <tr>
                   <td width="1px">{{ $est->idestado}}</td>
                   <td>{{ $est->nombreestado}}</td>
-                  <td><a href="{{URL::action('EstadoController@edit',$est->idestado)}}"><button class="btn btn-info">Editar &nbsp</button></a>
-                  <a href="" data-target="#modal-delete-{{$est->idestado}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                  <td><a href="{{URL::action('EstadoController@edit',$est->idestado)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$est->idestado}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
                 </tr>
          @include('admin.estado.modal')

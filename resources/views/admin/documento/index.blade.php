@@ -36,8 +36,8 @@ active
                   <td width="1px">{{ $doc->iddocumento}}</td>
                   <td>{{ $doc->nombredocumento}}</td>
                   <td>{{ $doc->descripciondocumento}}</td>
-                  <td><a href="{{URL::action('DocumentoController@edit',$doc->iddocumento)}}"><button class="btn btn-info">Editar &nbsp</button></a>
-                  <a href="" data-target="#modal-delete-{{$doc->iddocumento}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                  <td><a href="{{URL::action('DocumentoController@edit',$doc->iddocumento)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$doc->iddocumento}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
                 </tr>
          @include('admin.documento.modal')

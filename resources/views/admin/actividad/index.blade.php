@@ -37,8 +37,8 @@ active
                   <td width="1px">{{ $act->idactividad}}</td>
                   <td>{{ $act->nombreactividad}}</td>
                   <td>{{ $act->descripcionactividad}}</td>
-                  <td><a href="{{URL::action('ActividadController@edit',$act->idactividad)}}"><button class="btn btn-info">Editar &nbsp</button></a>
-                  <a href="" data-target="#modal-delete-{{$act->idactividad}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                  <td><a href="{{URL::action('ActividadController@edit',$act->idactividad)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$act->idactividad}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
                 </tr>
          @include('admin.actividad.modal')

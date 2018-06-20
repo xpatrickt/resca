@@ -49,8 +49,8 @@ active
                   <td>{{ $per->emailpersona}}</td>  
                   <td>{{ $per->cargo}}</td>
                   <td>{{ $per->entidad}}</td>                                  
-                  <td><a href="{{URL::action('PersonaController@edit',$per->idpersona)}}"><button class="btn btn-info">Editar &nbsp</button></a>
-                  <a href="" data-target="#modal-delete-{{$per->idpersona}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                  <td><a href="{{URL::action('PersonaController@edit',$per->idpersona)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$per->idpersona}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
                 </tr>
          @include('admin.persona.modal')

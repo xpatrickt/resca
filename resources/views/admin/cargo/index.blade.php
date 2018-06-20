@@ -36,8 +36,8 @@ active
                 <tr>
                   <td width="1px">{{ $car->idcargo}}</td>
                   <td>{{ $car->nombrecargo}}</td>
-                  <td><a href="{{URL::action('CargoController@edit',$car->idcargo)}}"><button class="btn btn-info">Editar &nbsp</button></a>
-                  <a href="" data-target="#modal-delete-{{$car->idcargo}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                  <td><a href="{{URL::action('CargoController@edit',$car->idcargo)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$car->idcargo}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
                 </tr>
          @include('admin.cargo.modal')

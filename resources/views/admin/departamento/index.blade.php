@@ -34,8 +34,8 @@ active
                 <tr>
                   <td width="1px">{{ $dep->iddepartamento}}</td>
                   <td>{{ $dep->nombredepartamento}}</td>
-                  <td><a href="{{URL::action('DepartamentoController@edit',$dep->iddepartamento)}}"><button class="btn btn-info">Editar &nbsp</button></a>
-                  <a href="" data-target="#modal-delete-{{$dep->iddepartamento}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                  <td><a href="{{URL::action('DepartamentoController@edit',$dep->iddepartamento)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$dep->iddepartamento}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
                 </tr>
          @include('admin.departamento.modal')

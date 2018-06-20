@@ -37,8 +37,8 @@ active
                   <td width="1px">{{ $tes->idtipoestudio}}</td>
                   <td>{{ $tes->nombretipoestudio}}</td>
                   <td>{{ $tes->siglastipoestudio}}</td>
-                  <td><a href="{{URL::action('TipoestudioController@edit',$tes->idtipoestudio)}}"><button class="btn btn-info">Editar &nbsp</button></a>
-                  <a href="" data-target="#modal-delete-{{$tes->idtipoestudio}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                  <td><a href="{{URL::action('TipoestudioController@edit',$tes->idtipoestudio)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$tes->idtipoestudio}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
                 </tr>
          @include('admin.tipoestudio.modal')

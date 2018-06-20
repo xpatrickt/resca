@@ -44,8 +44,8 @@ active
                   <td>{{ $ent->emailentidad}}</td>                  
                   <td>{{ $ent->rucentidad}}</td>
                   <td>{{ $ent->actividad}}</td>                                      
-                  <td><a href="{{URL::action('EntidadController@edit',$ent->identidad)}}"><button class="btn btn-info">Editar &nbsp</button></a>
-                  <a href="" data-target="#modal-delete-{{$ent->identidad}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                  <td><a href="{{URL::action('EntidadController@edit',$ent->identidad)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$ent->identidad}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
                 </tr>
          @include('admin.entidad.modal')

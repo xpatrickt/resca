@@ -40,8 +40,8 @@ active
                   <td>{{ $cat->nombrecatalogo}}</td>
                   <td>{{ $cat->descripcioncatalogo}}</td>
                   <td>{{ $cat->actividad}}</td>
-                  <td><a href="{{URL::action('CatalogoController@edit',$cat->idcatalogo)}}"><button class="btn btn-info">Editar &nbsp</button></a>
-                  <a href="" data-target="#modal-delete-{{$cat->idcatalogo}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                  <td><a href="{{URL::action('CatalogoController@edit',$cat->idcatalogo)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$cat->idcatalogo}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
                 </tr>
          @include('admin.catalogo.modal')
