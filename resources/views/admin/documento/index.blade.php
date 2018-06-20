@@ -17,7 +17,7 @@ active
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Listado de Actividades &nbsp &nbsp &nbsp <a href="documento/create"><button type="button" class="btn btn-primary">+ Nuevo Documento</button></a></h3>
+			<h3 class="box-title">Documentos de estudio &nbsp &nbsp &nbsp <a href="documento/create"><button type="button" class="btn btn-primary">+ Nuevo Documento</button></a></h3>
 			</div>
 		<div class="box-body">
 

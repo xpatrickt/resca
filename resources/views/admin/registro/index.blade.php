@@ -3,7 +3,7 @@
 active
 @endsection
 @section('actmenu2')
-active treeview
+treeview
 @endsection
 @section('treemenu')
 treeview
