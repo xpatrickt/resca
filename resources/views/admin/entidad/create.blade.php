@@ -61,7 +61,7 @@ active
                 </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Registrar</button>
-                <a href="{{ url()->previous() }}" class="btn btn-danger">Cancelar</a>
+                <a href="{{ url('admin/entidad') }}" class="btn btn-danger">Cancelar</a>
               </div>
 				{!!Form::close()!!}
 	          </div>
