@@ -30,7 +30,8 @@ active
                   <th>Teléfono</th>
                   <th>Email</th>                  
                   <th>RUC</th>
-                  <th>Actividad</th>                  
+                  <th>Actividad</th>   
+                  <th>representante</th>                
                   <th>Opción</th>
                  </tr>
                 </thead>
@@ -43,7 +44,8 @@ active
                   <td>{{ $ent->telefonoentidad}}</td>
                   <td>{{ $ent->emailentidad}}</td>                  
                   <td>{{ $ent->rucentidad}}</td>
-                  <td>{{ $ent->actividad}}</td>                                      
+                  <td>{{ $ent->actividad}}</td>    
+                  <td>{{ $ent->representante}}</td>                                    
                   <td><a href="{{URL::action('EntidadController@edit',$ent->identidad)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
                   <a href="" data-target="#modal-delete-{{$ent->identidad}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
@@ -60,7 +62,8 @@ active
                   <th>Teléfono</th>
                   <th>Email</th>  
                   <th>RUC</th>
-                  <th>Actividad</th>                   
+                  <th>Actividad</th>  
+                  <th>representante</th>                    
                   <th>Opción</th>
                 </tr>
                 </tfoot>

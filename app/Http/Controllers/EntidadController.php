@@ -16,12 +16,14 @@ class EntidadController extends Controller
     public function index(Request $request){
     	if($request){
     		$query=trim($request->get('searchText'));
-    		$entidades=DB::table('entidad as e')
-        ->join('actividad as a','e.idactividad','=','a.idactividad')
-        ->select('e.identidad','e.nombreentidad','e.direccionentidad','e.telefonoentidad','e.emailentidad','e.rucentidad','a.nombreactividad as actividad')
+    		$entidades=DB::table('actividad as a')
+        ->join('entidad as e','e.idactividad','=','a.idactividad')
+        ->leftjoin('representante as r','r.identidad','=','e.identidad')
+        ->leftjoin('persona as p','r.idpersona','=','p.idpersona')
+        ->select('e.identidad','e.nombreentidad','e.direccionentidad','e.telefonoentidad','e.emailentidad','e.rucentidad','a.nombreactividad as actividad',DB::raw('CONCAT(p.nombrepersona," ",p.apellidospersona) AS representante'))
         ->where('e.nombreentidad','LIKE','%'.$query.'%')
     		->where('e.condicion','=','1')
-    		->orderBy('e.identidad','desc')
+    		->orderBy('actividad','desc')
     		->paginate(100);
     		return view('admin.entidad.index',["entidades"=>$entidades,"searchText"=>$query]);
         }
