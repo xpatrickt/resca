@@ -19,14 +19,14 @@ Route::get('/welcome', function () {
 });
 //routes admin
 Route::resource('admin/proyecto','ProyectoController');
-Route::resource('admin/catalogo','CatalogoController');
+//Route::resource('admin/catalogo','CatalogoController');
 Route::resource('admin/actividad','ActividadController');
 Route::resource('admin/entidad','EntidadController');
 Route::resource('admin/persona','PersonaController');
 Route::resource('admin/departamento','DepartamentoController');
 Route::resource('admin/provincia','ProvinciaController');
 Route::resource('admin/distrito','DistritoController');
-Route::resource('admin/instrumento','InstrumentoController');
+//Route::resource('admin/instrumento','InstrumentoController');
 Route::resource('admin/documento','DocumentoController');
 
 Route::resource('admin/seguimiento','SeguimientoController');

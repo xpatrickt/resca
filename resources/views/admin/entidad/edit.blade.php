@@ -65,7 +65,7 @@ active
                 </div>                               
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Registrar</button>
-                 <button type="reset" class="btn btn-danger">Cancelar</button>
+                 <button type="{{ url()->previous() }}" class="btn btn-danger">Cancelar</button>
               </div>
 				{!!Form::close()!!}
 	          </div>
