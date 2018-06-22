@@ -47,6 +47,7 @@ Route::post('admin/representante/{id}/edit','RepresentanteController@edit')->nam
 Route::post('admin/evaluacionestudio/asignar','EvaluacionestudioController@asignar')->name('admin.evaluacionestudio.asignar');
 Route::post('admin/evaluacion/listar','EvaluacionController@listar')->name('admin.evaluacion.listar');
 Route::post('admin/evaluacion/listarall','EvaluacionController@listarall')->name('admin.evaluacion.listarall');
+Route::post('admin/evaluacion/listardocumentos','EvaluacionController@listardocumentos')->name('admin.evaluacion.listardocumentos');
 
 //routes registro
 Route::resource('admin/registro','RegistroController');

@@ -62,15 +62,54 @@ class EvaluacionController extends Controller
      $value = $request->get('value');  //valor
      $ta = $request->get('ta'); //tproyecto
 
-     $proyectos=DB::table('proyecto as p')->where('idproyecto','=',$value)->where('condicion','=','1')->get();
+     if($select=='proyecto'){
+     $proyectos=DB::table('proyecto as p')->join('entidad as e','p.identidad','=','e.identidad')
+        ->select('p.idproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto','e.nombreentidad as entidad')->where('p.idproyecto','=',$value)->where('p.condicion','=','1')->get();
      foreach($proyectos as $pro)
      {
-      $output = '<label>Descripción: </label>'.$pro->descripcionproyecto.'<br>';
-      $output .= '<label>Objetivo: </label>'.$pro->objetivoproyecto.'<br>';
-      $output .= '<label>Beneficiarios: </label>'.$pro->beneficiariosproyecto.'<br>';
+      $output = '<label>Descripción: </label> '.$pro->descripcionproyecto.'<br>';
+      $output .= '<label>Objetivo: </label> '.$pro->objetivoproyecto.'<br>';
+      $output .= '<label>Beneficiarios: </label> '.$pro->beneficiariosproyecto.'<br>';
+       $output .= '<label>Entidad: </label> '.$pro->entidad.'<br>';
+     }
+     }
+     if($select=='estudio'){
+     $estudios=DB::table('estudio as e')->join('tipoevaluacion as te','e.idtipoevaluacion','=','te.idtipoevaluacion')->join('tipoestudio as tes','e.idtipoestudio','=','tes.idtipoestudio')
+        ->select('e.idestudio','e.descripcionestudio','te.nombretipoevaluacion as tipoevaluacion','tes.nombretipoestudio as tipoestudio')->where('e.idestudio','=',$value)->where('e.condicion','=','1')->get();
+     foreach($estudios as $est)
+     {
+      $output = '<label>Descripción: </label> '.$est->descripcionestudio.'<br>';
+      $output .= '<label>Tipo evaluacion: </label> '.$est->tipoevaluacion.'<br>';
+      $output .= '<label>Tipo estudio: </label> '.$est->tipoestudio.'<br>';
 
      }
+     }
 
+     echo $output;
+    }
+
+
+
+    //LISTAR DOCUMENTOS
+
+
+     function listardocumentos(Request $request)
+    {
+     
+     $idestudio = $request->get('idestudio'); // estudio
+
+     $documentos=DB::table('documentoestudio')->where('idestudio','=',$idestudio)->where('condicion','=','1')->get();
+
+      $output = ' <tr>
+                  <td>';
+     foreach($documentos as $doc)
+     {
+       $output .= '<a class="btn btn-app">
+          <i class="fa fa-file-pdf-o"></i>'.$doc->descdocumentoestudio.'</a>';
+     }
+     $output .= '</td>
+                </tr>';
+       
      echo $output;
     }
 /*

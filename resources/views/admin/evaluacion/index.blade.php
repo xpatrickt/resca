@@ -55,7 +55,7 @@ treeview
                 <h3 class="box-title">Estudios</h3>
               </div>
                <div class="form-group">
-                  <select name="estudio" id="estudio" class="form-control select2 dynamic">
+                  <select name="estudio" id="estudio" class="form-control select2 dynamic" data-dependent="doc">
                   </select>
                 </div>
                  <div class="box-tools">
@@ -80,6 +80,8 @@ treeview
               <li><a href="#observaciones" data-toggle="tab">Observaciones del Estudio</a></li>
             </ul>
             <div class="tab-content">
+
+     <!--TAB DOCUMENTO*******************************************************-->
           <div class="active tab-pane" id="documentos">
             <div class="box-header with-border">
               <h3 class="box-title">Documentos del Estudio</h3>
@@ -115,59 +117,24 @@ treeview
                 </div>
                 <!-- /.pull-right -->
               </div>
-              <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-striped">
-                  <tbody>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">5 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">28 mins ago</td>
-                  </tr>
-                                
-                  </tbody>
-                </table>
+                <table id="tabla" name="tabladocumento" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th >Documentos</th>
+
+                 </tr>
+                </thead>
+                <tbody id="bodydocumentos">
+
+                </tbody>
+
+          </table>
                 <!-- /.table -->
               </div>
-              <!-- /.mail-box-messages -->
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer no-padding">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                 <!-- 1-50/200-->
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
-              </div>
-            </div>
+
           </div>
+
+      <!--TAB OBSERVACIONES*******************************************************-->
           <div class="tab-pane" id="observaciones">
             <div class="box-header with-border">
               <h3 class="box-title">Observaciones del Estudio</h3>
@@ -282,6 +249,8 @@ treeview
 
 $(document).ready(function(){
 
+  //LISTAR PROYECTO Y ESTUDIO
+
  $('.dynamic').change(function(){
   if($(this).val() != '')
   {
@@ -291,6 +260,8 @@ $(document).ready(function(){
    var ta= 't'+select; //tproyecto
 
    var _token = $('input[name="_token"]').val();
+
+
   
   $.ajax({
     url:"{{ route('admin.evaluacion.listar') }}",
@@ -320,13 +291,36 @@ $(document).ready(function(){
  
     if(depen=='estudio'){
       document.getElementById("tproyecto").textContent = "";
-    document.getElementById('estudio').length=0;
+      document.getElementById("testudio").textContent = "";
+       document.getElementById('estudio').length=0;
      }
-
+   if(depen=='doc'){
+      document.getElementById("testudio").textContent = "";
+     }
     
    }
  });
 
+//DOCUMENTOS Y OBSERVACIONES ESTUDIO
+ $('#estudio').change(function(){
+
+  var idestudio = $('#estudio').val(); 
+   var _token = $('input[name="_token"]').val();
+
+   alert("documentos y observaciones"+idestudio);
+
+    $.ajax({
+    url:"{{ route('admin.evaluacion.listardocumentos') }}",
+    method:"POST",
+    data:{idestudio:idestudio, _token:_token},
+    success:function(result)
+    {
+      
+     $('#bodydocumentos').html(result);
+    }
+   })
+
+ });
  
 
 });
