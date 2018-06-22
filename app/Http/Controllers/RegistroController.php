@@ -49,6 +49,8 @@ class RegistroController extends Controller
     }
 
 
+
+
    public function create(){
         $proyectos=DB::table('proyecto')->where('condicion','=','1')->get();
         $tiposevaluacion=DB::table('tipoevaluacion')->where('condicion','=','1')->get();
