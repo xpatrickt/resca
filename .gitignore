@@ -6,6 +6,7 @@
 /.vscode
 /.vagrant
 /.phpintel
+/.phpintel/index
 Homestead.json
 Homestead.yaml
 npm-debug.log
