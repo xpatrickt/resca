@@ -37,11 +37,11 @@ Route::resource('admin/tipoestudio','TipoestudioController');
 Route::resource('admin/estado','EstadoController');
 Route::resource('admin/evaluacionestudio','EvaluacionestudioController');
 Route::resource('admin/certificacion','CertificacionController');
-
+Route::resource('admin/representante','RepresentanteController');
 
 Route::post('admin/proyecto/listar','ProyectoController@listar')->name('admin.proyecto.listar');
 Route::post('admin/seguimiento/listar','SeguimientoController@listar')->name('admin.seguimiento.listar');
-
+Route::post('admin/representante/{id}/edit','RepresentanteController@edit')->name('admin.representante.edit');
 
 //routes evaluacion
 Route::post('admin/evaluacionestudio/asignar','EvaluacionestudioController@asignar')->name('admin.evaluacionestudio.asignar');

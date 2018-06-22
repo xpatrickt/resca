@@ -5,14 +5,14 @@ namespace resca\Http\Controllers;
 use Illuminate\Http\Request;
 use resca\Representante;
 use resca\Persona;
-use resca\Controller;
+use resca\Entidad;
 use Illuminate\Support\Facades\Redirect;
 use resca\Http\Requests\RepresentanteFormRequest;
 use DB;
 
 class RepresentanteController extends Controller
 {
-        public function __construct(){
+    public function __construct(){
 
     }
     public function index(Request $request){
@@ -31,30 +31,26 @@ class RepresentanteController extends Controller
         }
     }
 
-
-
-    public function edit($idestudio){
-         $estudio=Estudio::findOrFail($idestudio);
+    public function edit($identidad){
+         $entidad=Entidad::findOrFail($identidad);
         $personas=DB::table('persona')->select(DB::raw('CONCAT(persona.nombrepersona," ",persona.apellidospersona) AS nombres'),'persona.idpersona')->where('condicion','=','1')->get();
-        return view("admin.evaluacionestudio.edit",["estudio"=>$estudio,"personas"=>$personas]);
+        return view("admin.representante.edit",["entidad"=>$entidad,"personas"=>$personas]);
     }
 
 
 
-    public function update(EvaluacionestudioFormRequest $request,$idevaluacionestudio){
-      $evaluacionestudio=new Evaluacionestudio;
-        $evaluacionestudio->idestudio=$request->get('idestudio');
-        $evaluacionestudio->idpersona=$request->get('idpersona');
-      $evaluacionestudio->save();
-        $estadoestudio=new Estadoestudio;
-        $estadoestudio->idestudio=$request->get('idestudio');
-        $estadoestudio->idestado=$request->get('idestado');
-        $estadoestudio->save();
-      return Redirect::to('admin/evaluacionestudio');   
+    public function update(RepresentanteFormRequest $request,$idrepresentante){
+      $representante=new Representante;
+        $representante->descripcionrepresentante=$request->get('descripcion');
+        $representante->identidad=$request->get('identidad');
+        $representante->idpersona=$request->get('idpersona');
+      $representante->save();
+
+      return Redirect::to('admin/entidad');   
     }
 
-    public function show($idevaluacionestudio){
-        return view("admin.evaluacionestudio.show",["evaluacionestudio"=>evaluacionestudio::findOrFail($idevaluacionestudio)]);
+    public function show($idrepresentante){
+        return view("admin.entidad.show",["representante"=>representante::findOrFail($idrepresentante)]);
     }
 
 
