@@ -3,9 +3,9 @@
 treeview
 @endsection
 @section('treemenu')
-treeview
+active treeview
 @endsection
-@section('actgusu')
+@section('actper')
 active
 @endsection
 
@@ -15,7 +15,7 @@ active
 	<div class="col-md-12">
 	<div class="box box-primary">
 		<div class="box-header with-border">
-		<h3 class="box-tittle">Editar Usuario: {{ $user->name}}</h3>
+		<h3 class="box-tittle">Editar Persona: {{ $persona->nombrepersona}}</h3>
 		@if(count($errors)>0)
 		<div class="alert alert-danger">
 			<ul>
@@ -27,24 +27,36 @@ active
 		@endif
 		</div>
               <div class="box-body">
-              	{!! Form::model($user, ['route' => ['admin.user.update', $user->id],'method' => 'PUT']) !!}
+              	{!! Form::model($persona, ['route' => ['admin.persona.update', $persona->idpersona],'method' => 'PUT']) !!}
               	{{Form::token()}}
 
-          <div class="form-group">
-                  <label for="nombre">Nombre de Usuario</label>
-                  <input type="text" name="nombre" value="{{$user->nombrepersona}}" class="form-control" placeholder="Ingrese Nombre de usuario" required>
+                <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" name="nombre" value="{{$persona->nombrepersona}}" class="form-control" placeholder="Ingrese Nombre">
+                </div>
+                <div class="form-group">
+                  <label for="apellidos">Apellidos</label>
+                  <input type="text" name="apellidos" value="{{$persona->apellidospersona}}" class="form-control" placeholder="Ingrese Apellidos">
+                </div>
+                <div class="form-group">
+                  <label for="dni">DNI</label>
+                  <input type="text" name="dni" value="{{$persona->dnipersona}}" class="form-control" placeholder="Ingrese DNI">
+                </div>
+                <div class="form-group">
+                  <label for="telefono">Teléfono</label>
+                  <input type="text" name="telefono" value="{{$persona->telefonopersona}}" class="form-control" placeholder="Ingrese Teléfono">
+                </div>
+                 <div class="form-group">
+                  <label for="direccion">Dirección</label>
+                  <input type="text" name="direccion" value="{{$persona->direccionpersona}}" class="form-control" placeholder="Ingrese Dirección">
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="text" name="email" value="{{$persona->apellidospersona}}" class="form-control" placeholder="Ingrese Email" required>
-                </div>
+                  <input type="email" name="email" value="{{$persona->emailpersona}}" class="form-control" placeholder="Ingrese Email">
+                </div>   
                 <div class="form-group">
-                  <label for="password">Nuevo Password</label>
-                  <input type="password" name="password" class="form-control" placeholder="Ingrese Password" required>
-                </div>
-                <div class="form-group">
-                  <label for="persona">Persona</label>
-                  <select name="persona" class="form-control">
+                  <label for="idcargo">Cargo</label>
+                  <select name="idcargo" class="form-control">
                     @foreach ($cargos as $car)
                       @if ($car->idcargo==$persona->idcargo)
                       <option value="{{$car->idcargo}}" selected>{{$car->nombrecargo}} </option>
@@ -55,20 +67,19 @@ active
                     @endforeach
                   </select>
                 </div>
+
                 <div class="form-group">
-                  <label for="provilegios">Privilegios de usuario</label>
-                  <select name="provilegios" class="form-control">
-                    @foreach ($cargos as $car)
-                      @if ($car->idcargo==$persona->idcargo)
-                      <option value="{{$car->idcargo}}" selected>{{$car->nombrecargo}} </option>
+                  <label for="identidad">Entidad</label>
+                  <select name="identidad" class="form-control">
+                    @foreach ($entidades as $ent)
+                      @if ($ent->identidad==$persona->identidad)
+                      <option value="{{$ent->identidad}}" selected>{{$ent->nombreentidad}} </option>
                        @else 
-                      <option value="{{$car->idcargo}}">{{$car->nombrecargo}} </option>
+                      <option value="{{$ent->identidad}}">{{$ent->nombreentidad}} </option>
                        @endif
 
                     @endforeach
                   </select>
-                </div>
-        
                 </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Registrar</button>

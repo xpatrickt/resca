@@ -3,9 +3,9 @@
 treeview
 @endsection
 @section('treemenu')
-treeview
+active treeview
 @endsection
-@section('actgusu')
+@section('actper')
 active
 @endsection
 
@@ -15,7 +15,7 @@ active
 	<div class="col-md-12">
 	<div class="box box-primary">
 		<div class="box-header with-border">
-		<h3 class="box-tittle">Nuevo Usuario</h3>
+		<h3 class="box-tittle">Nueva Persona</h3>
 		@if(count($errors)>0)
 		<div class="alert alert-danger">
 			<ul>
@@ -27,37 +27,45 @@ active
 		@endif
 		</div>
               <div class="box-body">
-              	{{ Form::open(['route' => 'admin.user.store']) }}
+              	{{ Form::open(['route' => 'admin.persona.store']) }}
               	{{Form::token()}}
                 <div class="form-group">
-                  <label for="nombre">Nombre de Usuario</label>
-                  <input type="text" name="nombre" class="form-control" placeholder="Ingrese Nombre de usuario" required>
+                  <label for="nombre">Nombre</label>
+                  <input type="text" name="nombre" class="form-control" placeholder="Ingrese Nombre">
+                </div>
+                <div class="form-group">
+                  <label for="apellidos">Apellidos</label>
+                  <input type="text" name="apellidos" class="form-control" placeholder="Ingrese Apellidos">
+                </div>
+                <div class="form-group">
+                  <label for="dni">DNI</label>
+                  <input type="text" name="dni" class="form-control" placeholder="Ingrese DNI">
+                </div>
+                <div class="form-group">
+                  <label for="telefono">Teléfono</label>
+                  <input type="text" name="telefono" class="form-control" placeholder="Ingrese Teléfono">
+                </div>
+                 <div class="form-group">
+                  <label for="direccion">Dirección</label>
+                  <input type="text" name="direccion" class="form-control" placeholder="Ingrese Dirección">
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="text" name="email" class="form-control" placeholder="Ingrese Email" required>
+                  <input type="email" name="email" class="form-control" placeholder="Ingrese Email">
                 </div>
                 <div class="form-group">
-                  <label for="password">Ingrese Password</label>
-                  <input id="password" type="password" name="password" class="form-control" placeholder="Ingrese Password" required>
-                </div>
-                <div class="form-group">
-                  <label for="password">Confirme Password</label>
-                  <input id="password" type="password" name="password_confirmation" class="form-control" placeholder="Ingrese Password" required>
-                </div>
-                <div class="form-group">
-                  <label for="persona">Persona</label>
-                  <select name="idpersona" class="form-control">
-                    @foreach ($personas as $per)
-                      <option value="{{$per->idpersona}}">{{$per->nombres}} </option>
+                  <label for="cargo">Cargo</label>
+                  <select name="idcargo" class="form-control">
+                    @foreach ($cargos as $car)
+                      <option value="{{$car->idcargo}}">{{$car->nombrecargo}} </option>
                     @endforeach
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="privilegios">Privilegios de usuario</label>
-                  <select name="idrol" class="form-control">
-                    @foreach ($roles as $rol)
-                      <option value="{{$rol->id}}">{{$rol->name}} </option>
+                  <label for="entidad">Entidad</label>
+                  <select name="identidad" class="form-control">
+                    @foreach ($entidades as $ent)
+                      <option value="{{$ent->identidad}}">{{$ent->nombreentidad}} </option>
                     @endforeach
                   </select>
                 </div>
