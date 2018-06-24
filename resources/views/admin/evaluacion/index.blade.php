@@ -147,7 +147,7 @@ treeview
                   <th>Descripcion</th>
                   <th>Tipo</th>
                   <th>Fecha</th>
-                  <th>Descargar</th>
+                  <th>Opción</th>
                  </tr>
                 </thead>
                 <tbody>
@@ -190,20 +190,21 @@ treeview
     <table id="tabla2" class="table table-hover table-striped">
            <thead>
                 <tr>
-                  <th>Descripción</th>
-                  <th>Descargar</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
                  </tr>
                 </thead>
                 <tbody>
-                @if($documentos!=null)
-                @foreach ($documentos as $doc)
+                @if($observaciones!=null)
+                @foreach ($observaciones as $obs)
                 <tr>
-                  <td>{{ $doc->descdocumentoestudio}}{{ $doc->tipodocumento}}{{ $doc->created_at}}</td>
-                  <td>
-                <a  href="documentos\resolucion\180618215657.pdf "  target="_blank"><i class="fa fa-file-pdf-o"></i></a>
-                </td>
+                  <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
+                  <td>{{ $obs->nombres}}</td>
+                  <td><a href="read-mail.html">{{ $obs->descobservacion}}...</a></td>
+                  <td>{{ $obs->created_at}}</td>
                 </tr>
-          @include('admin.evaluacion.modal')
           @endforeach
           @endif
 

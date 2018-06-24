@@ -33,9 +33,11 @@ class EvaluacionController extends Controller
         $tiposevaluacion=DB::table('tipoevaluacion')->where('condicion','=','1')->get();
         $tiposestudio=DB::table('tipoestudio')->where('condicion','=','1')->get();
         $documentos=null;
+        $observaciones=null;
+        $respuestasobservacion=null;
         $estudio=null;
         $proyecto=null;
-        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"departamentos"=>$departamentos,"estudio"=>$estudio,"entidades"=>$entidades,"tiposestudio"=>$tiposestudio,"tiposevaluacion"=>$tiposevaluacion]);
+        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"departamentos"=>$departamentos,"estudio"=>$estudio,"entidades"=>$entidades,"tiposestudio"=>$tiposestudio,"tiposevaluacion"=>$tiposevaluacion,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
     }
 
 }
@@ -57,19 +59,29 @@ class EvaluacionController extends Controller
         $estudio=Estudio::findOrFail($idestudio);
         $documentos=DB::table('documentoestudio as d')->join('documento as do','do.iddocumento','=','d.iddocumento')
         ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','d.created_at','d.idestudio','do.nombredocumento as tipodocumento')->where('d.condicion','=','1')->where('d.idestudio','=',$idestudio)->orderBy('d.iddocumentoestudio','desc')->get();
+
+         $observaciones=DB::table('observacion as o')->join('evaluacionestudio as e','o.idevaluacionestudio','=','e.idevaluacionestudio')->join('persona as p','e.idpersona','=','p.idpersona')
+        ->select('o.idobservacion','o.descripcionobservacion',DB::raw('SUBSTRING(o.descripcionobservacion,1,25) as descobservacion'),'o.condicion','o.created_at','e.idpersona',DB::raw('CONCAT(p.nombrepersona," ",p.apellidospersona) AS nombres'))->where('e.idestudio','=',$idestudio)->orderBy('o.idobservacion','desc')->get();
+
+        $respuestasobservacion=DB::table('respuestaobservacion as r')->join('observacion as o','o.idobservacion','=','r.idobservacion')->join('evaluacionestudio as e','o.idevaluacionestudio','=','e.idevaluacionestudio')
+        ->select('r.idrespuestaobservacion','r.descripcionrespuesta',DB::raw('SUBSTRING(r.descripcionrespuesta,1,10) as descrespuesta'),'r.created_at','r.condicion')->where('e.idestudio','=',$idestudio)->orderBy('r.idrespuestaobservacion','desc')->get();
           }
           else{
         $estudio=null;
         $documentos=null;
+        $observaciones=null;
+        $respuestasobservacion=null;
           }
      }
     else{
         $proyecto=null;
         $estudio=null;
         $documentos=null;
+        $observaciones=null;
+        $respuestasobservacion=null;
         
     }
-    return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidades"=>$entidades,"tiposestudio"=>$tiposestudio,"tiposevaluacion"=>$tiposevaluacion]);
+    return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidades"=>$entidades,"tiposestudio"=>$tiposestudio,"tiposevaluacion"=>$tiposevaluacion,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
     }
 
       public function destroy($iddepartamento){
