@@ -430,6 +430,15 @@
       'autoWidth'   : true,
       'order':true
     })
+    $('#tabla2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : false,
+      'autoWidth'   : true,
+      'order':true
+    })
   })
 </script>
 

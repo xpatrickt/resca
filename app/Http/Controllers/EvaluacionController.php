@@ -25,13 +25,62 @@ class EvaluacionController extends Controller
  public function index(Request $request){
 
       if($request){
+        $query=trim($request->get('searchText'));
         $proyectos=DB::table('proyecto')->where('condicion','=','1')->get();
         $estudios=DB::table('estudio')->where('condicion','=','1')->get();
         $departamentos=DB::table('departamento')->where('condicion','=','1')->get();
         $entidades=DB::table('entidad')->where('condicion','=','1')->get();
-        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"estudios"=>$estudios,"departamentos"=>$departamentos,"entidades"=>$entidades]);
+        $documentos=null;
+        $estudio=null;
+        $proyecto=null;
+        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"departamentos"=>$departamentos,"estudio"=>$estudio]);
     }
+
 }
+
+  public function store(Request $request){
+       $idestudio=$request->get('estudio');
+        $idproyecto=$request->get('proyecto');
+
+    if($idproyecto!=""){
+        if($idestudio!=""){
+        $query=trim($request->get('searchText'));
+        $proyectos=DB::table('proyecto')->where('condicion','=','1')->get();
+        $estudio=Estudio::findOrFail($idestudio);
+        $proyecto=Proyecto::findOrFail($idproyecto);
+        $estudios=DB::table('estudio')->where('condicion','=','1')->get();
+        $documentos=DB::table('documentoestudio')->where('condicion','=','1')->where('idestudio','=',$idestudio)->orderBy('iddocumentoestudio','desc')->get();
+        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query]);
+          }
+
+          else{
+        $query=trim($request->get('searchText'));
+        $proyectos=DB::table('proyecto')->where('condicion','=','1')->get();
+        $proyecto=Proyecto::findOrFail($idproyecto);
+        $estudio=null;
+        $estudios=DB::table('estudio')->where('condicion','=','1')->get();
+        $documentos=null;
+        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query]);
+          }
+    }
+    else{
+        $query=trim($request->get('searchText'));
+        $proyectos=DB::table('proyecto')->where('condicion','=','1')->get();
+        $proyecto=null;
+        $estudio=null;
+        $estudios=DB::table('estudio')->where('condicion','=','1')->get();
+        $documentos=null;
+        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query]);
+    }
+    
+    }
+
+      public function destroy($iddepartamento){
+        $departamento=departamento::findOrFail($iddepartamento);
+        $departamento->condicion='0';
+        $departamento->update();
+        return Redirect::to('admin/departamento');
+    }
 
     function listar(Request $request)
     {
@@ -92,48 +141,30 @@ class EvaluacionController extends Controller
 
     //LISTAR DOCUMENTOS
 
-
+/*
      function listardocumentos(Request $request)
     {
      
      $idestudio = $request->get('idestudio'); // estudio
 
-     $documentos=DB::table('documentoestudio')->where('idestudio','=',$idestudio)->where('condicion','=','1')->get();
+        $query=trim($request->get('searchText'));
 
-      $output = ' <tr>
-                  <td>';
+     $documentos=DB::table('documentoestudio')->where('idestudio','=',$idestudio)->where('condicion','=','1')->where('descdocumentoestudio','LIKE','%'.$query.'%')
+            ->where('condicion','=','1')
+            ->orderBy('iddocumentoestudio','desc')->get();
+
+      $output = ' ';
      foreach($documentos as $doc)
      {
-       $output .= '<a class="btn btn-app">
-          <i class="fa fa-file-pdf-o"></i>'.$doc->descdocumentoestudio.'</a>';
+
+       $output .= '<tr><td><a class="btn btn-app">
+          <i class="fa fa-file-pdf-o"></i>'.$doc->descdocumentoestudio.'wef</a></td>
+           <td>'.$doc->descdocumentoestudio.'</td>
+          </tr>';
      }
-     $output .= '</td>
-                </tr>';
+     $output .= '';
        
      echo $output;
-    }
-/*
-    function listar(Request $request)
-    {
-     
-     $select = $request->get('select'); // departamento
-     $value = $request->get('value');  //valor
-     $dependent = $request->get('dependent'); //provincia
-     $id='id'.$select;
-     $iddependent='id'.$dependent;
-     $nombre='nombre'.$dependent;
+    }*/
 
-     $data = DB::table($select)
-     ->join($dependent, $dependent.'.'.$id,'=',$select.'.'.$id)
-     ->select($dependent.'.'.$iddependent, $dependent.'.'.$nombre)
-       ->where($dependent.'.'.$id, $value)
-       ->get();
-     $output = '<option value="">Seleccione '.ucfirst($dependent).'</option>';
-     foreach($data as $row)
-     {
-      $output .= '<option value="'.$row->$iddependent.'">'.$row->$nombre.'</option>';
-     }
-     echo $output;
-    }
-*/
 }
