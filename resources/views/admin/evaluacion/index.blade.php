@@ -20,7 +20,9 @@ treeview
 
 
             <div class="col-md-4">
-              <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Agregar Observacion</a>
+              <a href="" data-target="#modal-agregarobservacion" data-toggle="modal" class="btn btn-primary btn-block margin-bottom">Agregar Observación</a>
+                 
+         @include('admin.evaluacion.modalagregarobservacion')
            
           
            <div class="box box-solid">
@@ -158,10 +160,9 @@ treeview
                   <td>{{ $doc->tipodocumento}}</td>
                   <td>{{ $doc->created_at}}</td>
                   <td>
-                <a  href="..\documentos\resolucion\230618224058.pdf"  target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                <a  href="..{{$doc->urldocumentoestudio}}"  target="_blank"><i class="fa fa-file-pdf-o"></i></a>
                 </td>
                 </tr>
-          @include('admin.evaluacion.modal')
           @endforeach
           @endif
 
@@ -201,12 +202,14 @@ treeview
                 @foreach ($observaciones as $obs)
                 <tr>
                   <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
-                  <td>{{ $obs->nombre}}</td>
-                  <td><a href="read-mail.html">{{ $obs->descobservacion}}...</a></td>
-                  <td>{{ $obs->created_at}}</td>
+                  <td>{{$obs->nombre}}</td>
+                  <td><a href="" data-target="#modal-observacion-{{$obs->idobservacion}}" data-evaluador="{{$obs->nombre}}" data-asunto="{{$obs->asuntoobservacion}}" data-descripcion="{{$obs->descripcionobservacion}}" data-fecha="{{$obs->created_at}}" data-toggle="modal">{{$obs->asobservacion}}...</a>
+                  <td>{{$obs->created_at}}</td>
                 </tr>
-          @endforeach
-          @endif
+         @include('admin.evaluacion.modalobservacion')
+                @endforeach
+               @endif
+
 
                 </tbody>
               <tfoot>
@@ -241,10 +244,11 @@ treeview
                 @foreach ($respuestasobservacion as $res)
                 <tr>
                   <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
-                  <td>{{ $res->descobservacion}}...</td>
-                  <td><a href="read-mail.html">{{ $res->descrespuesta}}...</a></td>
-                  <td>{{ $res->created_at}}</td>
+                  <td>{{ $res->asobservacion}}...</td>
+                  <td><a href="" data-target="#modal-respuesta-{{$res->idrespuestaobservacion}}" data-asunto="{{$res->asuntorespuesta}}" data-observacion="{{$res->asuntoobservacion}}" data-descripcion="{{$res->descripcionrespuesta}}" data-fecha="{{$res->created_at}}" data-toggle="modal">{{$res->asrespuesta}}...</a>
+                  <td>{{$res->created_at}}</td>
                 </tr>
+                @include('admin.evaluacion.modalrespuesta')
           @endforeach
           @endif
 
