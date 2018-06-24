@@ -232,25 +232,35 @@
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
+     
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
+        @can('admin.registro.index')
         <li class="@yield('actmenu1')"><a href="{{url ('admin/registro')}}"><i class="fa fa-flag-o"></i> <span>Registros Ambientales</span></a></li>
-        <!--SSS-->
+       @endcan
+
+        
         <li class="@yield('actmenu2')">
-          <a href="#"><i class="fa fa-dashboard"></i><span>Evaluación Ambiental</span>
+          @can('admin.evaluacion.index')
+          <a href="#"><i class="fa fa-dashboard"></i><span>Evaluación Ambiental</span>@endcan
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
+            @can('admin.evaluacionestudio.index')
             <li class="@yield('acteve')"><a href="{{url ('admin/evaluacionestudio')}}">Asignar Evaluador</a></li>
+            @endcan
+            @can('admin.evaluacion.index')
             <li class="@yield('acteva')"><a href="{{url ('admin/evaluacion')}}">Evaluación</a></li>
+            @endcan
+            @can('admin.certificacion.index')
             <li class="@yield('actcer')"><a href="{{url ('admin/certificacion')}}">Certificación</a></li>            
-                       
+             @endcan        
           </ul>
         </li>
-
-
+      
+        @can('admin.seguimiento.index')
         <li class="@yield('actmenu3')"><a href="{{url ('admin/seguimiento')}}"><i class="fa fa-dashboard"></i> <span>Seguimiento</span></a></li>
-       
+       @endcan
         <li class="@yield('treemenu')">
           <a href="#"><i class="fa fa-link"></i><span>Mantenimiento</span>
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
