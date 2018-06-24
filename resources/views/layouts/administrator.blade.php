@@ -294,16 +294,10 @@
             @endcan 
           </ul>
         </li>
+        @can('admin.user.index')
+          <li class="@yield('actgusu')"><a href="{{url ('admin/user')}}"><i class="fa fa-users"></i> <span>Gestión de Usuarios</span></a></li>
+        @endcan 
 
-          <li class="@yield('actmenu4')">
-          <a href="#"><i class="fa fa-users"></i><span>Gestión de Usuarios</span>
-          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="@yield('actusu')"><a href="{{url ('admin/usuario')}}">Registrar usuarios</a></li>
-            <li class="@yield('acttusu')"><a href="{{url ('admin/tipousuario')}}">Tipo de Usuario</a></li>                      
-          </ul>
-        </li>
 
 
       </ul>
