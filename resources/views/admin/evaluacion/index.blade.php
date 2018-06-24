@@ -31,7 +31,7 @@ treeview
                <div class="form-group">
                   <select name="proyecto" id="proyecto" class="form-control select2 dynamic" 
                   data-dependent="estudio">
-              <option value="">Seleccione Proyecto</option> 
+              <option value="" >Seleccione Proyecto</option> 
               @if($proyecto==null) 
                @foreach($proyectos as $pro)
                  <option value="{{ $pro->idproyecto}}">{{ $pro->nombreproyecto}}</option>
@@ -55,6 +55,16 @@ treeview
                <div class="box-body no-padding">
                 <div class="form-group">
                 <div id="tproyecto" name="tproyecto" style="margin: 10px 0 0 10px;">
+                @if($proyecto!=null)
+                  <label>Descripción: </label> {{$proyecto->descripcionproyecto}}<br>
+                  <label>Objetivo: </label> {{$proyecto->objetivoproyecto}}<br>
+                  <label>Beneficiarios: </label> {{$proyecto->beneficiariosproyecto}}<br>
+                  @foreach($entidades as $en)
+                  @if($proyecto->identidad==$en->identidad)
+                  <label>Entidad: </label> {{$en->nombreentidad}}<br>
+                  @endif
+                  @endforeach
+                @endif
                 </div>
                 </div>
             </div>
@@ -88,6 +98,19 @@ treeview
                <div class="box-body no-padding">
                 <div class="form-group">
                 <div id="testudio" name="testudio" style="margin: 10px 0 0 10px;">
+                @if($estudio!=null)
+                  <label>Descripción: </label> {{$estudio->descripcionestudio}}<br>
+                  @foreach($tiposevaluacion as $teva)
+                   @if($estudio->idtipoevaluacion==$teva->idtipoevaluacion)
+                   <label>Tipo evaluacion: </label> {{$teva->nombretipoevaluacion}}<br>
+                   @endif
+                  @endforeach
+                  @foreach($tiposestudio as $test)
+                   @if($estudio->idtipoestudio==$test->idtipoestudio)
+                   <label>Tipo estudio: </label> {{$test->nombretipoestudio}}<br>
+                   @endif
+                  @endforeach
+                @endif
                 </div>
                 </div>
             </div>
@@ -110,22 +133,19 @@ treeview
 
           <div class="active tab-pane" id="documentos">
             <div class="box-header with-border">
-              <h3 class="box-title">Documentos del Estudio</h3>
+              <h3 class="box-title">Documentos : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
 
+              <div class="table-responsive mailbox-messages">
 
-
-
-
-
-
-<table id="tabla" class="table table-bordered table-striped">
+<table id="tabla" class="table table-hover table-striped">
            <thead>
                 <tr>
-                  <th width="1px">Codigo</th>
-                  <th>Documento</th>
+                  <th>Descripcion</th>
+                  <th>Tipo</th>
+                  <th>Fecha</th>
                   <th>Opción</th>
                  </tr>
                 </thead>
@@ -133,10 +153,11 @@ treeview
                 @if($documentos!=null)
                 @foreach ($documentos as $doc)
                 <tr>
-                  <td width="1px">{{ $doc->iddocumentoestudio}}</td>
                   <td>{{ $doc->descdocumentoestudio}}</td>
+                  <td>{{ $doc->tipodocumento}}</td>
+                  <td>{{ $doc->created_at}}</td>
                   <td>
-                  <a href="" data-target="#modal-delete-{{$doc->iddocumentoestudio}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
+                <a  href="documentos\resolucion\180618215657.pdf "  target="_blank"><i class="fa fa-file-pdf-o"></i></a>
                 </td>
                 </tr>
           @include('admin.evaluacion.modal')
@@ -145,14 +166,10 @@ treeview
 
                 </tbody>
         <tfoot>
-                <tr>
-                  <th width="1px">Codigo</th>
-                  <th>Departamento</th>
-                  <th>Opción</th>
-                </tr>
+               
                 </tfoot>
             </table>
-
+           </div>
 
                 <!-- /.table -->
               </div>
@@ -283,6 +300,7 @@ $(document).ready(function(){
    var value = $(this).val();          // valor proyecto
    var dependent = $(this).data('dependent');
    var ta= 't'+select; //tproyecto
+   document.getElementById("testudio").textContent = "";
 
    var _token = $('input[name="_token"]').val();
 

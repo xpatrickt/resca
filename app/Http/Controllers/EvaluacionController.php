@@ -30,10 +30,12 @@ class EvaluacionController extends Controller
         $estudios=DB::table('estudio')->where('condicion','=','1')->get();
         $departamentos=DB::table('departamento')->where('condicion','=','1')->get();
         $entidades=DB::table('entidad')->where('condicion','=','1')->get();
+        $tiposevaluacion=DB::table('tipoevaluacion')->where('condicion','=','1')->get();
+        $tiposestudio=DB::table('tipoestudio')->where('condicion','=','1')->get();
         $documentos=null;
         $estudio=null;
         $proyecto=null;
-        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"departamentos"=>$departamentos,"estudio"=>$estudio]);
+        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"departamentos"=>$departamentos,"estudio"=>$estudio,"entidades"=>$entidades,"tiposestudio"=>$tiposestudio,"tiposevaluacion"=>$tiposevaluacion]);
     }
 
 }
@@ -41,38 +43,33 @@ class EvaluacionController extends Controller
   public function store(Request $request){
        $idestudio=$request->get('estudio');
         $idproyecto=$request->get('proyecto');
+        $query=trim($request->get('searchText'));
+        $proyectos=DB::table('proyecto')->where('condicion','=','1')->get();
+        $estudios=DB::table('estudio')->where('condicion','=','1')->get();
+        $entidades=DB::table('entidad')->where('condicion','=','1')->get();
+        $tiposevaluacion=DB::table('tipoevaluacion')->where('condicion','=','1')->get();
+        $tiposestudio=DB::table('tipoestudio')->where('condicion','=','1')->get();
 
     if($idproyecto!=""){
-        if($idestudio!=""){
-        $query=trim($request->get('searchText'));
-        $proyectos=DB::table('proyecto')->where('condicion','=','1')->get();
-        $estudio=Estudio::findOrFail($idestudio);
-        $proyecto=Proyecto::findOrFail($idproyecto);
-        $estudios=DB::table('estudio')->where('condicion','=','1')->get();
-        $documentos=DB::table('documentoestudio')->where('condicion','=','1')->where('idestudio','=',$idestudio)->orderBy('iddocumentoestudio','desc')->get();
-        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query]);
-          }
 
-          else{
-        $query=trim($request->get('searchText'));
-        $proyectos=DB::table('proyecto')->where('condicion','=','1')->get();
         $proyecto=Proyecto::findOrFail($idproyecto);
-        $estudio=null;
-        $estudios=DB::table('estudio')->where('condicion','=','1')->get();
-        $documentos=null;
-        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query]);
+        if($idestudio!=""){
+        $estudio=Estudio::findOrFail($idestudio);
+        $documentos=DB::table('documentoestudio as d')->join('documento as do','do.iddocumento','=','d.iddocumento')
+        ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','d.created_at','d.idestudio','do.nombredocumento as tipodocumento')->where('d.condicion','=','1')->where('d.idestudio','=',$idestudio)->orderBy('d.iddocumentoestudio','desc')->get();
           }
-    }
+          else{
+        $estudio=null;
+        $documentos=null;
+          }
+     }
     else{
-        $query=trim($request->get('searchText'));
-        $proyectos=DB::table('proyecto')->where('condicion','=','1')->get();
         $proyecto=null;
         $estudio=null;
-        $estudios=DB::table('estudio')->where('condicion','=','1')->get();
         $documentos=null;
-        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query]);
+        
     }
-    
+    return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidades"=>$entidades,"tiposestudio"=>$tiposestudio,"tiposevaluacion"=>$tiposevaluacion]);
     }
 
       public function destroy($iddepartamento){
@@ -137,34 +134,5 @@ class EvaluacionController extends Controller
      echo $output;
     }
 
-
-
-    //LISTAR DOCUMENTOS
-
-/*
-     function listardocumentos(Request $request)
-    {
-     
-     $idestudio = $request->get('idestudio'); // estudio
-
-        $query=trim($request->get('searchText'));
-
-     $documentos=DB::table('documentoestudio')->where('idestudio','=',$idestudio)->where('condicion','=','1')->where('descdocumentoestudio','LIKE','%'.$query.'%')
-            ->where('condicion','=','1')
-            ->orderBy('iddocumentoestudio','desc')->get();
-
-      $output = ' ';
-     foreach($documentos as $doc)
-     {
-
-       $output .= '<tr><td><a class="btn btn-app">
-          <i class="fa fa-file-pdf-o"></i>'.$doc->descdocumentoestudio.'wef</a></td>
-           <td>'.$doc->descdocumentoestudio.'</td>
-          </tr>';
-     }
-     $output .= '';
-       
-     echo $output;
-    }*/
 
 }
