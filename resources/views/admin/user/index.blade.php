@@ -28,6 +28,7 @@ active
                   <th width="1px">ID</th>
                   <th>Usuario</th>
                   <th>Email</th>
+                  <th>Privilegios</th>
                   <th>Nombres</th>
                   <th>Apellidos</th>
                   <th>DNI</th>            
@@ -40,6 +41,7 @@ active
                   <td width="1px">{{$usu->id}}</td>
                   <td>{{ $usu->name}}</td>
                   <td>{{ $usu->email}}</td>
+                  <td>{{ $usu->privilegio}}</td>
                   <td>{{ $usu->nombrepersona}}</td>
                   <td>{{ $usu->apellidospersona}}</td>  
                   <td>{{ $usu->dnipersona}}</td>                                           
@@ -56,6 +58,7 @@ active
                   <th width="1px">ID</th>
                   <th>Usuario</th>
                   <th>Email</th>
+                  <th>Privilegios</th>
                   <th>Nombres</th>
                   <th>Apellidos</th>
                   <th>DNI</th>                                

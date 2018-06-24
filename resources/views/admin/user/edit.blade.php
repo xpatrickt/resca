@@ -46,25 +46,25 @@ active
                 <div class="form-group">
                   <label for="persona">Persona</label>
                   <select name="persona" class="form-control">
-                    @foreach ($cargos as $car)
-                      @if ($car->idcargo==$persona->idcargo)
-                      <option value="{{$car->idcargo}}" selected>{{$car->nombrecargo}} </option>
+                    @foreach ($personas as $per)
+                      @if ($user->idpersona==$per->idpersona)
+                      <option value="{{$per->idpersona}}" selected>{{$per->nombres}} </option>
                        @else 
-                      <option value="{{$car->idcargo}}">{{$car->nombrecargo}} </option>
+                      <option value="{{$per->idpersona}}">{{$per->nombres}} </option>
                        @endif
 
                     @endforeach
                   </select>
                 </div>
-                
+
                 <div class="form-group">
-                  <label for="provilegios">Privilegios de usuario</label>
-                  <select name="provilegios" class="form-control">
-                    @foreach ($cargos as $car)
-                      @if ($car->idcargo==$persona->idcargo)
-                      <option value="{{$car->idcargo}}" selected>{{$car->nombrecargo}} </option>
+                  <label for="privilegios">Privilegios de usuario</label>
+                  <select name="privilegios" class="form-control">
+                    @foreach ($roles as $rol)
+                      @if ($rol->id==$user->rol_id)
+                      <option value="{{$rol->id}}" selected>{{$rol->nombrecargo}} </option>
                        @else 
-                      <option value="{{$car->idcargo}}">{{$car->nombrecargo}} </option>
+                      <option value="{{$rol->id}}">{{$rol->nombrecargo}} </option>
                        @endif
 
                     @endforeach

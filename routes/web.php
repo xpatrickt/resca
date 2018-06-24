@@ -583,7 +583,7 @@ Route::get('admin/evaluacion/{role}/edit','EvaluacionController@edit')->name('ad
 
 Route::post('admin/proyecto/listar','ProyectoController@listar')->name('admin.proyecto.listar');
 Route::post('admin/seguimiento/listar','SeguimientoController@listar')->name('admin.seguimiento.listar');
-Route::post('admin/representante/{id}/edit','RepresentanteController@edit')->name('admin.representante.edit');
+//Route::post('admin/representante/{id}/edit','RepresentanteController@edit')->name('admin.representante.edit');
 
 //routes evaluacion
 Route::post('admin/evaluacionestudio/asignar','EvaluacionestudioController@asignar')->name('admin.evaluacionestudio.asignar');
@@ -592,7 +592,7 @@ Route::post('admin/evaluacion/listarall','EvaluacionController@listarall')->name
 Route::post('admin/evaluacion/listardocumentos','EvaluacionController@listardocumentos')->name('admin.evaluacion.listardocumentos');
 
 //routes registro
-Route::resource('admin/registro','RegistroController');
+//Route::resource('admin/registro','RegistroController');
 Route::post('admin/registro/listardelimitacion','RegistroController@listardelimitacion')->name('admin.registro.listardelimitacion');
 Route::post('admin/registro/agregardelimitacion','RegistroController@agregardelimitacion')->name('admin.registro.agregardelimitacion');
 Route::post('admin/registro/listardocumento','RegistroController@listardocumento')->name('admin.registro.listardocumento');

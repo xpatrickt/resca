@@ -20,7 +20,9 @@ class UserController extends Controller
     		$query=trim($request->get('searchText'));
     		$usuarios=DB::table('users as u')
     		->join('persona as p','p.idpersona','=','u.idpersona')
-        	->select('u.id','u.name','u.email','p.nombrepersona','p.apellidospersona','p.dnipersona')
+        ->join('role_user as ru','ru.user_id','=','u.id')
+        ->join('roles as r','r.id','=','ru.role_id')
+        	->select('u.id','u.name','u.email','r.name as privilegio','p.nombrepersona','p.apellidospersona','p.dnipersona')
     		->where('u.name','LIKE','%'.$query.'%')
     		->where('u.condicion','=','1')
     		->orderBy('u.id','desc')
@@ -53,15 +55,20 @@ class UserController extends Controller
    		return Redirect::to('admin/user');
     }
 
-    public function show($idpersona){
-    	return view("admin.persona.show",["persona"=>persona::findOrFail($idpersona)]);
+    public function show($id){
+    	return view("admin.user.show",["user"=>user::findOrFail($id)]);
     }
 
-    public function edit($idpersona){
-        $persona=Persona::findOrFail($idpersona);
-        $cargos=DB::table('cargo')->where('condicion','=','1')->get();
-        $entidades=DB::table('entidad')->where('condicion','=','1')->get();
-      return view("admin.persona.edit",["persona"=>$persona,"cargos"=>$cargos,"entidades"=>$entidades]);
+    public function edit($id){
+         $user=User::findOrFail($id);
+         $rolusuario=DB::table('role_user as ru')
+         ->join('users as u','u.id','=','ru.user_id')
+         ->join('roles as r','r.id','=','ru.role_id')
+         ->select('r.id as idrol','r.name as privilegio')->where('ru.user_id','=',''.$id.'')->get();        
+         $roles=DB::table('roles')->get();
+         $personas=DB::table('persona')
+         ->select(DB::raw('CONCAT(persona.nombrepersona," ",persona.apellidospersona) AS nombres'),'persona.idpersona')->where('persona.condicion','=','1')->get();
+      return view("admin.user.edit",["user"=>$user,"roles"=>$roles,"personas"=>$personas,"$rolusuario"=>$rolusuario]);
     }
     public function update(PersonaFormRequest $request,$idpersona){
     	$persona=persona::findOrFail($idpersona);
@@ -74,12 +81,12 @@ class UserController extends Controller
         $persona->idcargo=$request->get('idcargo');
         $persona->identidad=$request->get('identidad');
     	$persona->update();
-    	return Redirect::to('admin/persona');    	
+    	return Redirect::to('admin/user');    	
     }
-    public function destroy($idpersona){
-    	$persona=persona::findOrFail($idpersona);
-    	$persona->condicion='0';
-    	$persona->update();
-    	return Redirect::to('admin/persona');
+    public function destroy($id){
+    	$users=users::findOrFail($id);
+    	$users->condicion='0';
+    	$users->update();
+    	return Redirect::to('admin/user');
     }
 }
