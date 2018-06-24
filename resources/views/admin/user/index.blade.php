@@ -3,7 +3,7 @@
 treeview
 @endsection
 @section('treemenu')
-active treeview
+treeview
 @endsection
 @section('actgusu')
 active
@@ -28,7 +28,9 @@ active
                   <th width="1px">ID</th>
                   <th>Usuario</th>
                   <th>Email</th>
-                           
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>DNI</th>            
                   <th>Opción</th>
                  </tr>
                 </thead>
@@ -38,7 +40,9 @@ active
                   <td width="1px">{{$usu->id}}</td>
                   <td>{{ $usu->name}}</td>
                   <td>{{ $usu->email}}</td>
-                          
+                  <td>{{ $usu->nombrepersona}}</td>
+                  <td>{{ $usu->apellidospersona}}</td>  
+                  <td>{{ $usu->dnipersona}}</td>                                           
                   <td><a href="{{URL::action('UserController@edit',$usu->id)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
                   <a href="" data-target="#modal-delete-{{$usu->id}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
@@ -52,7 +56,9 @@ active
                   <th width="1px">ID</th>
                   <th>Usuario</th>
                   <th>Email</th>
-                              
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>DNI</th>                                
                   <th>Opción</th>
                 </tr>
                 </tfoot>

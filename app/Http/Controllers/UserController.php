@@ -17,8 +17,12 @@ class UserController extends Controller
     public function index(Request $request){
     	if($request){
     		$query=trim($request->get('searchText'));
-    		$usuarios=DB::table('users')->where('name','LIKE','%'.$query.'%')
-    		->orderBy('id','desc')
+    		$usuarios=DB::table('users as u')
+    		->join('persona as p','p.idpersona','=','u.idpersona')
+        	->select('u.id','u.name','u.email','p.nombrepersona','p.apellidospersona','p.dnipersona')
+    		->where('u.name','LIKE','%'.$query.'%')
+    		->where('u.condicion','=','1')
+    		->orderBy('u.id','desc')
     		->paginate(999999);
     		return view('admin.user.index',["usuarios"=>$usuarios,"searchText"=>$query]);
     	   
