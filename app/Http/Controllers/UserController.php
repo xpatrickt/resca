@@ -5,7 +5,6 @@ namespace resca\Http\Controllers;
 use Illuminate\Http\Request;
 use resca\User;
 use resca\Persona;
-use resca\Rolusuario;
 use Illuminate\Support\Facades\Redirect;
 use resca\Http\Requests\UserFormRequest;
 use DB;
@@ -31,27 +30,23 @@ class UserController extends Controller
     }
 
     public function create(){
-    $roles=DB::table('roles')->get();
-    $personas=DB::table('persona as p')
-    ->join('users as u','u.idpersona','<>','p.idpersona')
-    ->select(DB::raw('CONCAT(p.nombrepersona," ",p.apellidospersona) AS nombres'),'p.idpersona')->where('p.condicion','=','1')->get();
-    	return view("admin.user.create",["personas"=>$personas],["roles"=>$roles]);
+    $personas=DB::table('users')->where('condicion','=','1')->get();
+    	return view("admin.user.create",["personas"=>$personas]);
     }
 
-    public function store(UserFormRequest $request){
-    	$users=new User;
-        $users->name=$request->get('nombre');
-       	$users->email=$request->get('email');
-       	$users->password=bcrypt($request->get('password'));
-        $users->idpersona=$request->get('idpersona');
-    	$users->condicion='1';
-   		$users->save();
-   		$idusuario = $users->id;
-   		$role_user=new Rolusuario;
-   		$role_user->user_id=$idusuario;
-   		$role_user->role_id=$request->get('idrol');
-   		$role_user->save();
-   		return Redirect::to('admin/user');
+    public function store(PersonaFormRequest $request){
+    	$persona=new Persona;
+        $persona->nombrepersona=$request->get('nombre');
+       	$persona->apellidospersona=$request->get('apellidos');
+       	$persona->dnipersona=$request->get('dni');
+       	$persona->telefonopersona=$request->get('telefono');
+       	$persona->direccionpersona=$request->get('direccion');
+       	$persona->emailpersona=$request->get('email');
+        $persona->idcargo=$request->get('idcargo');
+        $persona->identidad=$request->get('identidad');
+    	  $persona->condicion='1';
+   		  $persona->save();
+   		return Redirect::to('admin/persona');
     }
 
     public function show($idpersona){

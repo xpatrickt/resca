@@ -147,7 +147,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar Cargos',
-            'slug'          => 'admin.cargo.destroy',
+            'slug'          => 'admin.cargo.modal',
             'description'   => 'Podría eliminar cualquier cargo del sistema',      
         ]);
 //end cargo
@@ -178,7 +178,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar departamentos',
-            'slug'          => 'admin.departamento.destroy',
+            'slug'          => 'admin.departamento.modal',
             'description'   => 'Podría eliminar cualquier departamento del sistema',      
         ]);
 //end Departamento
@@ -209,7 +209,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar distritos',
-            'slug'          => 'admin.distrito.destroy',
+            'slug'          => 'admin.distrito.modal',
             'description'   => 'Podría eliminar cualquier distrito del sistema',      
         ]);
 //end distrito
@@ -240,7 +240,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar documentos',
-            'slug'          => 'admin.documento.destroy',
+            'slug'          => 'admin.documento.modal',
             'description'   => 'Podría eliminar cualquier documento del sistema',      
         ]);
 //end documento
@@ -271,7 +271,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar entidades',
-            'slug'          => 'admin.entidad.destroy',
+            'slug'          => 'admin.entidad.modal',
             'description'   => 'Podría eliminar cualquier entidad del sistema',      
         ]);
 //end entidad        
@@ -302,7 +302,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar estados',
-            'slug'          => 'admin.estado.destroy',
+            'slug'          => 'admin.estado.modal',
             'description'   => 'Podría eliminar cualquier estado del sistema',      
         ]);
 //end estado 
@@ -334,7 +334,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar personas',
-            'slug'          => 'admin.persona.destroy',
+            'slug'          => 'admin.persona.modal',
             'description'   => 'Podría eliminar cualquier persona del sistema',      
         ]);
 //end persona 
@@ -366,7 +366,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar provincias',
-            'slug'          => 'admin.provincia.destroy',
+            'slug'          => 'admin.provincia.modal',
             'description'   => 'Podría eliminar cualquier provincia del sistema',      
         ]);
 //end provincia 
@@ -399,7 +399,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar proyectos',
-            'slug'          => 'admin.proyecto.destroy',
+            'slug'          => 'admin.proyecto.modal',
             'description'   => 'Podría eliminar cualquier proyecto del sistema',      
         ]);
 //end Proyecto
@@ -432,7 +432,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar Representantes',
-            'slug'          => 'admin.representante.destroy',
+            'slug'          => 'admin.representante.modal',
             'description'   => 'Podría eliminar cualquier representante del sistema',      
         ]);
 //end representante
@@ -464,7 +464,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar Tipoestudios',
-            'slug'          => 'admin.tipoestudio.destroy',
+            'slug'          => 'admin.tipoestudio.modal',
             'description'   => 'Podría eliminar cualquier tipoestudio del sistema',      
         ]);
 //end tipoestudio
@@ -496,7 +496,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar Tipoevaluacion',
-            'slug'          => 'admin.tipoevaluacion.destroy',
+            'slug'          => 'admin.tipoevaluacion.modal',
             'description'   => 'Podría eliminar cualquier tipoevaluacion del sistema',      
         ]);
 //end tipoevaluacion
@@ -533,7 +533,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar evaluaciones',
-            'slug'          => 'admin.evaluacion.destroy',
+            'slug'          => 'admin.evaluacion.modal',
             'description'   => 'Podría eliminar cualquier evaluacion del sistema',      
         ]);
 //end evaluacion 
@@ -565,7 +565,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar evaluacion estudios',
-            'slug'          => 'admin.evaluacionestudio.destroy',
+            'slug'          => 'admin.evaluacionestudio.modal',
             'description'   => 'Podría eliminar cualquier evaluacion estudios del sistema',      
         ]);
 //end evaluacionestudio 
@@ -597,7 +597,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar certificaciones',
-            'slug'          => 'admin.certificacion.destroy',
+            'slug'          => 'admin.certificacion.modal',
             'description'   => 'Podría eliminar cualquier certificación del sistema',      
         ]);
 //end certificacion 
@@ -633,43 +633,11 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar Registros',
-            'slug'          => 'admin.registro.destroy',
+            'slug'          => 'admin.registro.modal',
             'description'   => 'Podría eliminar cualquier registro del sistema',      
         ]);
 //end registro
 
-//Roles proyectoregistro FI
-        Permission::create([
-            'name'          => 'Navegar Proyecto Registros',
-            'slug'          => 'admin.proyectoregistro.index',
-            'description'   => 'Lista y navega todos los Proyecto Registros del sistema',
-        ]);
-
-        Permission::create([
-            'name'          => 'Ver detalle de un proyectoregistro',
-            'slug'          => 'admin.proyectoregistro.show',
-            'description'   => 'Ve en detalle cada proyecto registro del sistema',            
-        ]);
-        
-        Permission::create([
-            'name'          => 'Creación de Proyecto Registros',
-            'slug'          => 'admin.proyectoregistro.create',
-            'description'   => 'Podría crear nuevos Proyecto registro en el sistema',
-        ]);
-        
-        Permission::create([
-            'name'          => 'Edición de Proyecto Registros',
-            'slug'          => 'admin.proyectoregistro.edit',
-            'description'   => 'Podría editar cualquier dato de un proyecto registro del sistema',
-        ]);
-        
-        Permission::create([
-            'name'          => 'Eliminar Proyecto Registros',
-            'slug'          => 'admin.proyectoregistro.destroy',
-            'description'   => 'Podría eliminar cualquier proyecto registro del sistema',      
-        ]);
-//end proyectoregistro
-//
 //FIN REGISTRO DE PROYECTO
 
 //SEGUIMIENTO DE PROYECTO
@@ -700,7 +668,7 @@ class PermissionsTableSeeder extends Seeder
         
         Permission::create([
             'name'          => 'Eliminar Seguimientos',
-            'slug'          => 'admin.seguimiento.destroy',
+            'slug'          => 'admin.seguimiento.modal',
             'description'   => 'Podría eliminar cualquier seguimiento del sistema',      
         ]);
 //end seguimiento
