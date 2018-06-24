@@ -143,7 +143,7 @@ treeview
 
               <div class="table-responsive mailbox-messages">
 
-<table id="tabla" class="table table-hover table-striped">
+            <table id="tabla" class="table table-hover table-striped">
            <thead>
                 <tr>
                   <th>Documento</th>
@@ -230,8 +230,8 @@ treeview
 
               <div class="table-responsive mailbox-messages">
 
-    <table id="tabla3" class="table table-hover table-striped">
-           <thead>
+             <table id="tabla3" class="table table-hover table-striped">
+              <thead>
                 <tr>
                   <th></th>
                   <th>Observación</th>

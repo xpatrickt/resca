@@ -22,6 +22,7 @@
  <link rel="stylesheet" href="{{asset('adminlte/bower_components/select2/dist/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminlte/dist/css/skins/_all-skins.min.css')}}">
 <link rel="stylesheet" href="{{asset('adminlte/plugins/iCheck/flat/blue.css')}}">
+<link rel="stylesheet" href="{{asset('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
@@ -440,6 +441,9 @@
 <script src="{{asset('js/change.js')}}"></script>
 
 <script src="{{asset('adminlte/bower_components/fastclick/lib/fastclick.js')}}"></script>
+
+<script src="{{asset('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+
 <script>
   $(function () {
 
@@ -470,6 +474,10 @@
       'autoWidth'   : true,
       'order':true
     })
+
+    //Add text editor
+    $("#compose-textarea").wysihtml5();
+
 
   })
 </script>
