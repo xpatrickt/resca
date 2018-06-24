@@ -422,29 +422,52 @@ Route::get('admin/actividad/{role}/edit','ActividadController@edit')->name('admi
 
 //REGISTRO PROYECTO
 
-//Actividad
+//Registro
 
-Route::post('admin/actividad/store','ActividadController@store')->name('admin.actividad.store')
-->middleware('permission:admin.actividad.create');
+Route::post('admin/registro/store','RegistroController@store')->name('admin.registro.store')
+->middleware('permission:admin.registro.create');
 
-Route::get('admin/actividad','ActividadController@index')->name('admin.actividad.index')
-->middleware('permission:admin.actividad.index');
+Route::get('admin/registro','RegistroController@index')->name('admin.registro.index')
+->middleware('permission:admin.registro.index');
 
-Route::get('admin/actividad/create','ActividadController@create')->name('admin.actividad.create')
-->middleware('permission:admin.actividad.create');
+Route::get('admin/registro/create','RegistroController@create')->name('admin.registro.create')
+->middleware('permission:admin.registro.create');
 
-Route::put('admin/actividad/{role}','ActividadController@update')->name('admin.actividad.update')
-->middleware('permission:admin.actividad.edit');
+Route::put('admin/registro/{role}','RegistroController@update')->name('admin.registro.update')
+->middleware('permission:admin.registro.edit');
 
-Route::get('admin/actividad/{role}','ActividadController@show')->name('admin.actividad.show')
-->middleware('permission:admin.actividad.show');
+Route::get('admin/registro/{role}','RegistroController@show')->name('admin.registro.show')
+->middleware('permission:admin.registro.show');
 
-Route::delete('admin/actividad/{role}','ActividadController@destroy')->name('admin.actividad.destroy')
-->middleware('permission:admin.actividad.destroy');
+Route::delete('admin/registro/{role}','RegistroController@destroy')->name('admin.registro.destroy')
+->middleware('permission:admin.registro.destroy');
 
-Route::get('admin/actividad/{role}/edit','ActividadController@edit')->name('admin.actividad.edit')
-->middleware('permission:admin.actividad.edit');
-//Fin Actividad
+Route::get('admin/registro/{role}/edit','RegistroController@edit')->name('admin.registro.edit')
+->middleware('permission:admin.registro.edit');
+//Fin Registro
+//Proyectoregistro
+
+Route::post('admin/proyectoregistro/store','ProyectoregistroController@store')->name('admin.proyectoregistro.store')
+->middleware('permission:admin.proyectoregistro.create');
+
+Route::get('admin/proyectoregistro','ProyectoregistroController@index')->name('admin.proyectoregistro.index')
+->middleware('permission:admin.proyectoregistro.index');
+
+Route::get('admin/proyectoregistro/create','ProyectoregistroController@create')->name('admin.proyectoregistro.create')
+->middleware('permission:admin.proyectoregistro.create');
+
+Route::put('admin/proyectoregistro/{role}','ProyectoregistroController@update')->name('admin.proyectoregistro.update')
+->middleware('permission:admin.proyectoregistro.edit');
+
+Route::get('admin/proyectoregistro/{role}','ProyectoregistroController@show')->name('admin.proyectoregistro.show')
+->middleware('permission:admin.proyectoregistro.show');
+
+Route::delete('admin/proyectoregistro/{role}','ProyectoregistroController@destroy')->name('admin.proyectoregistro.destroy')
+->middleware('permission:admin.proyectoregistro.destroy');
+
+Route::get('admin/proyectoregistro/{role}/edit','ProyectoregistroController@edit')->name('admin.proyectoregistro.edit')
+->middleware('permission:admin.proyectoregistro.edit');
+//Fin Proyectoregistro
 
 //FIN REGISTRO PROYECTO
 

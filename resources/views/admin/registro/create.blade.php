@@ -3,7 +3,7 @@
 active
 @endsection
 @section('actmenu2')
-active treeview
+treeview
 @endsection
 @section('treemenu')
 treeview
@@ -16,7 +16,7 @@ treeview
 	<div class="col-md-12">
 	<div class="box box-primary">
 		<div class="box-header with-border">
-		<h3 class="box-tittle">Nuevo Registro</h3>
+		<h3 class="box-tittle">Nuevo Registro de Estudio Ambiental</h3>
 		@if(count($errors)>0)
 		<div class="alert alert-danger">
 			<ul>
@@ -30,7 +30,7 @@ treeview
               <div class="box-body">
  
 
-                 {!!Form::open(array('url'=>'admin/registro','method'=>'POST','autocomplete'=>'off'))!!}
+                 {{ Form::open(['route' => 'admin.registro.store']) }}
               	{{Form::token()}}
                 
                   <div class="col-md-9">
@@ -47,7 +47,7 @@ treeview
               <div class="col-md-3">
                 <div class="form-group">
       
-                <a href="{{URL::action('ProyectoController@create')}}"><button type="button" class="btn btn-primary">+ Nuevo Proyecto</button></a></h3>
+                <a href="{{URL::action('ProyectoregistroController@create')}}"><button type="button" class="btn btn-primary">+ Nuevo Proyecto</button></a></h3>
                 </div>
              
               </div>
