@@ -43,6 +43,7 @@ class EvaluacionController extends Controller
 }
 
   public function store(Request $request){
+    if($request){
        $idestudio=$request->get('estudio');
         $idproyecto=$request->get('proyecto');
         $query=trim($request->get('searchText'));
@@ -61,10 +62,11 @@ class EvaluacionController extends Controller
         ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','d.created_at','d.idestudio','do.nombredocumento as tipodocumento')->where('d.condicion','=','1')->where('d.idestudio','=',$idestudio)->orderBy('d.iddocumentoestudio','desc')->get();
 
          $observaciones=DB::table('observacion as o')->join('evaluacionestudio as e','o.idevaluacionestudio','=','e.idevaluacionestudio')->join('persona as p','e.idpersona','=','p.idpersona')
-        ->select('o.idobservacion','o.descripcionobservacion',DB::raw('SUBSTRING(o.descripcionobservacion,1,25) as descobservacion'),'o.condicion','o.created_at','e.idpersona',DB::raw('CONCAT(p.nombrepersona," ",p.apellidospersona) AS nombres'))->where('e.idestudio','=',$idestudio)->orderBy('o.idobservacion','desc')->get();
+        ->select('o.idobservacion','o.descripcionobservacion',DB::raw('SUBSTRING(o.descripcionobservacion,1,30) as descobservacion'),'o.condicion','o.created_at','e.idpersona',DB::raw('CONCAT(p.nombrepersona," ",p.apellidospersona) AS nombres'),
+            DB::raw('SUBSTRING(CONCAT(p.nombrepersona," ",p.apellidospersona),1,30) as nombre'))->where('e.idestudio','=',$idestudio)->orderBy('o.idobservacion','desc')->get();
 
         $respuestasobservacion=DB::table('respuestaobservacion as r')->join('observacion as o','o.idobservacion','=','r.idobservacion')->join('evaluacionestudio as e','o.idevaluacionestudio','=','e.idevaluacionestudio')
-        ->select('r.idrespuestaobservacion','r.descripcionrespuesta',DB::raw('SUBSTRING(r.descripcionrespuesta,1,10) as descrespuesta'),'r.created_at','r.condicion')->where('e.idestudio','=',$idestudio)->orderBy('r.idrespuestaobservacion','desc')->get();
+        ->select('r.idrespuestaobservacion','r.descripcionrespuesta',DB::raw('SUBSTRING(r.descripcionrespuesta,1,30) as descrespuesta'),'r.created_at','r.condicion','o.descripcionobservacion',DB::raw('SUBSTRING(o.descripcionobservacion,1,30) as descobservacion'))->where('e.idestudio','=',$idestudio)->orderBy('r.idrespuestaobservacion','desc')->get();
           }
           else{
         $estudio=null;
@@ -82,6 +84,10 @@ class EvaluacionController extends Controller
         
     }
     return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidades"=>$entidades,"tiposestudio"=>$tiposestudio,"tiposevaluacion"=>$tiposevaluacion,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
+     }
+     else{
+       return Redirect::to('admin/evaluacion');
+     }
     }
 
       public function destroy($iddepartamento){
@@ -89,6 +95,9 @@ class EvaluacionController extends Controller
         $departamento->condicion='0';
         $departamento->update();
         return Redirect::to('admin/departamento');
+    }
+     public function show($idproyecto){
+        return Redirect::to('admin/evaluacion');
     }
 
     function listar(Request $request)

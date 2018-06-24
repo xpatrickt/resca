@@ -144,7 +144,7 @@ treeview
 <table id="tabla" class="table table-hover table-striped">
            <thead>
                 <tr>
-                  <th>Descripcion</th>
+                  <th>Documento</th>
                   <th>Tipo</th>
                   <th>Fecha</th>
                   <th>Opción</th>
@@ -158,7 +158,7 @@ treeview
                   <td>{{ $doc->tipodocumento}}</td>
                   <td>{{ $doc->created_at}}</td>
                   <td>
-                <a  href="documentos\resolucion\180618215657.pdf "  target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                <a  href="..\documentos\resolucion\230618224058.pdf"  target="_blank"><i class="fa fa-file-pdf-o"></i></a>
                 </td>
                 </tr>
           @include('admin.evaluacion.modal')
@@ -191,9 +191,9 @@ treeview
            <thead>
                 <tr>
                   <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
+                  <th>Evaluador</th>
+                  <th>Observación</th>
+                  <th>Fecha</th>
                  </tr>
                 </thead>
                 <tbody>
@@ -201,7 +201,7 @@ treeview
                 @foreach ($observaciones as $obs)
                 <tr>
                   <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
-                  <td>{{ $obs->nombres}}</td>
+                  <td>{{ $obs->nombre}}</td>
                   <td><a href="read-mail.html">{{ $obs->descobservacion}}...</a></td>
                   <td>{{ $obs->created_at}}</td>
                 </tr>
@@ -209,104 +209,52 @@ treeview
           @endif
 
                 </tbody>
-        <tfoot>
+              <tfoot>
                
                 </tfoot>
             </table>
            </div>
-
-                <!-- /.table -->
               </div>
           </div>
 
           <!--TAB RESPUESTAS*******************************************************-->
           <div class="tab-pane" id="respuestas">
             <div class="box-header with-border">
-              <h3 class="box-title">Respuestas del Estudio</h3>
-
-              <div class="box-tools pull-right">
-                <div class="has-feedback">
-                  <input type="text" class="form-control input-sm" placeholder="Buscar">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                </div>
-              </div>
-              <!-- /.box-tools -->
+              <h3 class="box-title">Levantamiento de Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                 <!-- 1-50/200 -->
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
-              </div>
+
               <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-striped">
-                  <tbody>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">5 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">28 mins ago</td>
-                  </tr>
-                                
-                  </tbody>
-                </table>
-                <!-- /.table -->
+
+    <table id="tabla3" class="table table-hover table-striped">
+           <thead>
+                <tr>
+                  <th></th>
+                  <th>Observación</th>
+                  <th>Respuesta</th>
+                  <th>Fecha</th>
+                 </tr>
+                </thead>
+                <tbody>
+                @if($respuestasobservacion!=null)
+                @foreach ($respuestasobservacion as $res)
+                <tr>
+                  <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
+                  <td>{{ $res->descobservacion}}...</td>
+                  <td><a href="read-mail.html">{{ $res->descrespuesta}}...</a></td>
+                  <td>{{ $res->created_at}}</td>
+                </tr>
+          @endforeach
+          @endif
+
+                </tbody>
+              <tfoot>
+               
+                </tfoot>
+            </table>
+           </div>
               </div>
-              <!-- /.mail-box-messages -->
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer no-padding">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                 <!-- 1-50/200-->
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
-              </div>
-            </div>
           </div>
 
 
