@@ -478,6 +478,33 @@
       'autoWidth'   : true,
       'order':true
     })
+    $('#tabla3').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : false,
+      'autoWidth'   : true,
+      'order':true
+    })
+    $('#tabladocumento').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : false,
+      'autoWidth'   : true,
+      'order':true
+    })
+    $('#tabladelimitacion').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : false,
+      'autoWidth'   : true,
+      'order':true
+    })
   })
 </script>
 

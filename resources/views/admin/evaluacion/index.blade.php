@@ -126,6 +126,7 @@ treeview
             <ul class="nav nav-tabs">
               <li class="active"><a href="#documentos" data-toggle="tab">Documentos de Estudio</a></li>
               <li><a href="#observaciones" data-toggle="tab">Observaciones del Estudio</a></li>
+              <li><a href="#Respuestas" data-toggle="tab">Respuestas del Estudio</a></li>
             </ul>
             <div class="tab-content">
 
