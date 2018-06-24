@@ -6,9 +6,7 @@ treeview
 @section('actmenu2')
 treeview
 @endsection
-@section('actmenu4')
-treeview
-@endsection
+
 
 @section('contenido')
 <h3>INDEX2</h3>

@@ -18,6 +18,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 //Middleware
@@ -26,7 +27,6 @@ Route::middleware(['auth'])->group(function(){
 Route::get('/admin',function(){
     return view('admin.index');
 });
-
 //FIN INDEX
 
 //MANTENIMIENTO GENERAL
@@ -578,6 +578,7 @@ Route::get('admin/evaluacion/{role}/edit','EvaluacionController@edit')->name('ad
 //Route::resource('admin/evaluacionestudio','EvaluacionestudioController');
 //Route::resource('admin/certificacion','CertificacionController');
 //Route::resource('admin/representante','RepresentanteController');
+
 
 Route::post('admin/proyecto/listar','ProyectoController@listar')->name('admin.proyecto.listar');
 Route::post('admin/seguimiento/listar','SeguimientoController@listar')->name('admin.seguimiento.listar');
