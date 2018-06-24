@@ -15,7 +15,7 @@ treeview
            
             <div class="row">
 
-            {!!Form::open(array('url'=>'admin/evaluacion','method'=>'POST','autocomplete'=>'off'))!!}
+            {{ Form::open(['route' => 'admin.evaluacion.store']) }}
                 {{Form::token()}}
 
 

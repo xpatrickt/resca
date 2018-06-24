@@ -496,7 +496,29 @@ Route::delete('admin/certificacion/{role}','CertificacionController@destroy')->n
 Route::get('admin/certificacion/{role}/edit','CertificacionController@edit')->name('admin.certificacion.edit')
 ->middleware('permission:admin.certificacion.edit');
 //Fin Certificacion
+//Evaluacionestudio
 
+Route::post('admin/evaluacion/store','EvaluacionController@store')->name('admin.evaluacion.store')
+->middleware('permission:admin.evaluacion.create');
+
+Route::get('admin/evaluacion','EvaluacionController@index')->name('admin.evaluacion.index')
+->middleware('permission:admin.evaluacion.index');
+
+Route::get('admin/evaluacion/create','EvaluacionController@create')->name('admin.evaluacion.create')
+->middleware('permission:admin.evaluacion.create');
+
+Route::put('admin/evaluacion/{role}','EvaluacionController@update')->name('admin.evaluacion.update')
+->middleware('permission:admin.evaluacion.edit');
+
+Route::get('admin/evaluacion/{role}','EvaluacionController@show')->name('admin.evaluacion.show')
+->middleware('permission:admin.evaluacion.show');
+
+Route::delete('admin/evaluacion/{role}','EvaluacionController@destroy')->name('admin.evaluacion.destroy')
+->middleware('permission:admin.evaluacion.destroy');
+
+Route::get('admin/evaluacion/{role}/edit','EvaluacionController@edit')->name('admin.evaluacion.edit')
+->middleware('permission:admin.evaluacion.edit');
+//Fin Evaluacionestudio
 
 
 
