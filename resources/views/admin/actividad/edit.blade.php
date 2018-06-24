@@ -27,7 +27,7 @@ active
 		@endif
 		</div>
               <div class="box-body">
-              	{!!Form::model($actividad,['method'=>'PATCH','route'=>['actividad.update',$actividad->idactividad]])!!}
+              	{!! Form::model($actividad, ['route' => ['admin.actividad.update', $actividad->idactividad],'method' => 'PUT']) !!}
               	{{Form::token()}}
                 <div class="form-group">
                   <label for="nombre">Nombre</label>

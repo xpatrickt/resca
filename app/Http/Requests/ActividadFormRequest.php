@@ -24,7 +24,7 @@ class ActividadFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'nombre'=>'required|max:100',
+        'nombre'=>'required|max:100|unique:actividad,nombreactividad',
          'descripcion'=>'required|max:255',
         ];
     }

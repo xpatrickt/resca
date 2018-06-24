@@ -19,7 +19,7 @@ active
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Listado de Estados &nbsp &nbsp &nbsp <a href="estado/create"><button type="button" class="btn btn-primary">+ Nuevo Estado</button></a></h3>
+			<h3 class="box-title">Listado de Estados &nbsp &nbsp &nbsp <a href="{{ route('admin.estado.create') }}"><button type="button" class="btn btn-primary">+ Nuevo Estado</button></a></h3>
 			</div>
 		<div class="box-body">
 

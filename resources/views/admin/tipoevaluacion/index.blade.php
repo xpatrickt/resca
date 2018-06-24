@@ -19,7 +19,7 @@ active
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Listado de Tipos de Evaluación &nbsp &nbsp &nbsp <a href="tipoevaluacion/create"><button type="button" class="btn btn-primary">+ Nuevo Cargo</button></a></h3>
+			<h3 class="box-title">Listado de Tipos de Evaluación &nbsp &nbsp &nbsp <a href="{{ route('admin.tipoevaluacion.create') }}"><button type="button" class="btn btn-primary">+ Nuevo Cargo</button></a></h3>
 			</div>
 		<div class="box-body">
 

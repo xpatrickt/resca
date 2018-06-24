@@ -19,7 +19,7 @@ active
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Listado de Provincias &nbsp &nbsp &nbsp <a href="provincia/create"><button type="button" class="btn btn-primary">+ Nueva Provincia</button></a></h3>
+			<h3 class="box-title">Listado de Provincias &nbsp &nbsp &nbsp <a href="{{ route('admin.provincia.create') }}"><button type="button" class="btn btn-primary">+ Nueva Provincia</button></a></h3>
 			</div>
 		<div class="box-body">
 

@@ -19,7 +19,7 @@ active
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Listado de Distritos &nbsp &nbsp &nbsp <a href="distrito/create"><button type="button" class="btn btn-primary">+ Nuevo Distrito</button></a></h3>
+			<h3 class="box-title">Listado de Distritos &nbsp &nbsp &nbsp <a href="{{ route('admin.distrito.create') }}"><button type="button" class="btn btn-primary">+ Nuevo Distrito</button></a></h3>
 			</div>
 		<div class="box-body">
 

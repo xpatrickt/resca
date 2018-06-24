@@ -27,7 +27,7 @@ class CertificacionFormRequest extends FormRequest
         'nombre'=>'required|max:200',
         'descripcion'=>'required|max:255',
         'fecha'=>'required',
-        'documento'=>'mimes:pdf',
+        'documento'=>'required',
         'idestudio'=>'required',
         ];
     }

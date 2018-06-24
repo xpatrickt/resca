@@ -27,7 +27,7 @@ active
 		@endif
 		</div>
               <div class="box-body">
-              	{!!Form::open(array('url'=>'admin/provincia','method'=>'POST','autocomplete'=>'off'))!!}
+              	{{ Form::open(['route' => 'admin.provincia.store']) }}
               	{{Form::token()}}
                 
                   <div class="form-group">

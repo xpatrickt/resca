@@ -27,7 +27,7 @@ active
 		@endif
 		</div>
               <div class="box-body">
-              	{!!Form::model($provincia,['method'=>'PATCH','route'=>['provincia.update',$provincia->idprovincia]])!!}
+              	{!! Form::model($provincia, ['route' => ['admin.provincia.update', $provincia->idprovincia],'method' => 'PUT']) !!}
               	{{Form::token()}}
 
                 <div class="form-group">

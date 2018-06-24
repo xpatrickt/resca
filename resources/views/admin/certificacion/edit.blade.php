@@ -30,9 +30,9 @@ active
 
 
               <div class="box-body">
-                {!!Form::model($estudio,['method'=>'PATCH','route'=>['certificacion.update',$estudio->idestudio],'files'=>'true'])!!}
-                {{Form::token()}}
-            
+                {!! Form::model($estudio, ['route' => ['admin.certificacion.update', $estudio->idestudio],'method' => 'PUT','files'=>'true']) !!}                
+              
+                 {{Form::token()}}           
                 <div class="form-group">
 
                   <label for="nombree">Nombre</label>

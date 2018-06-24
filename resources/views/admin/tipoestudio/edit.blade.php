@@ -27,7 +27,7 @@ active
 		@endif
 		</div>
               <div class="box-body">
-              	{!!Form::model($tipoestudio,['method'=>'PATCH','route'=>['tipoestudio.update',$tipoestudio->idtipoestudio]])!!}
+              	{!! Form::model($tipoestudio, ['route' => ['admin.tipoestudio.update', $tipoestudio->idtipoestudio],'method' => 'PUT']) !!}
               	{{Form::token()}}
                 <div class="form-group">
                   <label for="nombre">Nombre</label>

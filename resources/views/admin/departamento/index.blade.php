@@ -17,7 +17,7 @@ active
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Listado de Departamentos &nbsp &nbsp &nbsp <a href="departamento/create"><button type="button" class="btn btn-primary">+ Nuevo Departamento</button></a></h3>
+			<h3 class="box-title">Listado de Departamentos &nbsp &nbsp &nbsp <a href="{{ route('admin.departamento.create') }}"><button type="button" class="btn btn-primary">+ Nuevo Departamento</button></a></h3>
 			</div>
 		<div class="box-body">
 

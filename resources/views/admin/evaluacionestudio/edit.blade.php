@@ -30,7 +30,8 @@ active
 
 
               <div class="box-body">
-                {!!Form::model($estudio,['method'=>'PATCH','route'=>['evaluacionestudio.update',$estudio->idestudio]])!!}
+                {!! Form::model($estudio, ['route' => ['admin.evaluacionestudio.update', $estudio->idestudio],'method' => 'PUT']) !!}
+
                 {{Form::token()}}
             
                 <div class="form-group">

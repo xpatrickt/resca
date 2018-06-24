@@ -27,7 +27,7 @@ active
 		@endif
 		</div>
               <div class="box-body">
-              	{!!Form::open(array('url'=>'admin/documento','method'=>'POST','autocomplete'=>'off'))!!}
+              	{{ Form::open(['route' => 'admin.documento.store']) }}
               	{{Form::token()}}
                 <div class="form-group">
                   <label for="nombre">Nombre</label>

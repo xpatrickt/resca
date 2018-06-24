@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>GRA | RESCA</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <link rel="stylesheet" href="{{asset('adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminlte/bower_components/font-awesome/css/font-awesome.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminlte/bower_components/Ionicons/css/ionicons.min.css')}}">
@@ -148,16 +151,15 @@
               <!-- The user image in the navbar-->
               <img src="{{asset('adminlte/dist/img/resca1.jpg')}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Francisco Medina</span>
+              <span class="hidden-xs">Bienvenido {{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="{{asset('adminlte/dist/img/resca1.jpg')}}" class="img-circle" alt="User Image">
-
                 <p>
-                  Francisco Medina - Usuario
-                  <small>Ultimo Acceso 20/04/2018 </small>
+                  {{ Auth::user()->name }}
+
                 </p>
               </li>
               <!-- Menu Body -->
@@ -211,22 +213,22 @@
           <img src="{{asset('adminlte/dist/img/resca1.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Francisco Medina</p>
+          <p>{{ Auth::user()->name }}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
 
       <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
+     <!--  <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Buscar...">
+         <input type="text" name="q" class="form-control" placeholder="Buscar...">
           <span class="input-group-btn">
               <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
               </button>
             </span>
         </div>
-      </form>
+      </form>-->
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
@@ -248,25 +250,62 @@
 
 
         <li class="@yield('actmenu3')"><a href="{{url ('admin/seguimiento')}}"><i class="fa fa-dashboard"></i> <span>Seguimiento</span></a></li>
+       
         <li class="@yield('treemenu')">
           <a href="#"><i class="fa fa-link"></i><span>Mantenimiento</span>
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
+            @can('admin.proyecto.index')
             <li class="@yield('actpro')"><a href="{{url ('admin/proyecto')}}">Proyecto</a></li>
+            @endcan
+            @can('admin.actividad.index')
             <li class="@yield('actact')"><a href="{{url ('admin/actividad')}}">Actividad</a></li>
-            <li class="@yield('actcar')"><a href="{{url ('admin/cargo')}}">Cargo</a></li>            
+            @endcan
+            @can('admin.cargo.index')
+            <li class="@yield('actcar')"><a href="{{url ('admin/cargo')}}">Cargo</a></li>   
+            @endcan         
+            @can('admin.entidad.index')
             <li class="@yield('actent')"><a href="{{url ('admin/entidad')}}">Entidad</a></li>
+            @endcan         
+            @can('admin.persona.index')
             <li class="@yield('actper')"><a href="{{url ('admin/persona')}}">Personas</a></li>
+            @endcan         
+            @can('admin.departamento.index')
             <li class="@yield('actdep')"><a href="{{url ('admin/departamento')}}">Departamento</a></li>
+            @endcan         
+            @can('admin.provincia.index')
             <li class="@yield('actprov')"><a href="{{url ('admin/provincia')}}">Provincia</a></li>
+            @endcan         
+            @can('admin.distrito.index')
             <li class="@yield('actdis')"><a href="{{url ('admin/distrito')}}">Distrito</a></li>
+            @endcan         
+            @can('admin.estado.index')
             <li class="@yield('actest')"><a href="{{url ('admin/estado')}}">Estado del estudio</a></li>
+            @endcan         
+            @can('admin.documento.index')
             <li class="@yield('actdoc')"><a href="{{url ('admin/documento')}}">Documentos de Estudio</a></li>
+            @endcan         
+            @can('admin.tipoestudio.index')
             <li class="@yield('acttes')"><a href="{{url ('admin/tipoestudio')}}">Tipo de Estudio</a></li>
-            <li class="@yield('acttev')"><a href="{{url ('admin/tipoevaluacion')}}">Tipo de Evaluación</a></li>                        
+            @endcan         
+            @can('admin.tipoevaluacion.index')
+            <li class="@yield('acttev')"><a href="{{url ('admin/tipoevaluacion')}}">Tipo de Evaluación</a></li>  
+            @endcan 
           </ul>
         </li>
+
+          <li class="@yield('actmenu4')">
+          <a href="#"><i class="fa fa-users"></i><span>Gestión de Usuarios</span>
+          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="@yield('actusu')"><a href="{{url ('admin/usuario')}}">Registrar usuarios</a></li>
+            <li class="@yield('acttusu')"><a href="{{url ('admin/tipousuario')}}">Tipo de Usuario</a></li>                      
+          </ul>
+        </li>
+
+
       </ul>
       <!-- /.sidebar-menu -->
     </section>

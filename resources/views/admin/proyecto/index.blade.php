@@ -17,7 +17,7 @@ active
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Listado de Proyectos &nbsp &nbsp &nbsp <a href="proyecto/create"><button type="button" class="btn btn-primary">+ Nuevo Proyecto</button></a></h3>
+			<h3 class="box-title">Listado de Proyectos &nbsp &nbsp &nbsp <a href="{{ route('admin.proyecto.create') }}"><button type="button" class="btn btn-primary">+ Nuevo Proyecto</button></a></h3>
 			</div>
 		<div class="box-body">
 

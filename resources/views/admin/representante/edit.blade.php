@@ -31,7 +31,7 @@ active
 
 
               <div class="box-body">
-                {!!Form::model($entidad,['method'=>'PATCH','route'=>['representante.update',$entidad->identidad]])!!}
+                {!! Form::model($entidad, ['route' => ['admin.representante.update', $entidad->identidad],'method' => 'PUT']) !!}
                 {{Form::token()}}
             
                 <div class="form-group">

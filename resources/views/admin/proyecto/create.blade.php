@@ -30,7 +30,7 @@ active
               <div class="box-body">
  
 
-                 {!!Form::open(array('url'=>'admin/proyecto','method'=>'POST','autocomplete'=>'off'))!!}
+                 {{ Form::open(['route' => 'admin.proyecto.store']) }}
               	{{Form::token()}}
                 
                   <div class="form-group">
