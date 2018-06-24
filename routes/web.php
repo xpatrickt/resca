@@ -400,29 +400,29 @@ Route::get('admin/user/{role}/edit','UserController@edit')->name('admin.user.edi
 
 //SEGUIMIENTO
 
-//Actividad
+//Seguimiento
 
-Route::post('admin/actividad/store','ActividadController@store')->name('admin.actividad.store')
-->middleware('permission:admin.actividad.create');
+Route::post('admin/seguimiento/store','SeguimientoController@store')->name('admin.seguimiento.store')
+->middleware('permission:admin.seguimiento.create');
 
-Route::get('admin/actividad','ActividadController@index')->name('admin.actividad.index')
-->middleware('permission:admin.actividad.index');
+Route::get('admin/seguimiento','SeguimientoController@index')->name('admin.seguimiento.index')
+->middleware('permission:admin.seguimiento.index');
 
-Route::get('admin/actividad/create','ActividadController@create')->name('admin.actividad.create')
-->middleware('permission:admin.actividad.create');
+Route::get('admin/seguimiento/create','SeguimientoController@create')->name('admin.seguimiento.create')
+->middleware('permission:admin.seguimiento.create');
 
-Route::put('admin/actividad/{role}','ActividadController@update')->name('admin.actividad.update')
-->middleware('permission:admin.actividad.edit');
+Route::put('admin/seguimiento/{role}','SeguimientoController@update')->name('admin.seguimiento.update')
+->middleware('permission:admin.seguimiento.edit');
 
-Route::get('admin/actividad/{role}','ActividadController@show')->name('admin.actividad.show')
-->middleware('permission:admin.actividad.show');
+Route::get('admin/seguimiento/{role}','SeguimientoController@show')->name('admin.seguimiento.show')
+->middleware('permission:admin.seguimiento.show');
 
-Route::delete('admin/actividad/{role}','ActividadController@destroy')->name('admin.actividad.destroy')
-->middleware('permission:admin.actividad.destroy');
+Route::delete('admin/seguimiento/{role}','SeguimientoController@destroy')->name('admin.seguimiento.destroy')
+->middleware('permission:admin.seguimiento.destroy');
 
-Route::get('admin/actividad/{role}/edit','ActividadController@edit')->name('admin.actividad.edit')
-->middleware('permission:admin.actividad.edit');
-//Fin Actividad
+Route::get('admin/seguimiento/{role}/edit','SeguimientoController@edit')->name('admin.seguimiento.edit')
+->middleware('permission:admin.seguimiento.edit');
+//Fin Seguimiento
 
 //FIN SEGUIMIENTO
 
