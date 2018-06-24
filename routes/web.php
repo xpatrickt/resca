@@ -20,13 +20,14 @@ Route::get('/welcome', function () {
 
 
 Auth::routes();
+Route::get('/admin/index', 'AdminController@index')->name('admin.index');
 //Route::get('/home', 'HomeController@index')->name('home');
 //Middleware
 Route::middleware(['auth'])->group(function(){
 //INDEX    
-Route::get('/admin',function(){
+/*Route::get('/admin',function(){
     return view('admin.index');
-});
+});*/
 //FIN INDEX
 
 //MANTENIMIENTO GENERAL
