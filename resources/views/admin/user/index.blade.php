@@ -18,7 +18,7 @@ active
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Listado de Usuarios &nbsp &nbsp &nbsp <a href="{{ route('admin.user.create') }}"><button type="button" class="btn btn-primary">+ Nueva Persona</button></a></h3>
+			<h3 class="box-title">Listado de Usuarios &nbsp &nbsp &nbsp <a href="{{ route('admin.user.create') }}"><button type="button" class="btn btn-primary">+ Nuevo Usuario </button></a></h3>
 			</div>
 		<div class="box-body">
 

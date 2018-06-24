@@ -64,8 +64,8 @@
                         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect metarial-menu" data-mdl-for="profile-menu">
                             <li class="mdl-menu__item"><a href="{{ route('login') }}">
                             <i class="fa fa-sign-in"></i>Loguearse</a></li>
-                            <li class="mdl-menu__item"><a href="{{ route('register') }}"><i class="fa fa-user-o"></i>Registrarse</a></li>
-                            </ul>
+                           <!-- <li class="mdl-menu__item"><a href="{{ route('register') }}"><i class="fa fa-user-o"></i>Registrarse</a></li>
+                            --></ul>
                         @endauth
                     </div>
                     @endif
