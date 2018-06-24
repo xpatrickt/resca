@@ -126,7 +126,7 @@ treeview
             <ul class="nav nav-tabs">
               <li class="active"><a href="#documentos" data-toggle="tab">Documentos de Estudio</a></li>
               <li><a href="#observaciones" data-toggle="tab">Observaciones del Estudio</a></li>
-              <li><a href="#Respuestas" data-toggle="tab">Respuestas del Estudio</a></li>
+              <li><a href="#respuestas" data-toggle="tab">Levantamientos de Observación</a></li>
             </ul>
             <div class="tab-content">
 
@@ -147,7 +147,7 @@ treeview
                   <th>Descripcion</th>
                   <th>Tipo</th>
                   <th>Fecha</th>
-                  <th>Opción</th>
+                  <th>Descargar</th>
                  </tr>
                 </thead>
                 <tbody>
@@ -179,8 +179,49 @@ treeview
 
       <!--TAB OBSERVACIONES*******************************************************-->
           <div class="tab-pane" id="observaciones">
+          <div class="box-header with-border">
+              <h3 class="box-title">Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+
+              <div class="table-responsive mailbox-messages">
+
+    <table id="tabla2" class="table table-hover table-striped">
+           <thead>
+                <tr>
+                  <th>Descripción</th>
+                  <th>Descargar</th>
+                 </tr>
+                </thead>
+                <tbody>
+                @if($documentos!=null)
+                @foreach ($documentos as $doc)
+                <tr>
+                  <td>{{ $doc->descdocumentoestudio}}{{ $doc->tipodocumento}}{{ $doc->created_at}}</td>
+                  <td>
+                <a  href="documentos\resolucion\180618215657.pdf "  target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                </td>
+                </tr>
+          @include('admin.evaluacion.modal')
+          @endforeach
+          @endif
+
+                </tbody>
+        <tfoot>
+               
+                </tfoot>
+            </table>
+           </div>
+
+                <!-- /.table -->
+              </div>
+          </div>
+
+          <!--TAB RESPUESTAS*******************************************************-->
+          <div class="tab-pane" id="respuestas">
             <div class="box-header with-border">
-              <h3 class="box-title">Observaciones del Estudio</h3>
+              <h3 class="box-title">Respuestas del Estudio</h3>
 
               <div class="box-tools pull-right">
                 <div class="has-feedback">
@@ -266,6 +307,13 @@ treeview
               </div>
             </div>
           </div>
+
+
+
+
+
+
+
             </div>
           </div>
 
