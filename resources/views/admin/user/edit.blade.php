@@ -32,11 +32,12 @@ active
 
           <div class="form-group">
                   <label for="nombre">Nombre de Usuario</label>
-                  <input type="text" name="nombre" value="{{$user->nombrepersona}}" class="form-control" placeholder="Ingrese Nombre de usuario" required>
+                  <input type="text" name="nombre" value="{{$user->name}}" class="form-control" placeholder="Ingrese Nombre de usuario" required>
                 </div>
+
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="text" name="email" value="{{$persona->apellidospersona}}" class="form-control" placeholder="Ingrese Email" required>
+                  <input type="text" name="email" value="{{$user->email}}" class="form-control" placeholder="Ingrese Email" required>
                 </div>
                 <div class="form-group">
                   <label for="password">Nuevo Password</label>
@@ -55,6 +56,7 @@ active
                     @endforeach
                   </select>
                 </div>
+                
                 <div class="form-group">
                   <label for="provilegios">Privilegios de usuario</label>
                   <select name="provilegios" class="form-control">

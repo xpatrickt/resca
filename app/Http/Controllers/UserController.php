@@ -32,9 +32,8 @@ class UserController extends Controller
 
     public function create(){
     $roles=DB::table('roles')->get();
-    $personas=DB::table('persona as p')
-    ->join('users as u','u.idpersona','<>','p.idpersona')
-    ->select(DB::raw('CONCAT(p.nombrepersona," ",p.apellidospersona) AS nombres'),'p.idpersona')->where('p.condicion','=','1')->get();
+    $personas=DB::table('persona')
+    ->select(DB::raw('CONCAT(persona.nombrepersona," ",persona.apellidospersona) AS nombres'),'persona.idpersona')->where('persona.condicion','=','1')->get();
     	return view("admin.user.create",["personas"=>$personas],["roles"=>$roles]);
     }
 
