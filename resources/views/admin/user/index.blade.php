@@ -5,7 +5,7 @@ treeview
 @section('treemenu')
 active treeview
 @endsection
-@section('actper')
+@section('actgusu')
 active
 @endsection
 
@@ -18,7 +18,7 @@ active
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Listado de Personas &nbsp &nbsp &nbsp <a href="{{ route('admin.persona.create') }}"><button type="button" class="btn btn-primary">+ Nueva Persona</button></a></h3>
+			<h3 class="box-title">Listado de Usuarios &nbsp &nbsp &nbsp <a href="{{ route('admin.user.create') }}"><button type="button" class="btn btn-primary">+ Nueva Persona</button></a></h3>
 			</div>
 		<div class="box-body">
 
@@ -26,48 +26,33 @@ active
 			     <thead>
                 <tr>
                   <th width="1px">ID</th>
-                  <th>Nombre</th>
-                  <th>Apellidos</th>
-                  <th>DNI</th>
-                  <th>Teléfono</th>
-                  <th>Dirección</th>
-                  <th>Email</th>   
-                  <th>Cargo</th>
-                  <th>Entidad</th>                                   
+                  <th>Usuario</th>
+                  <th>Email</th>
+                           
                   <th>Opción</th>
                  </tr>
                 </thead>
                 <tbody>
-                @foreach ($personas as $per)
+                @foreach ($usuarios as $usu)
                 <tr>
-                  <td width="1px">{{ $per->idpersona}}</td>
-                  <td>{{ $per->nombrepersona}}</td>
-                  <td>{{ $per->apellidospersona}}</td>
-                  <td>{{ $per->dnipersona}}</td>
-                  <td>{{ $per->telefonopersona}}</td>
-                  <td>{{ $per->direccionpersona}}</td>
-                  <td>{{ $per->emailpersona}}</td>  
-                  <td>{{ $per->cargo}}</td>
-                  <td>{{ $per->entidad}}</td>                                  
-                  <td><a href="{{URL::action('PersonaController@edit',$per->idpersona)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
-                  <a href="" data-target="#modal-delete-{{$per->idpersona}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
+                  <td width="1px">{{$usu->id}}</td>
+                  <td>{{ $usu->name}}</td>
+                  <td>{{ $usu->email}}</td>
+                          
+                  <td><a href="{{URL::action('UserController@edit',$usu->id)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$usu->id}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                 </td>
                 </tr>
-         @include('admin.persona.modal')
+         @include('admin.user.modal')
 				@endforeach
 
                 </tbody>
 				<tfoot>
                 <tr>
                   <th width="1px">ID</th>
-                  <th>Nombre</th>
-                  <th>Apellidos</th>
-                  <th>DNI</th>
-                  <th>Teléfono</th>
-                  <th>Dirección</th>
-                  <th>Email</th>   
-                  <th>Cargo</th>
-                  <th>Entidad</th>                                   
+                  <th>Usuario</th>
+                  <th>Email</th>
+                              
                   <th>Opción</th>
                 </tr>
                 </tfoot>

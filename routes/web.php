@@ -375,8 +375,14 @@ Route::get('admin/roles/{role}/edit','RoleController@edit')->name('admin.roles.e
 //Fin roles
 
 //Usuarios
+Route::post('admin/user/store','UserController@store')->name('admin.user.store')
+->middleware('permission:admin.user.create');
+
 Route::get('admin/user','UserController@index')->name('admin.user.index')
 ->middleware('permission:admin.user.index');
+
+Route::get('admin/user/create','UserController@create')->name('admin.user.create')
+->middleware('permission:admin.user.create');
 
 Route::put('admin/user/{role}','UserController@update')->name('admin.user.update')
 ->middleware('permission:admin.users.edit');

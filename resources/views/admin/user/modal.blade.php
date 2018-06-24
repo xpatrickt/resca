@@ -1,5 +1,5 @@
-        <div class="modal modal-danger fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$per->idpersona}}">
-      {{Form::Open(array('action'=>array('PersonaController@destroy',$per->idpersona),'method'=>'delete'))}}
+        <div class="modal modal-danger fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$usu->id}}">
+      {{Form::Open(array('action'=>array('UserController@destroy',$usu->id),'method'=>'delete'))}}
           <div class="modal-dialog">
             <div class="modal-content" >
               <div class="modal-header">
