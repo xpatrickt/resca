@@ -12,7 +12,7 @@ class Documentoestudio extends Model
     public $timestamps=true;
 
     protected $fillable=[
-    	'iddocumentoestudio','descdocumentoestudio',
+    	'descdocumentoestudio',
     	'urldocumentoestudio','idestudio',
     	'iddocumento'
     ];
