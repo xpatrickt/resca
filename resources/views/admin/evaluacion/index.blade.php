@@ -167,7 +167,7 @@ treeview
           @endif
 
                 </tbody>
-        <tfoot>
+                 <tfoot>
                
                 </tfoot>
             </table>

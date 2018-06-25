@@ -13,7 +13,9 @@
                   <span class="mailbox-read-time pull-right">{{$obs->created_at}}</span></h5>
               </div>
                 <div class="mailbox-read-message">
+              <div>
                 {{$obs->descripcionobservacion}}
+              </div>
               </div>
              </div>
               </div>

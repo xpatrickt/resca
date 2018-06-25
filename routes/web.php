@@ -552,11 +552,8 @@ Route::get('admin/evaluacion/{role}/edit','EvaluacionController@edit')->name('ad
 ->middleware('permission:admin.evaluacion.edit');
 
 //Agregar ......
-Route::post('admin/evaluacion/insert','EvaluacionController@insert')->name('admin.evaluacion.insert')
-->middleware('permission:admin.evaluacion.create');
 
-Route::get('admin/evaluacion/index1','EvaluacionController@index1')->name('admin.evaluacion.index1')
-->middleware('permission:admin.evaluacion.index1');
+
 //Fin Evaluacionestudio
 
 //FIN EVALUACION PROYECTO
@@ -589,6 +586,7 @@ Route::get('admin/evaluacion/index1','EvaluacionController@index1')->name('admin
 
 Route::post('admin/proyecto/listar','ProyectoController@listar')->name('admin.proyecto.listar');
 Route::post('admin/seguimiento/listar','SeguimientoController@listar')->name('admin.seguimiento.listar');
+
 //Route::post('admin/representante/{id}/edit','RepresentanteController@edit')->name('admin.representante.edit');
 
 //routes evaluacion
@@ -609,6 +607,8 @@ Route::post('admin/registro/agregardocumento','RegistroController@agregardocumen
 /*Route::get('/admin',function(){
     return view('admin.index');
 });*/
+
+
 Route::get('/certificacionambiental', function () {
     return view('CertificacionAmbiental');
 });
