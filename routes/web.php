@@ -558,9 +558,7 @@ Route::get('admin/evaluacion/{role}/edit','EvaluacionController@edit')->name('ad
 Route::post('admin/observacionevaluacion/store','ObservacionevaluacionController@store')->name('admin.observacionevaluacion.store')
 ->middleware('permission:admin.observacionevaluacion.create');
 
-
-
-Route::get('admin/observacionevaluacion','ObservacionevaluacionController@index')->name('admin.observacionevaluacion.index')
+Route::post('admin/observacionevaluacion','ObservacionevaluacionController@index')->name('admin.observacionevaluacion.index')
 ->middleware('permission:admin.observacionevaluacion.index');
 
 Route::get('admin/observacionevaluacion/create','ObservacionevaluacionController@create')->name('admin.observacionevaluacion.create')
@@ -586,7 +584,7 @@ Route::get('admin/observacionevaluacion/{role}/edit','ObservacionevaluacionContr
 Route::post('admin/respuestaevaluacion/store','RespuestaevaluacionController@store')->name('admin.respuestaevaluacion.store')
 ->middleware('permission:admin.respuestaevaluacion.create');
 
-Route::get('admin/respuestaevaluacion','RespuestaevaluacionController@index')->name('admin.respuestaevaluacion.index')
+Route::post('admin/respuestaevaluacion','RespuestaevaluacionController@index')->name('admin.respuestaevaluacion.index')
 ->middleware('permission:admin.respuestaevaluacion.index');
 
 Route::get('admin/respuestaevaluacion/create','RespuestaevaluacionController@create')->name('admin.respuestaevaluacion.create')

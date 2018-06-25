@@ -15,20 +15,26 @@ treeview
            
             <div class="row">
 
-            {{ Form::open(['route' => 'admin.evaluacion.store']) }}
-                {{Form::token()}}
-
-
             <div class="col-md-4">
+
+              <!--
               <a href="" data-target="#modal-agregarobservacion" data-toggle="modal" class="btn btn-primary btn-block margin-bottom">Agregar Observación</a>
                  
             @include('admin.evaluacion.modalagregarobservacion')
-           
-          
-           <div class="box box-solid">
-            <div class="box-header with-border">
-              <div class="form-group">
-                <h3 class="box-title">Proyectos</h3>
+               -->
+
+   {{ Form::open(['route' =>'admin.observacionevaluacion.index']) }}
+   {{Form::token()}}
+    <button type="submit" class="btn btn-primary btn-block margin-bottom">Agregar Observación</button>
+   {!!Form::close()!!}
+
+
+   {{ Form::open(['route' => 'admin.evaluacion.store']) }}
+   {{Form::token()}}
+    <div class="box box-solid">
+      <div class="box-header with-border">
+         <div class="form-group">
+           <h3 class="box-title">Proyectos</h3>
               </div>
                <div class="form-group">
                   <select name="proyecto" id="proyecto" class="form-control select2 dynamic" 
@@ -118,10 +124,11 @@ treeview
             </div>
           </div>
           <button type="submit" class="btn btn-primary btn-block margin-bottom">Mostrar Detalle</button>
-
+           {!!Form::close()!!}
             </div>
 
-            {!!Form::close()!!}
+
+     <!--TABS DOCUMENTO OBSERVACION Y LEVANTAMIENTO DE OBSERVACION*******************************************************-->
 
             <div class="col-md-8">
           <div class="nav-tabs-custom">
