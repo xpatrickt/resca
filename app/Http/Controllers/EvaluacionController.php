@@ -99,7 +99,7 @@ class EvaluacionController extends Controller
         return Redirect::to('admin/departamento');
     }
      public function show($idproyecto){
-        //return Redirect::to('admin/evaluacion');
+        return Redirect::to('admin/evaluacion');
     }
 
     function listar(Request $request)

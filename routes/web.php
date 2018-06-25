@@ -532,8 +532,6 @@ Route::get('admin/certificacion/{role}/edit','CertificacionController@edit')->na
 Route::post('admin/evaluacion/store','EvaluacionController@store')->name('admin.evaluacion.store')
 ->middleware('permission:admin.evaluacion.create');
 
-
-
 Route::get('admin/evaluacion','EvaluacionController@index')->name('admin.evaluacion.index')
 ->middleware('permission:admin.evaluacion.index');
 
@@ -557,8 +555,8 @@ Route::get('admin/evaluacion/{role}/edit','EvaluacionController@edit')->name('ad
 
 //ObservacionEvaluacionestudio
 
-Route::post('admin/observacionevaluacion/store','EvaluacionController@store')->name('admin.evaluacion.store')
-->middleware('permission:admin.evaluacion.create');
+Route::post('admin/observacionevaluacion/store','ObservacionevaluacionController@store')->name('admin.observacionevaluacion.store')
+->middleware('permission:admin.observacionevaluacion.create');
 
 
 
@@ -585,10 +583,8 @@ Route::get('admin/observacionevaluacion/{role}/edit','ObservacionevaluacionContr
 
 //RespuestaEvaluacionestudio
 
-Route::post('admin/evaluacion/store','EvaluacionController@store')->name('admin.evaluacion.store')
-->middleware('permission:admin.evaluacion.create');
-
-
+Route::post('admin/respuestaevaluacion/store','RespuestaevaluacionController@store')->name('admin.respuestaevaluacion.store')
+->middleware('permission:admin.respuestaevaluacion.create');
 
 Route::get('admin/respuestaevaluacion','RespuestaevaluacionController@index')->name('admin.respuestaevaluacion.index')
 ->middleware('permission:admin.respuestaevaluacion.index');

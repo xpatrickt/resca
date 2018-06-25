@@ -22,7 +22,7 @@ treeview
             <div class="col-md-4">
               <a href="" data-target="#modal-agregarobservacion" data-toggle="modal" class="btn btn-primary btn-block margin-bottom">Agregar Observación</a>
                  
-         @include('admin.evaluacion.modalagregarobservacion')
+            @include('admin.evaluacion.modalagregarobservacion')
            
           
            <div class="box box-solid">
@@ -32,7 +32,7 @@ treeview
               </div>
                <div class="form-group">
                   <select name="proyecto" id="proyecto" class="form-control select2 dynamic" 
-                  data-dependent="estudio">
+                  style="width: 100%;" data-dependent="estudio">
               <option value="" >Seleccione Proyecto</option> 
               @if($proyecto==null) 
                @foreach($proyectos as $pro)
@@ -78,7 +78,7 @@ treeview
                 <h3 class="box-title">Estudios</h3>
               </div>
                <div class="form-group">
-                  <select name="estudio" id="estudio" class="form-control select2 dynamic" data-dependent="doc">
+                  <select name="estudio" id="estudio" class="form-control select2 dynamic" style="width: 100%;" data-dependent="doc">
                @if($estudio!=null) 
                <option value="">Seleccione Estudio</option> 
                @foreach($estudios as $est)

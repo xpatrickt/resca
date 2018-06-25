@@ -37,13 +37,10 @@ class ObservacionevaluacionController extends Controller
         $respuestasobservacion=null;
         $estudio=null;
         $proyecto=null;
-        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"departamentos"=>$departamentos,"estudio"=>$estudio,"entidades"=>$entidades,"tiposestudio"=>$tiposestudio,"tiposevaluacion"=>$tiposevaluacion,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
+        return view("admin.observacionevaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"departamentos"=>$departamentos,"estudio"=>$estudio,"entidades"=>$entidades,"tiposestudio"=>$tiposestudio,"tiposevaluacion"=>$tiposevaluacion,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
     }
 
 }
-
-
-
   public function store(Request $request){
     if($request){
        $idestudio=$request->get('estudio');
@@ -85,7 +82,7 @@ class ObservacionevaluacionController extends Controller
         $respuestasobservacion=null;
         
     }
-    return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidades"=>$entidades,"tiposestudio"=>$tiposestudio,"tiposevaluacion"=>$tiposevaluacion,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
+    return view("admin.evaluacionestudio.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidades"=>$entidades,"tiposestudio"=>$tiposestudio,"tiposevaluacion"=>$tiposevaluacion,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
      }
      else{
        return Redirect::to('admin/evaluacion');
