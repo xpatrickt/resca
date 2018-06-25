@@ -300,54 +300,54 @@ Route::get('admin/representante/{role}/edit','RepresentanteController@edit')->na
 ->middleware('permission:admin.representante.edit');
 //Fin Representante
 
-//Actividad
+//Tipoestudio
 
-Route::post('admin/actividad/store','ActividadController@store')->name('admin.actividad.store')
-->middleware('permission:admin.actividad.create');
+Route::post('admin/tipoestudio/store','TipoestudioController@store')->name('admin.tipoestudio.store')
+->middleware('permission:admin.tipoestudio.create');
 
-Route::get('admin/actividad','ActividadController@index')->name('admin.actividad.index')
-->middleware('permission:admin.actividad.index');
+Route::get('admin/tipoestudio','TipoestudioController@index')->name('admin.tipoestudio.index')
+->middleware('permission:admin.tipoestudio.index');
 
-Route::get('admin/actividad/create','ActividadController@create')->name('admin.actividad.create')
-->middleware('permission:admin.actividad.create');
+Route::get('admin/tipoestudio/create','TipoestudioController@create')->name('admin.tipoestudio.create')
+->middleware('permission:admin.tipoestudio.create');
 
-Route::put('admin/actividad/{role}','ActividadController@update')->name('admin.actividad.update')
-->middleware('permission:admin.actividad.edit');
+Route::put('admin/tipoestudio/{role}','TipoestudioController@update')->name('admin.tipoestudio.update')
+->middleware('permission:admin.tipoestudio.edit');
 
-Route::get('admin/actividad/{role}','ActividadController@show')->name('admin.actividad.show')
-->middleware('permission:admin.actividad.show');
+Route::get('admin/tipoestudio/{role}','TipoestudioController@show')->name('admin.tipoestudio.show')
+->middleware('permission:admin.tipoestudio.show');
 
-Route::delete('admin/actividad/{role}','ActividadController@destroy')->name('admin.actividad.destroy')
-->middleware('permission:admin.actividad.destroy');
+Route::delete('admin/tipoestudio/{role}','TipoestudioController@destroy')->name('admin.tipoestudio.destroy')
+->middleware('permission:admin.tipoestudio.destroy');
 
-Route::get('admin/actividad/{role}/edit','ActividadController@edit')->name('admin.actividad.edit')
-->middleware('permission:admin.actividad.edit');
-//Fin Actividad
+Route::get('admin/tipoestudio/{role}/edit','TipoestudioController@edit')->name('admin.tipoestudio.edit')
+->middleware('permission:admin.tipoestudio.edit');
+//Fin Tipoestudio
 
 
-//Actividad
+//Tipoevaluacion
 
-Route::post('admin/actividad/store','ActividadController@store')->name('admin.actividad.store')
-->middleware('permission:admin.actividad.create');
+Route::post('admin/tipoevaluacion/store','TipoevaluacionController@store')->name('admin.tipoevaluacion.store')
+->middleware('permission:admin.tipoevaluacion.create');
 
-Route::get('admin/actividad','ActividadController@index')->name('admin.actividad.index')
-->middleware('permission:admin.actividad.index');
+Route::get('admin/tipoevaluacion','TipoevaluacionController@index')->name('admin.tipoevaluacion.index')
+->middleware('permission:admin.tipoevaluacion.index');
 
-Route::get('admin/actividad/create','ActividadController@create')->name('admin.actividad.create')
-->middleware('permission:admin.actividad.create');
+Route::get('admin/tipoevaluacion/create','TipoevaluacionController@create')->name('admin.tipoevaluacion.create')
+->middleware('permission:admin.tipoevaluacion.create');
 
-Route::put('admin/actividad/{role}','ActividadController@update')->name('admin.actividad.update')
-->middleware('permission:admin.actividad.edit');
+Route::put('admin/tipoevaluacion/{role}','TipoevaluacionController@update')->name('admin.tipoevaluacion.update')
+->middleware('permission:admin.tipoevaluacion.edit');
 
-Route::get('admin/actividad/{role}','ActividadController@show')->name('admin.actividad.show')
-->middleware('permission:admin.actividad.show');
+Route::get('admin/tipoevaluacion/{role}','TipoevaluacionController@show')->name('admin.tipoevaluacion.show')
+->middleware('permission:admin.tipoevaluacion.show');
 
-Route::delete('admin/actividad/{role}','ActividadController@destroy')->name('admin.actividad.destroy')
-->middleware('permission:admin.actividad.destroy');
+Route::delete('admin/tipoevaluacion/{role}','TipoevaluacionController@destroy')->name('admin.tipoevaluacion.destroy')
+->middleware('permission:admin.tipoevaluacion.destroy');
 
-Route::get('admin/actividad/{role}/edit','ActividadController@edit')->name('admin.actividad.edit')
-->middleware('permission:admin.actividad.edit');
-//Fin Actividad
+Route::get('admin/tipoevaluacion/{role}/edit','TipoevaluacionController@edit')->name('admin.tipoevaluacion.edit')
+->middleware('permission:admin.tipoevaluacion.edit');
+//Fin Tipoevaluacion
 
 
 //FIN MANTENIMIENTO GENERAL
