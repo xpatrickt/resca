@@ -44,7 +44,7 @@ class ObservacionevaluacionController extends Controller
        $asuntoobservacion=$request->get('asuntoobservacion');
        $descripcionobservacion=$request->get('descripcionobservacion');
 
-    if($asuntoobservacion!="" or $asuntoobservacion!=" "){
+    if($asuntoobservacion!="" ){
          //OJOOOOO AQUIIII ARREGLAR
           $evaluacionestudio=DB::table('evaluacionestudio')->where('idestudio','=',$idestudio)->where('condicion','=','1')
         ->orderBy('idevaluacionestudio', 'desc') ->limit(1)->get();
