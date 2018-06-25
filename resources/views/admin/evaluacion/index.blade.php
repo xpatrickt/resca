@@ -25,7 +25,14 @@ treeview
 
    {{ Form::open(['route' =>'admin.observacionevaluacion.index']) }}
    {{Form::token()}}
+   @if($estudio!=null)
+   <input type="hidden" id="idestudio" name="idestudio" class="form-control" value="{{$estudio->idestudio}}" >
+   <input type="hidden" id="idproyecto" name="idproyecto" class="form-control" value="{{$proyecto->idproyecto}}" >
     <button type="submit" class="btn btn-primary btn-block margin-bottom">Agregar Observación</button>
+   @else
+   <button type="submit" class="btn btn-primary btn-block margin-bottom" disabled>Agregar Observación</button>
+   @endif
+   
    {!!Form::close()!!}
 
 

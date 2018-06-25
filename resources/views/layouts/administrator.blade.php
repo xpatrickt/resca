@@ -467,6 +467,8 @@
 
     //Add text editor
     $("#compose-textarea").wysihtml5();
+    $("#descripcionobservacion").wysihtml5();
+    $("#descripcionrespuesta").wysihtml5();
 
 
   })

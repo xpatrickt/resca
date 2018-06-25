@@ -634,7 +634,10 @@ Route::get('admin/respuestaevaluacion/{role}/edit','RespuestaevaluacionControlle
 
 
 Route::post('admin/proyecto/listar','ProyectoController@listar')->name('admin.proyecto.listar');
+
+//Route Seguimiento
 Route::post('admin/seguimiento/listar','SeguimientoController@listar')->name('admin.seguimiento.listar');
+Route::post('admin/seguimiento/listarall','SeguimientoController@listarall')->name('admin.seguimiento.listarall');
 
 //Route::post('admin/representante/{id}/edit','RepresentanteController@edit')->name('admin.representante.edit');
 
@@ -642,7 +645,6 @@ Route::post('admin/seguimiento/listar','SeguimientoController@listar')->name('ad
 Route::post('admin/evaluacionestudio/asignar','EvaluacionestudioController@asignar')->name('admin.evaluacionestudio.asignar');
 Route::post('admin/evaluacion/listar','EvaluacionController@listar')->name('admin.evaluacion.listar');
 Route::post('admin/evaluacion/listarall','EvaluacionController@listarall')->name('admin.evaluacion.listarall');
-Route::post('admin/evaluacion/listardocumentos','EvaluacionController@listardocumentos')->name('admin.evaluacion.listardocumentos');
 
 //routes registro
 //Route::resource('admin/registro','RegistroController');
