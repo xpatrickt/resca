@@ -551,10 +551,64 @@ Route::delete('admin/evaluacion/{role}','EvaluacionController@destroy')->name('a
 Route::get('admin/evaluacion/{role}/edit','EvaluacionController@edit')->name('admin.evaluacion.edit')
 ->middleware('permission:admin.evaluacion.edit');
 
-//Agregar ......
-
 
 //Fin Evaluacionestudio
+
+//ObservacionEvaluacionestudio
+
+Route::post('admin/observacionevaluacion/store','EvaluacionController@store')->name('admin.evaluacion.store')
+->middleware('permission:admin.evaluacion.create');
+
+
+
+Route::get('admin/observacionevaluacion','ObservacionevaluacionController@index')->name('admin.observacionevaluacion.index')
+->middleware('permission:admin.observacionevaluacion.index');
+
+Route::get('admin/observacionevaluacion/create','ObservacionevaluacionController@create')->name('admin.observacionevaluacion.create')
+->middleware('permission:admin.observacionevaluacion.create');
+
+Route::put('admin/observacionevaluacion/{role}','ObservacionevaluacionController@update')->name('admin.observacionevaluacion.update')
+->middleware('permission:admin.observacionevaluacion.edit');
+
+Route::get('admin/observacionevaluacion/{role}','ObservacionevaluacionController@show')->name('admin.observacionevaluacion.show')
+->middleware('permission:admin.observacionevaluacion.show');
+
+Route::delete('admin/observacionevaluacion/{role}','ObservacionevaluacionController@destroy')->name('admin.observacionevaluacion.destroy')
+->middleware('permission:admin.observacionevaluacion.destroy');
+
+Route::get('admin/observacionevaluacion/{role}/edit','ObservacionevaluacionController@edit')->name('admin.observacionevaluacion.edit')
+->middleware('permission:admin.observacionevaluacion.edit');
+
+
+//Fin ObservacionEvaluacionestudio
+
+//RespuestaEvaluacionestudio
+
+Route::post('admin/evaluacion/store','EvaluacionController@store')->name('admin.evaluacion.store')
+->middleware('permission:admin.evaluacion.create');
+
+
+
+Route::get('admin/respuestaevaluacion','RespuestaevaluacionController@index')->name('admin.respuestaevaluacion.index')
+->middleware('permission:admin.respuestaevaluacion.index');
+
+Route::get('admin/respuestaevaluacion/create','RespuestaevaluacionController@create')->name('admin.respuestaevaluacion.create')
+->middleware('permission:admin.respuestaevaluacion.create');
+
+Route::put('admin/respuestaevaluacion/{role}','RespuestaevaluacionController@update')->name('admin.respuestaevaluacion.update')
+->middleware('permission:admin.respuestaevaluacion.edit');
+
+Route::get('admin/respuestaevaluacion/{role}','RespuestaevaluacionController@show')->name('admin.respuestaevaluacion.show')
+->middleware('permission:admin.respuestaevaluacion.show');
+
+Route::delete('admin/respuestaevaluacion/{role}','RespuestaevaluacionController@destroy')->name('admin.respuestaevaluacion.destroy')
+->middleware('permission:admin.respuestaevaluacion.destroy');
+
+Route::get('admin/respuestaevaluacion/{role}/edit','RespuestaevaluacionController@edit')->name('admin.respuestaevaluacion.edit')
+->middleware('permission:admin.respuestaevaluacion.edit');
+
+
+//Fin RespuestaEvaluacionestudio
 
 //FIN EVALUACION PROYECTO
 
