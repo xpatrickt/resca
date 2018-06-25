@@ -286,7 +286,7 @@
 
 
     <!-- Start Make an Appointment Modal -->
-    <div id="appointment" class="modal fade" role="dialog">
+   <!-- <div id="appointment" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header text-center">
@@ -363,7 +363,9 @@
                 </div>
             </div>
         </div>
-    </div><!-- End Make an Appointment Modal -->
+    </div>-->
+
+    <!-- End Make an Appointment Modal -->
     <!-- Start Login Modal -->
     <div id="loginpopup" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -409,7 +411,7 @@
         </div>
     </div><!-- End Login Modal -->
     <!-- Start Register Modal -->
-    <div id="registerpopup" class="modal fade" role="dialog">
+    <!--<div id="registerpopup" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header text-center">
@@ -451,12 +453,16 @@
                 </div>
             </div>
         </div>
-    </div><!-- End Register Modal -->
+    </div>-->
+
+    <!-- End Register Modal -->
     <!-- Fixed Appointment Button at Bottom -->
-    <div id="appointment-button" class="animated fadeInUp">
+   <!-- <div id="appointment-button" class="animated fadeInUp">
         <button id="appointment-now" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-button--raised"><i class="fa fa-plus"></i></button>
         <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="appointment-now">Make An Appointment</div>
-    </div><!-- End Fixed Appointment Button at Bottom -->
+    </div>
+-->
+    <!-- End Fixed Appointment Button at Bottom -->
     <!-- Start Footer Section -->
     <footer id="footer">
         <div class="layer-stretch">
@@ -512,9 +518,9 @@
                 </div>
 
                 <div class="col-md-4 footer-block">
-                    <div class="footer-ttl"><p>Suscribase</p></div>
+                    <div class="footer-ttl"><p>Síganos en</p></div>
                     <div class="footer-container footer-c">
-                        <div class="footer-subscribe">
+                       <!-- <div class="footer-subscribe">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input">
                                 <input class="mdl-textfield__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="subscribe-email">
                                 <label class="mdl-textfield__label" for="subscribe-email">Ingrese su Email</label>
@@ -523,7 +529,7 @@
                             <div class="footer-subscribe-button">
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary">Agregar</button>
                             </div>
-                        </div>
+                        </div>-->
                         <ul class="social-list social-list-colored footer-social">
                             <li>
                                 <a href="https://web.facebook.com/Gerencia-de-Recursos-Naturales-GRA-2102276290097520/?modal=admin_todo_tour" target="_blank" id="footer-facebook" class="fa fa-facebook"></a>

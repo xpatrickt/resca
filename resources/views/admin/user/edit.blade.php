@@ -40,37 +40,52 @@ active
                   <input type="text" name="email" value="{{$user->email}}" class="form-control" placeholder="Ingrese Email" required>
                 </div>
                 <div class="form-group">
-                  <label for="password">Nuevo Password</label>
-                  <input type="password" name="password" class="form-control" placeholder="Ingrese Password" required>
+                  <label for="password">Ingrese Password</label>
+                  <input id="password" type="password" name="password" class="form-control" placeholder="Ingrese Password" required>
                 </div>
                 <div class="form-group">
+                  <label for="password">Confirme Password</label>
+                  <input id="password" type="password" name="password_confirmation" class="form-control" placeholder="Ingrese Password" required>
+                </div>
+
+                <div class="form-group">
                   <label for="persona">Persona</label>
-                  <select name="persona" class="form-control">
+                  <select name="idpersona" class="form-control">
+                                   
                     @foreach ($personas as $per)
-                      @if ($user->idpersona==$per->idpersona)
+                         @if ($user->idpersona==$per->idpersona)
                       <option value="{{$per->idpersona}}" selected>{{$per->nombres}} </option>
                        @else 
                       <option value="{{$per->idpersona}}">{{$per->nombres}} </option>
                        @endif
 
                     @endforeach
+
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="privilegios">Privilegios de usuario</label>
-                  <select name="privilegios" class="form-control">
+                  <select name="idrol" class="form-control">
+                    @foreach ($rolusuario as $ru)  
                     @foreach ($roles as $rol)
-                      @if ($rol->id==$user->rol_id)
-                      <option value="{{$rol->id}}" selected>{{$rol->nombrecargo}} </option>
+                      @if ($rol->id==$ru->idrol)
+                      <option value="{{$rol->id}}" selected>{{$rol->name}} </option>
                        @else 
-                      <option value="{{$rol->id}}">{{$rol->nombrecargo}} </option>
+                      <option value="{{$rol->id}}">{{$rol->name}} </option>
                        @endif
 
                     @endforeach
+                    @endforeach
                   </select>
                 </div>
-        
+             @foreach ($rolusuario as $ru)   
+                <div class="form-group">
+                  <input type="hidden" name="idru" value="{{$ru->idru}}" class="form-control" placeholder="">
+                </div>   
+          @endforeach
+
+
                 </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Registrar</button>

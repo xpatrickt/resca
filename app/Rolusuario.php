@@ -2,20 +2,13 @@
 
 namespace resca;
 
-use Caffeinated\Shinobi\Traits\ShinobiTrait;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 
-class Rolusuario extends Authenticatable
+class Rolusuario extends Model
 {
-    use Notifiable, ShinobiTrait;
+    
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $table='role_user';
     protected $primaryKey='id';
     public $timestamps=true;
@@ -23,12 +16,8 @@ class Rolusuario extends Authenticatable
         'role_id', 'user_id'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $guarded = [
-        
+
+    protected $guarded =[
+
     ];
 }

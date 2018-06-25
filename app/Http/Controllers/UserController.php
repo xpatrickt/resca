@@ -8,6 +8,7 @@ use resca\Persona;
 use resca\Rolusuario;
 use Illuminate\Support\Facades\Redirect;
 use resca\Http\Requests\UserFormRequest;
+use resca\Http\Requests\User2FormRequest;
 use DB;
 
 class UserController extends Controller
@@ -55,38 +56,40 @@ class UserController extends Controller
    		return Redirect::to('admin/user');
     }
 
-    public function show($id){
-    	return view("admin.user.show",["user"=>user::findOrFail($id)]);
-    }
-
     public function edit($id){
          $user=User::findOrFail($id);
          $rolusuario=DB::table('role_user as ru')
          ->join('users as u','u.id','=','ru.user_id')
          ->join('roles as r','r.id','=','ru.role_id')
-         ->select('r.id as idrol','r.name as privilegio')->where('ru.user_id','=',''.$id.'')->get();        
+         ->select('r.id as idrol','ru.id as idru')->where('ru.user_id','=',''.$id.'')->get();        
          $roles=DB::table('roles')->get();
          $personas=DB::table('persona')
          ->select(DB::raw('CONCAT(persona.nombrepersona," ",persona.apellidospersona) AS nombres'),'persona.idpersona')->where('persona.condicion','=','1')->get();
-      return view("admin.user.edit",["user"=>$user,"roles"=>$roles,"personas"=>$personas,"$rolusuario"=>$rolusuario]);
+      return view("admin.user.edit",["user"=>$user,"roles"=>$roles,"personas"=>$personas,"rolusuario"=>$rolusuario]);
     }
-    public function update(PersonaFormRequest $request,$idpersona){
-    	$persona=persona::findOrFail($idpersona);
-        $persona->nombrepersona=$request->get('nombre');
-       	$persona->apellidospersona=$request->get('apellidos');
-       	$persona->dnipersona=$request->get('dni');
-       	$persona->telefonopersona=$request->get('telefono');
-       	$persona->direccionpersona=$request->get('direccion');
-       	$persona->emailpersona=$request->get('email');
-        $persona->idcargo=$request->get('idcargo');
-        $persona->identidad=$request->get('identidad');
-    	$persona->update();
+    public function update(User2FormRequest $request,$id){
+        $users=User::findOrFail($id);
+        $users->name=$request->get('nombre');
+        $users->email=$request->get('email');
+        $users->password=bcrypt($request->get('password'));
+        $users->idpersona=$request->get('idpersona');
+        $users->update();
+        $idru=$request->get('idru');
+       $role_user=Rolusuario::findOrFail($idru);
+       $role_user->user_id=$id;
+       $role_user->role_id=$request->get('idrol');
+       $role_user->update();
     	return Redirect::to('admin/user');    	
     }
+
     public function destroy($id){
-    	$users=users::findOrFail($id);
+    	$users=User::findOrFail($id);
     	$users->condicion='0';
     	$users->update();
     	return Redirect::to('admin/user');
+    }
+
+    public function show($id){
+      return view("admin.user.show",["user"=>User::findOrFail($id)]);
     }
 }
