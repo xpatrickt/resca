@@ -531,8 +531,7 @@ Route::get('admin/certificacion/{role}/edit','CertificacionController@edit')->na
 Route::post('admin/evaluacion/store','EvaluacionController@store')->name('admin.evaluacion.store')
 ->middleware('permission:admin.evaluacion.create');
 
-Route::post('admin/evaluacion/insert','EvaluacionController@insert')->name('admin.evaluacion.insert')
-->middleware('permission:admin.evaluacion.create');
+
 
 Route::get('admin/evaluacion','EvaluacionController@index')->name('admin.evaluacion.index')
 ->middleware('permission:admin.evaluacion.index');
@@ -551,10 +550,14 @@ Route::delete('admin/evaluacion/{role}','EvaluacionController@destroy')->name('a
 
 Route::get('admin/evaluacion/{role}/edit','EvaluacionController@edit')->name('admin.evaluacion.edit')
 ->middleware('permission:admin.evaluacion.edit');
+
+//Agregar ......
+Route::post('admin/evaluacion/insert','EvaluacionController@insert')->name('admin.evaluacion.insert')
+->middleware('permission:admin.evaluacion.create');
+
+Route::get('admin/evaluacion/index1','EvaluacionController@index1')->name('admin.evaluacion.index1')
+->middleware('permission:admin.evaluacion.index1');
 //Fin Evaluacionestudio
-
-
-
 
 //FIN EVALUACION PROYECTO
 
