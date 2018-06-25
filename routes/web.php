@@ -18,6 +18,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::get('resultadoevaluacion', 'ResultadoEvaluacionController@index')->name('reportes.index');
 
 Auth::routes();
 Route::get('/admin/index', 'AdminController@index')->name('admin.index');

@@ -58,7 +58,7 @@
                     @if (Route::has('login'))
                     <div class="theme-dropdown">
                         @auth
-                        <a id="profile-menu" class="mdl-button mdl-js-button mdl-js-ripple-effect font-13" href="{{ url('/admin') }}"><i class="fa fa-user-o color-black"></i> Mi cuenta</a>
+                        <a id="profile-menu" class="mdl-button mdl-js-button mdl-js-ripple-effect font-13" href="{{ url('/admin/index') }}"><i class="fa fa-user-o color-black"></i> Mi cuenta</a>
                         @else
                         <a id="profile-menu" class="mdl-button mdl-js-button mdl-js-ripple-effect font-13"><i class="fa fa-user-o color-black"></i> Acceder</a>
                         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect metarial-menu" data-mdl-for="profile-menu">
@@ -202,7 +202,7 @@
                                                 <ul>
                                                     <li><a href="{{ url('/certificacionambiental') }}">Certificación Ambiental</a></li>
                                                     <li><a href="{{ url('/ventanillaunica') }}">Ventanilla Única</a></li>
-                                                    <li><a href="{{ url('/ResultadosEvaluacionAmbiental') }}">Resultados de Evaluación Ambiental</a></li>
+                                                    <li><a href="{{ url('/resultadoevaluacion') }}">Resultados de Evaluación Ambiental</a></li>
                                                     <li><a href="{{ url('/pautasorientacion') }}">Pautas de Orientación</a></li>   
                                                 </ul>
                                             </div>

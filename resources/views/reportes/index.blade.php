@@ -1,14 +1,17 @@
-@extends('layouts.administrator')
-
-@section('treemenu')
-treeview
-@endsection
-@section('actmenu2')
-treeview
-@endsection
-
+@extends('layouts.inicio')
+@section('pagina')
+<h1>Resultados de Evaluación Ambiental</h1>
+@stop
+@section('url')
+#
+@stop
+@section('menu')
+@stop
+@section('pagina1')
+@stop
 
 @section('contenido')
+
 
 <section class="content">
   <div class="row">
@@ -43,16 +46,7 @@ treeview
                 </tr>
                @endforeach
                 </tbody>
-             <tfoot>
-                <tr>
-                  <th>Actividad</th>
-                  <th>Entidad</th>
-                  <th>Proyecto</th>
-                  <th>Estudio</th>
-                  <th>Descripción</th>
-                  <th>Estado</th>
-                </tr>
-                </tfoot>
+
           </table>
   </div>
 

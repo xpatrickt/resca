@@ -2,7 +2,6 @@
 
 namespace resca\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use resca\Proyecto;
 use resca\Estudio;
@@ -22,26 +21,13 @@ use Response;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
-class AdminController extends Controller
+class ResultadoEvaluacionController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-       }
+    public function __construct(){
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        
+    }
+   public function index(Request $request){
+
       if($request){
             $query=trim($request->get('searchText'));
             $estudios=DB::table('estudio as e')
@@ -56,7 +42,28 @@ class AdminController extends Controller
             ->where('e.condicion','=','1')
             ->orderBy('e.idestudio','desc')
             ->paginate(999999);
-            return view('admin.index',["estudios"=>$estudios,"searchText"=>$query]);
+            return view('reportes.index',["estudios"=>$estudios,"searchText"=>$query]);
         }
     }
+
+
+   public function create(){
+
+    }
+
+    
+    public function store(EstudioFormRequest $request){
+
+    }
+
+    public function show($id){
+    	
+    }
+  
+
+    public function destroy($id){
+
+    }
+
+
 }

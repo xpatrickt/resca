@@ -1,1 +1,0 @@
-GerenciaRecursosNaturales.blade.php
