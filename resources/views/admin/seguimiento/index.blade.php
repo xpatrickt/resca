@@ -23,6 +23,8 @@ treeview
             @include('admin.evaluacion.modalagregarobservacion')
                -->
 
+
+   <!--
    {{ Form::open(['route' =>'admin.observacionevaluacion.index']) }}
    {{Form::token()}}
    @if($estudio!=null)
@@ -34,7 +36,7 @@ treeview
    @endif
    
    {!!Form::close()!!}
-
+-->
 
    {{ Form::open(['route' => 'admin.seguimiento.store']) }}
    {{Form::token()}}

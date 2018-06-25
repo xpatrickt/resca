@@ -35,11 +35,17 @@ treeview
            
       <input type="hidden" id="idestudio" name="idestudio" class="form-control" value="{{$estudio->idestudio}}" >
       <input type="hidden" id="idproyecto" name="idproyecto" class="form-control" value="{{$proyecto->idproyecto}}" >
+        @if($idobservacion=="" or $idobservacion==null)
+         <input type="hidden" id="idobservacion" name="idobservacion" class="form-control" value="">
+         @else
+         <input type="hidden" id="idobservacion" name="idobservacion" class="form-control" value="{{$idobservacion}}" >
+        @endif
+
         <div class="form-group">
           @if($asuntoobservacion==null)
           <input class="form-control" id="asuntoobservacion" name="asuntoobservacion" placeholder="Asunto:">
           @else
-          <input class="form-control" id="asuntoobservacion" name="asuntoobservacion" placeholder="Asunto:" value="{{$asuntoobservacion}}" disabled>
+          <input class="form-control" id="asuntoobservacion" name="asuntoobservacion" placeholder="Asunto:" value="{{$asuntoobservacion}}" readonly="readonly">
           @endif
         </div>
         <div class="form-group">
@@ -52,17 +58,34 @@ treeview
           </textarea>
           @endif
         </div>
+
+        @if($asuntoobservacion==null)
         <div class="box-footer">
-            @if($asuntoobservacion==null)
             <button type="submit" class="btn btn-primary">Agregar</button>
             <a href="{{ url()->previous() }}" class="btn btn-danger">Cancelar</a>
-            @else
-            <button type="submit" class="btn btn-primary">Agregar Documento</button>
-            <a href="{{ url()->previous() }}" class="btn btn-danger">Aceptar</a>
-            @endif
-            
         </div>
+        @endif
      {!!Form::close()!!}
+
+    {{ Form::open(['route' =>'admin.evaluacion.store']) }}
+      {{Form::token()}}
+     @if($asuntoobservacion!=null)
+      <input type="hidden" id="estudio" name="estudio" class="form-control" value="{{$estudio->idestudio}}" >
+      <input type="hidden" id="proyecto" name="proyecto" class="form-control" value="{{$proyecto->idproyecto}}" >
+      <input type="hidden" id="observacion" name="observacion" class="form-control" value="{{$idobservacion}}" >
+
+        <div class="box-footer">
+           <!--
+            <a href="" class="btn btn-primary" data-target="#modal-documentoobservacion-{{$idobservacion}}"  data-toggle="modal">Agregar Documento</a>
+          -->
+            <button type="submit" class="btn btn-danger">Aceptar</button>
+        </div>
+        @endif
+    {!!Form::close()!!}
+     @include('admin.observacionevaluacion.modaldocumentoobservacion')
+        </div>
+
+
       </div>
   </div>
   </div>
