@@ -441,7 +441,7 @@ Route::get('admin/registro','RegistroController@index')->name('admin.registro.in
 Route::get('admin/registro/create','RegistroController@create')->name('admin.registro.create')
 ->middleware('permission:admin.registro.create');
 
-Route::put('admin/registro/{role}','RegistroController@update')->name('admin.registro.update')
+Route::post('admin/registro/update','RegistroController@update')->name('admin.registro.update')
 ->middleware('permission:admin.registro.edit');
 
 Route::get('admin/registro/{role}','RegistroController@show')->name('admin.registro.show')
@@ -450,7 +450,7 @@ Route::get('admin/registro/{role}','RegistroController@show')->name('admin.regis
 Route::delete('admin/registro/{role}','RegistroController@destroy')->name('admin.registro.destroy')
 ->middleware('permission:admin.registro.destroy');
 
-Route::get('admin/registro/{role}/edit','RegistroController@edit')->name('admin.registro.edit')
+Route::post('admin/registro/edit','RegistroController@edit')->name('admin.registro.edit')
 ->middleware('permission:admin.registro.edit');
 //Fin Registro
 //Proyectoregistro

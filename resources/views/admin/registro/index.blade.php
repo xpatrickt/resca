@@ -42,11 +42,16 @@ treeview
                   <td>{{ $est->nombreestudio}}</td>
                   <td>{{ $est->descripcionestudio}}</td>
                   <td>{{ $est->estado}}</td>
-                  <td><a href="" data-target="#modal-mostrardelimitacion" 
+                  
+                  <td>
+                     <a href="" data-target="#modal-detalle-{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn bg-purple"><span class="glyphicon glyphicon-list-alt"></span></button></a>
+                    <a href="" data-target="#modal-mostrardelimitacion" 
                     data-toggle="modal" data-est-id="{{$est->idestudio}}" data-est-nombre="{{$est->nombreestudio}}"><button class="btn btn-warning"><span class="glyphicon glyphicon-map-marker"></span></button></a>
                   <a href="" data-target="#modal-mostrardocumento" data-toggle="modal" data-est2-id="{{$est->idestudio}}" data-est2-nombre="{{$est->nombreestudio}}"><button class="btn btn-success"><span class="glyphicon glyphicon-folder-open"></span></button></a>
-                   <a href="" data-target="#modal-enviar-{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn btn-info">ENVIAR</button></a>
+                   <a href="" data-target="#modal-enviar-{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn btn-primary">ENVIAR</button></a>
                 @include('admin.registro.modalenviar')
+                @include('admin.registro.modaldetalle')
+
                 </td>
                 </tr>
                @endforeach

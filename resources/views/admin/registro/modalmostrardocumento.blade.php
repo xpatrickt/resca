@@ -52,7 +52,7 @@
               <div class="modal-footer">
                <div class="col-md-12"> 
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-                <button type="button" id="agregardocumento" class="btn btn-primary">Agregar</button>
+                <button type="button" id="agregardocumento" class="btn btn-success">Agregar</button>
               </div>
               </div>
               {!!Form::close()!!}

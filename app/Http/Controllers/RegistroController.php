@@ -201,26 +201,6 @@ function listardocumento(Request $request)
      $documento=new Documentoestudio;
       $documento->descdocumentoestudio=$request->get('descripcion');
        $documento->urldocumentoestudio=$request->get('url');
-      /*if(Input::hasFile('url')){
-            $file=Input::file('url');
-            $nombred=date("dmyHis"); 
-            $file->move(public_path().'/documentos/estudio/',$nombred.'.pdf');
-       $documento->urldocumentoestudio='/documentos/estudio/'.$nombred.'.pdf';
-        }*/
-
-         /* $file = $request->get('url');
-          $nombred=date("dmyHis"); 
-          $file->move(public_path().'/documentos/estudio/',$nombred.'.pdf');
-       $documento->urldocumentoestudio='/documentos/estudio/'.$nombred.$file.'.pdf';*/
-
-       /*
-          $name = $file->getClientOriginalExtension();
-          $url['filePath'] = $name;
-          $file->move(public_path().'/documentos/estudio/', $name);
-         $documento->urldocumentoestudio='/documentos/estudio/'.$name;*/
- 
-
-
      $documento->condicion='1';
       $documento->idestudio=$request->get('estudiotext');
       $documento->iddocumento=$request->get('tipodocumento');
@@ -282,16 +262,6 @@ function listardocumento(Request $request)
     }
   
 
-  /* public function edit($idestudio){
-            $proyecto=Proyecto::findOrFail($idproyecto);
-        $catalogos=DB::table('catalogo')->where('condicion','=','1')->get();
-        $distritos=DB::table('distrito')->where('condicion','=','1')->get();
-        $provincias=DB::table('provincia')->where('condicion','=','1')->get();
-        $departamentos=DB::table('departamento')->where('condicion','=','1')->get();
-        $entidades=DB::table('entidad')->where('condicion','=','1')->get();
-        return view("admin.proyecto.edit",["proyecto"=>$proyecto,"catalogos"=>$catalogos,"distritos"=>$distritos ,"provincias"=>$provincias,"departamentos"=>$departamentos,"entidades"=>$entidades]);
-    }*/
-
     public function destroy($idestudio){
        $estadoestudio=new Estadoestudio;
         $estadoestudio->idestudio=$idestudio;
@@ -300,6 +270,31 @@ function listardocumento(Request $request)
         $estadoestudio->save();
         return Redirect::to('admin/registro');
 
+    }
+ 
+  // GUARDAR DELIMITACION ESTUDIO
+     public function edit(Request $request){
+      $delimitacion=new Delimitacionestudio;
+      $delimitacion->descripciondelimitacion=$request->get('descripcion');
+      $delimitacion->coordenadasx=$request->get('lat');
+      $delimitacion->coordenadasy=$request->get('lng');
+      $delimitacion->condicion='1';
+      $delimitacion->iddistrito=$request->get('distrito');
+      $delimitacion->idestudio=$request->get('estudiotext');
+      $delimitacion->save();
+      return Redirect::to('admin/registro');
+    }
+
+  // GUARDAR DOCUMENTOS ESTUDIO
+    public function update(Request $request){
+      $documento=new Documentoestudio;
+      $documento->descdocumentoestudio=$request->get('descripcion');
+       $documento->urldocumentoestudio=$request->get('url');
+     $documento->condicion='1';
+      $documento->idestudio=$request->get('estudiotext');
+      $documento->iddocumento=$request->get('tipodocumento');
+      $documento->save();
+      return Redirect::to('admin/registro');     
     }
 
 }
