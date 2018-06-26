@@ -267,7 +267,7 @@ function listardocumento(Request $request)
        {
         $estadoestudio=new Estadoestudio;
         $estadoestudio->idestudio=$e->idestudio;
-        $estadoestudio->idestado='2';
+        $estadoestudio->idestado='1';
         $estadoestudio->condicion='1';
         $estadoestudio->save();
        }
@@ -291,12 +291,12 @@ function listardocumento(Request $request)
         return view("admin.proyecto.edit",["proyecto"=>$proyecto,"catalogos"=>$catalogos,"distritos"=>$distritos ,"provincias"=>$provincias,"departamentos"=>$departamentos,"entidades"=>$entidades]);
     }*/
 
-    public function destroy($id){
-        //$proyecto=Proyecto::findOrFail($idproyecto);
-        //$proyecto->condicion='0';
-        //$proyecto->update();
-       return "hola";
+    public function destroy($idestudio){
+       $estadoestudio=new Estadoestudio;
+        $estadoestudio->idestudio=$idestudio;
+        $estadoestudio->idestado='2';
+        $estadoestudio->condicion='1';
+        $estadoestudio->save();
     }
-
 
 }
