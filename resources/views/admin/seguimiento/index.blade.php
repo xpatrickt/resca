@@ -139,7 +139,7 @@ treeview
 
      <!--TABS DOCUMENTO OBSERVACION Y LEVANTAMIENTO DE OBSERVACION*******************************************************-->
 
-            <div class="col-md-8">
+        <div class="col-md-8">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#documentos" data-toggle="tab">Documentos de Estudio</a></li>
@@ -154,11 +154,8 @@ treeview
             <div class="box-header with-border">
               <h3 class="box-title">Documentos : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
             </div>
-            <!-- /.box-header -->
             <div class="box-body no-padding">
-
               <div class="table-responsive mailbox-messages">
-
             <table id="tabla" class="table table-hover table-striped">
            <thead>
                 <tr>
@@ -181,17 +178,12 @@ treeview
                 </tr>
           @endforeach
           @endif
-
                 </tbody>
                  <tfoot>
-               
                 </tfoot>
             </table>
            </div>
-
-                <!-- /.table -->
               </div>
-
           </div>
 
       <!--TAB OBSERVACIONES*******************************************************-->
@@ -199,12 +191,9 @@ treeview
           <div class="box-header with-border">
               <h3 class="box-title">Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
             </div>
-            <!-- /.box-header -->
             <div class="box-body no-padding">
-
               <div class="table-responsive mailbox-messages">
-
-    <table id="tabla2" class="table table-hover table-striped">
+          <table id="tabla2" class="table table-hover table-striped">
            <thead>
                 <tr>
                   <th></th>
@@ -225,8 +214,6 @@ treeview
          @include('admin.seguimiento.modalobservacion')
                 @endforeach
                @endif
-
-
                 </tbody>
               <tfoot>
                
@@ -235,7 +222,6 @@ treeview
            </div>
               </div>
           </div>
-
           <!--TAB RESPUESTAS*******************************************************-->
           <div class="tab-pane" id="respuestas">
             <div class="box-header with-border">
@@ -270,27 +256,17 @@ treeview
 
                 </tbody>
               <tfoot>
-               
-                </tfoot>
+             </tfoot>
             </table>
            </div>
-              </div>
+           </div>
           </div>
-
-
-
-
-
-
-
-            </div>
+      // FIN TAB LEVANTAMIENTOOBSERVACION
           </div>
-
-
-
-
-
+          </div>
         </div>
+
+ // FIN TAB DOCUMENTO OBSERVACION Y LEVANTAMIENTO DE OBSERVACION
 
         {{ csrf_field() }}
 

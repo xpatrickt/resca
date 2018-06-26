@@ -89,6 +89,16 @@ treeview
 @section('script')
 
 <script>
+
+// MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
+
+
+// FIN MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
+
+
+
+
+
 //AGREGAR DELIMITACION AJAX
 
 
@@ -146,6 +156,7 @@ if(idest != '')
     success:function(result)
     {
        $('#tabladelimitacion').html(result);
+
     }
    })
   }
@@ -161,64 +172,7 @@ $('#deletedelimitacion').click(function(){
 
 });
 
-
-//CARGAR MAPA BUSQUEDA Y PUNTERO
-
-var map = new google.maps.Map(document.getElementById('mapacanvas'),{
-    center:{
-      lat: -14.10,
-      lng: -73.13
-    },
-    zoom:7
-  });
-
-  var marker = new google.maps.Marker({
-    position: {
-      lat: -14.10,
-      lng: -73.13
-    },
-    map: map,
-    draggable: true
-  });
-
-
-  var lat = marker.getPosition().lat();
-    var lng = marker.getPosition().lng();
-
-   // $('#lat').val(lat);
-   // $('#lng').val(lng);
-
-
-  var searchBox = new google.maps.places.SearchBox(document.getElementById('buscarmapa'));
-
-
-  google.maps.event.addListener(searchBox,'places_changed',function(){
-
-
-    var places = searchBox.getPlaces();
-    var bounds = new google.maps.LatLngBounds();
-    var i, place;
-
-    for(i=0; place=places[i];i++){
-        bounds.extend(place.geometry.location);
-        marker.setPosition(place.geometry.location); //set marker position new...
-      }
-
-      map.fitBounds(bounds);
-      map.setZoom(15);
-
-  });
-
-  google.maps.event.addListener(marker,'position_changed',function(){
-
-    var lat = marker.getPosition().lat();
-    var lng = marker.getPosition().lng();
-
-    $('#lat').val(lat);
-    $('#lng').val(lng);
-
-
-  });
+cargarmapa();
 
 });
 
@@ -313,6 +267,20 @@ if(idest != '')
 
 $('#agregardocumento').click(function(){
 
+  <?php
+if (isset($_FILES['url'])) {
+   $url = $_FILES['url'];
+   $extension = pathinfo($url['name'], PATHINFO_EXTENSION);
+   $time = time();
+   $nombre = "url.pdf";
+   if (move_uploaded_file($url['tmp_name'], "Bibliotecas/Imágenes/$nombre")) {
+      echo 1;
+   } else {
+      echo 0;
+   }
+}
+?>
+
 var uploadFile = document.getElementById("url");
  if( ""==uploadFile.value){
 
@@ -358,6 +326,70 @@ $('#deletedocumento').click(function(){
      alert("deletee");
 
 });
+
+
+//CARGAR MAPA
+
+function cargarmapa(){
+//CARGAR MAPA BUSQUEDA Y PUNTERO
+
+var map = new google.maps.Map(document.getElementById('mapacanvas'),{
+    center:{
+      lat: -14.10,
+      lng: -73.13
+    },
+    zoom:7
+  });
+
+  var marker = new google.maps.Marker({
+    position: {
+      lat: -14.10,
+      lng: -73.13
+    },
+    map: map,
+    draggable: true
+  });
+
+
+  var lat = marker.getPosition().lat();
+    var lng = marker.getPosition().lng();
+
+   // $('#lat').val(lat);
+   // $('#lng').val(lng);
+
+
+  var searchBox = new google.maps.places.SearchBox(document.getElementById('buscarmapa'));
+
+
+  google.maps.event.addListener(searchBox,'places_changed',function(){
+
+
+    var places = searchBox.getPlaces();
+    var bounds = new google.maps.LatLngBounds();
+    var i, place;
+
+    for(i=0; place=places[i];i++){
+        bounds.extend(place.geometry.location);
+        marker.setPosition(place.geometry.location); //set marker position new...
+      }
+
+      map.fitBounds(bounds);
+      map.setZoom(15);
+
+  });
+
+  google.maps.event.addListener(marker,'position_changed',function(){
+
+    var lat = marker.getPosition().lat();
+    var lng = marker.getPosition().lng();
+
+    $('#lat').val(lat);
+    $('#lng').val(lng);
+
+
+  });
+
+}
 
 </script>
 
