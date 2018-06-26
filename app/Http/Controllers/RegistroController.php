@@ -42,6 +42,7 @@ class RegistroController extends Controller
             ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
             ->where('e.nombreestudio','LIKE','%'.$query.'%')
             ->where('e.condicion','=','1')
+            ->where('es.idestado','=','1')
             ->orderBy('e.idestudio','desc')
             ->paginate(999999);
             return view('admin.registro.index',["estudios"=>$estudios,"delimitacionesestudio"=>$delimitacionesestudio,"documentosestudio"=>$documentosestudio,"documentos"=>$documentos,"departamentos"=>$departamentos,"provincias"=>$provincias,"searchText"=>$query]);
@@ -297,6 +298,8 @@ function listardocumento(Request $request)
         $estadoestudio->idestado='2';
         $estadoestudio->condicion='1';
         $estadoestudio->save();
+        return Redirect::to('admin/registro');
+
     }
 
 }

@@ -1,4 +1,4 @@
-  <div class="modal modal-danger fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-enviar-{{$est->idestudio}}">
+  <div class="modal modal-info fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-enviar-{{$est->idestudio}}">
       {{Form::Open(array('action'=>array('RegistroController@destroy',$est->idestudio),'method'=>'delete'))}}
           <div class="modal-dialog">
             <div class="modal-content" >
@@ -8,7 +8,7 @@
                 <h4 class="modal-title">Enviar Estudio</h4>
               </div>
               <div class="modal-body">
-                <p>Confirme si desea Enviar: {{$est->nombreestudio}} </p>
+                <p>Confirme si desea enviar el Estudio: <font style="text-transform: uppercase;">{{$est->nombreestudio}} </font></p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
