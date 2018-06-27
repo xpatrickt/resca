@@ -14,8 +14,10 @@
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/welcome', function () {
-    return view('welcome');
+
+
+Route::get('/admin', function () {
+    return view('admin.index');
 });
 
 Route::get('resultadoevaluacion', 'ResultadoEvaluacionController@index')->name('reportes.index');
@@ -717,14 +719,12 @@ Route::get('/ubicacion', function () {
 //fin routes
 //
 //
-Route::get('/prueba',function(){
+/*Route::get('/prueba',function(){
     return view('home');
 
 });
-Route::get('/prueba1',function(){
-    return view('prueba1');
+*/
 
-});
 
 
 

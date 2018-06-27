@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <!--<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -74,4 +75,10 @@
         </div>
     </div>
 </div>-->
+
+<script type="text/javascript">
+    document.write("Redireccionando...");
+setTimeout("window.history.go(-1)",1);
+
+</script>>
 @endsection
