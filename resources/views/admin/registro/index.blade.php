@@ -45,9 +45,6 @@ treeview
                   
                   <td>
                      <a href="" data-target="#modal-detalle" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn bg-purple"><span class="glyphicon glyphicon-list-alt"></span></button></a>
-                    <!--<a href="" data-target="#modal-mostrardelimitacion" 
-                    data-toggle="modal" data-est-id="{{$est->idestudio}}" data-est-nombre="{{$est->nombreestudio}}"><button class="btn btn-warning"><span class="glyphicon glyphicon-map-marker"></span></button></a>
-                  <a href="" data-target="#modal-mostrardocumento" data-toggle="modal" data-est2-id="{{$est->idestudio}}" data-est2-nombre="{{$est->nombreestudio}}"><button class="btn btn-success"><span class="glyphicon glyphicon-folder-open"></span></button></a>-->
                   <a href="{{URL::action('RegistroController@show',$est->idestudio)}}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button></a>
                    <a href="" data-target="#modal-enviar-{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn btn-primary">ENVIAR</button></a>
                 @include('admin.registro.modalenviar')
@@ -69,8 +66,6 @@ treeview
           </table>
   </div>
   @include('admin.registro.modaldetalle')
-  @include('admin.registro.modalmostrardelimitacion')
-   @include('admin.registro.modalmostrardocumento')
   
  
     </div>
@@ -129,89 +124,6 @@ $('#modal-detalle').on("show.bs.modal", function (e) {
 
 
 
-
-
-//AGREGAR DELIMITACION AJAX
-
-
-$('#agregardelimitacion').click(function(){
-  var estudiotext = $('#estudiotext').val();
-  var descripcion = $('#descripcion').val();
-  var lat = $('#lat').val();
-  var lng = $('#lng').val();
-  var distrito = $('#distrito').val();
-  
-  if(estudiotext != '' & descripcion!= '' & lat!= '' & lng!= '' & distrito!= '')
-  {
-
-   var _token = $('input[name="_token"]').val();
-   $.ajax({
-    url:"{{ route('admin.registro.agregardelimitacion') }}",
-    method:"POST",
-    data:{estudiotext:estudiotext, descripcion:descripcion, lat:lat, lng:lng, distrito:distrito, _token:_token},
-  
-    success:function(result)
-    {
-      $('#tabladelimitacion').html(result);
-      document.getElementById('provincia').length=0;
-      document.getElementById('distrito').length=0;
-     $('#descripcion').val('');
-     $('#lat').val('');
-     $('#lng').val('');
-      
-    }
-   })
-  }
-   else{
-     alert("Falta Ingresar Datos");
-   }
-});
-
-/*
-
-//MOSTRAR DELIMITACION AJAX
-
-$('#modal-mostrardelimitacion').on("show.bs.modal", function (e) {
-
-var idest = $(e.relatedTarget).data('est-id'); 
- $(e.currentTarget).find('input[name="estudiotext"]').val(idest); 
- var nombreest = $(e.relatedTarget).data('est-nombre'); 
- $("label[for='titulodelimitacion']").text('Delimitaciones:   '+nombreest);
-
-
-if(idest != '')
-  {
-   var _token = $('input[name="_token"]').val();
-   $.ajax({
-    url:"{{ route('admin.registro.listardelimitacion') }}",
-    method:"POST",
-    data:{idest:idest, _token:_token},
-  
-    success:function(result)
-    {
-       $('#tabladelimitacion').html(result);
-
-    }
-   })
-  }
-   else{
-
-   }
-
-
-   //ELIMINAR DELIMITACION AJAX
-$('#deletedelimitacion').click(function(){
-  
-     alert("deletee");
-
-});
-
-cargarmapa();
-
-});
-
-*/
-
 // AGREGAR DEPARTAMENTO PROVINCIA Y DISTRITO AJAX
 
 $(document).ready(function(){
@@ -263,104 +175,6 @@ $(document).ready(function(){
  });
 
 //*********************************************************************************************************************
-/*
-//MOSTRAR DOCUMENTO AJAX
-
- 
-
-$('#modal-mostrardocumento').on("show.bs.modal", function (e) {
-
-var idest = $(e.relatedTarget).data('est2-id'); 
- $(e.currentTarget).find('input[name="estudiotext2"]').val(idest); 
- var nombreest = $(e.relatedTarget).data('est2-nombre'); 
- $("label[for='titulodocumento']").text('Documentos:   '+nombreest);
-
-
-if(idest != '')
-  {
-   var _token = $('input[name="_token"]').val();
-   $.ajax({
-    url:"{{ route('admin.registro.listardocumento') }}",
-    method:"POST",
-    data:{idest:idest, _token:_token},
-  
-    success:function(result)
-    {
-       $('#tabladocumento').html(result);
-    }
-   })
-  }
-   else{
-
-   }
-
-});
-
-*/
-
-//AGREGAR DOCUMENTO AJAX
-
-$('#agregardocumento').click(function(){
-
-  <?php
-if (isset($_FILES['url'])) {
-   $url = $_FILES['url'];
-   $extension = pathinfo($url['name'], PATHINFO_EXTENSION);
-   $time = time();
-   $nombre = "url.pdf";
-   if (move_uploaded_file($url['tmp_name'], "Bibliotecas/Imágenes/$nombre")) {
-      echo 1;
-   } else {
-      echo 0;
-   }
-}
-?>
-
-var uploadFile = document.getElementById("url");
- if( ""==uploadFile.value){
-
- alert("Seleccione Archivo");
- }
- else{
-
-  var estudiotext = $('#estudiotext2').val();
-  var descripcion = $('#descripciondocumento').val();
-  var tipodocumento = $('#tipodocumento').val();
-  var url = $('#url').val();
-  //var dataurl = new FormData();
-  //dataurl.append( "url", $("#url")[0].files[0]);
-
-
-  if(estudiotext != '' & descripcion!= '' & tipodocumento!= '')
-  {
-
-
-   var _token = $('input[name="_token"]').val();
-   $.ajax({
-    url:"{{ route('admin.registro.agregardocumento') }}",
-    method:"POST",
-    data:{estudiotext:estudiotext, descripcion:descripcion, url:url, tipodocumento:tipodocumento, _token:_token},
-  
-    success:function(result)
-    {
-      $('#tabladocumento').html(result);
-     $('#descripciondocumento').val('');
-     $('#url').val('');
-    }
-   })
-  }
-   else{
-     alert("Falta Ingresar Datos");
-   }
- }
-});
-
-   //ELIMINAR DOCUMENTO AJAX
-$('#deletedocumento').click(function(){
-  
-     alert("deletee");
-
-});
 
 
 //CARGAR MAPA

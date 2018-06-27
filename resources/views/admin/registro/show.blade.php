@@ -141,8 +141,9 @@ treeview
             <div class="box-body no-padding">
               
 
-             {{ Form::open(['route' =>'admin.registro.update']) }}
+             {{ Form::open(['route' =>'admin.registro.update','files'=>'true']) }}     
              {{Form::token()}}
+             <input type="hidden" id="idestudio2" name="idestudio2" class="form-control" value="{{$estudio->idestudio}}">
              <div class="col-md-5">
                 <div class="form-group">
                   <label for="descripciondocumento">Descripción</label>
@@ -158,7 +159,7 @@ treeview
                   </select>
                 </div>
                 <div class="form-group">
-                   <label for="url">Subir Documento</label>
+                  <label for="url">Subir Documento</label>
                   <input type="file" name="url" id="url" class="form-control" placeholder="Seleccione Documento">
                 </div>
                 <button type="submit" class="btn btn-primary">Registrar</button>

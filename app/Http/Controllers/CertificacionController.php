@@ -65,8 +65,8 @@ class CertificacionController extends Controller
        if(Input::hasFile('documento')){
             $file=Input::file('documento');
             $nombred=date("dmyHis"); 
-            $file->move(public_path().'/documentos/resolucion/',$nombred.'.pdf');
-            $resolucion->urlresolucion='/documentos/resolucion/'.$nombred.'.pdf';
+            $file->move(public_path().'/admin/documentos/resolucion/',$nombred.'.pdf');
+            $resolucion->urlresolucion='/admin/documentos/resolucion/'.$nombred.'.pdf';
         }
         $resolucion->idestudio=$request->get('idestudio');
     	$resolucion->save();

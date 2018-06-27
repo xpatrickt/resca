@@ -18,6 +18,7 @@ use DB;
 use Response;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use DateTime;
 
 class RegistroController extends Controller
 {
@@ -313,13 +314,18 @@ class RegistroController extends Controller
   // GUARDAR DOCUMENTOS ESTUDIO
     public function update(Request $request){
       $documento=new Documentoestudio;
-      $documento->descdocumentoestudio=$request->get('descripcion');
-       $documento->urldocumentoestudio=$request->get('url');
-     $documento->condicion='1';
-      $documento->idestudio=$request->get('estudiotext');
+      $documento->descdocumentoestudio=$request->get('descripciondocumento');
+      if(Input::hasFile('url')){
+            $file=Input::file('url');
+            $nombred=date("dmyHis"); 
+            $file->move(public_path().'/admin/documentos/estudio/',$nombred.'.pdf');
+            $documento->urldocumentoestudio='/admin/documentos/estudio/'.$nombred.'.pdf';
+        }
+      $documento->condicion='1';
+      $documento->idestudio=$request->get('idestudio2');
       $documento->iddocumento=$request->get('tipodocumento');
       $documento->save();
-      return Redirect::to('admin/registro');     
+      return Redirect::to('admin/registrodetalle/'.$request->get('idestudio2'));     
     }
 
 }
