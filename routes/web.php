@@ -418,7 +418,7 @@ Route::get('admin/seguimiento/create','SeguimientoController@create')->name('adm
 Route::put('admin/seguimiento/{role}','SeguimientoController@update')->name('admin.seguimiento.update')
 ->middleware('permission:admin.seguimiento.edit');
 
-Route::get('admin/seguimiento/{role}','SeguimientoController@show')->name('admin.seguimiento.show')
+Route::post('admin/seguimiento/{role}','SeguimientoController@show')->name('admin.seguimiento.show')
 ->middleware('permission:admin.seguimiento.show');
 
 Route::delete('admin/seguimiento/{role}','SeguimientoController@destroy')->name('admin.seguimiento.destroy')
@@ -443,16 +443,16 @@ Route::get('admin/registro','RegistroController@index')->name('admin.registro.in
 Route::get('admin/registro/create','RegistroController@create')->name('admin.registro.create')
 ->middleware('permission:admin.registro.create');
 
-Route::post('admin/registro/update','RegistroController@update')->name('admin.registro.update')
+Route::put('admin/registro/update','RegistroController@update')->name('admin.registro.update')
 ->middleware('permission:admin.registro.edit');
 
-Route::get('admin/registro/{role}','RegistroController@show')->name('admin.registro.show')
+Route::get('admin/registro/{role}/show','RegistroController@show')->name('admin.registro.show')
 ->middleware('permission:admin.registro.show');
 
 Route::delete('admin/registro/{role}','RegistroController@destroy')->name('admin.registro.destroy')
 ->middleware('permission:admin.registro.destroy');
 
-Route::post('admin/registro/edit','RegistroController@edit')->name('admin.registro.edit')
+Route::put('admin/registro/edit','RegistroController@edit')->name('admin.registro.edit')
 ->middleware('permission:admin.registro.edit');
 //Fin Registro
 //Proyectoregistro

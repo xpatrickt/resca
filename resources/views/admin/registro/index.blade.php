@@ -44,14 +44,13 @@ treeview
                   <td>{{ $est->estado}}</td>
                   
                   <td>
-                     <a href="" data-target="#modal-detalle-{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn bg-purple"><span class="glyphicon glyphicon-list-alt"></span></button></a>
+                     <a href="" data-target="#modal-detalle" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn bg-purple"><span class="glyphicon glyphicon-list-alt"></span></button></a>
                     <a href="" data-target="#modal-mostrardelimitacion" 
                     data-toggle="modal" data-est-id="{{$est->idestudio}}" data-est-nombre="{{$est->nombreestudio}}"><button class="btn btn-warning"><span class="glyphicon glyphicon-map-marker"></span></button></a>
                   <a href="" data-target="#modal-mostrardocumento" data-toggle="modal" data-est2-id="{{$est->idestudio}}" data-est2-nombre="{{$est->nombreestudio}}"><button class="btn btn-success"><span class="glyphicon glyphicon-folder-open"></span></button></a>
+                  <a href="{{URL::action('RegistroController@show',$est->idestudio)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
                    <a href="" data-target="#modal-enviar-{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn btn-primary">ENVIAR</button></a>
                 @include('admin.registro.modalenviar')
-                @include('admin.registro.modaldetalle')
-
                 </td>
                 </tr>
                @endforeach
@@ -69,6 +68,7 @@ treeview
                 </tfoot>
           </table>
   </div>
+  @include('admin.registro.modaldetalle')
   @include('admin.registro.modalmostrardelimitacion')
    @include('admin.registro.modalmostrardocumento')
   
@@ -92,7 +92,39 @@ treeview
 
 // MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
 
+$('#modal-detalle').on("show.bs.modal", function (e) {
 
+  var idest = $(e.relatedTarget).data('id'); 
+  var _token = $('input[name="_token"]').val();
+
+//DELIMITACION
+   
+   $.ajax({
+    url:"{{ route('admin.registro.listardelimitacion') }}",
+    method:"POST",
+    data:{idest:idest, _token:_token},
+  
+    success:function(result)
+    {
+       $('#tabladelimitacion').html(result);
+
+    }
+   })
+
+//DOCUMENTOS
+
+   $.ajax({
+    url:"{{ route('admin.registro.listardocumento') }}",
+    method:"POST",
+    data:{idest:idest, _token:_token},
+  
+    success:function(result)
+    {
+       $('#tabladocumento').html(result);
+    }
+   })
+
+});
 // FIN MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
 
 
@@ -135,6 +167,8 @@ $('#agregardelimitacion').click(function(){
    }
 });
 
+/*
+
 //MOSTRAR DELIMITACION AJAX
 
 $('#modal-mostrardelimitacion').on("show.bs.modal", function (e) {
@@ -176,7 +210,7 @@ cargarmapa();
 
 });
 
-
+*/
 
 // AGREGAR DEPARTAMENTO PROVINCIA Y DISTRITO AJAX
 
@@ -229,7 +263,7 @@ $(document).ready(function(){
  });
 
 //*********************************************************************************************************************
-
+/*
 //MOSTRAR DOCUMENTO AJAX
 
  
@@ -262,6 +296,7 @@ if(idest != '')
 
 });
 
+*/
 
 //AGREGAR DOCUMENTO AJAX
 

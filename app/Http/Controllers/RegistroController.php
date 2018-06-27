@@ -85,7 +85,7 @@ class RegistroController extends Controller
      echo $output;
     }
 
-//DELIMITACION -------------
+// LISTAR DELIMITACION -------------
     function listardelimitacion(Request $request)
     {
      
@@ -102,7 +102,7 @@ class RegistroController extends Controller
                   <tr>
                   <th>Provincia</th>
                   <th>Distrito</th>
-                  <th>Descripcion</th>
+                  <th>Delimitación</th>
                  <th>Coordenadas</th>
                   <th></th>
                  </tr>
@@ -111,14 +111,51 @@ class RegistroController extends Controller
      foreach($data as $row)  
      {
    $output .= '<tr><td>'.$row->provincia.'</td><td>'.$row->distrito.'</td><td>'.$row->descripciondelimitacion.
-              '</td> <td>x:'.$row->coordenadasx.' y:'. $row->coordenadasy.'</td><td>
-                 <a  href="" onclick="deletedelimitacion();"><span class="glyphicon glyphicon-trash"></span></a>
-                </td>
+              '</td> <td>x:'.$row->coordenadasx.' y:'. $row->coordenadasy.'</td>
                 </tr>';
        }
       $output .= '</tbody>';
      echo $output;
     }
+
+    // LISTAR DOCUMENTOS  -------------
+
+    function listardocumento(Request $request)
+    {
+     
+      $est = $request->get('idest'); // estudio
+
+    $data=DB::table('documentoestudio as d')
+    ->join('documento as do','d.iddocumento','=','do.iddocumento')
+        ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','do.nombredocumento as tipodocumento','d.idestudio','d.created_at')
+        ->where('d.idestudio','=',$est)
+        ->where('d.condicion','=','1')
+        ->orderBy('d.iddocumentoestudio','desc') ->get();
+    
+     $output = '<tbody>
+                 <thead>
+                  <tr>
+                  <th>Documento</th>
+                  <th>Tipo</th>
+                  <th>Fecha</th>
+                  <th></th>
+                 </tr>
+                </thead>';
+  
+     foreach($data as $row)
+     {
+   $output .= '<tr><td>'.$row->descdocumentoestudio.'</td>
+              <td>'.$row->tipodocumento.'</td>
+              <td>'.$row->created_at.'</td>
+        <td><a  href="../admin/'.$row->urldocumentoestudio.'"  target="_blank"><i class="fa fa-file-pdf-o"></i></a></td></tr>';
+     }
+     $output .= '</tbody>';
+
+          
+     echo $output;
+    }
+
+    // AGREGAR DELIMITACION
 
      function agregardelimitacion(Request $request)
     {
@@ -163,36 +200,8 @@ class RegistroController extends Controller
      
     }
 
-//DOCUMENTOS *********************************************************************************************************
+// AGREGAR DOCUMENTOS *********************************************************************************************************
 
-function listardocumento(Request $request)
-    {
-     
-      $est = $request->get('idest'); // estudio
-
-    $data=DB::table('documentoestudio as d')
-    ->join('documento as do','d.iddocumento','=','do.iddocumento')
-        ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','do.nombredocumento as tipodocumento','d.idestudio')
-        ->where('d.idestudio','=',$est)
-        ->where('d.condicion','=','1')
-        ->orderBy('d.iddocumentoestudio','desc') ->get();
-    
-     $output = '<tbody>
-                <tr>
-                  <td>';
-  
-     foreach($data as $row)
-     {
-   $output .= '<a class="btn btn-app">
-          <i class="fa fa-file-pdf-o"></i>'.$row->descdocumentoestudio.'</a>';
-     }
-     $output .= '</td>
-                </tr>
-                </tbody>';
-
-          
-     echo $output;
-    }
 
      function agregardocumento(Request $request)
     {
@@ -257,11 +266,6 @@ function listardocumento(Request $request)
     
     }
 
-    public function show($idestudio){
-    	return view("admin.registro.show",["estudio"=>Estudio::findOrFail($idestudio)]);
-    }
-  
-
     public function destroy($idestudio){
        $estadoestudio=new Estadoestudio;
         $estadoestudio->idestudio=$idestudio;
@@ -271,9 +275,14 @@ function listardocumento(Request $request)
         return Redirect::to('admin/registro');
 
     }
+
+  // AGREGAR Y LISTAS DELIMITACION Y DOCUMENTOS
+      public function show($idestudio){
+      return view("admin.registro.show",["estudio"=>Estudio::findOrFail($idestudio)]);
+    }
  
   // GUARDAR DELIMITACION ESTUDIO
-     public function edit(Request $request){
+   /*  public function edit(Request $request){
       $delimitacion=new Delimitacionestudio;
       $delimitacion->descripciondelimitacion=$request->get('descripcion');
       $delimitacion->coordenadasx=$request->get('lat');
@@ -295,6 +304,6 @@ function listardocumento(Request $request)
       $documento->iddocumento=$request->get('tipodocumento');
       $documento->save();
       return Redirect::to('admin/registro');     
-    }
+    }*/
 
 }
