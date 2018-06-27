@@ -443,7 +443,7 @@ Route::get('admin/registro','RegistroController@index')->name('admin.registro.in
 Route::get('admin/registro/create','RegistroController@create')->name('admin.registro.create')
 ->middleware('permission:admin.registro.create');
 
-Route::post('admin/registro/update','RegistroController@update')->name('admin.registro.update')
+Route::put('admin/registro/{role}','RegistroController@update')->name('admin.registro.update')
 ->middleware('permission:admin.registro.edit');
 
 Route::get('admin/registrodetalle/{role}/','RegistroController@show')->name('admin.registro.show')

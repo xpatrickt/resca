@@ -141,7 +141,7 @@ treeview
             <div class="box-body no-padding">
               
 
-             {{ Form::open(['route' =>'admin.registro.update','files'=>'true']) }}     
+             {{ Form::open(['route' =>'admin.registro.update', $estudio->idestudio],'method' => 'PUT','files'=>'true']) }}     
              {{Form::token()}}
              <input type="hidden" id="idestudio2" name="idestudio2" class="form-control" value="{{$estudio->idestudio}}">
              <div class="col-md-5">

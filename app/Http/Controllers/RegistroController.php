@@ -312,7 +312,7 @@ class RegistroController extends Controller
     }
 
   // GUARDAR DOCUMENTOS ESTUDIO
-    public function update(Request $request){
+    public function update(Request $request,$idestudio){
       $documento=new Documentoestudio;
       $documento->descdocumentoestudio=$request->get('descripciondocumento');
       if(Input::hasFile('url')){
