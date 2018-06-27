@@ -452,7 +452,7 @@ Route::get('admin/registrodetalle/{role}/','RegistroController@show')->name('adm
 Route::delete('admin/registro/{role}','RegistroController@destroy')->name('admin.registro.destroy')
 ->middleware('permission:admin.registro.destroy');
 
-Route::put('admin/registro/edit','RegistroController@edit')->name('admin.registro.edit')
+Route::post('admin/registro/edit','RegistroController@edit')->name('admin.registro.edit')
 ->middleware('permission:admin.registro.edit');
 //Fin Registro
 //Proyectoregistro

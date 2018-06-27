@@ -24,7 +24,7 @@ treeview
 <div class="row">
   <div class="col-md-12">
   <div class="box">
-   <div class="box-header with-border">
+   <div class="box-header">
   <h3 class="box-tittle">Estudio: {{$estudio->nombreestudio}}</h3>
   @if(count($errors)>0)
   <div class="alert alert-danger">
@@ -50,8 +50,9 @@ treeview
 
           <div class="active tab-pane" id="delimitaciones">
             <div class="box-body no-padding">
-             {{ Form::open(['route' =>'admin.registro.edit']) }}
-             {{Form::token()}}
+          {{ Form::open(['route' =>'admin.registro.edit']) }}
+            {{Form::token()}}
+            <input type="hidden" id="idestudio1" name="idestudio1" class="form-control" value="{{$estudio->idestudio}}">
                <div class="col-md-5">
                 <div class="form-group">
                   <label for="descripcion">Descripción</label>
@@ -71,7 +72,6 @@ treeview
                @endforeach
                   </select>
                 </div>
-           <div class="col-md-6">
           <div class="form-group">
                   <label for="provincia" disabled>Provincia</label>
                   <select name="provincia" id="provincia" class="form-control dynamic" data-dependent="distrito"> 
@@ -81,14 +81,11 @@ treeview
                        @endforeach
                </select>
                 </div>
-              </div>
-              <div class="col-md-6">
                <div class="form-group">
                   <label for="distrito">Distrito</label>
                   <select name="distrito" id="distrito" class="form-control dynamic">
                </select>
               </div>
-            </div>
                <div class="form-group">
                 <label for="">Buscar</label>
                   <input type="text" name="buscarmapa" id="buscarmapa" class="form-control">
@@ -281,9 +278,6 @@ var map = new google.maps.Map(document.getElementById('mapacanvas'),{
 
   var lat = marker.getPosition().lat();
     var lng = marker.getPosition().lng();
-
-   // $('#lat').val(lat);
-   // $('#lng').val(lng);
 
 
   var searchBox = new google.maps.places.SearchBox(document.getElementById('buscarmapa'));

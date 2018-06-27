@@ -305,9 +305,9 @@ class RegistroController extends Controller
       $delimitacion->coordenadasy=$request->get('lng');
       $delimitacion->condicion='1';
       $delimitacion->iddistrito=$request->get('distrito');
-      $delimitacion->idestudio=$request->get('estudiotext');
+      $delimitacion->idestudio=$request->get('idestudio1');
       $delimitacion->save();
-      return Redirect::to('admin/registro');
+      return Redirect::to('admin/registrodetalle/'.$request->get('idestudio1'));
     }
 
   // GUARDAR DOCUMENTOS ESTUDIO
