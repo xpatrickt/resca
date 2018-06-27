@@ -88,84 +88,8 @@
                                 <li>
                                     <a id="menu-home" class="mdl-button mdl-js-button mdl-js-ripple-effect">Inicio <i class="fa fa-home"></i></a>
                                 </li>
-                                <!-- MEGAMENU1 -->
-                               <!-- <li class="menu-megamenu-li">
-                                    <a id="menu-pages" class="mdl-button mdl-js-button mdl-js-ripple-effect">Pages <i class="fa fa-chevron-down"></i></a>
-                                    <ul class="menu-megamenu">
-                                        <li class="row">
-                                            <div class="col-lg-3">
-                                                <div class="megamenu-ttl">Resca</div>
-                                                <ul>
-                                                    <li><a href="event-1.html">Certificaciòn Ambiental</a></li>
-                                                    <li><a href="event-2.html">Ventanilla Única</a></li>
-                                                    <li><a href="event-3.html">Resultados de Evaluación Ambiental</a></li>
-                                                    <li><a href="faq.html">Pautas de Orientación</a></li>         
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="megamenu-ttl">Documentos</div>
-                                                <ul>
-                                                    <li><a href="departments-1.html">TUPA</a></li>
-                                                    <li><a href="departments-2.html">MAPRO</a></li>
- 
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <div class="megamenu-ttl">Reportes de E.A.</div>
-                                                <ul>
-                                                    <li><a href="about.html">About Us</a></li>
-                                                    <li><a href="contact.html">Contact Us</a></li>
-                                                    <li><a href="invoice.html">Invoice</a></li>
-                                                    <li><a href="terms-conditions.html">Terms &#38; Conditions</a></li>
-                                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="theme-img">
-                                                    <img src="plantilla/uploads/service-5.jpg" alt="">
-                                                </div>
-                                            </div>
-                                        </li> 
-                                    </ul>
-                                </li> -->
+                    
 
-                               <!-- <li>
-                                    <a id="menu-service" class="mdl-button mdl-js-button mdl-js-ripple-effect">Service <i class="fa fa-chevron-down"></i></a>
-                                    <ul class="menu-dropdown">
-                                        <li>
-                                            <a>Services Style 1</a>
-                                            <ul class="menu-dropdown">
-                                                <li><a href="services-1.html">Services Style 1</a></li>
-                                                <li><a href="services-4.html">Services Style 1 with Right Sidebar</a></li>
-                                                <li><a href="services-7.html">Services Style 1 with Left Sidebar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a>Servcie Style 2</a>
-                                            <ul class="menu-dropdown">
-                                                <li><a href="services-2.html">Services Style 2</a></li>
-                                                <li><a href="services-5.html">Services Style 2 with Right Sidebar</a></li>
-                                                <li><a href="service.html">Single Service Page</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a>Service Style 3</a>
-                                            <ul class="menu-dropdown">
-                                                <li><a href="services-3.html">Services Style 3</a></li>
-                                                <li><a href="services-6.html">Services Style 3 with Right Sidebar</a></li>
-                                                <li><a href="services-8.html">Services Style 3 with Left Sidebar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a>Services Style 4</a>
-                                            <ul class="menu-dropdown">
-                                                <li><a href="services-9.html">Services Style 4</a></li>
-                                                <li><a href="services-9.html">Services Style 4 with Right Sidebar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="service.html">Service Detail</a></li>
-                                    </ul>
-                                </li>-->
                                   <li>
                                     <a id="menu-blog" class="mdl-button mdl-js-button mdl-js-ripple-effect">Nosotros<i class="fa fa-chevron-down"></i>
                                     </a>
@@ -245,12 +169,12 @@
                                         <li>
                                             <a href="{{ url('/ubicacion') }}">Ubicación</a>
                                         </li>
-                                         <li>
+                                        <!-- <li>
                                             <a href="#">Correo</a>
                                         </li>
                                          <li>
                                             <a href="#">Datos de Contacto</a>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </li>
         
@@ -413,59 +337,7 @@
             </div>
         </div>
     </div><!-- End Doctor Section -->
-    <!-- Start Blog Section -->
-  <!--   <div id="hm-blog" class="layer-stretch">
-        <div class="layer-wrapper layer-bottom-10">
-            <div class="layer-ttl">
-                <h3>Latest Posts</h3>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="blog-list-block">
-                        <div class="blog-list-picture">
-                            <div class="theme-img theme-img-scalerotate">
-                                <img src="plantilla/uploads/blog-4.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="blog-list-ttl">
-                            <h3><a href="#">Why Food Poisoning happened and How To  – Home Remedy</a></h3>
-                        </div>
-                        <div class="blog-list-meta">
-                            <p>Posted By Melissa Bates On 08 Jun 2017</p>
-                        </div>  
-                        <div class="blog-list-post">
-                            <p class="paragraph-medium paragraph-black">
-                                <span>Restinguet citius, si ardentem acceperit. Non est enim vitium in oratione solum, sed etiam in moribus. In schola desinis. An haec ab eo non dicuntur? Longum est enim ad omnia respondere, quae a te dicta sunt. Cetera illa adhibebat, quibus demptis negat se Epicurus intellegere quid sit bonum. </span>
-                                <a href="#">(Read More)</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="blog-list-block">
-                        <div class="blog-list-picture">
-                            <div class="theme-img theme-img-scalerotate">
-                                <img src="plantilla/uploads/blog-5.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="blog-list-ttl">
-                            <h3><a href="#">All you need to know about Chinese Food, Is it good or bad?</a></h3>
-                        </div>
-                        <div class="blog-list-meta">
-                            <p>Posted By Daniel Barnes On 05 Jun 2017</p>
-                        </div>  
-                        <div class="blog-list-post">
-                            <p class="paragraph-medium paragraph-black">
-                                <span>Restinguet citius, si ardentem acceperit. Non est enim vitium in oratione solum, sed etiam in moribus. In schola desinis. An haec ab eo non dicuntur? Longum est enim ad omnia respondere, quae a te dicta sunt. Cetera illa adhibebat, quibus demptis negat se Epicurus intellegere quid sit bonum.</span>
-                                <a href="#">(Read More)</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- End Blog Section -->
+
     <!-- Start Testimonial Section -->
    <pre></pre>
    <!-- Contador de visitas -->
@@ -474,84 +346,6 @@
     <!-- Fin Contador de visitas -->
     <pre></pre>
 
-    <div id="appointment" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h5 class="modal-title">Make An Appointment</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="appointment-error"></div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-                                <i class="fa fa-user-o"></i>
-                                <input class="mdl-textfield__input" type="text" pattern="[A-Z,a-z, ]*" id="appointment-name">
-                                <label class="mdl-textfield__label" for="appointment-name">Name</label>
-                                <span class="mdl-textfield__error">Please Enter Valid Name!</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-                                <i class="fa fa-envelope-o"></i>
-                                <input class="mdl-textfield__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="appointment-email">
-                                <label class="mdl-textfield__label" for="appointment-email">Email</label>
-                                <span class="mdl-textfield__error">Please Enter Valid Email!</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-                                <i class="fa fa-phone"></i>
-                                <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="appointment-mobile">
-                                <label class="mdl-textfield__label" for="appointment-mobile">Mobile Number</label>
-                                <span class="mdl-textfield__error">Please Enter Valid Mobile Number!</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label form-input-icon">
-                                <i class="fa fa-hospital-o"></i>
-                                <select class="mdl-selectfield__select" id="appointment-department">
-                                    <option value="">&nbsp;</option>
-                                    <option value="1">Gynaecology</option>
-                                    <option value="2">Orthology</option>
-                                    <option value="3">Dermatologist</option>
-                                    <option value="4">Anaesthesia</option>
-                                    <option value="5">Ayurvedic</option>
-                                </select>
-                                <label class="mdl-selectfield__label" for="appointment-department">Choose Department</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label form-input-icon">
-                                <i class="fa fa-user-md"></i>
-                                <select class="mdl-selectfield__select" id="appointment-doctor">
-                                    <option value="">&nbsp;</option>
-                                    <option value="1">Dr. Daniel Barnes</option>
-                                    <option value="2">Dr. Steve Soeren</option>
-                                    <option value="3">Dr. Barbara Baker</option>
-                                    <option value="4">Dr. Melissa Bates</option>
-                                    <option value="5">Dr. Linda Adams</option>
-                                </select>
-                                <label class="mdl-selectfield__label" for="appointment-doctor">Choose Doctor</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input-icon">
-                                <i class="fa fa-calendar-o"></i>
-                                <input class="mdl-textfield__input" type="text" id="appointment-date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                <label class="mdl-textfield__label" for="appointment-date">Date</label>
-                                <span class="mdl-textfield__error">Please Enter Valid Date Number!</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center pt-4">
-                        <button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect mdl-button--raised button button-primary button-lg make-appointment">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- End Make an Appointment Modal -->
     <!-- Start Login Modal -->
     <div id="loginpopup" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -702,16 +496,7 @@
                 <div class="col-md-4 footer-block">
                     <div class="footer-ttl"><p>Suscribase</p></div>
                     <div class="footer-container footer-c">
-                        <div class="footer-subscribe">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input">
-                                <input class="mdl-textfield__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="subscribe-email">
-                                <label class="mdl-textfield__label" for="subscribe-email">Ingrese su Email</label>
-                                <span class="mdl-textfield__error">Por favor ingrese un Email válido!</span>
-                            </div>
-                            <div class="footer-subscribe-button">
-                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary">Agregar</button>
-                            </div>
-                        </div>
+
                         <ul class="social-list social-list-colored footer-social">
                             <li>
                                 <a href="https://web.facebook.com/Gerencia-de-Recursos-Naturales-GRA-2102276290097520/?modal=admin_todo_tour" target="_blank" id="footer-facebook" class="fa fa-facebook"></a>
