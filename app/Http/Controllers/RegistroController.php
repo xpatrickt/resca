@@ -104,14 +104,15 @@ class RegistroController extends Controller
                   <th>Distrito</th>
                   <th>Delimitación</th>
                  <th>Coordenadas</th>
-                  <th></th>
                  </tr>
                 </thead>
                 <tbody>';
      foreach($data as $row)  
      {
-   $output .= '<tr><td>'.$row->provincia.'</td><td>'.$row->distrito.'</td><td>'.$row->descripciondelimitacion.
-              '</td> <td>x:'.$row->coordenadasx.' y:'. $row->coordenadasy.'</td>
+   $output .= '<tr><td>'.$row->provincia.'</td>
+                   <td>'.$row->distrito.'</td>
+                   <td>'.$row->descripciondelimitacion.'</td> 
+                   <td>x:'.$row->coordenadasx.' y:'. $row->coordenadasy.'</td>
                 </tr>';
        }
       $output .= '</tbody>';
@@ -132,22 +133,23 @@ class RegistroController extends Controller
         ->where('d.condicion','=','1')
         ->orderBy('d.iddocumentoestudio','desc') ->get();
     
-     $output = '<tbody>
-                 <thead>
+     $output = '<thead>
                   <tr>
                   <th>Documento</th>
                   <th>Tipo</th>
                   <th>Fecha</th>
                   <th></th>
                  </tr>
-                </thead>';
+                </thead>
+                <tbody>';
   
      foreach($data as $row)
      {
    $output .= '<tr><td>'.$row->descdocumentoestudio.'</td>
-              <td>'.$row->tipodocumento.'</td>
-              <td>'.$row->created_at.'</td>
-        <td><a  href="../admin/'.$row->urldocumentoestudio.'"  target="_blank"><i class="fa fa-file-pdf-o"></i></a></td></tr>';
+                 <td>'.$row->tipodocumento.'</td>
+                 <td>'.$row->created_at.'</td>
+                 <td><a  href="../admin'.$row->urldocumentoestudio.'"  target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
+              </tr>';
      }
      $output .= '</tbody>';
 
@@ -205,8 +207,6 @@ class RegistroController extends Controller
 
      function agregardocumento(Request $request)
     {
-
-     
      $documento=new Documentoestudio;
       $documento->descdocumentoestudio=$request->get('descripcion');
        $documento->urldocumentoestudio=$request->get('url');
@@ -277,12 +277,25 @@ class RegistroController extends Controller
     }
 
   // AGREGAR Y LISTAS DELIMITACION Y DOCUMENTOS
-      public function show($idestudio){
-      return view("admin.registro.show",["estudio"=>Estudio::findOrFail($idestudio)]);
+  public function show($idestudio){
+    $delimitaciones=DB::table('delimitacionestudio as d')
+    ->join('distrito as di','d.iddistrito','=','di.iddistrito')
+        ->join('provincia as p','di.idprovincia','=','p.idprovincia')
+        ->select('d.iddelimitacionestudio','d.descripciondelimitacion','p.nombreprovincia as provincia','di.nombredistrito as distrito','d.coordenadasx', 'd.coordenadasy')
+        ->where('d.idestudio','=',$idestudio)
+        ->where('d.condicion','=','1')
+        ->orderBy('d.iddelimitacionestudio','desc') ->get();
+    $documentos=DB::table('documentoestudio as d')
+    ->join('documento as do','d.iddocumento','=','do.iddocumento')
+        ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','do.nombredocumento as tipodocumento','d.idestudio','d.created_at')
+        ->where('d.idestudio','=',$idestudio)
+        ->where('d.condicion','=','1')
+        ->orderBy('d.iddocumentoestudio','desc') ->get();
+      return view("admin.registro.show",["estudio"=>Estudio::findOrFail($idestudio),"delimitaciones"=>$delimitaciones,"documentos"=>$documentos]);
     }
  
   // GUARDAR DELIMITACION ESTUDIO
-   /*  public function edit(Request $request){
+     public function edit(Request $request){
       $delimitacion=new Delimitacionestudio;
       $delimitacion->descripciondelimitacion=$request->get('descripcion');
       $delimitacion->coordenadasx=$request->get('lat');
@@ -304,6 +317,6 @@ class RegistroController extends Controller
       $documento->iddocumento=$request->get('tipodocumento');
       $documento->save();
       return Redirect::to('admin/registro');     
-    }*/
+    }
 
 }

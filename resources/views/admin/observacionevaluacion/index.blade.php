@@ -1,5 +1,4 @@
 @extends('layouts.administrator')
-
 @section('actmenu2')
 active treeview
 @endsection
@@ -9,7 +8,6 @@ active
 @section('treemenu')
 treeview
 @endsection
-
 @section ('contenido')
 
 <section class="content">
