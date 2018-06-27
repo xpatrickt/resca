@@ -45,10 +45,10 @@ treeview
                   
                   <td>
                      <a href="" data-target="#modal-detalle" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn bg-purple"><span class="glyphicon glyphicon-list-alt"></span></button></a>
-                    <a href="" data-target="#modal-mostrardelimitacion" 
+                    <!--<a href="" data-target="#modal-mostrardelimitacion" 
                     data-toggle="modal" data-est-id="{{$est->idestudio}}" data-est-nombre="{{$est->nombreestudio}}"><button class="btn btn-warning"><span class="glyphicon glyphicon-map-marker"></span></button></a>
-                  <a href="" data-target="#modal-mostrardocumento" data-toggle="modal" data-est2-id="{{$est->idestudio}}" data-est2-nombre="{{$est->nombreestudio}}"><button class="btn btn-success"><span class="glyphicon glyphicon-folder-open"></span></button></a>
-                  <a href="{{URL::action('RegistroController@show',$est->idestudio)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-mostrardocumento" data-toggle="modal" data-est2-id="{{$est->idestudio}}" data-est2-nombre="{{$est->nombreestudio}}"><button class="btn btn-success"><span class="glyphicon glyphicon-folder-open"></span></button></a>-->
+                  <a href="{{URL::action('RegistroController@show',$est->idestudio)}}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button></a>
                    <a href="" data-target="#modal-enviar-{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn btn-primary">ENVIAR</button></a>
                 @include('admin.registro.modalenviar')
                 </td>

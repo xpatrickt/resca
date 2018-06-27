@@ -278,6 +278,9 @@ class RegistroController extends Controller
 
   // AGREGAR Y LISTAS DELIMITACION Y DOCUMENTOS
   public function show($idestudio){
+    $tipodocumento=DB::table('documento')->where('condicion','=','1')->get();
+    $provincias=DB::table('provincia')->where('iddepartamento','=','030000')->where('condicion','=','1')->get();
+    $departamentos=DB::table('departamento')->where('condicion','=','1')->get();
     $delimitaciones=DB::table('delimitacionestudio as d')
     ->join('distrito as di','d.iddistrito','=','di.iddistrito')
         ->join('provincia as p','di.idprovincia','=','p.idprovincia')
@@ -291,7 +294,7 @@ class RegistroController extends Controller
         ->where('d.idestudio','=',$idestudio)
         ->where('d.condicion','=','1')
         ->orderBy('d.iddocumentoestudio','desc') ->get();
-      return view("admin.registro.show",["estudio"=>Estudio::findOrFail($idestudio),"delimitaciones"=>$delimitaciones,"documentos"=>$documentos]);
+      return view("admin.registro.show",["estudio"=>Estudio::findOrFail($idestudio),"delimitaciones"=>$delimitaciones,"documentos"=>$documentos,"departamentos"=>$departamentos,"provincias"=>$provincias,"tipodocumento"=>$tipodocumento]);
     }
  
   // GUARDAR DELIMITACION ESTUDIO
