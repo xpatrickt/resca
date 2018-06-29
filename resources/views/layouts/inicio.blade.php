@@ -9,27 +9,27 @@
     <!-- Meta Description Tag -->
     <meta name="Description" content="Registro y Seguimiento de Certificaciones Ambientales">
     <!-- Favicon Icon -->
-    <link rel="icon" type="image/x-icon" href="plantilla/images/favicon.png" />
+    <link rel="icon" type="{{asset('image/x-icon')}}" href="plantilla/images/favicon.png" />
     <!-- Font Awesoeme Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/font-awesome/css/font-awesome.min.css')}}" />
     <!-- Google web Font -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
+    <link rel="stylesheet" type="{{asset('text/css')}}" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="plantilla/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('plantilla/css/bootstrap.min.css')}}">
     <!-- Material Design Lite Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/material.min.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/material.min.css')}}" />
     <!-- Material Design Select Field Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/mdl-selectfield.min.css">
+    <link rel="stylesheet" href="{{asset('plantilla/css/mdl-selectfield.min.css')}}">
     <!-- Owl Carousel Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/owl.carousel.min.css')}}" />
     <!-- Animate Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/animate.min.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/animate.min.css')}}" />
     <!-- Magnific Popup Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/magnific-popup.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/magnific-popup.css')}}" />
     <!-- Flex Slider Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/flexslider.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/flexslider.css')}}" />
     <!-- Custom Main Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/style.css">
+    <link rel="stylesheet" href="{{asset('plantilla/css/style.css')}}">
 </head>
 <body>
     <!-- Start Header -->
@@ -296,31 +296,31 @@
     <!-- **********Included Scripts*********** -->
 
     <!-- Jquery Library 2.1 JavaScript-->
-    <script src="plantilla/js/jquery-2.1.4.min.js"></script>
+    <script src="{{asset('plantilla/js/jquery-2.1.4.min.js')}}"></script>
     <!-- Popper JavaScript-->
-    <script src="plantilla/js/popper.min.js"></script>
+    <script src="{{asset('plantilla/js/popper.min.js')}}"></script>
     <!-- Bootstrap Core JavaScript-->
-    <script src="plantilla/js/bootstrap.min.js"></script>
+    <script src="{{asset('plantilla/js/bootstrap.min.js')}}"></script>
     <!-- Material Design Lite JavaScript-->
-    <script src="plantilla/js/material.min.js"></script>
+    <script src="{{asset('plantilla/js/material.min.js')}}"></script>
     <!-- Material Select Field Script -->
-    <script src="plantilla/js/mdl-selectfield.min.js"></script>
+    <script src="{{asset('plantilla/js/mdl-selectfield.min.js')}}"></script>
     <!-- Flexslider Plugin JavaScript-->
-    <script src="plantilla/js/jquery.flexslider.min.js"></script>
+    <script src="{{asset('plantilla/js/jquery.flexslider.min.js')}}"></script>
     <!-- Owl Carousel Plugin JavaScript-->
-    <script src="plantilla/js/owl.carousel.min.js"></script>
+    <script src="{{asset('plantilla/js/owl.carousel.min.js')}}"></script>
     <!-- Scrolltofixed Plugin JavaScript-->
-    <script src="plantilla/js/jquery-scrolltofixed.min.js"></script>
+    <script src="{{asset('plantilla/js/jquery-scrolltofixed.min.js')}}"></script>
     <!-- Magnific Popup Plugin JavaScript-->
-    <script src="plantilla/js/jquery.magnific-popup.min.js"></script>
+    <script src="{{asset('plantilla/js/jquery.magnific-popup.min.js')}}"></script>
     <!-- WayPoint Plugin JavaScript-->
-    <script src="plantilla/js/jquery.waypoints.min.js"></script>
+    <script src="{{asset('plantilla/js/jquery.waypoints.min.js')}}"></script>
     <!-- CounterUp Plugin JavaScript-->
-    <script src="plantilla/js/jquery.counterup.js"></script>
+    <script src="{{asset('plantilla/js/jquery.counterup.js')}}"></script>
     <!-- SmoothScroll Plugin JavaScript-->
-    <script src="plantilla/js/smoothscroll.min.js"></script>
+    <script src="{{asset('plantilla/js/smoothscroll.min.js')}}"></script>
     <!--Custom JavaScript for Klinik Template-->
-    <script src="plantilla/js/custom.js"></script>
+    <script src="{{asset('plantilla/js/custom.js')}}"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
