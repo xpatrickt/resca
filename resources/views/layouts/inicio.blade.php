@@ -9,7 +9,7 @@
     <!-- Meta Description Tag -->
     <meta name="Description" content="Registro y Seguimiento de Certificaciones Ambientales">
     <!-- Favicon Icon -->
-    <link rel="icon" type="{{asset('image/x-icon')}}" href="plantilla/images/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="{{asset('plantilla/images/favicon.png')}}" />
     <!-- Font Awesoeme Stylesheet CSS -->
     <link rel="stylesheet" href="{{asset('plantilla/font-awesome/css/font-awesome.min.css')}}" />
     <!-- Google web Font -->
@@ -79,7 +79,7 @@
                     <div class="tbl-row">
                         <!-- Start Header Logo Section -->
                         <div class="tbl-cell hdr-logo">
-                            <a href="http://127.0.0.1/resca/public/"><img src="plantilla/images/logo.png" alt=""></a>
+                            <a href="#"><img src="plantilla/images/logo.png" alt=""></a>
                         </div><!-- End Header Logo Section -->
                         <div class="tbl-cell hdr-menu">
                             <!-- Start Menu Section -->

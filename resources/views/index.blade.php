@@ -9,27 +9,27 @@
     <!-- Meta Description Tag -->
     <meta name="Description" content="Registro y Seguimiento de Certificaciones Ambientales">
     <!-- Favicon Icon -->
-    <link rel="icon" type="image/x-icon" href="plantilla/images/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="{{asset('plantilla/images/favicon.png')}}" />
     <!-- Font Awesoeme Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/font-awesome/css/font-awesome.min.css')}}" />
     <!-- Google web Font -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
+    <link rel="stylesheet" type="{{asset('text/css')}}" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="plantilla/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('plantilla/css/bootstrap.min.css')}}">
     <!-- Material Design Lite Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/material.min.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/material.min.css')}}" />
     <!-- Material Design Select Field Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/mdl-selectfield.min.css">
+    <link rel="stylesheet" href="{{asset('plantilla/css/mdl-selectfield.min.css')}}">
     <!-- Owl Carousel Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/owl.carousel.min.css')}}" />
     <!-- Animate Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/animate.min.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/animate.min.css')}}" />
     <!-- Magnific Popup Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/magnific-popup.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/magnific-popup.css')}}" />
     <!-- Flex Slider Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/flexslider.css" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/flexslider.css')}}" />
     <!-- Custom Main Stylesheet CSS -->
-    <link rel="stylesheet" href="plantilla/css/style.css">
+    <link rel="stylesheet" href="{{asset('plantilla/css/style.css')}}">
 </head>
 <body>
     <!-- Start Header -->
@@ -196,17 +196,15 @@
                         <h1 class="animated fadeInDown">CERTIFICACIÓN AMBIENTAL</h1>
                         <p class="animated fadeInDown"> <P ALIGN="justify"> La certificación ambiental es una acreditación obtenida por determinados productos,  servicios, procesos, o sistemas de gestión, que convalida o “acredita” que todos o determinados procesos correspondientes a los mismos, se han llevado a cabo de un modo respetuoso con el medio ambiente y, en su caso, conforme a la normativa ambiental respectiva.</p>
                     </div>
-                    <img src="plantilla/uploads/slider-1.jpg" alt="" />
-                    <div class="slider-button slider-appointment">
-                        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect animated fadeInUp">Make An Appointment<i class="fa fa-flag-checkered"></i></a>
-                    </div>
+                    <img src="{{asset('plantilla/uploads/slider-1.jpg')}}" alt="" />
+
                 </li>
                 <li>
                     <div class="slider-info">
                         <h2>¿Para qué obtener una certificación ambiental?</h2>
                         <P ALIGN="justify">Porque establecen unos parámetros cuyo cumplimiento por parte de la empresa es cada vez más valorado por consumidores y organizaciones.</p>
                     </div>
-                    <img src="plantilla/uploads/slider-2.jpg" alt="" />
+                    <img src="{{asset('plantilla/uploads/slider-2.jpg')}}" alt="" />
                     <div class="slider-button slider-appointment">
                         <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect animated fadeInUp">More Info<i class="fa fa-external-link"></i></a>
                     </div>
@@ -216,7 +214,7 @@
                         <h2>¿Cómo obtengo una certificación ambiental?</h2>
                         <P ALIGN="justify">Obtener una certificación ambiental no es fácil ni rápido, pero vale la pena. Con carácter general, es necesario adecuar la empresa a una serie de parámetros especificados en las respectivas normas, que serán evaluados por los certificadores y verificadores.
                     </div>
-                    <img src="plantilla/uploads/slider-3.jpg" alt="" />
+                    <img src="{{asset('plantilla/uploads/slider-3.jpg')}}" alt="" />
                     <div class="slider-button slider-appointment">
                         <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect animated fadeInUp">About Us<i class="fa fa-chevron-right"></i></a>
                     </div>
@@ -245,55 +243,55 @@
                             <div class="theme-img theme-img-scalerotate">
                                 <img src="plantilla/uploads/pru-01.jpg" alt="">
                             </div>
-                                <a href="https://enlinea.senace.gob.pe/Ventanilla/ConsultaConsultora/Listar?ListaSubsector=11"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
+                                <a href="{{ url('/entidadesr/Recursos%20Naturales') }}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
                          </div>
                          <div class="hm-service-block">
                             <div class="theme-img theme-img-scalerotate">
                                 <img src="plantilla/uploads/pru-02.jpg" alt="">
                             </div>
-                                <a href="https://enlinea.senace.gob.pe/Ventanilla/ConsultaConsultora/Listar?ListaSubsector=11"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
+                                <a href="{{ url('/entidadesr/Agricultura') }}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
                          </div>
                          <div class="hm-service-block">
                             <div class="theme-img theme-img-scalerotate">
                                 <img src="plantilla/uploads/pru-03.jpg" alt="">
                             </div>
-                                <a href="https://enlinea.senace.gob.pe/Ventanilla/ConsultaConsultora/Listar?ListaSubsector=11"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
+                                <a href="{{ url('/entidadesr/Educacion') }}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
                          </div>
                          <div class="hm-service-block">
                             <div class="theme-img theme-img-scalerotate">
                                 <img src="plantilla/uploads/pru-04.jpg" alt="">
                             </div>
-                                <a href="https://enlinea.senace.gob.pe/Ventanilla/ConsultaConsultora/Listar?ListaSubsector=11"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
+                                <a href="{{ url('/entidadesr/Salud') }}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
                          </div>
                          <div class="hm-service-block">
                             <div class="theme-img theme-img-scalerotate">
                                 <img src="plantilla/uploads/pru-05.jpg" alt="">
                             </div>
-                                <a href="https://enlinea.senace.gob.pe/Ventanilla/ConsultaConsultora/Listar?ListaSubsector=11"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
+                                <a href="{{ url('/entidadesr/Mineria') }}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
                          </div>
                          <div class="hm-service-block">
                             <div class="theme-img theme-img-scalerotate">
                                 <img src="plantilla/uploads/pru-06.jpg" alt="">
                             </div>
-                                <a href="https://enlinea.senace.gob.pe/Ventanilla/ConsultaConsultora/Listar?ListaSubsector=11"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
+                                <a href="{{ url('/entidadesr/Produccion') }}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
                          </div>
                          <div class="hm-service-block">
                             <div class="theme-img theme-img-scalerotate">
                                 <img src="plantilla/uploads/pru-07.jpg" alt="">
                             </div>
-                                <a href="https://enlinea.senace.gob.pe/Ventanilla/ConsultaConsultora/Listar?ListaSubsector=11"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
+                                <a href="{{ url('/entidadesr/Turismo') }}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
                          </div>
                          <div class="hm-service-block">
                             <div class="theme-img theme-img-scalerotate">
                                 <img src="plantilla/uploads/pru-08.jpg" alt="">
                             </div>
-                                <a href="https://enlinea.senace.gob.pe/Ventanilla/ConsultaConsultora/Listar?ListaSubsector=11"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
+                                <a href="{{ url('/entidadesr/Vivienda') }}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
                          </div>
                          <div class="hm-service-block">
                             <div class="theme-img theme-img-scalerotate">
                                 <img src="plantilla/uploads/pru-09.jpg" alt="">
                             </div>
-                                <a href="https://enlinea.senace.gob.pe/Ventanilla/ConsultaConsultora/Listar?ListaSubsector=11"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
+                                <a href="{{ url('/entidadesr/Transporte') }}"><button class="mdl-button mdl-js-button mdl-js-ripple-effect button button-primary"><small>click aqui</small></button> </a>
                          </div>                                           
                         
                     </div>
@@ -347,12 +345,6 @@
     <pre></pre>
 
 
-  
-    <!-- Fixed Appointment Button at Bottom -->
-    <div id="appointment-button" class="animated fadeInUp">
-        <button id="appointment-now" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-button--raised"><i class="fa fa-plus"></i></button>
-        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="appointment-now">Make An Appointment</div>
-    </div><!-- End Fixed Appointment Button at Bottom -->
     <!-- Start Footer Section -->
     <footer id="footer">
         <div class="layer-stretch">
@@ -374,7 +366,7 @@
                             <div class="tbl-row">
                                 <div class="tbl-cell"><i class="fa fa-phone"></i></div>
                                 <div class="tbl-cell">
-                                    <p class="paragraph-small paragraph-white">Telefon Central : 083 321022 Anexo 106</p>
+                                    <p class="paragraph-small paragraph-white">Telefono Central : 083 321022 Anexo 106</p>
                                 </div>
                             </div>
                             <div class="tbl-row">
@@ -441,31 +433,31 @@
     <!-- **********Included Scripts*********** -->
 
     <!-- Jquery Library 2.1 JavaScript-->
-    <script src="plantilla/js/jquery-2.1.4.min.js"></script>
+    <script src="{{asset('plantilla/js/jquery-2.1.4.min.js')}}"></script>
     <!-- Popper JavaScript-->
-    <script src="plantilla/js/popper.min.js"></script>
+    <script src="{{asset('plantilla/js/popper.min.js')}}"></script>
     <!-- Bootstrap Core JavaScript-->
-    <script src="plantilla/js/bootstrap.min.js"></script>
+    <script src="{{asset('plantilla/js/bootstrap.min.js')}}"></script>
     <!-- Material Design Lite JavaScript-->
-    <script src="plantilla/js/material.min.js"></script>
+    <script src="{{asset('plantilla/js/material.min.js')}}"></script>
     <!-- Material Select Field Script -->
-    <script src="plantilla/js/mdl-selectfield.min.js"></script>
+    <script src="{{asset('plantilla/js/mdl-selectfield.min.js')}}"></script>
     <!-- Flexslider Plugin JavaScript-->
-    <script src="plantilla/js/jquery.flexslider.min.js"></script>
+    <script src="{{asset('plantilla/js/jquery.flexslider.min.js')}}"></script>
     <!-- Owl Carousel Plugin JavaScript-->
-    <script src="plantilla/js/owl.carousel.min.js"></script>
+    <script src="{{asset('plantilla/js/owl.carousel.min.js')}}"></script>
     <!-- Scrolltofixed Plugin JavaScript-->
-    <script src="plantilla/js/jquery-scrolltofixed.min.js"></script>
+    <script src="{{asset('plantilla/js/jquery-scrolltofixed.min.js')}}"></script>
     <!-- Magnific Popup Plugin JavaScript-->
-    <script src="plantilla/js/jquery.magnific-popup.min.js"></script>
+    <script src="{{asset('plantilla/js/jquery.magnific-popup.min.js')}}"></script>
     <!-- WayPoint Plugin JavaScript-->
-    <script src="plantilla/js/jquery.waypoints.min.js"></script>
+    <script src="{{asset('plantilla/js/jquery.waypoints.min.js')}}"></script>
     <!-- CounterUp Plugin JavaScript-->
-    <script src="plantilla/js/jquery.counterup.js"></script>
+    <script src="{{asset('plantilla/js/jquery.counterup.js')}}"></script>
     <!-- SmoothScroll Plugin JavaScript-->
-    <script src="plantilla/js/smoothscroll.min.js"></script>
+    <script src="{{asset('plantilla/js/smoothscroll.min.js')}}"></script>
     <!--Custom JavaScript for Klinik Template-->
-    <script src="plantilla/js/custom.js"></script>
+    <script src="{{asset('plantilla/js/custom.js')}}"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

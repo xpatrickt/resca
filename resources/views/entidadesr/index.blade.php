@@ -1,6 +1,6 @@
 @extends('layouts.inicio')
 @section('pagina')
-<h1>Resultados de Evaluación Ambiental</h1>
+<h1>Entidades Registradas para Certificación Ambiental</h1>
 @endsection
 
 @section('contenido')
