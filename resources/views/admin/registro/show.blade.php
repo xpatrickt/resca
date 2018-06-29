@@ -225,6 +225,13 @@ $(document).ready(function(){
    var _token = $('input[name="_token"]').val();
 
 
+  if(select=='distrito'){
+    var combo = document.getElementById("distrito");
+    var selected = combo.options[combo.selectedIndex].text;
+    $('#buscarmapa').val(selected);
+  }
+
+
    $.ajax({
     url:"{{ route('admin.proyecto.listar') }}",
     method:"POST",
