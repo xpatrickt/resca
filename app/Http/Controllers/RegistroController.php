@@ -87,6 +87,7 @@ class RegistroController extends Controller
     }
 
 // LISTAR DELIMITACION -------------
+
     function listardelimitacion(Request $request)
     {
      
@@ -158,87 +159,7 @@ class RegistroController extends Controller
      echo $output;
     }
 
-    // AGREGAR DELIMITACION
-
-    /* function agregardelimitacion(Request $request)
-    {
-     
-     $delimitacion=new Delimitacionestudio;
-      $delimitacion->descripciondelimitacion=$request->get('descripcion');
-      $delimitacion->coordenadasx=$request->get('lat');
-      $delimitacion->coordenadasy=$request->get('lng');
-      $delimitacion->condicion='1';
-      $delimitacion->iddistrito=$request->get('distrito');
-      $delimitacion->idestudio=$request->get('estudiotext');
-      $delimitacion->save();
-
-     $data=DB::table('delimitacionestudio as d')
-    ->join('distrito as di','d.iddistrito','=','di.iddistrito')
-        ->join('provincia as p','di.idprovincia','=','p.idprovincia')
-        ->select('d.iddelimitacionestudio','d.descripciondelimitacion','p.nombreprovincia as provincia','di.nombredistrito as distrito','d.coordenadasx', 'd.coordenadasy')
-        ->where('d.idestudio','=',$request->get('estudiotext'))
-        ->where('d.condicion','=','1')
-        ->orderBy('d.iddelimitacionestudio','desc') ->get();
-  
-     $output = '<thead>
-                  <tr>
-                  <th>Provincia</th>
-                  <th>Distrito</th>
-                  <th>Descripcion</th>
-                  <th>Coordenadas</th>
-                  <th></th>
-                 </tr>
-                </thead>
-                <tbody>';
-     foreach($data as $row)
-     {
-  $output .= '<tr><td>'.$row->provincia.'</td><td>'.$row->distrito.'</td><td>'.$row->descripciondelimitacion.
-              '</td> <td>x:'.$row->coordenadasx.' y:'. $row->coordenadasy.'</td><td>
-                 <a  href="" onclick="deletedelimitacion();"><span class="glyphicon glyphicon-trash"></span></a>
-                </td>
-                </tr>';
-     }
-     $output .= '</tbody>';
-     echo $output;
-     
-    }
-
-// AGREGAR DOCUMENTOS *********************************************************************************************************
-
-
-     function agregardocumento(Request $request)
-    {
-     $documento=new Documentoestudio;
-      $documento->descdocumentoestudio=$request->get('descripcion');
-       $documento->urldocumentoestudio=$request->get('url');
-     $documento->condicion='1';
-      $documento->idestudio=$request->get('estudiotext');
-      $documento->iddocumento=$request->get('tipodocumento');
-      $documento->save();
-
-     $data=DB::table('documentoestudio as d')
-    ->join('documento as do','d.iddocumento','=','do.iddocumento')
-        ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','do.nombredocumento as tipodocumento','d.idestudio')
-        ->where('d.idestudio','=',$request->get('estudiotext'))
-        ->where('d.condicion','=','1')
-        ->orderBy('d.iddocumentoestudio','desc') ->get();
-  
-      $output = '<tbody>
-                <tr>
-                  <td>';
-     foreach($data as $row)
-     {
-   $output .= '<a class="btn btn-app">
-          <i class="fa fa-file-pdf-o"></i>'.$row->descdocumentoestudio.'</a>';
-     }
-     $output .= '</td>
-                </tr>
-                </tbody>';
-     echo $output;
-    }
-*/
-
-
+ 
 //------------------------------------------------------
     
     public function store(EstudioFormRequest $request){
@@ -266,6 +187,8 @@ class RegistroController extends Controller
    	  return Redirect::to('admin/registro');
     
     }
+
+    // ENVIAR ESTUDIO A EVALUACION
 
     public function destroy($idestudio){
        $estadoestudio=new Estadoestudio;
