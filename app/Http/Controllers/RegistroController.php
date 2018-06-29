@@ -160,7 +160,7 @@ class RegistroController extends Controller
 
     // AGREGAR DELIMITACION
 
-     function agregardelimitacion(Request $request)
+    /* function agregardelimitacion(Request $request)
     {
      
      $delimitacion=new Delimitacionestudio;
@@ -236,7 +236,7 @@ class RegistroController extends Controller
                 </tbody>';
      echo $output;
     }
-
+*/
 
 
 //------------------------------------------------------
@@ -319,7 +319,7 @@ class RegistroController extends Controller
             $file=Input::file('url');
             $nombred=date("dmyHis"); 
             $file->move(public_path().'/admin/documentos/estudio/',$nombred.'.pdf');
-            $documento->urldocumentoestudio='/admin/documentos/estudio/'.$nombred.'.pdf';
+            $documento->urldocumentoestudio='/documentos/estudio/'.$nombred.'.pdf';
         }
       $documento->condicion='1';
       $documento->idestudio=$request->get('idestudio2');

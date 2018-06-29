@@ -651,9 +651,9 @@ Route::post('admin/evaluacion/listarall','EvaluacionController@listarall')->name
 //routes registro
 //Route::resource('admin/registro','RegistroController');
 Route::post('admin/registro/listardelimitacion','RegistroController@listardelimitacion')->name('admin.registro.listardelimitacion');
-Route::post('admin/registro/agregardelimitacion','RegistroController@agregardelimitacion')->name('admin.registro.agregardelimitacion');
+//Route::post('admin/registro/agregardelimitacion','RegistroController@agregardelimitacion')->name('admin.registro.agregardelimitacion');
 Route::post('admin/registro/listardocumento','RegistroController@listardocumento')->name('admin.registro.listardocumento');
-Route::post('admin/registro/agregardocumento','RegistroController@agregardocumento')->name('admin.registro.agregardocumento');
+//Route::post('admin/registro/agregardocumento','RegistroController@agregardocumento')->name('admin.registro.agregardocumento');
 //fin routes
 }); //FIN MIDDLEWARE AUTH
 //routes web
