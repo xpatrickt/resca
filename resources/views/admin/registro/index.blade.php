@@ -65,7 +65,9 @@ treeview
                 </tfoot>
           </table>
   </div>
+  @if(count($estudios)!=0)
   @include('admin.registro.modaldetalle')
+  @endif
   
  
     </div>
