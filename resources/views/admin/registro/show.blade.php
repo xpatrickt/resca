@@ -25,8 +25,9 @@ treeview
   <div class="col-md-12">
   <div class="box">
    <div class="box-header">
+    <div class="col-md-9">
   <h3 class="box-tittle">Estudio: {{$estudio->nombreestudio}}</h3>
-  @if(count($errors)>0)
+   @if(count($errors)>0)
   <div class="alert alert-danger">
    <ul>
     @foreach($errors->all() as $error)
@@ -35,6 +36,11 @@ treeview
     </ul>
     </div>
     @endif
+</div>
+  <div class="col-md-3">
+ <a href="{{URL::action('RegistroController@index')}}"><button class="btn btn-primary btn-block margin-bottom">ATRAS</button></a>
+</div>
+ 
     </div>
       <div class="box-body">
 <!--TABS DELIMITACION Y DOCUMENTO ESTUDIO*******************************************************-->
@@ -106,7 +112,7 @@ treeview
                 </div>  
                 </div> 
              {{ csrf_field() }}
-              <button type="submit" class="btn btn-primary">Registrar</button>
+              <button type="submit" class="btn btn-primary btn-block margin-bottom">Registrar</button>
               </div>
              {!!Form::close()!!}
                <div class="col-md-7">
@@ -118,6 +124,7 @@ treeview
                   <th>Distrito</th>
                   <th>Delimitación</th>
                  <th>Coordenadas</th>
+                 <th></th>
                  </tr>
                 </thead>
                 <tbody>
@@ -127,7 +134,9 @@ treeview
                 <td>{{$delimitacion->distrito}}</td>
                 <td>{{$delimitacion->descripciondelimitacion}}</td> 
                 <td>x: {{$delimitacion->coordenadasx}} y: {{$delimitacion->coordenadasy}}</td>
+                <td><a href="" data-target="#modal-deletedelimitacion-{{$delimitacion->iddelimitacionestudio}}" data-toggle="modal" data-delimitacion="{{$delimitacion->descripciondelimitacion}}" data-estudio="{{$estudio->idestudio}}"><i class="fa fa-trash-o"></i></a></td>
                 </tr>
+                @include('admin.registrodetalle.modaldeletedelimitacion')
                 @endforeach
               </tbody>
             </table>
@@ -163,7 +172,7 @@ treeview
                   <label for="url">Subir Documento</label>
                   <input type="file" name="url" id="url" class="form-control" placeholder="Seleccione Documento">
                 </div>
-                <button type="submit" class="btn btn-primary">Registrar</button>
+                <button type="submit" class="btn btn-primary btn-block margin-bottom">Registrar</button>
              </div>
              {!!Form::close()!!}
             <div class="col-md-7">

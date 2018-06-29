@@ -44,7 +44,7 @@ treeview
                   <td>{{ $est->estado}}</td>
                   
                   <td>
-                     <a href="" data-target="#modal-detalle" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn bg-purple"><span class="glyphicon glyphicon-list-alt"></span></button></a>
+                     <a href="" data-target="#modal-detalle" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></button></a>
                   <a href="{{URL::action('RegistroController@show',$est->idestudio)}}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button></a>
                    <a href="" data-target="#modal-enviar-{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn btn-primary">ENVIAR</button></a>
                 @include('admin.registro.modalenviar')

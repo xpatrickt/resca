@@ -456,6 +456,16 @@ Route::delete('admin/registro/{role}','RegistroController@destroy')->name('admin
 
 Route::post('admin/registro/edit','RegistroController@edit')->name('admin.registro.edit')
 ->middleware('permission:admin.registro.edit');
+
+
+//RegistroDetalle ELIMINAR
+
+Route::delete('admin/registrodel/{role}','RegistrodetalleController@destroy')->name('admin.registrodetalle.destroy')
+->middleware('permission:admin.registrodetalle.destroy');
+
+Route::delete('admin/registrodoc/{role}','RegistrodetalleController@edit')->name('admin.registrodetalle.edit')
+->middleware('permission:admin.registrodetalle.edit');
+
 //Fin Registro
 //Proyectoregistro
 
