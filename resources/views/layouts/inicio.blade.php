@@ -6,30 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Site Title -->
     <title>RESCA | GRA</title>
-    <!-- Meta Description Tag -->
     <meta name="Description" content="Registro y Seguimiento de Certificaciones Ambientales">
-    <!-- Favicon Icon -->
     <link rel="icon" type="image/x-icon" href="{{asset('plantilla/images/favicon.png')}}" />
-    <!-- Font Awesoeme Stylesheet CSS -->
-    <link rel="stylesheet" href="{{asset('plantilla/font-awesome/css/font-awesome.min.css')}}" />
-    <!-- Google web Font -->
-    <link rel="stylesheet" type="{{asset('text/css')}}" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{asset('plantilla/css/bootstrap.min.css')}}">
-    <!-- Material Design Lite Stylesheet CSS -->
-    <link rel="stylesheet" href="{{asset('plantilla/css/material.min.css')}}" />
-    <!-- Material Design Select Field Stylesheet CSS -->
-    <link rel="stylesheet" href="{{asset('plantilla/css/mdl-selectfield.min.css')}}">
-    <!-- Owl Carousel Stylesheet CSS -->
-    <link rel="stylesheet" href="{{asset('plantilla/css/owl.carousel.min.css')}}" />
-    <!-- Animate Stylesheet CSS -->
-    <link rel="stylesheet" href="{{asset('plantilla/css/animate.min.css')}}" />
-    <!-- Magnific Popup Stylesheet CSS -->
-    <link rel="stylesheet" href="{{asset('plantilla/css/magnific-popup.css')}}" />
-    <!-- Flex Slider Stylesheet CSS -->
-    <link rel="stylesheet" href="{{asset('plantilla/css/flexslider.css')}}" />
-    <!-- Custom Main Stylesheet CSS -->
     <link rel="stylesheet" href="{{asset('plantilla/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('plantilla/font-awesome/css/font-awesome.min.css')}}" />
+    <link rel="stylesheet" type="{{asset('text/css')}}" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
+    <link rel="stylesheet" href="{{asset('plantilla/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plantilla/css/material.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/mdl-selectfield.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plantilla/css/owl.carousel.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/animate.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/magnific-popup.css')}}" />
+    <link rel="stylesheet" href="{{asset('plantilla/css/flexslider.css')}}" />
+
+
+
+
+  <link rel="stylesheet" href="{{asset('adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('adminlte/bower_components/font-awesome/css/font-awesome.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte/bower_components/Ionicons/css/ionicons.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte/dist/css/AdminLTE.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte/dist/css/skins/skin-blue.min.css')}}">
+ <link rel="stylesheet" href="{{asset('adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte/bower_components/select2/dist/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminlte/dist/css/skins/_all-skins.min.css')}}">
+<link rel="stylesheet" href="{{asset('adminlte/plugins/iCheck/flat/blue.css')}}">
+<link rel="stylesheet" href="{{asset('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+
+
 </head>
 <body>
     <!-- Start Header -->
@@ -200,9 +205,11 @@
     </div><!-- End Page Title Section -->
     <!-- Start Faq Section -->
     <div class="layer-stretch">
-        <div class="layer-wrapper text-center">
-            <div class="layer-fixed">
+      <div class="layer-wrapper text-center">
+           <div class="layer-fixed">
+               
                 @yield('contenido')
+            
             </div>
         </div>
     </div><!-- End FAQ Section -->
@@ -321,6 +328,29 @@
     <script src="{{asset('plantilla/js/smoothscroll.min.js')}}"></script>
     <!--Custom JavaScript for Klinik Template-->
     <script src="{{asset('plantilla/js/custom.js')}}"></script>
+ 
+
+
+ <script src="{{asset('adminlte/bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('js/1.11.2/jquery.min.js')}}"></script>
+<script src="{{asset('adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('adminlte/bower_components/datatables.net/js/jquery.dataTables.js')}}"></script>
+<!--<script src="{{asset('adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>  -->
+<script src="{{asset('adminlte/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script src="{{asset('adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<script src="{{asset('adminlte/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
+<script src="{{asset('adminlte/bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js')}}"></script>
+<script src="{{asset('adminlte/dist/js/demo.js')}}"></script>
+<script src="{{asset('adminlte/plugins/iCheck/icheck.min.js')}}"></script>
+<script src="{{asset('js/change.js')}}"></script>
+
+
+
+
+
+<script src="{{asset('plantilla/js/dataTables.bootstrap.min.js')}}"></script>
+
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -330,5 +360,24 @@
         ga('create', 'UA-93901876-1', 'auto');
         ga('send', 'pageview');
     </script>
+<script>
+  $(function () {
+
+    $('#tabla').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : false,
+      'autoWidth'   : true,
+      'order':true
+    })
+
+
+
+  })
+</script>
+
+
 </body>
 </html>

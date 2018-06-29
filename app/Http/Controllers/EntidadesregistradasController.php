@@ -28,11 +28,14 @@ class EntidadesregistradasController extends Controller
    public function index($request){
 
       if($request){
-            $actividades=DB::table('actividad')
-            ->where('nombreactividad','LIKE','%'.$request.'%')
-            ->where('condicion','=','1')
+            $entidades=DB::table('actividad as ac')
+            ->join('entidad as en','en.idactividad','=','ac.idactividad')
+            ->select('ac.nombreactividad','en.nombreentidad','en.rucentidad','en.direccionentidad','en.telefonoentidad','en.emailentidad','en.identidad')
+            ->where('ac.nombreactividad','LIKE','%'.$request.'%')
+            ->where('en.condicion','=','1')
+            ->orderby('en.nombreentidad')
             ->paginate(999999);
-            return view('entidadesr.index',["actividades"=>$actividades]);
+            return view('entidadesr.index',["entidades"=>$entidades]);
         }
     }
 

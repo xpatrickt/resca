@@ -205,9 +205,7 @@
                         <P ALIGN="justify">Porque establecen unos parámetros cuyo cumplimiento por parte de la empresa es cada vez más valorado por consumidores y organizaciones.</p>
                     </div>
                     <img src="{{asset('plantilla/uploads/slider-2.jpg')}}" alt="" />
-                    <div class="slider-button slider-appointment">
-                        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect animated fadeInUp">More Info<i class="fa fa-external-link"></i></a>
-                    </div>
+
                 </li>
                 <li>
                     <div class="slider-info">
@@ -215,9 +213,9 @@
                         <P ALIGN="justify">Obtener una certificación ambiental no es fácil ni rápido, pero vale la pena. Con carácter general, es necesario adecuar la empresa a una serie de parámetros especificados en las respectivas normas, que serán evaluados por los certificadores y verificadores.
                     </div>
                     <img src="{{asset('plantilla/uploads/slider-3.jpg')}}" alt="" />
-                    <div class="slider-button slider-appointment">
+                    <!--<div class="slider-button slider-appointment">
                         <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect animated fadeInUp">About Us<i class="fa fa-chevron-right"></i></a>
-                    </div>
+                    </div>-->
                 </li>
             </ul>
             
@@ -231,7 +229,7 @@
             </div>
             <div class="layer-container row">
                 <div class="hm-service-left col-md-5">
-                    <img src="plantilla/uploads/hm-service.jpg" alt="Klinical Health care">
+                    <img src="plantilla/uploads/hm-service.jpg" alt="">
                 </div>
                 <div class="hm-service-right col-md-7"> <h4><strong> Registro Regional de Consultoras Ambientales </strong> </h4>
                     <P ALIGN="justify"> Es el registro de consultoras que se encuentran autorizadas para la elaboración de estudios ambientales de los proyectos de inversión, el mismo que será constituido a partir de los registros sectoriales que serán transferidos al Senace en el marco del proceso de transferencia de funciones.
