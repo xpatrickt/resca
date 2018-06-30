@@ -350,6 +350,9 @@
 
 
 <script src="{{asset('plantilla/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('plantilla/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('plantilla/js/dataTables.buttons.min.js')}}"></script>
+
 
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -370,14 +373,101 @@
       'ordering'    : true,
       'info'        : false,
       'autoWidth'   : true,
-      'order':true
-    })
+      'order':true,
+      
+    columnDefs: [{
+    targets: 'no-sort',
+    orderable: true
+  }],
+  dom: '<"row"<"col-sm-6"Bl><"col-sm-6"f>>' +
+    '<"row"<"col-sm-12"<"table-responsive"tr>>>' +
+    '<"row"<"col-sm-5"i><"col-sm-12"p>>',
+  fixedHeader: {
+    header: true
+  },
+  buttons: {
+    buttons: [{
+      extend: 'print',
+      text: '<i class="fa fa-print"></i> Imprimir',
+      title: $('h1').text(),
+      exportOptions: {
+        columns: ':not(.no-print)'
+      },
+      footer: true,
+      autoPrint: true
+    }, {
+      extend: 'pdf',
+      text: '<i class="fa fa-file-pdf"></i> PDF',
+      title: $('h1').text(),
+      exportOptions: {
+     columns: ':not(.no-print)'
+      },
+      footer: true
+    }],
+    dom: {
+      container: {
+        className: 'dt-buttons'
+      },
+      button: {
+        className: 'btn btn-default'
+      }
+    }
+  }
+
+
+
+
+       });
 
 
 
   })
 </script>
-
+<script >
+    /*
+$('table.data-table').DataTable({
+  paging: true,
+  columnDefs: [{
+    targets: 'no-sort',
+    orderable: true
+  }],
+  dom: '<"row"<"col-sm-6"Bl><"col-sm-6"f>>' +
+    '<"row"<"col-sm-12"<"table-responsive"tr>>>' +
+    '<"row"<"col-sm-5"i><"col-sm-7"p>>',
+  fixedHeader: {
+    header: true
+  },
+  buttons: {
+    buttons: [{
+      extend: 'print',
+      text: '<i class="fa fa-print"></i> Imprimir',
+      title: $('h1').text(),
+      exportOptions: {
+        columns: ':not(.no-print)'
+      },
+      footer: true,
+      autoPrint: true
+    }, {
+      extend: 'pdf',
+      text: '<i class="fa fa-file-pdf"></i> PDF',
+      title: $('h1').text(),
+      exportOptions: {
+     columns: ':not(.no-print)'
+      },
+      footer: true
+    }],
+    dom: {
+      container: {
+        className: 'dt-buttons'
+      },
+      button: {
+        className: 'btn btn-default'
+      }
+    }
+  }
+});
+*/
+</script>
 
 </body>
 </html>
