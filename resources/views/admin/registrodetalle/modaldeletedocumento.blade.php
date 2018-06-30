@@ -1,5 +1,5 @@
         <div class="modal modal-danger fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-deletedocumento-{{$documento->iddocumentoestudio}}">
-      {{Form::Open(array('action'=>array('RegistrodetalleController@destroy',$documento->iddocumentoestudio),'method'=>'delete'))}}
+      {{Form::Open(array('action'=>array('RegistrodetalleController@edit',$documento->iddocumentoestudio),'method'=>'delete'))}}
           <div class="modal-dialog">
             <div class="modal-content" >
               <div class="modal-header">
@@ -8,7 +8,8 @@
                 <h4 class="modal-title">Eliminar Documento</h4>
               </div>
               <div class="modal-body">
-                <p>Confirme si desea Eliminar el Documento?</p>
+                 <input type="hidden" id="idestudiodocumento" name="idestudiodocumento" class="form-control" value="{{$estudio->idestudio}}">
+                <p>Confirme si desea Eliminar el Documento: {{$documento->descdocumentoestudio}}?</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
