@@ -144,7 +144,7 @@
                                                 <div class="megamenu-ttl">EVALUACION AMBIENTAL</div>
                                                 <ul>
                                                     <li><a href="{{ url('/estadoevaluacion') }}">Estado de Evaluacion</a></li>
-                                                    <li><a href="{{ url('/rca') }}">Registro Administrativos de Certificaciones Ambientales</a></li>
+                                                  <!--  <li><a href="{{ url('/rca') }}">Registro Administrativos de Certificaciones Ambientales</a></li>-->
                                                     <li><a href="{{ url('/resultadoevaluacion') }}">Resultados de Evaluación Ambiental</a></li>
                                                     
                                                 </ul>

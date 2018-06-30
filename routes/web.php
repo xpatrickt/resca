@@ -21,8 +21,8 @@ Route::get('/admin', function () {
 });
 Route::get('estadoevaluacion', 'EstadoEvaluacionController@index')->name('reportes.index');
 Route::get('resultadoevaluacion', 'ResultadoEvaluacionController@index')->name('resultado.index');
-Route::get('rca', 'EstudiosevaluadosController@index')->name('rca.index');
-Route::get('entidadesr/{request}', 'EntidadesregistradasController@index')->name('entidadesr.index');
+/*Route::get('rca', 'EstudiosevaluadosController@index')->name('rca.index');*/
+Route::get('entidadesr/{request}', 'EntidadesregistradasController@index')->nasme('entidadesr.index');
 
 
 Auth::routes();
