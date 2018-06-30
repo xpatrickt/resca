@@ -74,10 +74,8 @@ treeview
                   <label>Descripción: </label> {{$proyecto->descripcionproyecto}}<br>
                   <label>Objetivo: </label> {{$proyecto->objetivoproyecto}}<br>
                   <label>Beneficiarios: </label> {{$proyecto->beneficiariosproyecto}}<br>
-                  @foreach($entidades as $en)
-                  @if($proyecto->identidad==$en->identidad)
+                  @foreach($entidad as $en)
                   <label>Entidad: </label> {{$en->nombreentidad}}<br>
-                  @endif
                   @endforeach
                 @endif
                 </div>
@@ -115,15 +113,10 @@ treeview
                 <div id="testudio" name="testudio" style="margin: 10px 0 0 10px;">
                 @if($estudio!=null)
                   <label>Descripción: </label> {{$estudio->descripcionestudio}}<br>
-                  @foreach($tiposevaluacion as $teva)
-                   @if($estudio->idtipoevaluacion==$teva->idtipoevaluacion)
-                   <label>Tipo evaluacion: </label> {{$teva->nombretipoevaluacion}}<br>
-                   @endif
-                  @endforeach
-                  @foreach($tiposestudio as $test)
-                   @if($estudio->idtipoestudio==$test->idtipoestudio)
-                   <label>Tipo estudio: </label> {{$test->nombretipoestudio}}<br>
-                   @endif
+                  @foreach($detalleestudio as $det)
+                   <label>Tipo evaluacion: </label> {{$det->tipoevaluacion}}<br>
+                   <label>Tipo estudio: </label> {{$det->tipoestudio}}<br>
+                   <label>Estado: </label> {{$det->nombreestado}}<br>
                   @endforeach
                 @endif
                 </div>
