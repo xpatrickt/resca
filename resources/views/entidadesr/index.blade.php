@@ -3,9 +3,9 @@
 <h1>Entidades Registradas para Certificación Ambiental</h1>
 @endsection
 @section('contenido')
+<div class="data-table-container">
 
-
-          <table id="tabla" class="table table-bordered table-striped">
+          <table id="tabla" class="table table-bordered table-striped data-table">
               <thead>
                 <tr>
                   <th>Actividad</th>
@@ -30,13 +30,8 @@
                @endforeach
                 </tbody>
 
-          </table>
-
-
+         </table>
+      
+  </div>
   
-
-
-
-
-
 @endsection
