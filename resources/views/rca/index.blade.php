@@ -1,16 +1,16 @@
 @extends('layouts.inicio')
 @section('pagina')
-<h1>Entidades Registradas para Certificación Ambiental</h1>
+<h1>Estudios Evaluados</h1>
 @endsection
 
 @section('url')
-../
+.
 @stop
 @section('menu')
 RESCA
 @stop
 @section('pagina1')
-Entidades Registradas para Certificación Ambiental
+Estudios Evaluados
 @stop
 
 @section('contenido')
@@ -19,7 +19,7 @@ Entidades Registradas para Certificación Ambiental
           <table id="tabla" class="table table-bordered table-striped data-table">
               <thead>
                 <tr>
-                  <th>Actividad</th>
+                  <th>Estudio</th>
                   <th>Razón Social</th>
                   <th>RUC</th>
                   <th>Correo</th>

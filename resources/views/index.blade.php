@@ -121,16 +121,14 @@
                                     <ul class="menu-megamenu">
                                         <li class="row">
                                             <div class="col-lg-4">
-                                                <div class="megamenu-ttl">RESCA</div>
+                                                <div class="megamenu-ttl">CERTIFICACION AMBIENTAL</div>
                                                 <ul>
                                                     <li><a href="{{ url('/certificacionambiental') }}">Certificación Ambiental</a></li>
-                                                    <li><a href="{{ url('/ventanillaunica') }}">Ventanilla Única</a></li>
-                                                    <li><a href="{{ url('/resultadoevaluacion') }}">Resultados de Evaluación Ambiental</a></li>
-                                                    <li><a href="{{ url('/pautasorientacion') }}">Pautas de Orientación</a></li>   
+                                                       <li><a href="{{ url('/pautasorientacion') }}">Pautas de Orientación</a></li>   
                                                 </ul>
                                             </div>
                                             <div class="col-lg-4">
-                                                <div class="megamenu-ttl">DOCUMENTOS</div>
+                                                <div class="megamenu-ttl">DOCUMENTOS DE GESTIÓN</div>
                                                 <ul>
                                                     <li><a href="{{ url('/tupa') }}">TUPA</a></li>
                                                     <li><a href="{{ url('/Mapro') }}">MAPRO</a></li>
@@ -138,25 +136,13 @@
                                                 </ul>
                                             </div>
                                             <div class="col-lg-4 d-none d-sm-none s-md-none d-lg-block d-xl-block">
-                                                <div class="megamenu-ttl">REPORTES DE E.A.</div>
-                                                <div class="doctor-skills mt-2">
-                                                    <p class="font-14">Aprobado <span class="badge badge-primary badge-pill float-right">75%</span></p>
-                                                    <div class="progress progress-sm mb-4">
-                                                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="doctor-skills">
-                                                    <p class="font-14">Observado<span class="badge badge-danger badge-pill float-right">65%</span></p>
-                                                    <div class="progress progress-sm mb-4">
-                                                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="doctor-skills">
-                                                    <p class="font-14">Desaprobado <span class="badge badge-warning badge-pill float-right">87%</span></p>
-                                                    <div class="progress progress-sm mb-4">
-                                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 87%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
+                                                <div class="megamenu-ttl">EVALUACION AMBIENTAL</div>
+                                                <ul>
+                                                    <li><a href="{{ url('/estadoevaluacion') }}">Estado de Evaluacion</a></li>
+                                                    <li><a href="{{ url('/rca') }}">Registro Administrativos de Certificaciones Ambientales</a></li>
+                                                    <li><a href="{{ url('/resultadoevaluacion') }}">Resultados de Evaluación Ambiental</a></li>
+                                                    
+                                                </ul>
                                             </div>
                                         </li>
                                     </ul>
