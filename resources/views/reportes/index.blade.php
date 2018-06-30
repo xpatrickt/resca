@@ -2,6 +2,17 @@
 @section('pagina')
 <h1>Estado de Evaluación Ambiental</h1>
 @endsection
+
+@section('url')
+.
+@stop
+@section('menu')
+RESCA
+@stop
+@section('pagina1')
+Estado de Evaluación Ambiental
+@stop
+
 @section('contenido')
 <div class="data-table-container">
           <table id="tabla" class="table table-bordered table-striped data-table">
