@@ -12,7 +12,7 @@ class Documentoobservacion extends Model
     public $timestamps=true;
 
     protected $fillable=[
-    	'descdocumentoestudio',
+    	'desdocumentoobservacion',
     	'urldocumentoobservacion','condicion',
     	'idobservacion'
     ];

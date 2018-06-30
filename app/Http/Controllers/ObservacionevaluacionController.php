@@ -8,11 +8,13 @@ use resca\Documentoobservacion;
 use resca\Estudio;
 use resca\Proyecto;
 use resca\Http\Requests\ObservacionevaluacionFormRequest;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 use Response;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
+use DateTime;
 
 class ObservacionevaluacionController extends Controller
 {
@@ -30,22 +32,24 @@ class ObservacionevaluacionController extends Controller
         $proyecto=Proyecto::findOrFail($idproyecto);
         $asuntoobservacion=null;
         $descripcionobservacion=null;
-        $idobservacion=null;
-        return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto,"query"=>$query,"estudio"=>$estudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion]);
+        $idobservacion="0";
+        return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto->idproyecto,"query"=>$query,"estudio"=>$estudio->idestudio,"nombreestudio"=>$estudio->nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion]);
     }
 
 }
   public function store(Request $request){
-       $idestudio=$request->get('idestudio');
+    $asuntoobservacion=$request->get('asuntoobservacion');
+    $descripcionobservacion=$request->get('descripcionobservacion');
+       
+    if($asuntoobservacion!="" && $descripcionobservacion!=""){
+
+      $idestudio=$request->get('idestudio');
        $idproyecto=$request->get('idproyecto');
        $idobservacion=$request->get('idobservacion');
        $estudio=Estudio::findOrFail($idestudio);
        $proyecto=Proyecto::findOrFail($idproyecto);
-       $asuntoobservacion=$request->get('asuntoobservacion');
-       $descripcionobservacion=$request->get('descripcionobservacion');
 
-    if($asuntoobservacion!="" ){
-         //OJOOOOO AQUIIII ARREGLAR
+         if($idobservacion=="0"){
           $evaluacionestudio=DB::table('evaluacionestudio')->where('idestudio','=',$idestudio)->where('condicion','=','1')
         ->orderBy('idevaluacionestudio', 'desc') ->limit(1)->get();
           foreach($evaluacionestudio as $e)
@@ -58,38 +62,41 @@ class ObservacionevaluacionController extends Controller
             $observacion->condicion='1';
             $observacion->idevaluacionestudio=$idevaluacion;
             $observacion->save();
-           
-            $obs=DB::table('observacion')->where('asuntoobservacion','=',$asuntoobservacion)->where('condicion','=','1')
-          ->orderBy('idobservacion','desc') ->limit(1)->get();
+               $obs=DB::table('observacion')
+               ->where('asuntoobservacion','=',$asuntoobservacion)
+               ->where('descripcionobservacion','=',$descripcionobservacion)
+               ->where('condicion','=','1')
+               ->orderBy('idobservacion','desc') ->limit(1)->get();
            foreach ($obs as $o) {
-             $idobservacion=$o->idobservacion;
+            $idobservacion=$o->idobservacion;
            }
+           } 
 
-         return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto,"estudio"=>$estudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion]);
-      } 
+           return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto->idproyecto,"estudio"=>$estudio->idestudio,"nombreestudio"=>$estudio->nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion]);
+        } 
+      
+           
    }
 
+   // GUARDAR DOCUMENTOS OBSERVACION
     public function update(Request $request,$idobservacion){
-      $resolucion=new Documentoobservacion;
-        $resolucion->nombreresolucion=$request->get('nombre');
-        $resolucion->descripcionresolucion=$request->get('descripcion');
-
-        $fecha = DateTime::createFromFormat('d/m/Y',$request->get('fecha'));
-        $resolucion->fecharesolucion=$fecha->format('Y-m-d');
-
-       if(Input::hasFile('documento')){
-            $file=Input::file('documento');
+      $asuntoobservacion=$request->get('asunto');
+      $descripcionobservacion=$request->get('descripcion');
+      $proyecto=$request->get('proyec');
+      $estudio=$request->get('estu');
+      $nombreestudio=$request->get('nestu');
+      $documento=new Documentoobservacion;
+      $documento->desdocumentoobservacion=$request->get('descripciondocumento');
+      if(Input::hasFile('urlobs')){
+            $file=Input::file('urlobs');
             $nombred=date("dmyHis"); 
-            $file->move(public_path().'/documentos/resolucion/',$nombred.'.pdf');
-            $resolucion->urlresolucion='/documentos/resolucion/'.$nombred.'.pdf';
+            $file->move(public_path().'/admin/documentos/observacion/',$nombred.'.pdf');
+            $documento->urldocumentoobservacion='/documentos/observacion/'.$nombred.'.pdf';
         }
-        $resolucion->idestudio=$request->get('idestudio');
-      $resolucion->save();
-        $estadoestudio=new Estadoestudio;
-        $estadoestudio->idestudio=$request->get('idestudio');
-        $estadoestudio->idestado=$request->get('idestado');
-        $estadoestudio->save();
-      return Redirect::to('admin/certificacion');   
+      $documento->condicion='1';
+      $documento->idobservacion=$idobservacion;
+      $documento->save();
+      return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto,"estudio"=>$estudio,"nombreestudio"=>$nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion]);
     }
 
       public function destroy($iddepartamento){

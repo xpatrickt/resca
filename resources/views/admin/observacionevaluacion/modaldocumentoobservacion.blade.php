@@ -1,68 +1,41 @@
-        <div class="modal modal-default fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-documentoobservacion-{{$idobservacion}}"
+       <div class="modal modal-default fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-documento-{{$idobservacion}}">
+    
           <div class="modal-dialog">
             <div class="modal-content" >
-              <div class="modal-body">
-              <div class="box-body">
-                
+           {!!Form::model($estudio,['route'=>['admin.observacionevaluacion.update',$idobservacion],'method' =>'PUT','files'=>'true'])!!} 
+             {{Form::token()}}
 
-
-
-
-
-
-                <div class="form-group">
-
-                  <label for="nombree">Nombre</label>
-                  <input type="text" name="nombree" value="{{$idobservacion}}" class="form-control" readonly="readonly">
-                </div>
-                <div class="form-group">
-                  <label for="nombre">Nombre de Resolución</label>
-                  <input type="text" name="nombre" class="form-control" placeholder="Ingrese Nombre de Resolución">
-                </div>
-
-                <div class="form-group">
-                  <label for="descripcion">Descripción</label>
-                  <input type="text" name="descripcion" class="form-control" placeholder="Ingrese Descripción">
-                </div>
-
-                <div class="form-group">
-                  <label for="fecha">Fecha de Resolución</label>
-                  <div class="input-group date">
-                  <div class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
-                  </div>
-                  <input type="text" class="form-control pull-right" id="datepicker" name="fecha">
-                </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="documento">Subir Documento de Resolución</label>
-                  <input type="file" name="documento" class="form-control" placeholder="Seleccione Resolución">
-                </div>
-                                                
-                <div class="form-group">
-                  <input type="hidden" name="idestado" value="8" />
-                </div>              
-                 <div class="form-group">
-                  <input type="hidden" name="idestudio" value="{{$idobservacion}}" class="form-control" placeholder="">
-                </div>   
-               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Registrar</button>
-                 <a href="{{ url()->previous() }}" class="btn btn-danger">Cancelar</a>
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Agregar Documento</h4>
               </div>
-            
+              <div class="modal-body">
 
+             <input type="hidden" id="asunto" name="asunto" class="form-control" value="{{$asuntoobservacion}}">
+             <input type="hidden" id="descripcion" name="descripcion" class="form-control" value="{{$descripcionobservacion}}">
+             <input type="hidden" id="proyec" name="proyec" class="form-control" value="{{$proyecto}}">
+             <input type="hidden" id="estu" name="estu" class="form-control" value="{{$estudio}}">
+             <input type="hidden" id="nestu" name="nestu" class="form-control" value="{{$nombreestudio}}">
+             
+                <div class="form-group">
+                  <label for="descripciondocumento">Descripción</label>
+                  <input type="text" id="descripciondocumento" name="descripciondocumento" class="form-control" placeholder="Ingrese Descripción">
+                </div>
+                <div class="form-group">
+                  <label for="url">Subir Documento</label>
+                  <input type="file" name="urlobs" id="urlobs" class="form-control" placeholder="Seleccione Documento">
+                </div>
+             
 
-
-
-
-
-            
-            </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">guardar</button>
               </div>
+     {!!Form::close()!!}
+            
             </div>
+            <!-- /.modal-content -->
           </div>
         </div>

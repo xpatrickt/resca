@@ -16,7 +16,7 @@ treeview
   <div class="box box-primary">
    <div class="box-header with-border">
   <h3 class="box-tittle">Observación</h3>
-  <h4 class="box-tittle">Estudio: {{$estudio->nombreestudio}}</h4>
+  <h4 class="box-tittle">Estudio: {{$nombreestudio}}</h4>
   @if(count($errors)>0)
   <div class="alert alert-danger">
    <ul>
@@ -31,12 +31,12 @@ treeview
     {{ Form::open(['route' =>'admin.observacionevaluacion.store']) }}
    {{Form::token()}}
            
-      <input type="hidden" id="idestudio" name="idestudio" class="form-control" value="{{$estudio->idestudio}}" >
-      <input type="hidden" id="idproyecto" name="idproyecto" class="form-control" value="{{$proyecto->idproyecto}}" >
-        @if($idobservacion=="" or $idobservacion==null)
-         <input type="hidden" id="idobservacion" name="idobservacion" class="form-control" value="">
+      <input type="hidden" id="idestudio" name="idestudio" class="form-control" value="{{$estudio}}" >
+      <input type="hidden" id="idproyecto" name="idproyecto" class="form-control" value="{{$proyecto}}" >
+        @if($idobservacion=="0")
+         <input type="text" id="idobservacion" name="idobservacion" class="form-control" value="0">
          @else
-         <input type="hidden" id="idobservacion" name="idobservacion" class="form-control" value="{{$idobservacion}}" >
+         <input type="text" id="idobservacion" name="idobservacion" class="form-control" value="{{$idobservacion}}" >
         @endif
 
         <div class="form-group">
@@ -71,9 +71,9 @@ treeview
             {{ Form::open(['route' =>'admin.evaluacion.store']) }}
            {{Form::token()}}
            <div class="col-md-1">
-           <input type="hidden" id="estudio" name="estudio" class="form-control" value="{{$estudio->idestudio}}" >
-           <input type="hidden" id="proyecto" name="proyecto" class="form-control" value="{{$proyecto->idproyecto}}" >
-           <input type="hidden" id="observacion" name="observacion" class="form-control" value="{{$idobservacion}}" >
+           <input type="hidden" id="estudio" name="estudio" class="form-control" value="{{$estudio}}" >
+           <input type="hidden" id="proyecto" name="proyecto" class="form-control" value="{{$proyecto}}">
+           <input type="hidden" id="observacion" name="observacion" class="form-control" value="{{$idobservacion}}">
            <button type="submit" class="btn btn-danger">Cancelar</button>
            </div>
             {!!Form::close()!!}
@@ -84,22 +84,24 @@ treeview
      @if($asuntoobservacion!=null)
      {{ Form::open(['route' =>'admin.evaluacion.store']) }}
       {{Form::token()}}
-      <input type="hidden" id="estudio" name="estudio" class="form-control" value="{{$estudio->idestudio}}" >
-      <input type="hidden" id="proyecto" name="proyecto" class="form-control" value="{{$proyecto->idproyecto}}" >
+      <input type="hidden" id="estudio" name="estudio" class="form-control" value="{{$estudio}}" >
+      <input type="hidden" id="proyecto" name="proyecto" class="form-control" value="{{$proyecto}}" >
       <input type="hidden" id="observacion" name="observacion" class="form-control" value="{{$idobservacion}}" >
 
         <div class="box-footer">
-           <!--
-            <a href="" class="btn btn-primary" data-target="#modal-documentoobservacion-{{$idobservacion}}"  data-toggle="modal">Agregar Documento</a>
-          -->
-            <button type="submit" class="btn btn-danger">Aceptar</button>
+          <button type="submit" class="btn btn-danger">Aceptar</button>
+           {!!Form::close()!!}
+          <a href="" class="btn btn-primary" data-target="#modal-documento-{{$idobservacion}}" data-idestudio="{{$estudio}}" data-nombreestudio="{{$nombreestudio}}" data-proyecto="{{$proyecto}}" data-asunto="{{$asuntoobservacion}}" data-descripcion="$descripcionobservacion" data-toggle="modal">Agregar Documento</a>
+              @include('admin.observacionevaluacion.modaldocumentoobservacion')
+           
+            
         </div>
-        {!!Form::close()!!}
+       
         @endif
     
-     @include('admin.observacionevaluacion.modaldocumentoobservacion')
         </div>
 
+            
 
       </div>
   </div>
