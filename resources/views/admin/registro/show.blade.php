@@ -184,6 +184,7 @@ treeview
                      <th>Tipo</th>
                      <th>Fecha</th>
                      <th></th>
+                      <th></th>
                  </tr>
                 </thead>
                 <tbody>
@@ -193,7 +194,9 @@ treeview
                      <td>{{$documento->tipodocumento}}</td>
                      <td>{{$documento->created_at}}</td> 
                      <td><a  href="..{{$documento->urldocumentoestudio}}"  target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
-                 </tr>
+                     <td><a href="" data-target="#modal-deletedocumento-{{$documento->iddocumentoestudio}}" data-toggle="modal" data-documento="{{$documento->descdocumentoestudio}}" data-estudio="{{$estudio->idestudio}}"><i class="fa fa-trash-o"></i></a></td>
+                     </tr>
+                     @include('admin.registrodetalle.modaldeletedocumento')
                 @endforeach
                 </tbody>              
             </table>
