@@ -24,7 +24,7 @@ class EstadoFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'nombre'=>'required|max:30',
+        'nombre'=>'required|max:30|alpha_spaces',
         ];
     }
 }

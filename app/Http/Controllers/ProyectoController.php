@@ -95,13 +95,11 @@ class ProyectoController extends Controller
     }
     public function update(ProyectoFormRequest $request,$idproyecto){
     	$proyecto=Proyecto::findOrFail($idproyecto);
-    	$proyecto->nombreproyecto=$request->get('nombre');
+        $proyecto->nombreproyecto=$request->get('nombre');
         $proyecto->descripcionproyecto=$request->get('descripcion');
-        $proyecto->ubicacionproyecto=$request->get('ubicacion');
-        $proyecto->codigosiaf=$request->get('codigosiaf');
+        $proyecto->objetivoproyecto=$request->get('objetivo');
+        $proyecto->beneficiariosproyecto=$request->get('beneficiarios');
         $proyecto->condicion='1';
-        $proyecto->idcatalogo=$request->get('idcatalogo');
-        $proyecto->iddistrito=$request->get('iddistrito');
         $proyecto->identidad=$request->get('identidad');
     	$proyecto->update();
     	return Redirect::to('admin/proyecto');    	

@@ -25,8 +25,10 @@ class ProyectoFormRequest extends FormRequest
     {
         return [
         'nombre'=>'required|max:255',
-        'descripcion'=>'required|max:255',
-        'objetivo'=>'required|max:500'
+        'descripcion'=>'required|max:500',
+        'objetivo'=>'required|max:500',
+        'beneficiarios'=>'required|integer|between:1,999999999',
+        'identidad'=>'required',
         ];
     }
 }

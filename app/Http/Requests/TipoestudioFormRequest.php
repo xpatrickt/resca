@@ -25,7 +25,7 @@ class TipoestudioFormRequest extends FormRequest
     {
         return [
         'nombre'=>'required|max:50|alpha_spaces',
-        
+        'siglas'=>'required|max:10|alpha_spaces',
         ];
     }
 }

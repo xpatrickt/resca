@@ -24,11 +24,11 @@ class EntidadFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'nombre'=>'required|max:100',
+        'nombre'=>'required|max:100|alpha_spaces',
         'direccion'=>'required|max:50',
         'telefono'=>'required|max:12',
         'email'=>'nullable|max:200|email',
-        'ruc'=>'required|max:11',
+        'ruc'=>'required|digits:11',
         'idactividad'=>'required',
         ];
     }

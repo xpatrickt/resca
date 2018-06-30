@@ -1,4 +1,13 @@
 @extends('layouts.administrator')
+@section('actmenu2')
+treeview
+@endsection
+@section('treemenu')
+active treeview
+@endsection
+@section('actpro')
+active
+@endsection
 @section ('contenido')
 <section class="content">
 <div class="row">
@@ -32,59 +41,18 @@
                 </div>
 
                  <div class="form-group">
-                  <label for="ubicacion">Ubicación</label>
-                  <input type="text" name="ubicacion" value="{{$proyecto->ubicacionproyecto}}" class="form-control" placeholder="Ingrese Ubicación">
+                  <label for="objetivo">Objetivo del Proyecto</label>
+                  <input type="text" name="objetivo" value="{{$proyecto->objetivoproyecto}}" class="form-control" placeholder="Ingrese Ubicación">
                 </div>
 
                 <div class="form-group">
-                  <label for="codigosiaf">Codigo SIAF</label>
-                  <input type="text" name="codigosiaf" value="{{$proyecto->codigosiaf}}" class="form-control" placeholder="Ingrese Codigo SIAF">
+                  <label for="beneficiarios">Beneficiarios</label>
+                  <input type="text" name="beneficiarios" value="{{$proyecto->beneficiariosproyecto}}" class="form-control" placeholder="Ingrese Numero de Beneficiarios del Proyecto">
                 </div>
                 
-                
-                <div class="form-group">
-                  <label for="iddepartamento">Departamento</label>
-                  <select name="iddepartamento" class="form-control" id="select-departamento">
-                    @foreach ($departamentos as $dep)
-                      @if ($dep->iddepartamento==$proyecto->iddepartamento)
-                      <option value="{{$dep->iddepartamento}}" selected>{{$dep->nombredepartamento}} </option>
-                       @else 
-                      <option value="{{$dep->iddepartamento}}">{{$dep->nombredepartamento}} </option>
-                       @endif
-                    @endforeach
-                  </select>
-                </div>
 
                 <div class="form-group">
-                  <label for="idprovincia">Provincia</label>
-                  <select name="idprovincia" class="form-control">
-                    @foreach ($provincias as $prov)
-                      @if ($prov->idprovincia==$proyecto->idprovincia)
-                      <option value="{{$prov->idprovincia}}" selected>{{$prov->nombreprovincia}} </option>
-                       @else 
-                      <option value="{{$prov->idprovincia}}">{{$prov->nombreprovincia}} </option>
-                       @endif
-
-                    @endforeach
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="iddistrito">Distrito</label>
-                  <select name="iddistrito" class="form-control">
-                    @foreach ($distritos as $dis)
-                      @if ($dis->iddistrito==$proyecto->iddistrito)
-                      <option value="{{$dis->iddistrito}}" selected>{{$dis->nombredistrito}} </option>
-                       @else 
-                      <option value="{{$dis->iddistrito}}">{{$dis->nombredistrito}} </option>
-                       @endif
-
-                    @endforeach
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="identidad">Entidad</label>
+                  <label for="entidad">Entidad</label>
                   <select name="identidad" class="form-control">
                     @foreach ($entidades as $ent)
                       @if ($ent->identidad==$proyecto->identidad)

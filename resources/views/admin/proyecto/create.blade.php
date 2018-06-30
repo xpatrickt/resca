@@ -42,7 +42,7 @@ active
                   <input type="text" name="descripcion" class="form-control" placeholder="Ingrese Descripción">
                 </div>
                 <div class="form-group">
-                  <label for="objetivo">Objetivo</label>
+                  <label for="objetivo">Objetivo del Proyecto</label>
                   <input type="text" name="objetivo" class="form-control" placeholder="Ingrese Objetivo">
                 </div>
                 <div class="form-group">

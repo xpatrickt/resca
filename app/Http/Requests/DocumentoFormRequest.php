@@ -24,8 +24,8 @@ class DocumentoFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'nombre'=>'required|max:100',
-         'descripcion'=>'required|max:255',
+        'nombre'=>'required|max:255',
+        'descripcion'=>'required|max:500',
         ];
     }
 }
