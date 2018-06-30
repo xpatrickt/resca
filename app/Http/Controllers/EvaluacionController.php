@@ -26,26 +26,20 @@ class EvaluacionController extends Controller
 
       if($request){
         $query=trim($request->get('searchText'));
-        $proyectos=DB::table('proyecto as p')
-                     ->join('entidad as e','p.identidad','=','e.identidad')
-                     ->select('p.idproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto','e.nombreentidad as entidad')
-                     ->where('p.idproyecto','=',$value)
-                     ->where('p.condicion','=','1')->get();
-        $estudios=DB::table('estudio as e')
-                    ->join('tipoevaluacion as te','e.idtipoevaluacion','=','te.idtipoevaluacion')
-                    ->join('tipoestudio as tes','e.idtipoestudio','=','tes.idtipoestudio')
-                    ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
-                    ->join('estado as est','es.idestado','=','est.idestado')
-                    ->select('e.idestudio','e.descripcionestudio','te.nombretipoevaluacion as tipoevaluacion','tes.nombretipoestudio as tipoestudio','est.nombreestado')
-                    ->where('e.idestudio','=',$value)
-                    ->where('e.condicion','=','1')->get();
-       
+        $proyectos=DB::table('proyecto')
+                     ->where('condicion','=','1')->get();
+        $estudios=null;
+        // tabs
         $documentos=null;
         $observaciones=null;
         $respuestasobservacion=null;
-        $estudio=null;
+        //datos estudio
+        $estudio=null; 
+        $detalleestudio=null;
+        //datosproyecto
         $proyecto=null;
-        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"estudio"=>$estudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
+        $entidades=null;
+        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidades"=>$entidades,"estudio"=>$estudio,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
     }
 
 }
@@ -57,25 +51,39 @@ class EvaluacionController extends Controller
        $idestudio=$request->get('estudio');
         $idproyecto=$request->get('proyecto');
         $query=trim($request->get('searchText'));
-        $proyectos=DB::table('proyecto as p')
-                     ->join('entidad as e','p.identidad','=','e.identidad')
-                     ->select('p.idproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto','e.nombreentidad as entidad')
-                     ->where('p.idproyecto','=',$idproyecto)
-                     ->where('p.condicion','=','1')->get();
+        $proyectos=DB::table('proyecto')
+                     ->where('condicion','=','1')->get();
+        $estudios=null;
+    if($idproyecto!=""){
         $estudios=DB::table('estudio as e')
+                  ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
+                  ->select('e.idestudio','e.nombreestudio') 
+                  ->whereRaw('es.idestadoestudio IN (select MAX(es.idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+                  ->where('e.idproyecto', $idproyecto)
+                  ->where('es.idestado','>','2')
+                  ->where('es.idestado','<','5')
+                  ->where('e.condicion','=','1')->get();
+                    //detalle proyecto
+                    $proyecto=Proyecto::findOrFail($idproyecto);
+                    $entidad=DB::table('entidad as e')
+                                ->join('proyecto as p','e.identidad','=','p.identidad')
+                                ->select('e.identidad','e.nombreentidad')
+                                ->where('p.idproyecto','=',$idproyecto)
+                                ->where('p.condicion','=','1')->get();
+
+        if($idestudio!=""){
+                   // detalle estudio
+                    $estudio=Estudio::findOrFail($idestudio);
+                    $detalleestudio=DB::table('estudio as e')
                   ->join('tipoevaluacion as te','e.idtipoevaluacion','=','te.idtipoevaluacion')
                   ->join('tipoestudio as tes','e.idtipoestudio','=','tes.idtipoestudio')
                   ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
                   ->join('estado as est','es.idestado','=','est.idestado')
                   ->select('e.idestudio','e.descripcionestudio','te.nombretipoevaluacion as tipoevaluacion','tes.nombretipoestudio as tipoestudio','est.nombreestado')
+                  ->whereRaw('es.idestadoestudio IN (select MAX(es.idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
                   ->where('e.idestudio','=',$idestudio)
-                  ->where('e.condicion','=','1')->get();
-
-    if($idproyecto!=""){
-
-        $proyecto=Proyecto::findOrFail($idproyecto);
-        if($idestudio!=""){
-        $estudio=Estudio::findOrFail($idestudio);
+                  ->where('e.condicion','=','1')->orderBy('es.idestadoestudio','desc')->limit(1)->get();
+ 
         $documentos=DB::table('documentoestudio as d')
                     ->join('documento as do','do.iddocumento','=','d.iddocumento')
                     ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','d.created_at','d.idestudio','do.nombredocumento as tipodocumento')
@@ -97,6 +105,7 @@ class EvaluacionController extends Controller
           }
           else{
         $estudio=null;
+        $detalleestudio=null;
         $documentos=null;
         $observaciones=null;
         $respuestasobservacion=null;
@@ -104,13 +113,15 @@ class EvaluacionController extends Controller
      }
     else{
         $proyecto=null;
+        $entidad=null;
         $estudio=null;
+        $detalleestudio=null;
         $documentos=null;
         $observaciones=null;
         $respuestasobservacion=null;
         
     }
-    return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
+    return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidad"=>$entidad,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
      }
      else{
        return Redirect::to('admin/evaluacion');
@@ -136,6 +147,7 @@ class EvaluacionController extends Controller
      ->join('estudio as e', 'e.idproyecto','=','p.idproyecto')
      ->join('estadoestudio as est','est.idestudio','=','e.idestudio')
      ->select('e.idestudio','e.nombreestudio')
+      ->whereRaw('est.idestadoestudio IN (select MAX(est.idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
        ->where('e.idproyecto', $idproyecto)
        ->where('est.idestado','>','2')
        ->where('est.idestado','<','5')
@@ -174,12 +186,14 @@ class EvaluacionController extends Controller
                   ->join('tipoestudio as tes','e.idtipoestudio','=','tes.idtipoestudio')
                   ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
                   ->join('estado as est','es.idestado','=','est.idestado')
-                  ->select('e.idestudio','e.descripcionestudio','te.nombretipoevaluacion as tipoevaluacion','tes.nombretipoestudio as tipoestudio','est.nombreestado')
+                  ->select('e.idestudio','e.descripcionestudio','te.nombretipoevaluacion as tipoevaluacion','tes.nombretipoestudio as tipoestudio','est.nombreestado','es.idestadoestudio')
+                  ->whereRaw('es.idestadoestudio IN (select MAX(es.idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
                   ->where('e.idestudio','=',$value)
-                  ->where('e.condicion','=','1')->get();
+                  ->where('e.condicion','=','1')->orderBy('es.idestadoestudio','desc')->limit(1)->get();
+                  $output="";
      foreach($estudios as $est)
      {
-      $output = '<label>Descripción: </label> '.$est->descripcionestudio.'<br>';
+      $output .= '<label>Descripción: </label> '.$est->descripcionestudio.'<br>';
       $output .= '<label>Tipo evaluacion: </label> '.$est->tipoevaluacion.'<br>';
       $output .= '<label>Tipo estudio: </label> '.$est->tipoestudio.'<br>';
       $output .= '<label>Estado: </label> '.$est->nombreestado.'<br>';
