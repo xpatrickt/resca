@@ -28,14 +28,15 @@ class EstudiosevaluadosController extends Controller
    public function index(Request $request){
 
       if($request){
-            $estudios=DB::table('actividad as ac')
-            ->join('entidad as en','en.idactividad','=','ac.idactividad')
-            ->select('ac.nombreactividad','en.nombreentidad','en.rucentidad','en.direccionentidad','en.telefonoentidad','en.emailentidad','en.identidad')
-            ->where('ac.nombreactividad','LIKE','%'.$request.'%')
-            ->where('en.condicion','=','1')
-            ->orderby('en.nombreentidad')
+            $estudios=DB::table('estudio')->where('condicion','=','1')->get();
+            $documentoestudios=DB::table('estudio as e')
+            ->join('documentoestudio as de','de.idestudio','=','e.idestudio')
+            ->select('de.iddocumentoestudio','de.urldocumentoestudio','de.idestudio','de.iddocumento')
+            ->where('e.condicion','=','1')
+            ->where('de.condicion','=','1')
+            ->orderBy('e.idestudio','desc')
             ->paginate(999999);
-            return view('entidadesr.index',["estudios"=>$estudios]);
+            return view('rca.index',["estudios"=>$estudios,"documentoestudios"=>$documentoestudios]);
         }
     }
 

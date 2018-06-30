@@ -1,6 +1,6 @@
 @extends('layouts.inicio')
 @section('pagina')
-<h1>Estudios Evaluados</h1>
+<h1>Registros Administrativos de Certificación Ambiental</h1>
 @endsection
 
 @section('url')
@@ -10,7 +10,7 @@
 RESCA
 @stop
 @section('pagina1')
-Estudios Evaluados
+Registros Administrativos de Certificación Ambiental
 @stop
 
 @section('contenido')
@@ -20,23 +20,32 @@ Estudios Evaluados
               <thead>
                 <tr>
                   <th>Estudio</th>
-                  <th>Razón Social</th>
-                  <th>RUC</th>
-                  <th>Correo</th>
-                  <th>Teléfono</th>
-                  <th>Dirección</th>
+                  <th>Linea Base Componente Físico</th>
+                  <th>Linea Base Componente Biológico</th>
+                  <th>Linea Base Componente SocioEconómico</th>
+                  <th>Mapas</th>
 
                  </tr>
                 </thead>
                 <tbody>
-                @foreach ($entidades as $ent)
-                <tr>
-                  <td>{{$ent->nombreactividad}}</td>
-                  <td>{{$ent->nombreentidad}}</td>
-                  <td>{{$ent->rucentidad}}</td>
-                  <td>{{$ent->emailentidad}}</td>
-                  <td>{{$ent->telefonoentidad}}</td>
-                  <td>{{$ent->direccionentidad}}</td>
+                @foreach ($estudios as $est)
+                <tr>   
+                            
+                  <td>{{$est->nombreestudio}}</td> 
+
+                   @foreach ($documentoestudios as $dest)
+                   @if($dest->idestudio=$est->idestudio and $dest->iddocumento='1')
+                 <td>{{$dest->urldocumentoestudio}}</td>                  
+                  @endif
+                  @endforeach
+
+                   @foreach ($documentoestudios as $dest)
+                   @if($dest->idestudio=$est->idestudio and $dest->iddocumento='2')
+                 <td>{{$dest->urldocumentoestudio}}</td>  
+                  @endif
+                  @endforeach
+
+
                 </tr>
                @endforeach
                 </tbody>

@@ -1,6 +1,6 @@
 @extends('layouts.inicio')
 @section('pagina')
-<h1>Estudios Evaluados</h1>
+<h1>Resultados de Evaluacion Ambiental</h1>
 @endsection
 
 @section('url')
@@ -10,37 +10,27 @@
 RESCA
 @stop
 @section('pagina1')
-Estudios Evaluados
+Resultados de Evaluacion Ambiental
 @stop
 
 @section('contenido')
 <div class="data-table-container">
-
           <table id="tabla" class="table table-bordered table-striped data-table">
+              
               <thead>
                 <tr>
-                  <th>Estudio</th>
-                  <th>Razón Social</th>
-                  <th>RUC</th>
-                  <th>Correo</th>
-                  <th>Teléfono</th>
-                  <th>Dirección</th>
-
+                  <th style="width: 80%">Nombre del Estudio</th>
+                  <th>Resolución</th>
                  </tr>
                 </thead>
                 <tbody>
-                @foreach ($entidades as $ent)
+                @foreach ($estudios as $est)
                 <tr>
-                  <td>{{$ent->nombreactividad}}</td>
-                  <td>{{$ent->nombreentidad}}</td>
-                  <td>{{$ent->rucentidad}}</td>
-                  <td>{{$ent->emailentidad}}</td>
-                  <td>{{$ent->telefonoentidad}}</td>
-                  <td>{{$ent->direccionentidad}}</td>
+                  <td>{{$est->estudio}}</td>
+                  <td> <a href="../public{{$est->resolucion}}"><button class="btn btn-primary"><span class="fa fa-download">Descargar</span></button></a></td> 
                 </tr>
                @endforeach
                 </tbody>
-
          </table>
       
   </div>

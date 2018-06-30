@@ -21,7 +21,7 @@ use Response;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
-class EstadoEvaluacionController extends Controller
+class ResultadoEvaluacionController extends Controller
 {
     public function __construct(){
 
@@ -31,18 +31,13 @@ class EstadoEvaluacionController extends Controller
       if($request){
             $query=trim($request->get('searchText'));
             $estudios=DB::table('estudio as e')
-            ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
-            ->join('entidad as en','p.identidad','=','en.identidad')
-            ->join('actividad as a','en.idactividad','=','a.idactividad')
-            ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
-            ->join('estado as est','es.idestado','=','est.idestado')
-            ->select('a.nombreactividad as actividad','en.nombreentidad as entidad','p.nombreproyecto as proyecto','e.nombreestudio','e.descripcionestudio', 'est.nombreestado as estado')
-            ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
-            ->where('e.nombreestudio','LIKE','%'.$query.'%')
+            ->join('resolucion as r','r.idestudio','=','e.idestudio')
+            ->select('e.nombreestudio as estudio','r.urlresolucion as resolucion')
             ->where('e.condicion','=','1')
+            ->where('r.condicion','=','1')
             ->orderBy('e.idestudio','desc')
             ->paginate(999999);
-            return view('reportes.index',["estudios"=>$estudios,"searchText"=>$query]);
+            return view('resultado.index',["estudios"=>$estudios]);
         }
     }
 
