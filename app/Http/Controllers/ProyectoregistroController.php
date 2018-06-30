@@ -28,7 +28,7 @@ class ProyectoregistroController extends Controller
             ->where('p.condicion','=','1')
             ->orderBy('p.idproyecto','desc')
             ->paginate(999999);
-            return view('admin.proyecto.index',["proyectos"=>$proyectos,"searchText"=>$query]);
+            return view('admin.proyectoregistro.index',["proyectos"=>$proyectos,"searchText"=>$query]);
         }
     }
 
@@ -39,7 +39,7 @@ class ProyectoregistroController extends Controller
         $departamentos=DB::table('departamento')->where('condicion','=','1')->get();
 
         $entidades=DB::table('entidad')->where('condicion','=','1')->get();
-        return view("admin.proyecto.create",["departamentos"=>$departamentos,"entidades"=>$entidades]);
+        return view("admin.proyectoregistro.create",["departamentos"=>$departamentos,"entidades"=>$entidades]);
     }
 
 
@@ -91,7 +91,7 @@ class ProyectoregistroController extends Controller
         $provincias=DB::table('provincia')->where('condicion','=','1')->get();
         $departamentos=DB::table('departamento')->where('condicion','=','1')->get();
         $entidades=DB::table('entidad')->where('condicion','=','1')->get();
-        return view("admin.proyecto.edit",["proyecto"=>$proyecto,"distritos"=>$distritos ,"provincias"=>$provincias,"departamentos"=>$departamentos,"entidades"=>$entidades]);
+        return view("admin.proyectoregistro.edit",["proyecto"=>$proyecto,"distritos"=>$distritos ,"provincias"=>$provincias,"departamentos"=>$departamentos,"entidades"=>$entidades]);
     }
     public function update(ProyectoFormRequest $request,$idproyecto){
     	$proyecto=Proyecto::findOrFail($idproyecto);
@@ -104,13 +104,13 @@ class ProyectoregistroController extends Controller
         $proyecto->iddistrito=$request->get('iddistrito');
         $proyecto->identidad=$request->get('identidad');
     	$proyecto->update();
-    	return Redirect::to('admin/proyecto');    	
+    	return Redirect::to('admin/proyectoregistro');    	
     }
     public function destroy($idproyecto){
     	$proyecto=Proyecto::findOrFail($idproyecto);
     	$proyecto->condicion='0';
     	$proyecto->update();
-    	return Redirect::to('admin/proyecto');
+    	return Redirect::to('admin/proyectoregistro');
     }
 
 

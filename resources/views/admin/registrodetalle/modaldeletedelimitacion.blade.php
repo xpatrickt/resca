@@ -1,3 +1,6 @@
+        
+
+
         <div class="modal modal-danger fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-deletedelimitacion-{{$delimitacion->iddelimitacionestudio}}">
       {{Form::Open(array('action'=>array('RegistrodetalleController@destroy',$delimitacion->iddelimitacionestudio),'method'=>'delete'))}}
           <div class="modal-dialog">

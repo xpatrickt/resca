@@ -1,3 +1,6 @@
+       
+
+
         <div class="modal modal-danger fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-deletedocumento-{{$documento->iddocumentoestudio}}">
       {{Form::Open(array('action'=>array('RegistrodetalleController@edit',$documento->iddocumentoestudio),'method'=>'delete'))}}
           <div class="modal-dialog">

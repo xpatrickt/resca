@@ -1,12 +1,13 @@
 @extends('layouts.administrator')
 
+
 @section('actmenu2')
 treeview
 @endsection
 @section('treemenu')
-active treeview
+treeview
 @endsection
-@section('actpro')
+@section('actmenu1')
 active
 @endsection
 @section ('contenido')
@@ -30,7 +31,7 @@ active
               <div class="box-body">
  
 
-                 {{ Form::open(['route' => 'admin.proyecto.store']) }}
+                 {{ Form::open(['route' => 'admin.proyectoregistro.store']) }}
               	{{Form::token()}}
                 
                   <div class="form-group">
