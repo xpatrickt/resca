@@ -77,10 +77,6 @@ class ObservacionevaluacionController extends Controller
         $fecha = DateTime::createFromFormat('d/m/Y',$request->get('fecha'));
         $resolucion->fecharesolucion=$fecha->format('Y-m-d');
 
-       // $resolucion->fecharesolucion=date('Y-m-d', strtotime($request->get('fecha')));
-      //  $fecha = Carbon::createFromFormat('Y-m-d', $request->input('fecha'))->format('d-m-Y');
-      //  $resolucion->fecharesolucion=date('d-m-Y', strtotime(str_replace('-', '/', $request['fecha'])));
-       // $resolucion->fecharesolucion= $request->get('fecha');
        if(Input::hasFile('documento')){
             $file=Input::file('documento');
             $nombred=date("dmyHis"); 
