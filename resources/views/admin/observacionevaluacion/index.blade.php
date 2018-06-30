@@ -56,18 +56,34 @@ treeview
           </textarea>
           @endif
         </div>
+         <div class="box-footer">
+         </div>
 
         @if($asuntoobservacion==null)
-        <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Agregar</button>
-            <a href="{{ url()->previous() }}" class="btn btn-danger">Cancelar</a>
-        </div>
+        <div class="col-md-1">
+            <button type="submit" class="btn btn-primary">&nbspAgregar&nbsp</button>
+         </div>
         @endif
-     {!!Form::close()!!}
+        {!!Form::close()!!}
 
-    {{ Form::open(['route' =>'admin.evaluacion.store']) }}
-      {{Form::token()}}
+
+         @if($asuntoobservacion==null)
+            {{ Form::open(['route' =>'admin.evaluacion.store']) }}
+           {{Form::token()}}
+           <div class="col-md-1">
+           <input type="hidden" id="estudio" name="estudio" class="form-control" value="{{$estudio->idestudio}}" >
+           <input type="hidden" id="proyecto" name="proyecto" class="form-control" value="{{$proyecto->idproyecto}}" >
+           <input type="hidden" id="observacion" name="observacion" class="form-control" value="{{$idobservacion}}" >
+           <button type="submit" class="btn btn-danger">Cancelar</button>
+           </div>
+            {!!Form::close()!!}
+           @endif
+     
+
+    
      @if($asuntoobservacion!=null)
+     {{ Form::open(['route' =>'admin.evaluacion.store']) }}
+      {{Form::token()}}
       <input type="hidden" id="estudio" name="estudio" class="form-control" value="{{$estudio->idestudio}}" >
       <input type="hidden" id="proyecto" name="proyecto" class="form-control" value="{{$proyecto->idproyecto}}" >
       <input type="hidden" id="observacion" name="observacion" class="form-control" value="{{$idobservacion}}" >
@@ -78,8 +94,9 @@ treeview
           -->
             <button type="submit" class="btn btn-danger">Aceptar</button>
         </div>
+        {!!Form::close()!!}
         @endif
-    {!!Form::close()!!}
+    
      @include('admin.observacionevaluacion.modaldocumentoobservacion')
         </div>
 

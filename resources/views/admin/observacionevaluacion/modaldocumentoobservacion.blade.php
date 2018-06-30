@@ -3,9 +3,13 @@
             <div class="modal-content" >
               <div class="modal-body">
               <div class="box-body">
-                 {{Form::Open(array('action'=>array('EvaluacionController@destroy',$obs->idobservacion),'method'=>'delete'))}}              
-              
-                 {{Form::token()}}           
+                
+
+
+
+
+
+
                 <div class="form-group">
 
                   <label for="nombree">Nombre</label>
@@ -46,7 +50,14 @@
                 <button type="submit" class="btn btn-primary">Registrar</button>
                  <a href="{{ url()->previous() }}" class="btn btn-danger">Cancelar</a>
               </div>
-            {!!Form::close()!!}
+            
+
+
+
+
+
+
+            
             </div>
               </div>
               <div class="modal-footer">
