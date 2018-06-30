@@ -3,13 +3,13 @@
 <h1>TUPA</h1>
 @stop
 @section('url')
-#
+.
 @stop
 @section('menu')
-DOCUMENTOS
+RESCA
 @stop
 @section('pagina1')
-<span>Texto Unico de Procedimientos Administrativos</span>
+TUPA
 @stop
 @section('contenido')
 

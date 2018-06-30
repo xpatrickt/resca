@@ -3,14 +3,16 @@
 <h1>Direccion Regional de Educación</h1>
 @stop
 @section('url')
-#
+.
 @stop
 @section('menu')
-Direcciones Regionales
+RESCA
 @stop
 @section('pagina1')
-<span>GRA</span>
+Direccion Regional de Educación
 @stop
+
+
 @section('contenido')
 
 <a href="http://www.dreapurimac.gob.pe/inicio" target="_blank"><img src="DRE.jpg"> <h5> <strong>Dirección Regional de Eduacíón</strong> </h5> </a>

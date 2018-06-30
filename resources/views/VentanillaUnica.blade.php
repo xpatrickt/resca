@@ -3,13 +3,13 @@
 <h1>Ventanilla Única</h1>
 @stop
 @section('url')
-#
+.
 @stop
 @section('menu')
 RESCA
 @stop
 @section('pagina1')
-<span>Ventanilla Única</span>
+Ventanilla Única
 @stop
 @section('contenido')
 

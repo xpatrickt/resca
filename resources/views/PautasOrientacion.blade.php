@@ -1,15 +1,18 @@
 @extends('layouts.inicio')
 @section('pagina')
-<h1>Putas de Orientación</h1>
+<h1>Pautas de Orientación</h1>
 @stop
 @section('url')
-#
+.
 @stop
 @section('menu')
-
+RESCA
 @stop
 @section('pagina1')
+Pautas de Orientación
 @stop
+
+
 @section('contenido')
 
 

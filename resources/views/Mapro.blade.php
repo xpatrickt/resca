@@ -3,9 +3,14 @@
 <h1>MAPRO</h1>
 @stop
 @section('url')
-#
+.
 @stop
 @section('menu')
+RESCA
+@stop
+@section('pagina1')
+MAPRO
+@stop
 
 @section('contenido')
 

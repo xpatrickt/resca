@@ -3,13 +3,13 @@
 <h1>Gerencia Reg.de Recursos Naturales y GMA.</h1>
 @stop
 @section('url')
-#
+.
 @stop
 @section('menu')
-Gobierno Regional de Apurímac
+RESCA
 @stop
 @section('pagina1')
-<span></span>
+Gerencia Reg.de Recursos Naturales y GMA
 @stop
 @section('contenido')
 

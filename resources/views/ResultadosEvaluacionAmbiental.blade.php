@@ -3,13 +3,13 @@
 <h1>Resultados de Evaluación Ambiental</h1>
 @stop
 @section('url')
-#
+.
 @stop
 @section('menu')
-
+RESCA
 @stop
 @section('pagina1')
-
+Resultados de Evaluación Ambiental
 @stop
 @section('contenido')
 

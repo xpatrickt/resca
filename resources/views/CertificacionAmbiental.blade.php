@@ -3,14 +3,16 @@
 <h1>Certificación Ambiental</h1>
 @stop
 @section('url')
-#
+.
 @stop
 @section('menu')
 RESCA
 @stop
 @section('pagina1')
-<span>Certificación Ambiental</span>>
+Certificación Ambiental
 @stop
+
+
 @section('contenido')
 
 <img src="mi-imagen.jpg">

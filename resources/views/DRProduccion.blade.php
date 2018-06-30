@@ -3,13 +3,13 @@
 <h1>Direccion Regional de Producción</h1>
 @stop
 @section('url')
-#
+.
 @stop
 @section('menu')
-Direcciones Regionales
+RESCA
 @stop
 @section('pagina1')
-<span>GRA</span>
+Direccion Regional de Producción
 @stop
 @section('contenido')
 

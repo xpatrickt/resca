@@ -3,13 +3,13 @@
 <h1>Direccion Regional de Transporte y Comunicacioens</h1>
 @stop
 @section('url')
-#
+.
 @stop
 @section('menu')
-Direcciones Regionales
+RESCA
 @stop
 @section('pagina1')
-<span>GRA</span>
+Direccion Regional de Transporte y Comunicacioens
 @stop
 @section('contenido')
 <a href="http://www.drtcapurimac.gob.pe/" target="_blank"><img src="DRT.jpg"> <h5> <strong> Dirección Regional de Transporte </strong> </h5> </a>
