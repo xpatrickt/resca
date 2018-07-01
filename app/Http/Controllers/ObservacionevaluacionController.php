@@ -33,7 +33,9 @@ class ObservacionevaluacionController extends Controller
         $asuntoobservacion=null;
         $descripcionobservacion=null;
         $idobservacion="0";
-        return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto->idproyecto,"query"=>$query,"estudio"=>$estudio->idestudio,"nombreestudio"=>$estudio->nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion]);
+        $documentos=DB::table('documentoobservacion')->where('idobservacion','=',$idobservacion)->where('condicion','=','1')
+        ->orderBy('iddocumentoobservacion', 'desc') ->get();
+        return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto->idproyecto,"query"=>$query,"estudio"=>$estudio->idestudio,"nombreestudio"=>$estudio->nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion,"documentos"=>$documentos]);
     }
 
 }
@@ -62,17 +64,13 @@ class ObservacionevaluacionController extends Controller
             $observacion->condicion='1';
             $observacion->idevaluacionestudio=$idevaluacion;
             $observacion->save();
-               $obs=DB::table('observacion')
-               ->where('asuntoobservacion','=',$asuntoobservacion)
-               ->where('descripcionobservacion','=',$descripcionobservacion)
-               ->where('condicion','=','1')
-               ->orderBy('idobservacion','desc') ->limit(1)->get();
-           foreach ($obs as $o) {
-            $idobservacion=$o->idobservacion;
+               
+            $idobservacion=$observacion->idobservacion;
            }
-           } 
+           $documentos=DB::table('documentoobservacion')->where('idobservacion','=',$idobservacion)->where('condicion','=','1')
+        ->orderBy('iddocumentoobservacion', 'desc') ->get(); 
 
-           return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto->idproyecto,"estudio"=>$estudio->idestudio,"nombreestudio"=>$estudio->nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion]);
+           return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto->idproyecto,"estudio"=>$estudio->idestudio,"nombreestudio"=>$estudio->nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion,"documentos"=>$documentos]);
         } 
       
            
@@ -96,11 +94,15 @@ class ObservacionevaluacionController extends Controller
       $documento->condicion='1';
       $documento->idobservacion=$idobservacion;
       $documento->save();
-      return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto,"estudio"=>$estudio,"nombreestudio"=>$nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion]);
+
+      $documentos=DB::table('documentoobservacion')->where('idobservacion','=',$idobservacion)->where('condicion','=','1')
+        ->orderBy('iddocumentoobservacion', 'desc') ->get();
+
+      return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto,"estudio"=>$estudio,"nombreestudio"=>$nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion,"documentos"=>$documentos]);
     }
 
-      public function destroy($iddepartamento){
-        $departamento=departamento::findOrFail($iddepartamento);
+      public function destroy($iddocumento){
+        $departamento=Documentoobservacion::findOrFail($iddocumento);
         $departamento->condicion='0';
         $departamento->update();
         return Redirect::to('admin/departamento');

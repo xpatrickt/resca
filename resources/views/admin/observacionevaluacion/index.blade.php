@@ -34,9 +34,9 @@ treeview
       <input type="hidden" id="idestudio" name="idestudio" class="form-control" value="{{$estudio}}" >
       <input type="hidden" id="idproyecto" name="idproyecto" class="form-control" value="{{$proyecto}}" >
         @if($idobservacion=="0")
-         <input type="text" id="idobservacion" name="idobservacion" class="form-control" value="0">
+         <input type="hidden" id="idobservacion" name="idobservacion" class="form-control" value="0">
          @else
-         <input type="text" id="idobservacion" name="idobservacion" class="form-control" value="{{$idobservacion}}" >
+         <input type="hidden" id="idobservacion" name="idobservacion" class="form-control" value="{{$idobservacion}}" >
         @endif
 
         <div class="form-group">
@@ -57,6 +57,19 @@ treeview
           @endif
         </div>
          <div class="box-footer">
+          <ul class="mailbox-attachments clearfix">
+          @foreach($documentos as $doc)
+          <li>
+                  <a href="..{{$doc->urldocumentoobservacion}}" target="_blank"><span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span></a>
+
+                  <div class="mailbox-attachment-info">
+                    <a   class="mailbox-attachment-name">  {{$doc->desdocumentoobservacion}}</a>
+                      </div> 
+
+                      <!--href="" data-target="#modal-delete-{{$doc->iddocumentoobservacion}}" data-toggle="modal"  <i class="fa  fa-trash-o"></i>-->
+                </li>
+          @endforeach
+          </ul>
          </div>
 
         @if($asuntoobservacion==null)

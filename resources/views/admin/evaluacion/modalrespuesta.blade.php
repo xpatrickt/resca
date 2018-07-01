@@ -13,7 +13,7 @@
                   <span class="mailbox-read-time pull-right">{{$res->created_at}}</span></h5>
               </div>
                 <div class="mailbox-read-message">
-                {{$res->descripcionrespuesta}}
+                {!!$res->descripcionrespuesta!!}
               </div>
              </div>
               </div>
