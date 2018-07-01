@@ -8,14 +8,17 @@ use resca\Estudio;
 use resca\Departamento;
 use resca\Provincia;
 use resca\Evaluacionestudio;
+use resca\Documentoestudio;
 use resca\Entidad;
 use resca\Persona;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use DB;
 use Response;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
+use DateTime;
 
 class SeguimientoController extends Controller
 {
@@ -39,6 +42,7 @@ class SeguimientoController extends Controller
           $rol=$us->idrol;
         }
       //
+        $tipodocumento=DB::table('documento')->where('condicion','=','1')->get();
         $query=trim($request->get('searchText'));
 
        if($rol=='1'){
@@ -72,7 +76,7 @@ class SeguimientoController extends Controller
         //datosproyecto
         $proyecto=null;
         $entidades=null;
-        return view("admin.seguimiento.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidades"=>$entidades,"estudio"=>$estudio,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
+        return view("admin.seguimiento.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidades"=>$entidades,"estudio"=>$estudio,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion,"tipodocumento"=>$tipodocumento]);
     }
 
 }
@@ -85,6 +89,7 @@ class SeguimientoController extends Controller
        $idestudio=$request->get('estudio');
         $idproyecto=$request->get('proyecto');
         $query=trim($request->get('searchText'));
+        $tipodocumento=DB::table('documento')->where('condicion','=','1')->get();
         
            //LISTAR PROYECTOS 
         //sacar rol de usuario
@@ -191,7 +196,7 @@ class SeguimientoController extends Controller
         $respuestasobservacion=null;
         
     }
-    return view("admin.seguimiento.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidad"=>$entidad,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
+    return view("admin.seguimiento.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidad"=>$entidad,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion,"tipodocumento"=>$tipodocumento]);
  }
  else{
      return Redirect::to('admin/seguimiento');
@@ -206,6 +211,31 @@ class SeguimientoController extends Controller
      public function show($idproyecto){
         return Redirect::to('admin/seguimiento');
     }
+     public function update1(Request $request,$idobservacion){
+      $asuntoobservacion=$request->get('asuntorespuesta');
+      $descripcionobservacion=$request->get('descripcionrespuesta');
+      $estudio=$request->get('estudioresp');
+      $proyecto=$request->get('proyectoresp');
+
+      $documento=new Documentoestudio;
+      $documento->descdocumentoestudio=$request->get('descripciondocumento');
+      if(Input::hasFile('urlresp')){
+            $file=Input::file('urlresp');
+            $nombred=date("dmyHis"); 
+            $file->move(public_path().'/admin/documentos/estudio/',$nombred.'.pdf');
+            $documento->urldocumentoestudio='/documentos/estudio/'.$nombred.'.pdf';
+        }
+      $documento->condicion='1';
+      $documento->idestudio=$estudio;
+      $documento->iddocumento=$request->get('tipodocumento');
+      $documento->save();
+
+      $iddocumento=$documento->iddocumentoestudio;
+
+        //return redirect()->route('admin.seguimiento.store');
+         return view("admin.seguimiento.aceptar",["estudio"=>$estudio,"proyecto"=>$proyecto]);
+     }
+
 
    //LISTAR ESTUDIOS
     function listar(Request $request)

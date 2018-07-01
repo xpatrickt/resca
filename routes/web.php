@@ -676,6 +676,7 @@ Route::get('admin/respuestaevaluacion/{role}/edit','RespuestaevaluacionControlle
 Route::post('admin/proyecto/listar','ProyectoController@listar')->name('admin.proyecto.listar');
 
 //Route Seguimiento
+Route::put('admin/seguimiento/{role}','SeguimientoController@update1')->name('admin.seguimiento.update1');
 Route::post('admin/seguimiento/listar','SeguimientoController@listar')->name('admin.seguimiento.listar');
 Route::post('admin/seguimiento/listarall','SeguimientoController@listarall')->name('admin.seguimiento.listarall');
 Route::post('admin/seguimiento/mostrardocumento','SeguimientoController@mostrardocumento')->name('admin.seguimiento.mostrardocumento');
