@@ -9,6 +9,7 @@ use resca\Departamento;
 use resca\Provincia;
 use resca\Evaluacionestudio;
 use resca\Documentoestudio;
+use resca\Respuestaevaluacion;
 use resca\Entidad;
 use resca\Persona;
 use Illuminate\Support\Facades\Redirect;
@@ -212,11 +213,9 @@ class SeguimientoController extends Controller
         return Redirect::to('admin/seguimiento');
     }
      public function update1(Request $request,$idobservacion){
-      $asuntoobservacion=$request->get('asuntorespuesta');
-      $descripcionobservacion=$request->get('descripcionrespuesta');
       $estudio=$request->get('estudioresp');
       $proyecto=$request->get('proyectoresp');
-
+       //agregar documento estudio
       $documento=new Documentoestudio;
       $documento->descdocumentoestudio=$request->get('descripciondocumento');
       if(Input::hasFile('urlresp')){
@@ -231,6 +230,15 @@ class SeguimientoController extends Controller
       $documento->save();
 
       $iddocumento=$documento->iddocumentoestudio;
+
+       // agregar respuesta observacion
+      $respuesta=new Respuestaevaluacion;
+      $respuesta->asuntorespuesta=$request->get('asuntorespuesta');
+      $respuesta->descripcionrespuesta=$request->get('descripcionrespuesta');
+      $respuesta->condicion='1';
+      $respuesta->idobservacion=$idobservacion;
+      $respuesta->iddocumentoestudio=$iddocumento;
+      $respuesta->save();
 
         //return redirect()->route('admin.seguimiento.store');
          return view("admin.seguimiento.aceptar",["estudio"=>$estudio,"proyecto"=>$proyecto]);

@@ -13,10 +13,10 @@
              <div class="modal-body">
                <div class="box-body no-padding">
               <div class="form-group">
-                <input id="asuntorespuesta" class="form-control" placeholder="Asunto:">
+                <input id="asuntorespuesta" name="asuntorespuesta" class="form-control" placeholder="Asunto:">
               </div>
               <div class="form-group">
-                    <textarea id="descripcionrespuesta" class="form-control" style="height: 200px">
+                    <textarea id="descripcionrespuesta" name="descripcionrespuesta" class="form-control" style="height: 200px">
                     </textarea>
               </div>
                 <div class="form-group">
