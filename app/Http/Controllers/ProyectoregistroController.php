@@ -7,9 +7,14 @@ use resca\Proyecto;
 use resca\Departamento;
 use resca\Provincia;
 use resca\Distrito;
+use resca\User;
+use resca\Responsableproyecto;
+use resca\Persona;
 use Illuminate\Support\Facades\Redirect;
 use resca\Http\Requests\ProyectoFormRequest;
+use resca\Http\Requests\ResponsableproyectoFormRequest;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProyectoregistroController extends Controller
 {
@@ -34,12 +39,9 @@ class ProyectoregistroController extends Controller
 
 
     public function create(){
-        
-    
-        $departamentos=DB::table('departamento')->where('condicion','=','1')->get();
-
+         /*$departamentos=DB::table('departamento')->where('condicion','=','1')->get();*/
         $entidades=DB::table('entidad')->where('condicion','=','1')->get();
-        return view("admin.proyectoregistro.create",["departamentos"=>$departamentos,"entidades"=>$entidades]);
+        return view("admin.proyectoregistro.create",["entidades"=>$entidades]);
     }
 
 
@@ -69,6 +71,10 @@ class ProyectoregistroController extends Controller
 
     
     public function store(ProyectoFormRequest $request){
+
+        $idusuario = Auth::user()->id;
+        $usuario=User::findOrFail($idusuario);
+
     	$proyecto=new Proyecto;
     	$proyecto->nombreproyecto=$request->get('nombre');
     	$proyecto->descripcionproyecto=$request->get('descripcion');
@@ -77,7 +83,10 @@ class ProyectoregistroController extends Controller
     	$proyecto->condicion='1';
         $proyecto->identidad=$request->get('identidad');
    		$proyecto->save();
-        
+        $responsableproyecto=new Responsableproyecto;
+        $responsableproyecto->idproyecto=$proyecto->idproyecto;
+        $responsableproyecto->idpersona=$usuario->idpersona;
+        $responsableproyecto->save();
    		return Redirect::to('admin/registro/create');
        // return  redirect()->back();
     }

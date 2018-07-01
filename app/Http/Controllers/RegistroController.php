@@ -19,6 +19,7 @@ use Response;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class RegistroController extends Controller
 {
@@ -54,7 +55,39 @@ class RegistroController extends Controller
 
 
    public function create(){
-        $proyectos=DB::table('proyecto')->where('condicion','=','1')->get();
+
+                   //LISTAR PROYECTOS 
+        //sacar rol de usuario
+        $idusuario = Auth::user()->id;
+        $usuarios=DB::table('users as u')
+        ->join('role_user as ru','ru.user_id','=','u.id')
+        ->select('ru.role_id as idrol')
+        ->where('u.id','=',$idusuario)
+        ->where('u.condicion','=','1')
+        ->get();
+        foreach($usuarios as $us){
+          $rol=$us->idrol;
+        }
+      //
+
+       if($rol=='1'){
+           $proyectos=DB::table('proyecto')
+           ->where('condicion','=','1')->get();
+        }
+        else{
+           $proyectos=DB::table('proyecto as p')
+            ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
+            ->join('persona as pe','rp.idpersona','=','pe.idpersona')
+           ->join('users as u','u.idpersona','=','pe.idpersona')
+           ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto')
+           ->where('u.id','=',$idusuario)
+           ->where('p.condicion','=','1')
+           ->where('pe.condicion','=','1')
+           ->where('u.condicion','=','1')
+          ->distinct()
+           ->get();
+       }
+       //END LISTAR PROYECTOS
         $tiposevaluacion=DB::table('tipoevaluacion')->where('condicion','=','1')->get();
         $tiposestudio=DB::table('tipoestudio')->where('condicion','=','1')->get();
         
