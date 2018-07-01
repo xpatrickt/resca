@@ -4,14 +4,14 @@ namespace resca;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Evaluacionestudio extends Model
+class Responsableproyecto extends Model
 {
-    protected $table='evaluacionestudio';
-    protected $primaryKey='idevaluacionestudio';
+    protected $table='responsableproyecto';
+    protected $primaryKey='idresponsableproyecto';
     public $timestamps=true;
 
     protected $fillable =[
-    	'idestudio',
+    	'idproyecto',
     	'idpersona'
     ];
 

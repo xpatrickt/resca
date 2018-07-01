@@ -5,7 +5,7 @@ treeview
 @section('treemenu')
 treeview
 @endsection
-@section('acteve')
+@section('actrep')
 active
 @endsection
 @section('actmenu4')
@@ -20,7 +20,7 @@ active treeview
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Asignar Evaluador a los estudios &nbsp &nbsp</h3>
+			<h3 class="box-title">Asignar Responsable a los Proyectos &nbsp &nbsp</h3>
 			</div>
 		<div class="box-body">
 
@@ -28,24 +28,23 @@ active treeview
            <thead>
                 <tr>
                   <th width="1px">ID</th>
-                  <th>Estudio</th>
-                  <th>Descripción</th>
                   <th>Proyecto</th>
-                  <th>Entidad</th>
-                  <th>Estado</th>
+                  <th>Responsable</th>
                   <th>Opción</th>
                  </tr>
                 </thead>
                 <tbody>
-                @foreach ($estudios as $est)
+                @foreach ($proyectos as $pro)
                 <tr>
-                  <td width="1px">{{ $est->idestudio}}</td>
-                  <td>{{ $est->nombreestudio}}</td>
-                  <td>{{ $est->descripcionestudio}}</td>
-                  <td>{{ $est->proyecto}}</td>
-                  <td>{{ $est->entidad}}</td>
-                  <td>{{ $est->estado}}</td>
-                  <td><a href="{{URL::action('EvaluacionestudioController@edit',$est->idestudio)}}"><button class="btn btn-success"><span class="glyphicon glyphicon-user"></span></button></a>
+                  <td width="1px">{{ $pro->idproyecto}}</td>
+                  <td>{{ $pro->nombreproyecto}}</td>
+                  <td>{{ $pro->responsable}}</td>
+                  @if(!$pro->responsable)
+                  <td><a href="{{URL::action('ResponsableproyectoController@edit',$pro->idproyecto)}}"><button class="btn btn-success"><span class="glyphicon glyphicon-user"></span></button></a>
+                  @else
+                  <td><a href=""><button class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-user"></span></button></a>
+
+                  @endif
                 </td>
                 </tr>
                 @endforeach
@@ -53,13 +52,10 @@ active treeview
               <tfoot>
                 <tr>
                   <th width="1px">ID</th>
-                  <th>Estudio</th>
-                  <th>Descripción</th>
                   <th>Proyecto</th>
-                  <th>Entidad</th>
-                  <th>Estado</th>
+                  <th>Responsable</th>
                   <th>Opción</th>
-                </tr>
+                 </tr>
                 </tfoot>
           </table>
 

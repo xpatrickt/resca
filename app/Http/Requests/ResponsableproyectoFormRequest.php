@@ -4,7 +4,7 @@ namespace resca\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EvaluacionestudioFormRequest extends FormRequest
+class ResponsableproyectoFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class EvaluacionestudioFormRequest extends FormRequest
     {
         return [
         'idpersona'=>'required',
-        'idestudio'=>'required',
+        'idproyecto'=>'required',
         ];
     }
 }

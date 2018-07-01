@@ -5,7 +5,7 @@ treeview
 @section('treemenu')
 treeview
 @endsection
-@section('acteve')
+@section('actrep')
 active
 @endsection
 @section('actmenu4')
@@ -17,7 +17,7 @@ active treeview
   <div class="col-md-12">
   <div class="box box-primary">
     <div class="box-header with-border">
-    <h3 class="box-tittle">Asignar Evaluador al Estudio: </h3>
+    <h3 class="box-tittle">Asignar Responsable al Proyecto: </h3>
     @if(count($errors)>0)
     <div class="alert alert-danger">
       <ul>
@@ -32,29 +32,26 @@ active treeview
 
 
               <div class="box-body">
-                {!! Form::model($estudio, ['route' => ['admin.evaluacionestudio.update', $estudio->idestudio],'method' => 'PUT']) !!}
+                {!! Form::model($proyecto, ['route' => ['admin.responsableproyecto.update', $proyecto->idproyecto],'method' => 'PUT']) !!}
 
                 {{Form::token()}}
             
                 <div class="form-group">
 
                   <label for="nombre">Nombre</label>
-                  <input type="text" name="nombre" value="{{$estudio->nombreestudio}}" class="form-control" readonly="readonly">
+                  <input type="text" name="nombre" value="{{$proyecto->nombreproyecto}}" class="form-control" readonly="readonly">
                 </div>
                 <div class="form-group">
                   <label for="persona">Evaluador</label>
-                  <select name="idpersona" class="form-control select2" data-placeholder="Selecione un Evaluador">
+                  <select name="idpersona" class="form-control select2" data-placeholder="Selecione un Responsable">
                     @foreach ($personas as $per)
                       <option value="{{$per->idpersona}}">{{$per->nombres}} </option>
                     @endforeach
                   </select>
                 </div>
-                <div class="form-group">
-                  <input type="hidden" name="idestado" value="3" />
-                </div>
                   
                  <div class="form-group">
-                  <input type="hidden" name="idestudio" value="{{$estudio->idestudio}}" class="form-control" placeholder="">
+                  <input type="hidden" name="idproyecto" value="{{$proyecto->idproyecto}}" class="form-control" placeholder="">
                 </div>   
                <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Registrar</button>
