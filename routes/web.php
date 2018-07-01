@@ -494,7 +494,7 @@ Route::get('admin/proyectoregistro/{role}/edit','ProyectoregistroController@edit
 
 //FIN REGISTRO PROYECTO
 
-//EVALUACION PROYECTO
+//GESTION PROYECTOS
 //Evaluacionestudio
 
 Route::post('admin/evaluacionestudio/store','EvaluacionestudioController@store')->name('admin.evaluacionestudio.store')
@@ -518,7 +518,31 @@ Route::delete('admin/evaluacionestudio/{role}','EvaluacionestudioController@dest
 Route::get('admin/evaluacionestudio/{role}/edit','EvaluacionestudioController@edit')->name('admin.evaluacionestudio.edit')
 ->middleware('permission:admin.evaluacionestudio.edit');
 //Fin Evaluacionestudio
+//Responsableproyecto
 
+Route::post('admin/responsableproyecto/store','ResponsableproyectoController@store')->name('admin.responsableproyecto.store')
+->middleware('permission:admin.responsableproyecto.create');
+
+Route::get('admin/responsableproyecto','ResponsableproyectoController@index')->name('admin.responsableproyecto.index')
+->middleware('permission:admin.responsableproyecto.index');
+
+Route::get('admin/responsableproyecto/create','ResponsableproyectoController@create')->name('admin.responsableproyecto.create')
+->middleware('permission:admin.responsableproyecto.create');
+
+Route::put('admin/responsableproyecto/{role}','ResponsableproyectoController@update')->name('admin.responsableproyecto.update')
+->middleware('permission:admin.responsableproyecto.edit');
+
+Route::get('admin/responsableproyecto/{role}','ResponsableproyectoController@show')->name('admin.responsableproyecto.show')
+->middleware('permission:admin.responsableproyecto.show');
+
+Route::delete('admin/responsableproyecto/{role}','ResponsableproyectoController@destroy')->name('admin.responsableproyecto.destroy')
+->middleware('permission:admin.responsableproyecto.destroy');
+
+Route::get('admin/responsableproyecto/{role}/edit','ResponsableproyectoController@edit')->name('admin.responsableproyecto.edit')
+->middleware('permission:admin.responsableproyecto.edit');
+//Fin Responsableproyecto
+//END GESTION PROYECTOS
+//EVALUACION PROYECTPS
 //Certificacion
 
 Route::post('admin/certificacion/store','CertificacionController@store')->name('admin.certificacion.store')
