@@ -32,7 +32,7 @@ class ResultadoEvaluacionController extends Controller
             $query=trim($request->get('searchText'));
             $estudios=DB::table('estudio as e')
             ->join('resolucion as r','r.idestudio','=','e.idestudio')
-            ->select('e.nombreestudio as estudio','r.urlresolucion as resolucion')
+            ->select('e.nombreestudio as estudio','r.urlresolucion as resolucion','r.fecharesolucion as fecha')
             ->where('e.condicion','=','1')
             ->where('r.condicion','=','1')
             ->orderBy('e.idestudio','desc')
