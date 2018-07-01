@@ -680,6 +680,7 @@ Route::put('admin/seguimiento/{role}','SeguimientoController@update1')->name('ad
 Route::post('admin/seguimiento/listar','SeguimientoController@listar')->name('admin.seguimiento.listar');
 Route::post('admin/seguimiento/listarall','SeguimientoController@listarall')->name('admin.seguimiento.listarall');
 Route::post('admin/seguimiento/mostrardocumento','SeguimientoController@mostrardocumento')->name('admin.seguimiento.mostrardocumento');
+Route::post('admin/seguimiento/mostrarrespuesta','SeguimientoController@mostrarrespuesta')->name('admin.seguimiento.mostrarrespuesta');
 
 //Route::post('admin/representante/{id}/edit','RepresentanteController@edit')->name('admin.representante.edit');
 
@@ -688,6 +689,7 @@ Route::post('admin/evaluacionestudio/asignar','EvaluacionestudioController@asign
 Route::post('admin/evaluacion/listar','EvaluacionController@listar')->name('admin.evaluacion.listar');
 Route::post('admin/evaluacion/listarall','EvaluacionController@listarall')->name('admin.evaluacion.listarall');
 Route::post('admin/evaluacion/mostrardocumento','EvaluacionController@mostrardocumento')->name('admin.evaluacion.mostrardocumento');
+Route::post('admin/evaluacion/mostrarrespuesta','EvaluacionController@mostrarrespuesta')->name('admin.evaluacion.mostrarrespuesta');
 
 //routes registro
 //Route::resource('admin/registro','RegistroController');

@@ -1,4 +1,4 @@
-        <div class="modal modal-default fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-respuesta-{{$res->idrespuestaobservacion}}">
+        <div class="modal modal-default fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-respuesta-{{$res->idrespuestaobservacion}}" >
       {{Form::Open(array('action'=>array('EvaluacionController@destroy',$res->idrespuestaobservacion),'method'=>'delete'))}}
           <div class="modal-dialog">
             <div class="modal-content" >

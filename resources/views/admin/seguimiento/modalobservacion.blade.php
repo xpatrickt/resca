@@ -3,10 +3,8 @@
           <div class="modal-dialog">
             <div class="modal-content" >
               <div class="modal-body">
-
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <div>
                 <div class="mailbox-read-info">
                 <h3>{{$obs->asuntoobservacion}}</h3>
                 <h5>Evaluador: {{$obs->nombres}}

@@ -246,12 +246,13 @@ treeview
                 <tr>
                   <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
                   <td>{{ $res->asobservacion}}...</td>
-                  <td><a href="" data-target="#modal-respuesta-{{$res->idrespuestaobservacion}}" data-asunto="{{$res->asuntorespuesta}}" data-observacion="{{$res->asuntoobservacion}}" data-descripcion="{{$res->descripcionrespuesta}}" data-fecha="{{$res->created_at}}" data-toggle="modal">{{$res->asrespuesta}}...</a>
+                  <td><a href="" name="modal1" data-target="#modal-respuesta-{{$res->idrespuestaobservacion}}" data-idresp="{{$res->idrespuestaobservacion}}" data-asunto="{{$res->asuntorespuesta}}" data-observacion="{{$res->asuntoobservacion}}" data-descripcion="{{$res->descripcionrespuesta}}" data-fecha="{{$res->created_at}}" data-toggle="modal">{{$res->asrespuesta}}...</a>
                   <td>{{$res->created_at}}</td>
                 </tr>
-                @include('admin.seguimiento.modalrespuesta')
-              @endforeach
+                 @include('admin.seguimiento.modalrespuesta')
+              @endforeach 
               @endif
+
 
                 </tbody>
               <tfoot>
@@ -341,7 +342,7 @@ $(document).ready(function(){
 
 // MOSTRAR DOCUMENTO DE OBSERVACION ***********************************
 
-$('#modal-observacion').on("show.bs.modal", function (e) {
+$('#modal-observacion-').on("show.bs.modal", function (e) {
 
   var idobs = $(e.relatedTarget).data('id'); 
   var _token = $('input[name="_token"]').val();
@@ -362,6 +363,32 @@ $('#modal-observacion').on("show.bs.modal", function (e) {
 
 });
 // FIN MOSTRAR  DOCUMENTO DE OBSERVACION ***********************************
+
+
+// MOSTRAR DOCUMENTO DE respuesta ***********************************
+
+$('#modal-respuesta').on("show.bs.modal", function (e) {
+
+
+  var idresp = $(e.relatedTarget).data('idresp'); 
+  var _token = $('input[name="_token"]').val();
+
+
+//DOCUMENTOS
+
+   $.ajax({
+    url:"{{ route('admin.seguimiento.mostrarrespuesta') }}",
+    method:"POST",
+    data:{idresp:idresp, _token:_token},
+  
+    success:function(result)
+    {
+       $('#documentosrespuesta').html(result);
+    }
+   })
+
+});
+// FIN MOSTRAR  DOCUMENTO DE respuesta ***********************************
 </script>
 
 @endsection

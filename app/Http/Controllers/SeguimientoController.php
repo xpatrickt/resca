@@ -345,24 +345,26 @@ class SeguimientoController extends Controller
 
     // MOSTRAR DOCUMENTO RESPUESTA
 
-     function mostrardocumentorespuesta(Request $request)
+     function mostrarrespuesta(Request $request)
     {
      
-          $idobservacion = $request->get('idobs'); // estudio
+          $idrespuesta = $request->get('idresp'); // estudio
 
-         $data=DB::table('documentoobservacion')
-        ->select('iddocumentoobservacion','desdocumentoobservacion','urldocumentoobservacion','created_at')
-        ->where('idobservacion','=',$idobservacion)
-        ->where('condicion','=','1')
-        ->orderBy('iddocumentoobservacion','desc') ->get();
+         $data=DB::table('documentoestudio as d')
+              ->join('respuestaobservacion as r')
+              ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','d.created_at')
+              ->where('d.iddocumentoestudio','=','r.iddocumentoestudio')
+              ->where('r.idrespuestaobservacion','=',$idrespuesta)
+              ->where('condicion','=','1')
+              ->orderBy('iddocumentoestudio','desc') ->get();
     
     $output = '';
   
      foreach($data as $row)
      {
-   $output .= '<a href="../'.$row->urldocumentoobservacion.'"  target="_blank" class="btn btn-app">
+   $output .= '<a href="../'.$row->urldocumentoestudio.'"  target="_blank" class="btn btn-app">
                 <i class="fa fa-file-pdf-o"></i>'.
-                   $row->desdocumentoobservacion.
+                   $row->descdocumentoestudio.
               '</a>';
      }
      $output .= '';
