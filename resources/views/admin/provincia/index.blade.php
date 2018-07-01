@@ -8,7 +8,9 @@ active treeview
 @section('actprov')
 active
 @endsection
-
+@section('actmenu4')
+treeview
+@endsection
 
 @section ('contenido')
 

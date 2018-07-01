@@ -8,7 +8,9 @@ active treeview
 @section('actent')
 active
 @endsection
-
+@section('actmenu4')
+treeview
+@endsection
 @section ('contenido')
 <section class="content">
 <div class="row">

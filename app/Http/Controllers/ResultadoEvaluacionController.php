@@ -16,6 +16,7 @@ use resca\Entidad;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use resca\Http\Requests\EstudioFormRequest;
+use Illuminate\Support\Facades\Auth;
 use DB;
 use Response;
 use Carbon\Carbon;
@@ -29,6 +30,8 @@ class ResultadoEvaluacionController extends Controller
    public function index(Request $request){
 
       if($request){
+
+           // $idusuario = Auth::user()->id;
             $query=trim($request->get('searchText'));
             $estudios=DB::table('estudio as e')
             ->join('resolucion as r','r.idestudio','=','e.idestudio')

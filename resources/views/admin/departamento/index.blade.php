@@ -8,6 +8,9 @@ active treeview
 @section('actdep')
 active
 @endsection
+@section('actmenu4')
+treeview
+@endsection
 @section ('contenido')
 
 <div >

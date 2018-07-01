@@ -50,78 +50,6 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown messages-menu">
-           <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-          <ul class="dropdown-menu">
-              <li class="header">Tu tienes 4 mensajes</li>
-              <li>
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="{{asset('adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Equipo de Soporte
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p></p>
-                    </a>
-                  </li>
-                </ul>
-                 </li>
-              <li class="footer"><a href="#">Ver todos los mensajes</a></li>
-            </ul>
-
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">Tienes 10 nuevas notificaciones</li>
-              <li>
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 nuevos registros hoy
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">Ver Todo</a></li>
-            </ul>
-          </li>
-          <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">Tienes 9 actividades</li>
-              <li>
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <h3>
-                        
-                       <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Completado</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-
-            </ul>
-          </li>  -->
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
@@ -208,13 +136,10 @@
         
         <li class="@yield('actmenu2')">
           @can('admin.evaluacion.index')
-          <a href="#"><i class="fa fa-dashboard"></i><span>Evaluación Ambiental</span>@endcan
+          <a href="#"><i class="fa fa-files-o"></i><span>Evaluación Ambiental</span>@endcan
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            @can('admin.evaluacionestudio.index')
-            <li class="@yield('acteve')"><a href="{{url ('admin/evaluacionestudio')}}">Asignar Evaluador</a></li>
-            @endcan
             @can('admin.evaluacion.index')
             <li class="@yield('acteva')"><a href="{{url ('admin/evaluacion')}}">Evaluación</a></li>
             @endcan
@@ -273,8 +198,21 @@
         @can('admin.user.index')
           <li class="@yield('actgusu')"><a href="{{url ('admin/user')}}"><i class="fa fa-users"></i> <span>Gestión de Usuarios</span></a></li>
         @endcan 
-
-
+    
+        <li class="@yield('actmenu4')">
+          @can('admin.evaluacion.index')
+          <a href="#"><i class="fa fa-dashboard"></i><span>Gestión de Proyectos</span>@endcan
+          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+          </a>
+          <ul class="treeview-menu">
+            @can('admin.evaluacionestudio.index')
+            <li class="@yield('acteve')"><a href="{{url ('admin/evaluacionestudio')}}">Asignar Evaluador</a></li>
+            @endcan
+            @can('admin.responsableproyecto.index')
+            <li class="@yield('actrep')"><a href="{{url ('admin/responsableproyecto')}}">Asignar Responsable de Proyecto</a></li>
+            @endcan   
+          </ul>
+        </li>
 
       </ul>
       <!-- /.sidebar-menu -->
@@ -315,69 +253,16 @@
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-  <!--  <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>-->
-    <!-- Tab panes -->
+
     <div class="tab-content">
-      <!-- Home tab content -->
+
       <div class="tab-pane active" id="control-sidebar-home-tab">
-        <!--<h3 class="control-sidebar-heading">Actividades Recientes</h3>-->
-       <!-- <ul class="control-sidebar-menu">
-          <li>
-            <a href="#">Actividad 01</a>
 
-          </li>
-        </ul>-->
-
-
-       <!--  <h3 class="control-sidebar-heading">Progreso de Actividades</h3>
-        <ul class="control-sidebar-menu">
-         <li>
-            <a href="javascript:;">
-              <h4 class="control-sidebar-subheading">
-               
-                <span class="pull-right-container">
-                    <span class="label label-danger pull-right">70%</span>
-                  </span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>-->
       </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-     <!--  <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-  
-     <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
 
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          
-        </form>
-      </div>
-     
-    </div>-->
+    </div>
   </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-  immediately after the control sidebar -->
+
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
