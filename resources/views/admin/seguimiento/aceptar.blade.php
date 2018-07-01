@@ -4,13 +4,14 @@
       <input type="hidden" id="proyecto" name="proyecto" class="form-control" value="{{$proyecto}}" >
 
         <div class="box-footer">
-          <button name="aceptar" type="submit" class="btn btn-danger">Aceptar</button>
+        
+          <button id="botonac" name="botonac" type="submit" class="btn btn-danger" hidden="hidden"></button>
           {!!Form::close()!!}
         </div>
 
         <script type="text/javascript">
-        window.onload = function () {
-          alert("entro");
-        document.$this.aceptar.click();
+       window.onload = function () {
+  document.getElementById("botonac").click();
         }
+
     </script>
