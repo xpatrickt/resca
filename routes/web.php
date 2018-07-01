@@ -405,33 +405,7 @@ Route::get('admin/user/{role}/edit','UserController@edit')->name('admin.user.edi
 //FinUsuarios
 //FIN MANTENIMIENTO DE USUARIOS
 
-//SEGUIMIENTO
 
-//Seguimiento
-
-Route::post('admin/seguimiento/store','SeguimientoController@store')->name('admin.seguimiento.store')
-->middleware('permission:admin.seguimiento.create');
-
-Route::get('admin/seguimiento','SeguimientoController@index')->name('admin.seguimiento.index')
-->middleware('permission:admin.seguimiento.index');
-
-Route::get('admin/seguimiento/create','SeguimientoController@create')->name('admin.seguimiento.create')
-->middleware('permission:admin.seguimiento.create');
-
-Route::put('admin/seguimiento/{role}','SeguimientoController@update')->name('admin.seguimiento.update')
-->middleware('permission:admin.seguimiento.edit');
-
-Route::post('admin/seguimiento/{role}','SeguimientoController@show')->name('admin.seguimiento.show')
-->middleware('permission:admin.seguimiento.show');
-
-Route::delete('admin/seguimiento/{role}','SeguimientoController@destroy')->name('admin.seguimiento.destroy')
-->middleware('permission:admin.seguimiento.destroy');
-
-Route::get('admin/seguimiento/{role}/edit','SeguimientoController@edit')->name('admin.seguimiento.edit')
-->middleware('permission:admin.seguimiento.edit');
-//Fin Seguimiento
-
-//FIN SEGUIMIENTO
 
 //REGISTRO PROYECTO
 
@@ -566,6 +540,33 @@ Route::delete('admin/certificacion/{role}','CertificacionController@destroy')->n
 Route::get('admin/certificacion/{role}/edit','CertificacionController@edit')->name('admin.certificacion.edit')
 ->middleware('permission:admin.certificacion.edit');
 //Fin Certificacion
+//SEGUIMIENTO
+
+//Seguimiento
+
+Route::post('admin/seguimiento/store','SeguimientoController@store')->name('admin.seguimiento.store')
+->middleware('permission:admin.seguimiento.create');
+
+Route::get('admin/seguimiento','SeguimientoController@index')->name('admin.seguimiento.index')
+->middleware('permission:admin.seguimiento.index');
+
+Route::get('admin/seguimiento/create','SeguimientoController@create')->name('admin.seguimiento.create')
+->middleware('permission:admin.seguimiento.create');
+
+Route::put('admin/seguimiento/{role}','SeguimientoController@update')->name('admin.seguimiento.update')
+->middleware('permission:admin.seguimiento.edit');
+
+Route::get('admin/seguimiento/{role}','SeguimientoController@show')->name('admin.seguimiento.show')
+->middleware('permission:admin.seguimiento.show');
+
+Route::delete('admin/seguimiento/{role}','SeguimientoController@destroy')->name('admin.seguimiento.destroy')
+->middleware('permission:admin.seguimiento.destroy');
+
+Route::get('admin/seguimiento/{role}/edit','SeguimientoController@edit')->name('admin.seguimiento.edit')
+->middleware('permission:admin.seguimiento.edit');
+//Fin Seguimiento
+
+//FIN SEGUIMIENTO
 //Evaluacionestudio
 
 Route::post('admin/evaluacion/store','EvaluacionController@store')->name('admin.evaluacion.store')
@@ -677,6 +678,7 @@ Route::post('admin/proyecto/listar','ProyectoController@listar')->name('admin.pr
 //Route Seguimiento
 Route::post('admin/seguimiento/listar','SeguimientoController@listar')->name('admin.seguimiento.listar');
 Route::post('admin/seguimiento/listarall','SeguimientoController@listarall')->name('admin.seguimiento.listarall');
+Route::post('admin/seguimiento/mostrardocumento','SeguimientoController@mostrardocumento')->name('admin.seguimiento.mostrardocumento');
 
 //Route::post('admin/representante/{id}/edit','RepresentanteController@edit')->name('admin.representante.edit');
 
@@ -684,13 +686,12 @@ Route::post('admin/seguimiento/listarall','SeguimientoController@listarall')->na
 Route::post('admin/evaluacionestudio/asignar','EvaluacionestudioController@asignar')->name('admin.evaluacionestudio.asignar');
 Route::post('admin/evaluacion/listar','EvaluacionController@listar')->name('admin.evaluacion.listar');
 Route::post('admin/evaluacion/listarall','EvaluacionController@listarall')->name('admin.evaluacion.listarall');
+Route::post('admin/evaluacion/mostrardocumento','EvaluacionController@mostrardocumento')->name('admin.evaluacion.mostrardocumento');
 
 //routes registro
 //Route::resource('admin/registro','RegistroController');
 Route::post('admin/registro/listardelimitacion','RegistroController@listardelimitacion')->name('admin.registro.listardelimitacion');
-//Route::post('admin/registro/agregardelimitacion','RegistroController@agregardelimitacion')->name('admin.registro.agregardelimitacion');
 Route::post('admin/registro/listardocumento','RegistroController@listardocumento')->name('admin.registro.listardocumento');
-//Route::post('admin/registro/agregardocumento','RegistroController@agregardocumento')->name('admin.registro.agregardocumento');
 //fin routes
 }); //FIN MIDDLEWARE AUTH
 //routes web

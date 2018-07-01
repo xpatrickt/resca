@@ -1,10 +1,10 @@
 @extends('layouts.administrator')
 
 @section('actmenu2')
-active treeview
+treeview
 @endsection
-@section('acteva')
-active
+@section('actmenu3')
+active 
 @endsection
 @section('treemenu')
 treeview
@@ -22,21 +22,6 @@ treeview
                  
             @include('admin.evaluacion.modalagregarobservacion')
                -->
-
-
-   <!--
-   {{ Form::open(['route' =>'admin.observacionevaluacion.index']) }}
-   {{Form::token()}}
-   @if($estudio!=null)
-   <input type="hidden" id="idestudio" name="idestudio" class="form-control" value="{{$estudio->idestudio}}" >
-   <input type="hidden" id="idproyecto" name="idproyecto" class="form-control" value="{{$proyecto->idproyecto}}" >
-    <button type="submit" class="btn btn-primary btn-block margin-bottom">Agregar Observación</button>
-   @else
-   <button type="submit" class="btn btn-primary btn-block margin-bottom" disabled>Agregar Observación</button>
-   @endif
-   
-   {!!Form::close()!!}
--->
 
    {{ Form::open(['route' => 'admin.seguimiento.store']) }}
    {{Form::token()}}
@@ -76,10 +61,8 @@ treeview
                   <label>Descripción: </label> {{$proyecto->descripcionproyecto}}<br>
                   <label>Objetivo: </label> {{$proyecto->objetivoproyecto}}<br>
                   <label>Beneficiarios: </label> {{$proyecto->beneficiariosproyecto}}<br>
-                  @foreach($entidades as $en)
-                  @if($proyecto->identidad==$en->identidad)
+                  @foreach($entidad as $en)
                   <label>Entidad: </label> {{$en->nombreentidad}}<br>
-                  @endif
                   @endforeach
                 @endif
                 </div>
@@ -117,15 +100,10 @@ treeview
                 <div id="testudio" name="testudio" style="margin: 10px 0 0 10px;">
                 @if($estudio!=null)
                   <label>Descripción: </label> {{$estudio->descripcionestudio}}<br>
-                  @foreach($tiposevaluacion as $teva)
-                   @if($estudio->idtipoevaluacion==$teva->idtipoevaluacion)
-                   <label>Tipo evaluacion: </label> {{$teva->nombretipoevaluacion}}<br>
-                   @endif
-                  @endforeach
-                  @foreach($tiposestudio as $test)
-                   @if($estudio->idtipoestudio==$test->idtipoestudio)
-                   <label>Tipo estudio: </label> {{$test->nombretipoestudio}}<br>
-                   @endif
+                  @foreach($detalleestudio as $det)
+                   <label>Tipo evaluacion: </label> {{$det->tipoevaluacion}}<br>
+                   <label>Tipo estudio: </label> {{$det->tipoestudio}}<br>
+                   <label>Estado: </label> {{$det->nombreestado}}<br>
                   @endforeach
                 @endif
                 </div>
@@ -139,7 +117,7 @@ treeview
 
      <!--TABS DOCUMENTO OBSERVACION Y LEVANTAMIENTO DE OBSERVACION*******************************************************-->
 
-        <div class="col-md-8">
+            <div class="col-md-8">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#documentos" data-toggle="tab">Documentos de Estudio</a></li>
@@ -154,8 +132,11 @@ treeview
             <div class="box-header with-border">
               <h3 class="box-title">Documentos : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
             </div>
+            <!-- /.box-header -->
             <div class="box-body no-padding">
+
               <div class="table-responsive mailbox-messages">
+
             <table id="tabla" class="table table-hover table-striped">
            <thead>
                 <tr>
@@ -178,12 +159,17 @@ treeview
                 </tr>
           @endforeach
           @endif
+
                 </tbody>
                  <tfoot>
+               
                 </tfoot>
             </table>
            </div>
+
+                <!-- /.table -->
               </div>
+
           </div>
 
       <!--TAB OBSERVACIONES*******************************************************-->
@@ -191,15 +177,19 @@ treeview
           <div class="box-header with-border">
               <h3 class="box-title">Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
             </div>
+            <!-- /.box-header -->
             <div class="box-body no-padding">
+
               <div class="table-responsive mailbox-messages">
-          <table id="tabla2" class="table table-hover table-striped">
+
+    <table id="tabla2" class="table table-hover table-striped">
            <thead>
                 <tr>
                   <th></th>
                   <th>Evaluador</th>
                   <th>Observación</th>
                   <th>Fecha</th>
+                  <th>Responder</th>
                  </tr>
                 </thead>
                 <tbody>
@@ -208,12 +198,20 @@ treeview
                 <tr>
                   <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
                   <td>{{$obs->nombre}}</td>
-                  <td><a href="" data-target="#modal-observacion-{{$obs->idobservacion}}" data-evaluador="{{$obs->nombre}}" data-asunto="{{$obs->asuntoobservacion}}" data-descripcion="{{$obs->descripcionobservacion}}" data-fecha="{{$obs->created_at}}" data-toggle="modal">{{$obs->asobservacion}}...</a>
+                  <td><a href="" data-target="#modal-observacion" data-id="{{$obs->idobservacion}}" data-evaluador="{{$obs->nombre}}" data-asunto="{{$obs->asuntoobservacion}}" data-descripcion="{{$obs->descripcionobservacion}}" data-fecha="{{$obs->created_at}}" data-toggle="modal">{{$obs->asobservacion}}...</a></td>
                   <td>{{$obs->created_at}}</td>
+                  <td><center><a href="" data-target="#modal-agregarrespuesta-{{$obs->idobservacion}}" data-observacion="{{$obs->asobservacion}}" data-toggle="modal"><i class="fa fa-envelope-o"></i></a></center></td>
                 </tr>
-         @include('admin.seguimiento.modalobservacion')
+                 @include('admin.seguimiento.modalagregarrespuesta')
                 @endforeach
+
+                @if(count($observaciones)!=0)
+                @include('admin.seguimiento.modalobservacion')
+                @endif
                @endif
+               
+
+
                 </tbody>
               <tfoot>
                
@@ -222,6 +220,7 @@ treeview
            </div>
               </div>
           </div>
+
           <!--TAB RESPUESTAS*******************************************************-->
           <div class="tab-pane" id="respuestas">
             <div class="box-header with-border">
@@ -251,22 +250,25 @@ treeview
                   <td>{{$res->created_at}}</td>
                 </tr>
                 @include('admin.seguimiento.modalrespuesta')
-          @endforeach
-          @endif
+              @endforeach
+              @endif
 
                 </tbody>
               <tfoot>
-             </tfoot>
+               
+                </tfoot>
             </table>
            </div>
-           </div>
+              </div>
           </div>
-      // FIN TAB LEVANTAMIENTOOBSERVACION
+            </div>
           </div>
-          </div>
-        </div>
 
- // FIN TAB DOCUMENTO OBSERVACION Y LEVANTAMIENTO DE OBSERVACION
+
+
+
+
+        </div>
 
         {{ csrf_field() }}
 
@@ -334,8 +336,32 @@ $(document).ready(function(){
     
    }
  });
+});
+
+
+// MOSTRAR DOCUMENTO DE OBSERVACION ***********************************
+
+$('#modal-observacion').on("show.bs.modal", function (e) {
+
+  var idobs = $(e.relatedTarget).data('id'); 
+  var _token = $('input[name="_token"]').val();
+
+
+//DOCUMENTOS
+
+   $.ajax({
+    url:"{{ route('admin.seguimiento.mostrardocumento') }}",
+    method:"POST",
+    data:{idobs:idobs, _token:_token},
+  
+    success:function(result)
+    {
+       $('#documentosobservacion').html(result);
+    }
+   })
 
 });
+// FIN MOSTRAR  DOCUMENTO DE OBSERVACION ***********************************
 </script>
 
 @endsection

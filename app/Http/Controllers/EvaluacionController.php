@@ -81,7 +81,7 @@ class EvaluacionController extends Controller
 
 
   public function store(Request $request){
-    if($request){
+   if($request){
       
        $idestudio=$request->get('estudio');
         $idproyecto=$request->get('proyecto');
@@ -123,10 +123,6 @@ class EvaluacionController extends Controller
        }
        //END LISTAR PROYECTOS
        
-
-
-
-
         $estudios=null;
     if($idproyecto!=""){
         $estudios=DB::table('estudio as e')
@@ -185,6 +181,7 @@ class EvaluacionController extends Controller
         $respuestasobservacion=null;
           }
      }
+
     else{
         $proyecto=null;
         $entidad=null;
@@ -196,11 +193,11 @@ class EvaluacionController extends Controller
         
     }
     return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidad"=>$entidad,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
-     }
-     else{
-       return Redirect::to('admin/evaluacion');
-     }
-    }
+ }
+ else{
+     return Redirect::to('admin/evaluacion');
+}
+}
 
       public function destroy($iddepartamento){
         
@@ -209,7 +206,8 @@ class EvaluacionController extends Controller
      public function show($idproyecto){
         return Redirect::to('admin/evaluacion');
     }
-
+    
+    //LISTAR ESTUDIOS
     function listar(Request $request)
     {
      
@@ -233,6 +231,8 @@ class EvaluacionController extends Controller
      }
      echo $output;
     }
+
+    //LISTAR DATOS DE ESTUDIOS
     function listarall(Request $request)
     {
      
@@ -274,6 +274,62 @@ class EvaluacionController extends Controller
      }
      }
 
+     echo $output;
+    }
+
+    // MOSTRAR DOCUMENTO OBSERVACION
+
+     function mostrardocumento(Request $request)
+    {
+     
+          $idobservacion = $request->get('idobs'); // estudio
+
+         $data=DB::table('documentoobservacion')
+        ->select('iddocumentoobservacion','desdocumentoobservacion','urldocumentoobservacion','created_at')
+        ->where('idobservacion','=',$idobservacion)
+        ->where('condicion','=','1')
+        ->orderBy('iddocumentoobservacion','desc') ->get();
+    
+    $output = '';
+  
+     foreach($data as $row)
+     {
+   $output .= '<a href="../'.$row->urldocumentoobservacion.'"  target="_blank" class="btn btn-app">
+                <i class="fa fa-file-pdf-o"></i>'.
+                   $row->desdocumentoobservacion.
+              '</a>';
+     }
+     $output .= '';
+
+          
+     echo $output;
+    }
+
+    // MOSTRAR DOCUMENTO RESPUESTA
+
+     function mostrardocumentorespuesta(Request $request)
+    {
+     
+          $idobservacion = $request->get('idobs'); // estudio
+
+         $data=DB::table('documentoobservacion')
+        ->select('iddocumentoobservacion','desdocumentoobservacion','urldocumentoobservacion','created_at')
+        ->where('idobservacion','=',$idobservacion)
+        ->where('condicion','=','1')
+        ->orderBy('iddocumentoobservacion','desc') ->get();
+    
+    $output = '';
+  
+     foreach($data as $row)
+     {
+   $output .= '<a href="../'.$row->urldocumentoobservacion.'"  target="_blank" class="btn btn-app">
+                <i class="fa fa-file-pdf-o"></i>'.
+                   $row->desdocumentoobservacion.
+              '</a>';
+     }
+     $output .= '';
+
+          
      echo $output;
     }
 

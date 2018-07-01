@@ -210,12 +210,16 @@ treeview
                 <tr>
                   <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
                   <td>{{$obs->nombre}}</td>
-                  <td><a href="" data-target="#modal-observacion-{{$obs->idobservacion}}" data-evaluador="{{$obs->nombre}}" data-asunto="{{$obs->asuntoobservacion}}" data-descripcion="{{$obs->descripcionobservacion}}" data-fecha="{{$obs->created_at}}" data-toggle="modal">{{$obs->asobservacion}}...</a>
+                  <td><a href="" data-target="#modal-observacion" data-id="{{$obs->idobservacion}}" data-evaluador="{{$obs->nombre}}" data-asunto="{{$obs->asuntoobservacion}}" data-descripcion="{{$obs->descripcionobservacion}}" data-fecha="{{$obs->created_at}}" data-toggle="modal">{{$obs->asobservacion}}...</a>
                   <td>{{$obs->created_at}}</td>
                 </tr>
-         @include('admin.evaluacion.modalobservacion')
+         
                 @endforeach
+                @if(count($observaciones)!=0)
+                @include('admin.evaluacion.modalobservacion')
+                @endif
                @endif
+               
 
 
                 </tbody>
@@ -256,8 +260,8 @@ treeview
                   <td>{{$res->created_at}}</td>
                 </tr>
                 @include('admin.evaluacion.modalrespuesta')
-          @endforeach
-          @endif
+              @endforeach
+              @endif
 
                 </tbody>
               <tfoot>
@@ -267,13 +271,6 @@ treeview
            </div>
               </div>
           </div>
-
-
-
-
-
-
-
             </div>
           </div>
 
@@ -349,8 +346,32 @@ $(document).ready(function(){
     
    }
  });
+});
+
+
+// MOSTRAR DOCUMENTO DE OBSERVACION ***********************************
+
+$('#modal-observacion').on("show.bs.modal", function (e) {
+
+  var idobs = $(e.relatedTarget).data('id'); 
+  var _token = $('input[name="_token"]').val();
+
+
+//DOCUMENTOS
+
+   $.ajax({
+    url:"{{ route('admin.evaluacion.mostrardocumento') }}",
+    method:"POST",
+    data:{idobs:idobs, _token:_token},
+  
+    success:function(result)
+    {
+       $('#documentosobservacion').html(result);
+    }
+   })
 
 });
+// FIN MOSTRAR  DOCUMENTO DE OBSERVACION ***********************************
 </script>
 
 @endsection

@@ -1,4 +1,4 @@
-        <div class="modal modal-default fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-observacion-{{$obs->idobservacion}}">
+        <div class="modal modal-default fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-observacion">
       {{Form::Open(array('action'=>array('SeguimientoController@destroy',$obs->idobservacion),'method'=>'delete'))}}
           <div class="modal-dialog">
             <div class="modal-content" >
@@ -13,11 +13,10 @@
                   <span class="mailbox-read-time pull-right">{{$obs->created_at}}</span></h5>
               </div>
                 <div class="mailbox-read-message">
-              <div>
-                {{$obs->descripcionobservacion}}
+                {!!$obs->descripcionobservacion!!}
               </div>
               </div>
-             </div>
+              <div id="documentosobservacion" class="box-footer">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
