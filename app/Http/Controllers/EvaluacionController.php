@@ -11,6 +11,7 @@ use resca\Evaluacionestudio;
 use resca\Entidad;
 use resca\Persona;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 use DB;
 use Response;
 use Illuminate\Support\Collection;
@@ -26,9 +27,41 @@ class EvaluacionController extends Controller
  public function index(Request $request){
 
       if($request){
+           //LISTAR PROYECTOS 
+        //sacar rol de usuario
+        $idusuario = Auth::user()->id;
+        $usuarios=DB::table('users as u')
+        ->join('role_user as ru','ru.user_id','=','u.id')
+        ->select('ru.role_id as idrol')
+        ->where('u.id','=',$idusuario)
+        ->where('u.condicion','=','1')
+        ->get();
+        foreach($usuarios as $us){
+          $rol=$us->idrol;
+        }
+      //
         $query=trim($request->get('searchText'));
-        $proyectos=DB::table('proyecto')
-                     ->where('condicion','=','1')->get();
+
+       if($rol=='1'){
+           $proyectos=DB::table('proyecto')
+           ->where('condicion','=','1')->get();
+        }
+        else{
+           $proyectos=DB::table('proyecto as p')
+           ->join('estudio as e','p.idproyecto','=','e.idproyecto')
+           ->join('evaluacionestudio as ee','e.idestudio','=','ee.idestudio')
+           ->join('persona as pe','pe.idpersona','=','ee.idpersona')
+           ->join('users as u','u.idpersona','=','pe.idpersona')
+           ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto')
+           ->where('u.id','=',$idusuario)
+           ->where('p.condicion','=','1')
+           ->where('pe.condicion','=','1')
+           ->where('e.condicion','=','1')
+           ->where('u.condicion','=','1')
+            ->distinct()
+           ->get();
+       }
+       //END LISTAR PROYECTOS
         $estudios=null;
         // tabs
         $documentos=null;
@@ -49,11 +82,51 @@ class EvaluacionController extends Controller
 
   public function store(Request $request){
     if($request){
+      
        $idestudio=$request->get('estudio');
         $idproyecto=$request->get('proyecto');
         $query=trim($request->get('searchText'));
-        $proyectos=DB::table('proyecto')
-                     ->where('condicion','=','1')->get();
+        
+           //LISTAR PROYECTOS 
+        //sacar rol de usuario
+        $idusuario = Auth::user()->id;
+        $usuarios=DB::table('users as u')
+        ->join('role_user as ru','ru.user_id','=','u.id')
+        ->select('ru.role_id as idrol')
+        ->where('u.id','=',$idusuario)
+        ->where('u.condicion','=','1')
+        ->get();
+        foreach($usuarios as $us){
+          $rol=$us->idrol;
+        }
+      //
+        $query=trim($request->get('searchText'));
+
+       if($rol=='1'){
+           $proyectos=DB::table('proyecto')
+           ->where('condicion','=','1')->get();
+        }
+        else{
+           $proyectos=DB::table('proyecto as p')
+           ->join('estudio as e','p.idproyecto','=','e.idproyecto')
+           ->join('evaluacionestudio as ee','e.idestudio','=','ee.idestudio')
+           ->join('persona as pe','pe.idpersona','=','ee.idpersona')
+           ->join('users as u','u.idpersona','=','pe.idpersona')
+           ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto')
+           ->where('u.id','=',$idusuario)
+           ->where('p.condicion','=','1')
+           ->where('pe.condicion','=','1')
+           ->where('e.condicion','=','1')
+           ->where('u.condicion','=','1')
+           ->distinct()
+           ->get();
+       }
+       //END LISTAR PROYECTOS
+       
+
+
+
+
         $estudios=null;
     if($idproyecto!=""){
         $estudios=DB::table('estudio as e')
