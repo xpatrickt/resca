@@ -55,6 +55,7 @@ treeview
      <!--TAB DELIMITACION *******************************************************-->
 
           <div class="active tab-pane" id="delimitaciones">
+
             <div class="box-body no-padding">
           {{ Form::open(['route' =>'admin.registro.edit']) }}
             {{Form::token()}}

@@ -14,6 +14,8 @@ use resca\Documentoestudio;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use resca\Http\Requests\EstudioFormRequest;
+use resca\Http\Requests\RegistrodelimitacionFormRequest;
+use resca\Http\Requests\RegistrodocumentoFormRequest;
 use DB;
 use Response;
 use Carbon\Carbon;
@@ -255,7 +257,7 @@ class RegistroController extends Controller
     }
  
   // GUARDAR DELIMITACION ESTUDIO
-     public function edit(Request $request){
+     public function edit(RegistrodelimitacionFormRequest $request){
       $delimitacion=new Delimitacionestudio;
       $delimitacion->descripciondelimitacion=$request->get('descripcion');
       $delimitacion->coordenadasx=$request->get('lat');
@@ -268,7 +270,7 @@ class RegistroController extends Controller
     }
 
   // GUARDAR DOCUMENTOS ESTUDIO
-    public function update(Request $request,$idestudio){
+    public function update(RegistrodocumentoFormRequest $request,$idestudio){
       $documento=new Documentoestudio;
       $documento->descdocumentoestudio=$request->get('descripciondocumento');
       if(Input::hasFile('url')){
