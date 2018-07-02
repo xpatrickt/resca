@@ -55,17 +55,7 @@ class ObservacionevaluacionController extends Controller
                    ->where('condicion','=','1')
                   ->orderBy('iddocumentoobservacion', 'desc') ->get();
         
-        if($request){
-
-          if($request->get('')){
-
-          }
-          else{
-          $departamentos=DB::table('departamento')->where('condicion','=','1')->get();
-           return view("admin.provincia.edit",["provincia"=>$provincia,"departamentos"=>$departamentos]);
-          }
-
-        } 
+           return view("admin.observacionevaluacion.edit",["idestudio"=>$idestudio,"departamentos"=>$departamentos]);
     }
 
 
