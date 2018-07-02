@@ -130,7 +130,7 @@ treeview
 
           <div class="active tab-pane" id="documentos">
             <div class="box-header with-border">
-              <h3 class="box-title">Documentos : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
+              <h5>Documentos : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h5>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -175,7 +175,7 @@ treeview
       <!--TAB OBSERVACIONES*******************************************************-->
           <div class="tab-pane" id="observaciones">
           <div class="box-header with-border">
-              <h3 class="box-title">Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
+              <h5>Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h5>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -198,16 +198,13 @@ treeview
                 <tr>
                   <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
                   <td>{{$obs->nombre}}</td>
-                  <td><a href="" data-target="#modal-observacion" data-id="{{$obs->idobservacion}}" data-evaluador="{{$obs->nombre}}" data-asunto="{{$obs->asuntoobservacion}}" data-descripcion="{{$obs->descripcionobservacion}}" data-fecha="{{$obs->created_at}}" data-toggle="modal">{{$obs->asobservacion}}...</a></td>
+                  <td><a href="" data-target="#modal-observacion-{{$obs->idobservacion}}" data-id="{{$obs->idobservacion}}" data-evaluador="{{$obs->nombre}}" data-asunto="{{$obs->asuntoobservacion}}" data-descripcion="{{$obs->descripcionobservacion}}" data-fecha="{{$obs->created_at}}" data-toggle="modal" class="openobservacion">{{$obs->asobservacion}}...</a></td>
                   <td>{{$obs->created_at}}</td>
                   <td><center><a href="" data-target="#modal-agregarrespuesta-{{$obs->idobservacion}}" data-observacion="{{$obs->asuntoobservacion}}" data-estudio="{{$estudio->idestudio}}" data-proyecto="{{$proyecto->idproyecto}}" data-toggle="modal"><i class="fa fa-envelope-o"></i></a></center></td>
                 </tr>
                  @include('admin.seguimiento.modalagregarrespuesta')
+                 @include('admin.seguimiento.modalobservacion')
                 @endforeach
-
-                @if(count($observaciones)!=0)
-                @include('admin.seguimiento.modalobservacion')
-                @endif
                @endif
                
 
@@ -224,7 +221,7 @@ treeview
           <!--TAB RESPUESTAS*******************************************************-->
           <div class="tab-pane" id="respuestas">
             <div class="box-header with-border">
-              <h3 class="box-title">Levantamiento de Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
+              <h5>Levantamiento de Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h5>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -246,7 +243,7 @@ treeview
                 <tr>
                   <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
                   <td>{{ $res->asobservacion}}...</td>
-                  <td><a href="" name="modal1" data-target="#modal-respuesta-{{$res->idrespuestaobservacion}}" data-idresp="{{$res->idrespuestaobservacion}}" data-asunto="{{$res->asuntorespuesta}}" data-observacion="{{$res->asuntoobservacion}}" data-descripcion="{{$res->descripcionrespuesta}}" data-fecha="{{$res->created_at}}" data-toggle="modal">{{$res->asrespuesta}}...</a>
+                  <td><a href="" data-target="#modal-respuesta-{{$res->idrespuestaobservacion}}" data-id="{{$res->idrespuestaobservacion}}" data-asunto="{{$res->asuntorespuesta}}" data-observacion="{{$res->asuntoobservacion}}" data-descripcion="{{$res->descripcionrespuesta}}" data-fecha="{{$res->created_at}}" data-toggle="modal" class="openrespuesta">{{$res->asrespuesta}}...</a>
                   <td>{{$res->created_at}}</td>
                 </tr>
                  @include('admin.seguimiento.modalrespuesta')
@@ -342,14 +339,12 @@ $(document).ready(function(){
 
 // MOSTRAR DOCUMENTO DE OBSERVACION ***********************************
 
-$('#modal-observacion-').on("show.bs.modal", function (e) {
+$(document).on("click", ".openobservacion", function () {
 
-  var idobs = $(e.relatedTarget).data('id'); 
+ var idobs = $(this).data('id'); 
   var _token = $('input[name="_token"]').val();
 
-
 //DOCUMENTOS
-
    $.ajax({
     url:"{{ route('admin.seguimiento.mostrardocumento') }}",
     method:"POST",
@@ -357,7 +352,7 @@ $('#modal-observacion-').on("show.bs.modal", function (e) {
   
     success:function(result)
     {
-       $('#documentosobservacion').html(result);
+      $(".modal-body #documentosobservacion").html(result);
     }
    })
 
@@ -365,17 +360,14 @@ $('#modal-observacion-').on("show.bs.modal", function (e) {
 // FIN MOSTRAR  DOCUMENTO DE OBSERVACION ***********************************
 
 
-// MOSTRAR DOCUMENTO DE respuesta ***********************************
+// MOSTRAR DOCUMENTO DE RESPUESTA ***********************************
 
-$('#modal-respuesta').on("show.bs.modal", function (e) {
+$(document).on("click", ".openrespuesta", function () {
 
-
-  var idresp = $(e.relatedTarget).data('idresp'); 
+ var idresp = $(this).data('id'); 
   var _token = $('input[name="_token"]').val();
 
-
 //DOCUMENTOS
-
    $.ajax({
     url:"{{ route('admin.seguimiento.mostrarrespuesta') }}",
     method:"POST",
@@ -383,12 +375,12 @@ $('#modal-respuesta').on("show.bs.modal", function (e) {
   
     success:function(result)
     {
-       $('#documentosrespuesta').html(result);
+      $(".modal-body #documentosrespuesta").html(result);
     }
    })
 
 });
-// FIN MOSTRAR  DOCUMENTO DE respuesta ***********************************
+// FIN MOSTRAR  DOCUMENTO DE RESPUESTA ***********************************
 </script>
 
 @endsection

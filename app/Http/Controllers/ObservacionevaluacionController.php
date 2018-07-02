@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use resca\Observacionevaluacion;
 use resca\Documentoobservacion;
 use resca\Estudio;
+use resca\Estadoestudio;
 use resca\Proyecto;
 use resca\Http\Requests\ObservacionevaluacionFormRequest;
 use Illuminate\Support\Facades\Input;
@@ -39,13 +40,15 @@ class ObservacionevaluacionController extends Controller
     }
 
 }
+
+  // GUARDAR OBSERVACION DE EVALUACION
   public function store(Request $request){
     $asuntoobservacion=$request->get('asuntoobservacion');
     $descripcionobservacion=$request->get('descripcionobservacion');
        
     if($asuntoobservacion!="" && $descripcionobservacion!=""){
 
-      $idestudio=$request->get('idestudio');
+       $idestudio=$request->get('idestudio');
        $idproyecto=$request->get('idproyecto');
        $idobservacion=$request->get('idobservacion');
        $estudio=Estudio::findOrFail($idestudio);
@@ -66,6 +69,12 @@ class ObservacionevaluacionController extends Controller
             $observacion->save();
                
             $idobservacion=$observacion->idobservacion;
+
+            $estadoestudio=new Estadoestudio;
+            $estadoestudio->idestudio=$idestudio;
+            $estadoestudio->idestado='4';
+            $estadoestudio->condicion='1';
+            $estadoestudio->save();
            }
            $documentos=DB::table('documentoobservacion')->where('idobservacion','=',$idobservacion)->where('condicion','=','1')
         ->orderBy('iddocumentoobservacion', 'desc') ->get(); 

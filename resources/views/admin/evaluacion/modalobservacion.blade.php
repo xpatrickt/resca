@@ -1,4 +1,4 @@
-        <div class="modal modal-default fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-observacion">
+        <div class="modal modal-default fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-observacion-{{$obs->idobservacion}}">
       {{Form::Open(array('action'=>array('EvaluacionController@destroy',$obs->idobservacion),'method'=>'delete'))}}
           <div class="modal-dialog">
             <div class="modal-content" >
@@ -13,9 +13,10 @@
                 <div class="mailbox-read-message">
                 {!!$obs->descripcionobservacion!!}
               </div>
-              </div>
               <div id="documentosobservacion" class="box-footer">
               </div>
+              </div>
+              
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
               </div>

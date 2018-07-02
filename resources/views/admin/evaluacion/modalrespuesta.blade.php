@@ -16,6 +16,8 @@
                 {!!$res->descripcionrespuesta!!}
               </div>
              </div>
+             <div id="documentosrespuesta" class="box-footer">
+              </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>

@@ -230,7 +230,7 @@ class SeguimientoController extends Controller
        // agregar respuesta observacion
       $respuesta=new Respuestaevaluacion;
       $respuesta->asuntorespuesta=$request->get('asuntorespuesta');
-      $respuesta->descripcionrespuesta=$request->get('descripcionrespuesta');
+      $respuesta->descripcionrespuesta=$request->get('descripcionrespuest');
       $respuesta->condicion='1';
       $respuesta->idobservacion=$idobservacion;
       $respuesta->iddocumentoestudio=$iddocumento;
@@ -344,15 +344,14 @@ class SeguimientoController extends Controller
      function mostrarrespuesta(Request $request)
     {
      
-          $idrespuesta = $request->get('idresp'); // estudio
+        $idrespuesta = $request->get('idresp'); // estudio
 
-         $data=DB::table('documentoestudio as d')
-              ->join('respuestaobservacion as r')
+       $data=DB::table('documentoestudio as d')
+              ->join('respuestaobservacion as r','r.iddocumentoestudio','=','d.iddocumentoestudio')
               ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','d.created_at')
-              ->where('d.iddocumentoestudio','=','r.iddocumentoestudio')
               ->where('r.idrespuestaobservacion','=',$idrespuesta)
-              ->where('condicion','=','1')
-              ->orderBy('iddocumentoestudio','desc') ->get();
+              ->where('d.condicion','=','1')
+              ->orderBy('d.iddocumentoestudio','desc') ->get();
     
     $output = '';
   

@@ -16,7 +16,7 @@
                 <input id="asuntorespuesta" name="asuntorespuesta" class="form-control" placeholder="Asunto:">
               </div>
               <div class="form-group">
-                    <textarea id="descripcionrespuesta" name="descripcionrespuesta" class="form-control" style="height: 200px">
+                    <textarea id="descripcionrespuest" name="descripcionrespuest" class="form-control" style="height: 200px">
                     </textarea>
               </div>
                 <div class="form-group">

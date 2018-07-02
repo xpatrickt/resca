@@ -1,3 +1,4 @@
+@extends('layouts.administrator')
  {{ Form::open(['route' =>'admin.seguimiento.store'])}}
       {{Form::token()}}
       <input type="hidden" id="estudio" name="estudio" class="form-control" value="{{$estudio}}" >
@@ -10,8 +11,6 @@
         </div>
 
         <script type="text/javascript">
-       window.onload = function () {
   document.getElementById("botonac").click();
-        }
 
     </script>

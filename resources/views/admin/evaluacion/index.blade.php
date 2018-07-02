@@ -213,14 +213,11 @@ treeview
                 <tr>
                   <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
                   <td>{{$obs->nombre}}</td>
-                  <td><a href="" data-target="#modal-observacion" data-id="{{$obs->idobservacion}}" data-evaluador="{{$obs->nombre}}" data-asunto="{{$obs->asuntoobservacion}}" data-descripcion="{{$obs->descripcionobservacion}}" data-fecha="{{$obs->created_at}}" data-toggle="modal">{{$obs->asobservacion}}...</a>
+                  <td><a href="" data-target="#modal-observacion-{{$obs->idobservacion}}" data-id="{{$obs->idobservacion}}" data-evaluador="{{$obs->nombre}}" data-asunto="{{$obs->asuntoobservacion}}" data-descripcion="{{$obs->descripcionobservacion}}" data-fecha="{{$obs->created_at}}" data-toggle="modal" class="openobservacion">{{$obs->asobservacion}}...</a>
                   <td>{{$obs->created_at}}</td>
                 </tr>
-         
+                 @include('admin.evaluacion.modalobservacion')
                 @endforeach
-                @if(count($observaciones)!=0)
-                @include('admin.evaluacion.modalobservacion')
-                @endif
                @endif
                
 
@@ -259,7 +256,7 @@ treeview
                 <tr>
                   <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
                   <td>{{ $res->asobservacion}}...</td>
-                  <td><a href="" data-target="#modal-respuesta-{{$res->idrespuestaobservacion}}" data-asunto="{{$res->asuntorespuesta}}" data-observacion="{{$res->asuntoobservacion}}" data-descripcion="{{$res->descripcionrespuesta}}" data-fecha="{{$res->created_at}}" data-toggle="modal">{{$res->asrespuesta}}...</a>
+                  <td><a href="" data-target="#modal-respuesta-{{$res->idrespuestaobservacion}}" data-id="{{$res->idrespuestaobservacion}}" data-asunto="{{$res->asuntorespuesta}}" data-observacion="{{$res->asuntoobservacion}}" data-descripcion="{{$res->descripcionrespuesta}}" data-fecha="{{$res->created_at}}" data-toggle="modal" class="openrespuesta">{{$res->asrespuesta}}...</a>
                   <td>{{$res->created_at}}</td>
                 </tr>
                 @include('admin.evaluacion.modalrespuesta')
@@ -354,14 +351,13 @@ $(document).ready(function(){
 
 // MOSTRAR DOCUMENTO DE OBSERVACION ***********************************
 
-$('#modal-observacion').on("show.bs.modal", function (e) {
 
-  var idobs = $(e.relatedTarget).data('id'); 
+$(document).on("click", ".openobservacion", function () {
+
+ var idobs = $(this).data('id'); 
   var _token = $('input[name="_token"]').val();
 
-
 //DOCUMENTOS
-
    $.ajax({
     url:"{{ route('admin.evaluacion.mostrardocumento') }}",
     method:"POST",
@@ -369,12 +365,37 @@ $('#modal-observacion').on("show.bs.modal", function (e) {
   
     success:function(result)
     {
-       $('#documentosobservacion').html(result);
+      $(".modal-body #documentosobservacion").html(result);
     }
    })
 
 });
 // FIN MOSTRAR  DOCUMENTO DE OBSERVACION ***********************************
+
+// MOSTRAR DOCUMENTO DE RESPUESTA ***********************************
+
+
+$(document).on("click", ".openrespuesta", function () {
+
+
+
+ var idresp = $(this).data('id'); 
+  var _token = $('input[name="_token"]').val();
+
+//DOCUMENTOS
+   $.ajax({
+    url:"{{ route('admin.evaluacion.mostrarrespuesta') }}",
+    method:"POST",
+    data:{idresp:idresp, _token:_token},
+  
+    success:function(result)
+    {
+      $(".modal-body #documentosrespuesta").html(result);
+    }
+   })
+
+});
+// FIN MOSTRAR  DOCUMENTO DE RESPUESTA ***********************************
 </script>
 
 @endsection
