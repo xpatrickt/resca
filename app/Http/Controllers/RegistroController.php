@@ -147,7 +147,7 @@ class RegistroController extends Controller
    $output .= '<tr><td>'.$row->provincia.'</td>
                    <td>'.$row->distrito.'</td>
                    <td>'.$row->descripciondelimitacion.'</td> 
-                   <td>x:'.$row->coordenadasx.' y:'. $row->coordenadasy.'</td>
+                   <td>x: '.$row->coordenadasx.' y: '. $row->coordenadasy.'</td>
                 </tr>';
        }
       $output .= '</tbody>';

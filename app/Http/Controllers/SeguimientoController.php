@@ -51,18 +51,16 @@ class SeguimientoController extends Controller
            ->where('condicion','=','1')->get();
         }
         else{
-           $proyectos=DB::table('proyecto as p')
-           ->join('estudio as e','p.idproyecto','=','e.idproyecto')
-           ->join('evaluacionestudio as ee','e.idestudio','=','ee.idestudio')
-           ->join('persona as pe','pe.idpersona','=','ee.idpersona')
+          $proyectos=DB::table('proyecto as p')
+            ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
+            ->join('persona as pe','rp.idpersona','=','pe.idpersona')
            ->join('users as u','u.idpersona','=','pe.idpersona')
            ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto')
            ->where('u.id','=',$idusuario)
            ->where('p.condicion','=','1')
            ->where('pe.condicion','=','1')
-           ->where('e.condicion','=','1')
            ->where('u.condicion','=','1')
-            ->distinct()
+          ->distinct()
            ->get();
        }
        //END LISTAR PROYECTOS
@@ -113,17 +111,15 @@ class SeguimientoController extends Controller
         }
         else{
            $proyectos=DB::table('proyecto as p')
-           ->join('estudio as e','p.idproyecto','=','e.idproyecto')
-           ->join('evaluacionestudio as ee','e.idestudio','=','ee.idestudio')
-           ->join('persona as pe','pe.idpersona','=','ee.idpersona')
+            ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
+            ->join('persona as pe','rp.idpersona','=','pe.idpersona')
            ->join('users as u','u.idpersona','=','pe.idpersona')
            ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto')
            ->where('u.id','=',$idusuario)
            ->where('p.condicion','=','1')
            ->where('pe.condicion','=','1')
-           ->where('e.condicion','=','1')
            ->where('u.condicion','=','1')
-           ->distinct()
+          ->distinct()
            ->get();
        }
        //END LISTAR PROYECTOS
@@ -133,10 +129,10 @@ class SeguimientoController extends Controller
         $estudios=DB::table('estudio as e')
                   ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
                   ->select('e.idestudio','e.nombreestudio') 
-                  ->whereRaw('es.idestadoestudio IN (select MAX(es.idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
-                  ->where('e.idproyecto', $idproyecto)
-                  ->where('es.idestado','>','2')
-                  ->where('es.idestado','<','5')
+                  ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+                   ->where('e.idproyecto', $idproyecto)
+                   ->where('es.idestado','>','2')
+                   ->where('es.idestado','<','5')
                   ->where('e.condicion','=','1')->get();
                     //detalle proyecto
                     $proyecto=Proyecto::findOrFail($idproyecto);
@@ -257,7 +253,7 @@ class SeguimientoController extends Controller
      ->join('estudio as e', 'e.idproyecto','=','p.idproyecto')
      ->join('estadoestudio as est','est.idestudio','=','e.idestudio')
      ->select('e.idestudio','e.nombreestudio')
-      ->whereRaw('est.idestadoestudio IN (select MAX(est.idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+     ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
        ->where('e.idproyecto', $idproyecto)
        ->where('est.idestado','>','2')
        ->where('est.idestado','<','5')

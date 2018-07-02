@@ -8,6 +8,7 @@ use resca\Estudio;
 use resca\Departamento;
 use resca\Provincia;
 use resca\Evaluacionestudio;
+use resca\Estadoestudio;
 use resca\Entidad;
 use resca\Persona;
 use Illuminate\Support\Facades\Redirect;
@@ -128,10 +129,10 @@ class EvaluacionController extends Controller
         $estudios=DB::table('estudio as e')
                   ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
                   ->select('e.idestudio','e.nombreestudio') 
-                  ->whereRaw('es.idestadoestudio IN (select MAX(es.idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
-                  ->where('e.idproyecto', $idproyecto)
-                  ->where('es.idestado','>','2')
-                  ->where('es.idestado','<','5')
+                   ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+                   ->where('e.idproyecto', $idproyecto)
+                   ->where('es.idestado','>','2')
+                   ->where('es.idestado','<','5')
                   ->where('e.condicion','=','1')->get();
                     //detalle proyecto
                     $proyecto=Proyecto::findOrFail($idproyecto);
@@ -198,9 +199,23 @@ class EvaluacionController extends Controller
      return Redirect::to('admin/evaluacion');
 }
 }
-
-      public function destroy($iddepartamento){
-        
+    //RECHAZAR ESTUDIO
+    public function destroy($idestudio){
+       $estadoestudio=new Estadoestudio;
+        $estadoestudio->idestudio=$idestudio;
+        $estadoestudio->idestado='6';
+        $estadoestudio->condicion='1';
+        $estadoestudio->save();
+      return Redirect::to('admin/evaluacion'); 
+    }
+    //ACEPTAR ESTUDIO
+    public function update($idestudio){
+        $estadoestudio=new Estadoestudio;
+        $estadoestudio->idestudio=$idestudio;
+        $estadoestudio->idestado='5';
+        $estadoestudio->condicion='1';
+        $estadoestudio->save();
+      return Redirect::to('admin/evaluacion'); 
     }
 
      public function show($idproyecto){
@@ -219,7 +234,7 @@ class EvaluacionController extends Controller
      ->join('estudio as e', 'e.idproyecto','=','p.idproyecto')
      ->join('estadoestudio as est','est.idestudio','=','e.idestudio')
      ->select('e.idestudio','e.nombreestudio')
-      ->whereRaw('est.idestadoestudio IN (select MAX(est.idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+      ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
        ->where('e.idproyecto', $idproyecto)
        ->where('est.idestado','>','2')
        ->where('est.idestado','<','5')

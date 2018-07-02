@@ -1,4 +1,4 @@
- <div class="modal modal-default fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-detalle">
+ <div class="modal modal-default fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-detalledocumento-{{$est->idestudio}}">
       {{Form::Open(array('action'=>array('RegistroController@destroy',$est->idestudio),'method'=>'delete'))}}
           <div class="modal-dialog">
             <div class="modal-content" >
@@ -12,31 +12,15 @@
 
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#delimitaciones" data-toggle="tab">Delimitaciones de Estudio</a></li>
-              <li><a href="#documentos" data-toggle="tab">Documentos de Estudio</a></li>
+              <li class="active"><a href="#documentos" data-toggle="tab">Documentos de Estudio</a></li>
             </ul>
             <div class="tab-content">
 
-     <!--TAB DELIMITACION *******************************************************-->
-
-          <div class="active tab-pane" id="delimitaciones">
-            <div class="box-body no-padding">
-            <div class="table-responsive mailbox-messages">
-            <table id="tabladelimitacion" class="table table-hover table-striped">
-          
-            </table>
-           </div>
-          </div>
-          </div>
-      <!-- FIN TAB DELIMITACION-->
       <!--TAB DOCUMENTO*******************************************************-->
-          <div class="tab-pane" id="documentos">
+          <div class="active tab-pane" id="documentos">
             <div class="box-body no-padding">
-
               <div class="table-responsive mailbox-messages">
-
              <table id="tabladocumento" class="table table-hover table-striped">
-              
             </table>
            </div>
            </div>

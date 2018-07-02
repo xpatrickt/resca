@@ -17,23 +17,15 @@ treeview
 
             <div class="col-md-4">
 
-              <!--
-              <a href="" data-target="#modal-agregarobservacion" data-toggle="modal" class="btn btn-primary btn-block margin-bottom">Agregar Observación</a>
-                 
-            @include('admin.evaluacion.modalagregarobservacion')
-               -->
 
-   {{ Form::open(['route' =>'admin.observacionevaluacion.index']) }}
-   {{Form::token()}}
-   @if($estudio!=null)
-   <input type="hidden" id="idestudio" name="idestudio" class="form-control" value="{{$estudio->idestudio}}">
-   <input type="hidden" id="idproyecto" name="idproyecto" class="form-control" value="{{$proyecto->idproyecto}}">
-    <button type="submit" class="btn btn-primary btn-block margin-bottom">Agregar Observación</button>
-   @else
-   <button type="submit" class="btn btn-primary btn-block margin-bottom" disabled>Agregar Observación</button>
-   @endif
-   
-   {!!Form::close()!!}
+         @if($estudio!=null)
+
+             <a href="" data-target="#modal-aprobar-{{$estudio->idestudio}}" data-toggle="modal"><button class="btn btn-success btn-block margin-bottom">Aprobar Estudio</button></a>
+
+             <a href="" data-target="#modal-desaprobar-{{$estudio->idestudio}}" data-toggle="modal"><button class="btn btn-danger btn-block margin-bottom">Desaprobar Estudio</button></a>
+             @include('admin.evaluacion.modalaprobar')
+             @include('admin.evaluacion.modaldesaprobar')
+         @endif
 
 
    {{ Form::open(['route' => 'admin.evaluacion.store']) }}
@@ -127,10 +119,21 @@ treeview
            {!!Form::close()!!}
             </div>
 
+       <div class="col-md-8">
+             {{ Form::open(['route' =>'admin.observacionevaluacion.index']) }}
+             {{Form::token()}}
+             @if($estudio!=null)
+             <input type="hidden" id="idestudio" name="idestudio" class="form-control" value="{{$estudio->idestudio}}">
+             <input type="hidden" id="idproyecto" name="idproyecto" class="form-control" value="{{$proyecto->idproyecto}}">
+              <button type="submit" class="btn btn-primary btn-block margin-bottom">Agregar Observación</button>
+             @endif
+             
+             {!!Form::close()!!}
+
 
      <!--TABS DOCUMENTO OBSERVACION Y LEVANTAMIENTO DE OBSERVACION*******************************************************-->
 
-            <div class="col-md-8">
+            
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#documentos" data-toggle="tab">Documentos de Estudio</a></li>
@@ -143,7 +146,7 @@ treeview
 
           <div class="active tab-pane" id="documentos">
             <div class="box-header with-border">
-              <h3 class="box-title">Documentos : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
+              <h5 >Documentos : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h5>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -188,7 +191,7 @@ treeview
       <!--TAB OBSERVACIONES*******************************************************-->
           <div class="tab-pane" id="observaciones">
           <div class="box-header with-border">
-              <h3 class="box-title">Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
+              <h5>Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h5>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -234,7 +237,7 @@ treeview
           <!--TAB RESPUESTAS*******************************************************-->
           <div class="tab-pane" id="respuestas">
             <div class="box-header with-border">
-              <h3 class="box-title">Levantamiento de Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h3>
+              <h5>Levantamiento de Observaciones : @if($estudio!=null) {{$estudio->nombreestudio}} @endif</h5>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">

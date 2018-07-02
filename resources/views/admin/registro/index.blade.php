@@ -46,10 +46,14 @@ treeview
                   <td>{{ $est->estado}}</td>
                   
                   <td>
-                     <a href="" data-target="#modal-detalle" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></button></a>
+                  <a href="" data-target="#modal-detalledelimitacion-{{$est->idestudio}}" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledelimitacion"><button class="btn btn-success"><span class="glyphicon glyphicon-map-marker"></span></button></a>
+                  <a href="" data-target="#modal-detalledocumento-{{$est->idestudio}}" data-idd="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledocumento"><button class="btn btn-info"><span class="glyphicon glyphicon-folder-open"></span></button></a>
                   <a href="{{URL::action('RegistroController@show',$est->idestudio)}}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button></a>
                    <a href="" data-target="#modal-enviar-{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn btn-primary">ENVIAR</button></a>
                 @include('admin.registro.modalenviar')
+                @include('admin.registro.modaldetalledocumento')
+                @include('admin.registro.modaldetalledelimitacion')
+               
                 </td>
                 </tr>
                @endforeach
@@ -68,7 +72,7 @@ treeview
           </table>
   </div>
   @if(count($estudios)!=0)
-  @include('admin.registro.modaldetalle')
+  
   @endif
   
  
@@ -91,9 +95,30 @@ treeview
 
 // MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
 
-$('#modal-detalle').on("show.bs.modal", function (e) {
+$(document).on("click", ".opendetalledocumento", function () {
 
-  var idest = $(e.relatedTarget).data('id'); 
+  var idest = $(this).data('idd'); 
+  var _token = $('input[name="_token"]').val();
+
+//DOCUMENTOS
+
+   $.ajax({
+    url:"{{ route('admin.registro.listardocumento') }}",
+    method:"POST",
+    data:{idest:idest, _token:_token},
+  
+    success:function(result)
+    {
+      $(".modal-body #tabladocumento").html(result);
+    }
+   })
+
+});
+
+
+$(document).on("click", ".opendetalledelimitacion", function () {
+
+  var idest = $(this).data('id'); 
   var _token = $('input[name="_token"]').val();
 
 //DELIMITACION
@@ -105,25 +130,14 @@ $('#modal-detalle').on("show.bs.modal", function (e) {
   
     success:function(result)
     {
-       $('#tabladelimitacion').html(result);
+      $(".modal-body #tabladelimitacion").html(result);
 
-    }
-   })
-
-//DOCUMENTOS
-
-   $.ajax({
-    url:"{{ route('admin.registro.listardocumento') }}",
-    method:"POST",
-    data:{idest:idest, _token:_token},
-  
-    success:function(result)
-    {
-       $('#tabladocumento').html(result);
     }
    })
 
 });
+
+
 // FIN MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
 
 
