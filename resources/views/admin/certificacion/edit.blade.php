@@ -75,6 +75,7 @@ treeview
                 <button type="submit" class="btn btn-primary">Registrar</button>
                  <a href="{{ url()->previous() }}" class="btn btn-danger">Cancelar</a>
               </div>
+              {{ csrf_field() }} 
         {!!Form::close()!!}
             </div>
   </div>
