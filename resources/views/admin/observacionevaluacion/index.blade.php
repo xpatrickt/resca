@@ -17,15 +17,15 @@ treeview
    <div class="box-header with-border">
   <h3 class="box-tittle">Observación</h3>
   <h4 class="box-tittle">Estudio: {{$nombreestudio}}</h4>
-  @if(count($errors)>0)
-  <div class="alert alert-danger">
-   <ul>
-    @foreach($errors->all() as $error)
-    <li>{{$error}}</li>
-     @endforeach
-    </ul>
-    </div>
-    @endif
+       @if(count($errors)>0)
+          <div class="alert alert-danger">
+           <ul>
+         @foreach($errors->all() as $error)
+         <li>{{$error}}</li>
+         @endforeach
+         </ul>
+         </div>
+        @endif
     </div>
       <div class="box-body">
     {{ Form::open(['route' =>'admin.observacionevaluacion.store']) }}

@@ -9,6 +9,7 @@ use resca\Estudio;
 use resca\Estadoestudio;
 use resca\Proyecto;
 use resca\Http\Requests\ObservacionevaluacionFormRequest;
+use resca\Http\Requests\DocumentoobservacionFormRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use DB;
@@ -81,12 +82,11 @@ class ObservacionevaluacionController extends Controller
 
            return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto->idproyecto,"estudio"=>$estudio->idestudio,"nombreestudio"=>$estudio->nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion,"documentos"=>$documentos]);
         } 
-      
            
    }
 
    // GUARDAR DOCUMENTOS OBSERVACION
-    public function update(Request $request,$idobservacion){
+    public function update(DocumentoobservacionFormRequest $request,$idobservacion){
       $asuntoobservacion=$request->get('asunto');
       $descripcionobservacion=$request->get('descripcion');
       $proyecto=$request->get('proyec');

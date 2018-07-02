@@ -4,7 +4,7 @@ namespace resca\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ObservacionevaluacionFormRequest extends FormRequest
+class DocumentorespuestaFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class ObservacionevaluacionFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'asuntoobservacion'=>'required',
-        'descripcionobservacion'=>'required',
+        'descripcion'=>'required|max:500',
+        'urlresp'=>'required',
+        'tipodocumento'=>'required|max:50',
         ];
     }
 }

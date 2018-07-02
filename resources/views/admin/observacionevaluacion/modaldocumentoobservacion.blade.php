@@ -2,6 +2,17 @@
     
           <div class="modal-dialog">
             <div class="modal-content" >
+
+          @if(count($errors)>0)
+          <div class="alert alert-danger">
+           <ul>
+         @foreach($errors->all() as $error)
+         <li>{{$error}}</li>
+         @endforeach
+         </ul>
+         </div>
+        @endif
+
            {!!Form::model($estudio,['route'=>['admin.observacionevaluacion.update',$idobservacion],'method' =>'PUT','files'=>'true'])!!} 
              {{Form::token()}}
 
