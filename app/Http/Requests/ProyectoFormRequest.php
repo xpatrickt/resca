@@ -24,8 +24,8 @@ class ProyectoFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'nombre'=>'required|max:255',
-        'descripcion'=>'required|max:500',
+        'nombre'=>'required|max:500',
+        'descripcion'=>'required|max:2000',
         'objetivo'=>'required|max:500',
         'beneficiarios'=>'required|integer|between:1,999999999',
         'identidad'=>'required',
