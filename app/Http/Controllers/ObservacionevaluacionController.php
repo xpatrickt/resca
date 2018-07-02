@@ -42,6 +42,26 @@ class ObservacionevaluacionController extends Controller
 
 }
 
+  // MOSTRAR PARA AGREGAR OBSERVACION
+     
+     public function edit($idestudio){
+        $estudio=Proyecto::findOrFail($idestudio);
+        $idproyecto=$estudio->idproyecto; 
+        
+        if($request){
+
+          if($request->get('')){
+
+          }
+          else{
+          $departamentos=DB::table('departamento')->where('condicion','=','1')->get();
+           return view("admin.provincia.edit",["provincia"=>$provincia,"departamentos"=>$departamentos]);
+          }
+
+        } 
+    }
+
+
   // GUARDAR OBSERVACION DE EVALUACION
   public function store(Request $request){
     $asuntoobservacion=$request->get('asuntoobservacion');
