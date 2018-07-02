@@ -47,6 +47,13 @@ class ObservacionevaluacionController extends Controller
      public function edit($idestudio){
         $estudio=Proyecto::findOrFail($idestudio);
         $idproyecto=$estudio->idproyecto; 
+        $asunto="";
+        $descripcion="";
+        $documentos=DB::table('documentoobservacion')
+                   ->where('estudio','=',$idestudio)
+                   ->where('idobservacion','=','0')
+                   ->where('condicion','=','1')
+                  ->orderBy('iddocumentoobservacion', 'desc') ->get();
         
         if($request){
 
