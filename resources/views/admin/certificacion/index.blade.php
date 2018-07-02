@@ -23,7 +23,7 @@ treeview
 			<h3 class="box-title">Agregar Certificado a los estudios &nbsp &nbsp</h3>
 			</div>
 		<div class="box-body">
-
+        <div class="table-responsive mailbox-messages">
           <table id="tabla" class="table table-bordered table-striped">
            <thead>
                 <tr>
@@ -62,7 +62,7 @@ treeview
                 </tr>
                 </tfoot>
           </table>
-
+        </div>
 	</div>
 
 		</div>

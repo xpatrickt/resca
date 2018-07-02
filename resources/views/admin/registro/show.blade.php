@@ -26,7 +26,7 @@ treeview
   <div class="box">
    <div class="box-header">
     <div class="col-md-9">
-  <h3 class="box-tittle">Estudio: {{$estudio->nombreestudio}}</h3>
+  <h3 class="box-tittle">Estudio: {{$estudio->nombreestudio}} </h3>
    @if(count($errors)>0)
   <div class="alert alert-danger">
    <ul>
@@ -38,7 +38,7 @@ treeview
     @endif
 </div>
   <div class="col-md-3">
- <a href="{{URL::action('RegistroController@index')}}"><button class="btn btn-primary btn-block margin-bottom">ATRAS</button></a>
+ <a href="{{URL::action('RegistroController@index')}}"><button class="btn btn-primary btn-block margin-bottom">Atrás</button></a>
 </div>
  
     </div>

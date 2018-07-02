@@ -23,7 +23,7 @@ active treeview
 			<h3 class="box-title">Asignar Responsable a los Proyectos &nbsp &nbsp</h3>
 			</div>
 		<div class="box-body">
-
+        <div class="table-responsive mailbox-messages">
           <table id="tabla" class="table table-bordered table-striped">
            <thead>
                 <tr>
@@ -39,11 +39,11 @@ active treeview
                   <td width="1px">{{ $pro->idproyecto}}</td>
                   <td>{{ $pro->nombreproyecto}}</td>
                   <td>{{ $pro->responsable}}</td>
+                  <td>
                   @if(!$pro->responsable)
-                  <td><a href="{{URL::action('ResponsableproyectoController@edit',$pro->idproyecto)}}"><button class="btn btn-success"><span class="glyphicon glyphicon-user"></span></button></a>
+                  <a href="{{URL::action('ResponsableproyectoController@edit',$pro->idproyecto)}}"><button class="btn btn-success"><span class="glyphicon glyphicon-user"></span></button></a>
                   @else
-                  <td><a href=""><button class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-user"></span></button></a>
-
+                  <a href=""><button class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-user"></span></button></a>
                   @endif
                 </td>
                 </tr>
@@ -58,7 +58,7 @@ active treeview
                  </tr>
                 </tfoot>
           </table>
-
+        </div>
 	</div>
 
 		</div>

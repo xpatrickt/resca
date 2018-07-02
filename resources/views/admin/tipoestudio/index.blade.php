@@ -20,10 +20,10 @@ treeview
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Listado de Tipos de Estudio &nbsp &nbsp &nbsp <a href="{{ route('admin.tipoestudio.create') }}"><button type="button" class="btn btn-primary">+ Nueva Actividad</button></a></h3>
+			<h3 class="box-title">Listado de Tipos de Estudio &nbsp &nbsp &nbsp <a href="{{ route('admin.tipoestudio.create') }}"><button type="button" class="btn btn-primary">+ Nuevo Tipo de Estudio</button></a></h3>
 			</div>
 		<div class="box-body">
-
+   <div class="table-responsive mailbox-messages">
 		<table id="tabla" class="table table-bordered table-striped">
 			     <thead>
                 <tr>
@@ -56,7 +56,7 @@ treeview
                 </tr>
                 </tfoot>
 		</table>
-
+   </div>
 	</div>
 
 		</div>

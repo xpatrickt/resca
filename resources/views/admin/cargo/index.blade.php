@@ -24,7 +24,7 @@ treeview
 			<h3 class="box-title">Listado de Cargos &nbsp &nbsp &nbsp <a href="{{ route('admin.cargo.create') }}"><button type="button" class="btn btn-primary">+ Nuevo Cargo</button></a></h3>
 			</div>
 		<div class="box-body">
-
+    <div class="table-responsive mailbox-messages">
 		<table id="tabla" class="table table-bordered table-striped">
 			     <thead>
                 <tr>
@@ -54,7 +54,7 @@ treeview
                  </tr>
                 </tfoot>
 		</table>
-
+   </div>
 	</div>
 
 		</div>

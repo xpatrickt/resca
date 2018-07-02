@@ -23,7 +23,7 @@ treeview
 			<h3 class="box-title">Listado de Personas &nbsp &nbsp &nbsp <a href="{{ route('admin.persona.create') }}"><button type="button" class="btn btn-primary">+ Nueva Persona</button></a></h3>
 			</div>
 		<div class="box-body">
-
+    <div class="table-responsive mailbox-messages">
 		<table id="tabla" class="table table-bordered table-striped">
 			     <thead>
                 <tr>
@@ -74,7 +74,7 @@ treeview
                 </tr>
                 </tfoot>
 		</table>
-
+    </div>
 	</div>
 
 		</div>

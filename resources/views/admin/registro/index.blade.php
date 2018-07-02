@@ -22,7 +22,7 @@ treeview
       <h3 class="box-title">Registros Ambientales &nbsp &nbsp &nbsp <a href="registro/create"><button type="button" class="btn btn-primary">+ Nuevo Registro</button></a></h3>
       </div>
     <div class="box-body">
-
+        <div class="table-responsive mailbox-messages">
           <table id="tabla" class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -70,6 +70,7 @@ treeview
                 </tr>
                 </tfoot>
           </table>
+        </div>
   </div>
   @if(count($estudios)!=0)
   

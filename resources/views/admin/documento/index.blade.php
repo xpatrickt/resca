@@ -22,7 +22,7 @@ treeview
 			<h3 class="box-title">Documentos de estudio &nbsp &nbsp &nbsp <a href="{{ route('admin.documento.create') }}"><button type="button" class="btn btn-primary">+ Nuevo Documento</button></a></h3>
 			</div>
 		<div class="box-body">
-
+    <div class="table-responsive mailbox-messages">
 		<table id="tabla" class="table table-bordered table-striped">
 			     <thead>
                 <tr>
@@ -55,7 +55,7 @@ treeview
                 </tr>
                 </tfoot>
 		</table>
-
+   </div>
 	</div>
 
 		</div>
