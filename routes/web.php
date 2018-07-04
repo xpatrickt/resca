@@ -613,7 +613,7 @@ Route::get('admin/observacionevaluacion/{role}','ObservacionevaluacionController
 Route::delete('admin/observacionevaluacion/{role}','ObservacionevaluacionController@destroy')->name('admin.observacionevaluacion.destroy')
 ->middleware('permission:admin.observacionevaluacion.destroy');
 
-Route::get('admin/observacionevaluacion/{role}/edit','ObservacionevaluacionController@edit')->name('admin.observacionevaluacion.edit')
+Route::get('admin/observacionevaluacion/{role}','ObservacionevaluacionController@edit')->name('admin.observacionevaluacion.edit')
 ->middleware('permission:admin.observacionevaluacion.edit');
 
 

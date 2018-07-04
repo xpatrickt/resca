@@ -120,6 +120,13 @@ treeview
             </div>
 
        <div class="col-md-8">
+            
+         <!--Boton Agregar Observacion-->
+
+        @if($estudio!=null)
+         <a href="{{URL::action('ObservacionevaluacionController@edit',$estudio->idestudio)}}"><button class="btn btn-primary btn-block margin-bottom">Agregar Observación</button></a>
+        @endif
+         <!--
              {{ Form::open(['route' =>'admin.observacionevaluacion.index']) }}
              {{Form::token()}}
              @if($estudio!=null)
@@ -130,7 +137,7 @@ treeview
              
              {!!Form::close()!!}
 
-
+              -->
      <!--TABS DOCUMENTO OBSERVACION Y LEVANTAMIENTO DE OBSERVACION*******************************************************-->
 
             

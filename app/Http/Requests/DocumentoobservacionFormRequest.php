@@ -25,7 +25,7 @@ class DocumentoobservacionFormRequest extends FormRequest
     {
         return [
         'descripciondocumento'=>'required|max:500',
-        'urlobs'=>'required|mimes:pdf',
+        'documento'=>'required|mimes:pdf|max:10240',
         ];
     }
 }

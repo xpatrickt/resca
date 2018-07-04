@@ -8,6 +8,7 @@ use resca\Documentoobservacion;
 use resca\Estudio;
 use resca\Estadoestudio;
 use resca\Proyecto;
+use resca\Cargo;
 use resca\Http\Requests\ObservacionevaluacionFormRequest;
 use resca\Http\Requests\DocumentoobservacionFormRequest;
 use Illuminate\Support\Facades\Input;
@@ -44,18 +45,17 @@ class ObservacionevaluacionController extends Controller
 
   // MOSTRAR PARA AGREGAR OBSERVACION
      
-     public function edit($idestudio){
-        $estudio=Proyecto::findOrFail($idestudio);
+public function edit(Request $request,$idestudio){
+        $estudio=Estudio::findOrFail($idestudio);
         $idproyecto=$estudio->idproyecto; 
-        $asunto="";
-        $descripcion="";
+        $asuntoobservacion=$request->get('asunto');
+        $descripcionobservacion=$request->get('descripcion');
         $documentos=DB::table('documentoobservacion')
-                   ->where('estudio','=',$idestudio)
+                   ->where('idestudio','=',$idestudio)
                    ->where('idobservacion','=','0')
-                   ->where('condicion','=','1')
-                  ->orderBy('iddocumentoobservacion', 'desc') ->get();
-        
-           return view("admin.observacionevaluacion.edit",["idestudio"=>$idestudio,"departamentos"=>$departamentos]);
+                   ->where('condicion','=','1')->get();
+
+        return view("admin.observacionevaluacion.edit",["idestudio"=>$idestudio,"idproyecto"=>$idproyecto,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"documentos"=>$documentos]);
     }
 
 
@@ -103,7 +103,7 @@ class ObservacionevaluacionController extends Controller
    }
 
    // GUARDAR DOCUMENTOS OBSERVACION
-    public function update(DocumentoobservacionFormRequest $request,$idobservacion){
+   /* public function update(DocumentoobservacionFormRequest $request,$idobservacion){
       $asuntoobservacion=$request->get('asunto');
       $descripcionobservacion=$request->get('descripcion');
       $proyecto=$request->get('proyec');
@@ -125,13 +125,37 @@ class ObservacionevaluacionController extends Controller
         ->orderBy('iddocumentoobservacion', 'desc') ->get();
 
       return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto,"estudio"=>$estudio,"nombreestudio"=>$nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion,"documentos"=>$documentos]);
+    }*/
+
+    // GUARDAR DOCUMENTOS OBSERVACION
+    public function update(DocumentoobservacionFormRequest $request,$idestudio){
+      $documento=new Documentoobservacion;
+      $documento->desdocumentoobservacion=$request->get('descripciondocumento');
+      if(Input::hasFile('documento')){
+            $file=Input::file('documento');
+            $nombred=date("dmyHis"); 
+            $file->move(public_path().'/admin/documentos/observacion/',$nombred.'.pdf');
+            $documento->urldocumentoobservacion='/documentos/observacion/'.$nombred.'.pdf';
+        }
+      $documento->condicion='1';
+      $documento->idestudio=$idestudio;
+      $documento->idobservacion='0';
+      $documento->save();
+
+      $estudio=Estudio::findOrFail($idestudio);
+      $idproyecto=$estudio->idproyecto; 
+      $asuntoobservacion=$request->get('asunto');
+      $descripcionobservacion=$request->get('descripcion');
+      $documentos=DB::table('documentoobservacion')
+                   ->where('idestudio','=',$idestudio)
+                   ->where('idobservacion','=','0')
+                   ->where('condicion','=','1')->get();
+
+      return view("admin.observacionevaluacion.edit",["idestudio"=>$idestudio,"idproyecto"=>$idproyecto,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"documentos"=>$documentos]);
     }
 
       public function destroy($iddocumento){
-        $departamento=Documentoobservacion::findOrFail($iddocumento);
-        $departamento->condicion='0';
-        $departamento->update();
-        return Redirect::to('admin/departamento');
+       
     }
      public function show($idproyecto){
         //return Redirect::to('admin/evaluacion');
