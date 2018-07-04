@@ -26,7 +26,7 @@ class RegistrodocumentoFormRequest extends FormRequest
         return [
         'descripciondocumento'=>'required|max:500',
         'tipodocumento'=>'required',
-        'url'=>'required|mimes:pdf',
+        'documento'=>'required|mimes:pdf|max:10240',
         'idestudio2'=>'required',
         
         ];

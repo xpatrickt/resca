@@ -25,7 +25,7 @@ class DocumentorespuestaFormRequest extends FormRequest
     {
         return [
         'descripcion'=>'required|max:500',
-        'urlresp'=>'required',
+        'urlresp'=>'required|mimes:pdf|max:10240',
         'tipodocumento'=>'required|max:50',
         ];
     }
