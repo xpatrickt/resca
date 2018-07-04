@@ -62,6 +62,7 @@ treeview
 
   {{ Form::open(['route' =>'admin.observacionevaluacion.store'])}}
    {{Form::token()}}
+  
        <div class="col-md-12">     
       <input type="hidden" id="idestudio" name="idestudio" class="form-control" value="{{$idestudio}}" >
       <input type="hidden" id="idproyecto" name="idproyecto" class="form-control" value="{{$idproyecto}}" >

@@ -24,8 +24,8 @@ class ObservacionevaluacionFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'asuntoobservacion'=>'required',
-        'descripcionobservacion'=>'required',
+        'asuntoobservacion'=>'required|max:100',
+        'descripcionobservacion'=>'required|max:2000',
         ];
     }
 }

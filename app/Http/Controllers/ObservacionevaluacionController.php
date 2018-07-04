@@ -8,7 +8,6 @@ use resca\Documentoobservacion;
 use resca\Estudio;
 use resca\Estadoestudio;
 use resca\Proyecto;
-use resca\Cargo;
 use resca\Http\Requests\ObservacionevaluacionFormRequest;
 use resca\Http\Requests\DocumentoobservacionFormRequest;
 use Illuminate\Support\Facades\Input;
@@ -60,7 +59,7 @@ public function edit(Request $request,$idestudio){
 
 
   // GUARDAR OBSERVACION DE EVALUACION
-  public function store(Request $request){
+ /* public function store(Request $request){
     $asuntoobservacion=$request->get('asuntoobservacion');
     $descripcionobservacion=$request->get('descripcionobservacion');
        
@@ -99,6 +98,50 @@ public function edit(Request $request,$idestudio){
 
            return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto->idproyecto,"estudio"=>$estudio->idestudio,"nombreestudio"=>$estudio->nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion,"documentos"=>$documentos]);
         } 
+           
+   }*/
+
+    // GUARDAR OBSERVACION DE EVALUACION
+
+   public function store(ObservacionevaluacionFormRequest $request){
+       $asuntoobservacion=$request->get('asuntoobservacion');
+       $descripcionobservacion=$request->get('descripcionobservacion');
+       $idestudio=$request->get('idestudio');
+       $idproyecto=$request->get('idproyecto');
+
+          $evaluacionestudio=DB::table('evaluacionestudio')->where('idestudio','=',$idestudio)->where('condicion','=','1')
+        ->orderBy('idevaluacionestudio', 'desc') ->limit(1)->get();
+          foreach($evaluacionestudio as $e)
+          {
+             $idevaluacion=$e->idevaluacionestudio;
+           }
+           //agregando observacion
+            $observacion=new Observacionevaluacion;
+            $observacion->asuntoobservacion=$asuntoobservacion;
+            $observacion->descripcionobservacion=$descripcionobservacion;
+            $observacion->condicion='1';
+            $observacion->idevaluacionestudio=$idevaluacion;
+            $observacion->save();
+               
+            $idobservacion=$observacion->idobservacion;
+            //agregando estado
+
+            $estadoest = Estadoestudio::select('idestado')
+                     ->where('idestudio','=',$idestudio)
+                     ->orderby('created_at','DESC')
+                     ->first();
+           $estado=$estadoest->idestado;
+            
+             if($estado=='3')
+              {
+                $estadoestudio=new Estadoestudio;
+                $estadoestudio->idestudio=$idestudio;
+                $estadoestudio->idestado='4';
+                $estadoestudio->condicion='1';
+                $estadoestudio->save();
+               }
+           return Redirect::to('admin/evaluacion');
+
            
    }
 
