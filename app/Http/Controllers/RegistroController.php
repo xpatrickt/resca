@@ -273,8 +273,8 @@ class RegistroController extends Controller
     public function update(RegistrodocumentoFormRequest $request,$idestudio){
       $documento=new Documentoestudio;
       $documento->descdocumentoestudio=$request->get('descripciondocumento');
-      if(Input::hasFile('documento')){
-            $file=Input::file('documento');
+      if(Input::hasFile('url')){
+            $file=Input::file('url');
             $nombred=date("dmyHis"); 
             $file->move(public_path().'/admin/documentos/estudio/',$nombred.'.pdf');
             $documento->urldocumentoestudio='/documentos/estudio/'.$nombred.'.pdf';
