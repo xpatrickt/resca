@@ -26,9 +26,9 @@ class EstudioFormRequest extends FormRequest
         return [
         'nombre'=>'required|max:100',
         'descripcion'=>'required|max:255',
-        'idproyecto'=>'required|max:10|integer',
-        'idtipoevaluacion'=>'required|max:10|integer',
-        'idtipoestudio'=>'required|max:10|integer',
+        'idproyecto'=>'required',
+        'idtipoevaluacion'=>'required',
+        'idtipoestudio'=>'required',
         ];
     }
 }
