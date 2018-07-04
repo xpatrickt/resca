@@ -170,8 +170,8 @@ treeview
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="url">Subir Documento</label>
-                  <input type="file" name="url" id="url" class="form-control" placeholder="Seleccione Documento">
+                  <label for="documento">Subir Documento</label>
+                  <input type="file" name="documento" id="documento" class="form-control" placeholder="Seleccione Documento">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block margin-bottom">Registrar</button>
              </div>
