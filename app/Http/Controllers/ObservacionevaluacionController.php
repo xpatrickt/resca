@@ -57,50 +57,6 @@ public function edit(Request $request,$idestudio){
         return view("admin.observacionevaluacion.edit",["idestudio"=>$idestudio,"idproyecto"=>$idproyecto,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"documentos"=>$documentos]);
     }
 
-
-  // GUARDAR OBSERVACION DE EVALUACION
- /* public function store(Request $request){
-    $asuntoobservacion=$request->get('asuntoobservacion');
-    $descripcionobservacion=$request->get('descripcionobservacion');
-       
-    if($asuntoobservacion!="" && $descripcionobservacion!=""){
-
-       $idestudio=$request->get('idestudio');
-       $idproyecto=$request->get('idproyecto');
-       $idobservacion=$request->get('idobservacion');
-       $estudio=Estudio::findOrFail($idestudio);
-       $proyecto=Proyecto::findOrFail($idproyecto);
-
-         if($idobservacion=="0"){
-          $evaluacionestudio=DB::table('evaluacionestudio')->where('idestudio','=',$idestudio)->where('condicion','=','1')
-        ->orderBy('idevaluacionestudio', 'desc') ->limit(1)->get();
-          foreach($evaluacionestudio as $e)
-          {
-             $idevaluacion=$e->idevaluacionestudio;
-           }
-            $observacion=new Observacionevaluacion;
-            $observacion->asuntoobservacion=$asuntoobservacion;
-            $observacion->descripcionobservacion=$descripcionobservacion;
-            $observacion->condicion='1';
-            $observacion->idevaluacionestudio=$idevaluacion;
-            $observacion->save();
-               
-            $idobservacion=$observacion->idobservacion;
-
-            $estadoestudio=new Estadoestudio;
-            $estadoestudio->idestudio=$idestudio;
-            $estadoestudio->idestado='4';
-            $estadoestudio->condicion='1';
-            $estadoestudio->save();
-           }
-           $documentos=DB::table('documentoobservacion')->where('idobservacion','=',$idobservacion)->where('condicion','=','1')
-        ->orderBy('iddocumentoobservacion', 'desc') ->get(); 
-
-           return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto->idproyecto,"estudio"=>$estudio->idestudio,"nombreestudio"=>$estudio->nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion,"documentos"=>$documentos]);
-        } 
-           
-   }*/
-
     // GUARDAR OBSERVACION DE EVALUACION
 
    public function store(ObservacionevaluacionFormRequest $request){
@@ -140,35 +96,20 @@ public function edit(Request $request,$idestudio){
                 $estadoestudio->condicion='1';
                 $estadoestudio->save();
                }
-           return Redirect::to('admin/evaluacion');
+
+               $documentos=DB::table('documentoobservacion')
+                   ->where('idestudio','=',$idestudio)
+                   ->where('idobservacion','=','0')
+                   ->where('condicion','=','1')->get();
+                 foreach ($documentos as $doc){
+                   $documento=Documentoobservacion::findOrFail($doc->iddocumentoobservacion);
+                   $documento->idobservacion=$idobservacion;
+                   $documento->update();
+                   }
+           return view("admin.observacionevaluacion.aceptar",["estudio"=>$idestudio,"proyecto"=>$idproyecto]);
 
            
    }
-
-   // GUARDAR DOCUMENTOS OBSERVACION
-   /* public function update(DocumentoobservacionFormRequest $request,$idobservacion){
-      $asuntoobservacion=$request->get('asunto');
-      $descripcionobservacion=$request->get('descripcion');
-      $proyecto=$request->get('proyec');
-      $estudio=$request->get('estu');
-      $nombreestudio=$request->get('nestu');
-      $documento=new Documentoobservacion;
-      $documento->desdocumentoobservacion=$request->get('descripciondocumento');
-      if(Input::hasFile('urlobs')){
-            $file=Input::file('urlobs');
-            $nombred=date("dmyHis"); 
-            $file->move(public_path().'/admin/documentos/observacion/',$nombred.'.pdf');
-            $documento->urldocumentoobservacion='/documentos/observacion/'.$nombred.'.pdf';
-        }
-      $documento->condicion='1';
-      $documento->idobservacion=$idobservacion;
-      $documento->save();
-
-      $documentos=DB::table('documentoobservacion')->where('idobservacion','=',$idobservacion)->where('condicion','=','1')
-        ->orderBy('iddocumentoobservacion', 'desc') ->get();
-
-      return view("admin.observacionevaluacion.index",["proyecto"=>$proyecto,"estudio"=>$estudio,"nombreestudio"=>$nombreestudio,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"idobservacion"=>$idobservacion,"documentos"=>$documentos]);
-    }*/
 
     // GUARDAR DOCUMENTOS OBSERVACION
     public function update(DocumentoobservacionFormRequest $request,$idestudio){
@@ -197,8 +138,22 @@ public function edit(Request $request,$idestudio){
       return view("admin.observacionevaluacion.edit",["idestudio"=>$idestudio,"idproyecto"=>$idproyecto,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"documentos"=>$documentos]);
     }
 
-      public function destroy($iddocumento){
-       
+      public function destroy(Request $request,$idestudio){
+        $iddocumento=$request->get('iddocumento');
+        $documento=Documentoobservacion::findOrFail($iddocumento);
+        $documento->condicion='0';
+        $documento->update();
+        
+        $estudio=Estudio::findOrFail($idestudio);
+        $idproyecto=$estudio->idproyecto; 
+        $asuntoobservacion=$request->get('asunto1');
+        $descripcionobservacion=$request->get('descripcion1');
+        $documentos=DB::table('documentoobservacion')
+                     ->where('idestudio','=',$idestudio)
+                     ->where('idobservacion','=','0')
+                     ->where('condicion','=','1')->get();
+
+      return view("admin.observacionevaluacion.edit",["idestudio"=>$idestudio,"idproyecto"=>$idproyecto,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"documentos"=>$documentos]);  
     }
      public function show($idproyecto){
         //return Redirect::to('admin/evaluacion');
