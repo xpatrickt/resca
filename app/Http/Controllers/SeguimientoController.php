@@ -3,6 +3,7 @@
 namespace resca\Http\Controllers;
 
 use Illuminate\Http\Request;
+use resca\Http\Requests\RespuestaFormRequest;
 use resca\Proyecto;
 use resca\Estudio;
 use resca\Departamento;
@@ -10,6 +11,7 @@ use resca\Provincia;
 use resca\Evaluacionestudio;
 use resca\Documentoestudio;
 use resca\Respuestaevaluacion;
+use resca\Observacionevaluacion;
 use resca\Entidad;
 use resca\Persona;
 use Illuminate\Support\Facades\Redirect;
@@ -204,18 +206,29 @@ class SeguimientoController extends Controller
       public function destroy($iddepartamento){
         
     }
+    public function edit($idobservacion){
+        $observacion=Observacionevaluacion::findOrFail($idobservacion);
+        $idevaluacionestudio=$observacion->idevaluacionestudio;
+        $evaluacionestudio=Evaluacionestudio::findOrFail($idevaluacionestudio);
+        $idestudio=$evaluacionestudio->idestudio;
+        $estudio=Estudio::findOrFail($idestudio);
+        $idproyecto=$estudio->idproyecto; 
+        $tipodocumento=DB::table('documento')->where('condicion','=','1')->get();
+
+        return view("admin.seguimiento.respuesta",["idestudio"=>$idestudio,"idproyecto"=>$idproyecto,"observacion"=>$observacion,"tipodocumento"=>$tipodocumento]);
+    }
 
      public function show($idproyecto){
         return Redirect::to('admin/seguimiento');
     }
-     public function update1(Request $request,$idobservacion){
+     public function update1(RespuestaFormRequest $request,$idobservacion){
       $estudio=$request->get('estudioresp');
       $proyecto=$request->get('proyectoresp');
        //agregar documento estudio
       $documento=new Documentoestudio;
       $documento->descdocumentoestudio=$request->get('descripciondocumento');
-      if(Input::hasFile('urlresp')){
-            $file=Input::file('urlresp');
+      if(Input::hasFile('documento')){
+            $file=Input::file('documento');
             $nombred=date("dmyHis"); 
             $file->move(public_path().'/admin/documentos/estudio/',$nombred.'.pdf');
             $documento->urldocumentoestudio='/documentos/estudio/'.$nombred.'.pdf';
@@ -230,7 +243,7 @@ class SeguimientoController extends Controller
        // agregar respuesta observacion
       $respuesta=new Respuestaevaluacion;
       $respuesta->asuntorespuesta=$request->get('asuntorespuesta');
-      $respuesta->descripcionrespuesta=$request->get('descripcionrespuest');
+      $respuesta->descripcionrespuesta=$request->get('descripcionrespuesta');
       $respuesta->condicion='1';
       $respuesta->idobservacion=$idobservacion;
       $respuesta->iddocumentoestudio=$iddocumento;

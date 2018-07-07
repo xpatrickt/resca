@@ -4,7 +4,7 @@ namespace resca\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DocumentorespuestaFormRequest extends FormRequest
+class RespuestaFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,12 @@ class DocumentorespuestaFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'descripcion'=>'required|max:500',
-        'urlresp'=>'required|mimes:pdf|max:10240',
-        'tipodocumento'=>'required|max:50',
+        'asuntorespuesta'=>'required|max:100',
+        'descripcionrespuesta'=>'required|max:250',
+        'descripciondocumento'=>'required|max:500',
+        'tipodocumento'=>'required|max:10',
+        'documento'=>'required|mimes:pdf|max:10240',
+        
         ];
     }
 }

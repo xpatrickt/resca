@@ -202,9 +202,8 @@ treeview
                   <td>{{$obs->nombre}}</td>
                   <td><a href="" data-target="#modal-observacion-{{$obs->idobservacion}}" data-id="{{$obs->idobservacion}}" data-evaluador="{{$obs->nombre}}" data-asunto="{{$obs->asuntoobservacion}}" data-descripcion="{{$obs->descripcionobservacion}}" data-fecha="{{$obs->created_at}}" data-toggle="modal" class="openobservacion">{{$obs->asobservacion}}...</a></td>
                   <td>{{$obs->created_at}}</td>
-                  <td><center><a href="" data-target="#modal-agregarrespuesta-{{$obs->idobservacion}}" data-observacion="{{$obs->asuntoobservacion}}" data-estudio="{{$estudio->idestudio}}" data-proyecto="{{$proyecto->idproyecto}}" data-toggle="modal"><i class="fa fa-envelope-o"></i></a></center></td>
+                  <td><center><a href="{{URL::action('SeguimientoController@edit',$obs->idobservacion)}}"><i class="fa fa-envelope-o"></i></a></center></td>
                 </tr>
-                 @include('admin.seguimiento.modalagregarrespuesta')
                  @include('admin.seguimiento.modalobservacion')
                 @endforeach
                @endif
