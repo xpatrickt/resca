@@ -8,6 +8,7 @@ use resca\Estudio;
 use resca\Departamento;
 use resca\Provincia;
 use resca\Evaluacionestudio;
+use resca\Respuestaevaluacion;
 use resca\Estadoestudio;
 use resca\Entidad;
 use resca\Persona;
@@ -326,6 +327,14 @@ class EvaluacionController extends Controller
     {
      
         $idrespuesta = $request->get('idresp'); // estudio
+
+      //cambiando condicion de respuesta (leido)
+
+      $respuesta=Respuestaevaluacion::findOrFail($idrespuesta);
+      $respuesta->condicion='2';
+      $respuesta->update();
+
+      //mostrando documentos en modal
 
        $data=DB::table('documentoestudio as d')
               ->join('respuestaobservacion as r','r.iddocumentoestudio','=','d.iddocumentoestudio')

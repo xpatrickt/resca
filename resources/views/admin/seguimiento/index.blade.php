@@ -198,7 +198,12 @@ treeview
                 @if($observaciones!=null)
                 @foreach ($observaciones as $obs)
                 <tr>
-                  <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
+                  <td><center>@if($obs->condicion==1)
+                    <i class="fa fa-star text-yellow"></i>
+                    @else
+                    <i class="fa fa-star-o text-yellow"></i>
+                    @endif
+                  </center></td>
                   <td>{{$obs->nombre}}</td>
                   <td><a href="" data-target="#modal-observacion-{{$obs->idobservacion}}" data-id="{{$obs->idobservacion}}" data-evaluador="{{$obs->nombre}}" data-asunto="{{$obs->asuntoobservacion}}" data-descripcion="{{$obs->descripcionobservacion}}" data-fecha="{{$obs->created_at}}" data-toggle="modal" class="openobservacion">{{$obs->asobservacion}}...</a></td>
                   <td>{{$obs->created_at}}</td>
@@ -242,7 +247,12 @@ treeview
                 @if($respuestasobservacion!=null)
                 @foreach ($respuestasobservacion as $res)
                 <tr>
-                  <td class="mailbox-star"><center><a href="#"><i class="fa fa-star text-yellow"></i></a></center></td>
+                  <td><center>@if($res->condicion==1)
+                    <i class="fa fa-star text-yellow"></i>
+                    @else
+                    <i class="fa fa-star-o text-yellow"></i>
+                    @endif
+                  </center></td>
                   <td>{{ $res->asobservacion}}...</td>
                   <td><a href="" data-target="#modal-respuesta-{{$res->idrespuestaobservacion}}" data-id="{{$res->idrespuestaobservacion}}" data-asunto="{{$res->asuntorespuesta}}" data-observacion="{{$res->asuntoobservacion}}" data-descripcion="{{$res->descripcionrespuesta}}" data-fecha="{{$res->created_at}}" data-toggle="modal" class="openrespuesta">{{$res->asrespuesta}}...</a>
                   <td>{{$res->created_at}}</td>

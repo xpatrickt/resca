@@ -249,7 +249,13 @@ class SeguimientoController extends Controller
       $respuesta->iddocumentoestudio=$iddocumento;
       $respuesta->save();
 
-        //return redirect()->route('admin.seguimiento.store');
+      //cambiar condicion de observacion (respondido)
+
+        $observacion=Observacionevaluacion::findOrFail($idobservacion);
+        $observacion->condicion='2';
+        $observacion->update();
+
+      
          return view("admin.seguimiento.aceptar",["estudio"=>$estudio,"proyecto"=>$proyecto]);
      }
 
