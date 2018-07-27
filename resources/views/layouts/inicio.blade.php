@@ -65,12 +65,12 @@
                         @auth
                         <a id="profile-menu" class="mdl-button mdl-js-button mdl-js-ripple-effect font-13" href="{{ url('/admin/index') }}"><i class="fa fa-user-o color-black"></i> Mi cuenta</a>
                         @else
-                        <a id="profile-menu" class="mdl-button mdl-js-button mdl-js-ripple-effect font-13"><i class="fa fa-user-o color-black"></i> Acceder</a>
-                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect metarial-menu" data-mdl-for="profile-menu">
+                       <a id="profile-menu" class="mdl-button mdl-js-button mdl-js-ripple-effect font-13" href="{{ route('login') }}" ><i class="fa fa-user-o color-black"></i> Acceder</a>
+                        <!--<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect metarial-menu" data-mdl-for="profile-menu">
                             <li class="mdl-menu__item"><a href="{{ route('login') }}">
-                            <i class="fa fa-sign-in"></i>Loguearse</a></li>
+                            <i class="fa fa-sign-in"></i>Loguearse</a></li>-->
                            <!-- <li class="mdl-menu__item"><a href="{{ route('register') }}"><i class="fa fa-user-o"></i>Registrarse</a></li>
-                            --></ul>
+                            </ul>-->
                         @endauth
                     </div>
                     @endif
@@ -122,7 +122,7 @@
                                     </ul>
                                 </li>
                                 <li class="menu-megamenu-li">
-                                    <a id="menu-doctor" class="mdl-button mdl-js-button mdl-js-ripple-effect">Menú Principal<i class="fa fa-chevron-down"></i></a>
+                                    <a id="menu-doctor" class="mdl-button mdl-js-button mdl-js-ripple-effect">Información Pública<i class="fa fa-chevron-down"></i></a>
                                     <ul class="menu-megamenu">
                                         <li class="row">
                                             <div class="col-lg-4">
