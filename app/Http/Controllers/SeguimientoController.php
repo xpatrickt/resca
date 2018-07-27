@@ -34,6 +34,7 @@ class SeguimientoController extends Controller
       if($request){
           //LISTAR PROYECTOS 
         //sacar rol de usuario
+        $rol="";
         $idusuario = Auth::user()->id;
         $usuarios=DB::table('users as u')
         ->join('role_user as ru','ru.user_id','=','u.id')

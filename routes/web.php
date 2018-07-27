@@ -662,6 +662,47 @@ Route::get('admin/respuestaevaluacion/{role}/edit','RespuestaevaluacionControlle
 
 //Fin RespuestaEvaluacionestudio
 
+
+
+//ProyectoUSER
+
+Route::post('admin/proyectouser/store','ProyectouserController@store')->name('admin.proyectouser.store')
+->middleware('permission:admin.proyectouser.create');
+
+Route::get('admin/proyectouser','ProyectouserController@index')->name('admin.proyectouser.index')
+->middleware('permission:admin.proyectouser.index');
+
+Route::get('admin/proyectouser/create','ProyectouserController@create')->name('admin.proyectouser.create')
+->middleware('permission:admin.proyectouser.create');
+
+Route::put('admin/proyectouser/{role}','ProyectouserController@update')->name('admin.proyectouser.update')
+->middleware('permission:admin.proyectouser.edit');
+
+Route::get('admin/proyectouser/{role}','ProyectouserController@show')->name('admin.proyectouser.show')
+->middleware('permission:admin.proyectouser.show');
+
+Route::delete('admin/proyectouser/{role}','ProyectouserController@destroy')->name('admin.proyectouser.destroy')
+->middleware('permission:admin.proyectouser.destroy');
+
+Route::get('admin/proyectouser/{role}/edit','ProyectouserController@edit')->name('admin.proyectouser.edit')
+->middleware('permission:admin.proyectouser.edit');
+//Fin ProyectouserUSER
+
+//SolicitudUSER
+
+Route::get('admin/solicituduser','SolicituduserController@index')->name('admin.solicituduser.index')
+->middleware('permission:admin.solicituduser.index');
+//Fin SolicitudUSER
+
+//SeguimientoUSER
+
+Route::get('admin/seguimientouser','SeguimientouserController@index')->name('admin.seguimientouser.index')
+->middleware('permission:admin.seguimientouser.index');
+//Fin SeguimientoUSER
+
+
+
+
 //FIN EVALUACION PROYECTO
 
 
@@ -691,6 +732,7 @@ Route::get('admin/respuestaevaluacion/{role}/edit','RespuestaevaluacionControlle
 
 
 Route::post('admin/proyecto/listar','ProyectoController@listar')->name('admin.proyecto.listar');
+Route::post('admin/proyectouser/listar','ProyectouserController@listar')->name('admin.proyectouser.listar');
 
 //Route Seguimiento
 Route::put('admin/seguimiento/{role}','SeguimientoController@update1')->name('admin.seguimiento.update1');
