@@ -1,6 +1,7 @@
 @extends('layouts.administrator')
 @section('actmenu1')
 active
+treeview
 @endsection
 @section('actmenu2')
 treeview
