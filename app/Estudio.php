@@ -15,7 +15,6 @@ class Estudio extends Model
     	'nombreestudio','descripcionestudio',
 		'condicion',
         'idproyecto',
-		'idtipoevaluacion',
         'idtipoestudio'
     ];
     protected $guarded=[

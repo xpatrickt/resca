@@ -90,10 +90,9 @@ class RegistroController extends Controller
            ->get();
        }
        //END LISTAR PROYECTOS
-        $tiposevaluacion=DB::table('tipoevaluacion')->where('condicion','=','1')->get();
         $tiposestudio=DB::table('tipoestudio')->where('condicion','=','1')->get();
         
-        return view("admin.registro.create",["tiposevaluacion"=>$tiposevaluacion,"tiposestudio"=>$tiposestudio,"proyectos"=>$proyectos]);
+        return view("admin.registro.create",["tiposestudio"=>$tiposestudio,"proyectos"=>$proyectos]);
     }
 
 
@@ -203,21 +202,28 @@ class RegistroController extends Controller
     	$estudio->descripcionestudio=$request->get('descripcion');
       $estudio->condicion='1';
       $estudio->idproyecto=$request->get('idproyecto');
-      $estudio->idtipoevaluacion=$request->get('idtipoevaluacion');
     	$estudio->idtipoestudio=$request->get('idtipoestudio');
    		$estudio->save();
 
-        $est=DB::table('estudio')->where('nombreestudio','=',$request->get('nombre'))->where('condicion','=','1')
-        ->orderBy('idestudio', 'desc') ->limit(1)->get();
+      $documento=new Documentoestudio;
+      $documento->descdocumentoestudio='Solicitud del Estudio';
+      if(Input::hasFile('documentosolicitud')){
+            $file=Input::file('documentosolicitud');
+            $nombred=date("dmyHis"); 
+            $file->move(public_path().'/admin/documentos/estudio/',$nombred.'.pdf');
+            $documento->urldocumentoestudio='/documentos/estudio/'.$nombred.'.pdf';
+        }
+      $documento->condicion='1';
+      $documento->idestudio=$estudio->idestudio;
+      $documento->iddocumento='1';
+      $documento->save();
 
-       foreach($est as $e)
-       {
+        
         $estadoestudio=new Estadoestudio;
-        $estadoestudio->idestudio=$e->idestudio;
+        $estadoestudio->idestudio=$estudio->idestudio;
         $estadoestudio->idestado='1';
         $estadoestudio->condicion='1';
         $estadoestudio->save();
-       }
 
    	  return Redirect::to('admin/registro');
     

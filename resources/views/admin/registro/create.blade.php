@@ -32,7 +32,7 @@ treeview
               <div class="box-body">
  
 
-                 {{ Form::open(['route' => 'admin.registro.store']) }}
+                 {{ Form::open(['route' => 'admin.registro.store','files'=>'true']) }}
               	{{Form::token()}}
                 
                   <div class="col-md-9">
@@ -64,20 +64,16 @@ treeview
                   <input type="text" name="descripcion" class="form-control" placeholder="Ingrese Descripción">
                 </div>
                 <div class="form-group">
-                  <label for="tiposevaluacion">Tipo de Evaluacion</label>
-                  <select name="idtipoevaluacion" class="form-control">
-                    @foreach ($tiposevaluacion as $teva)
-                      <option value="{{$teva->idtipoevaluacion}}">{{$teva->nombretipoevaluacion}} </option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="form-group">
                   <label for="tiposestudio">Tipo de Estudio</label>
                   <select name="idtipoestudio" class="form-control">
                     @foreach ($tiposestudio as $test)
                       <option value="{{$test->idtipoestudio}}">{{$test->nombretipoestudio}} </option>
                     @endforeach
                   </select>
+                </div>
+                <div class="form-group">
+                  <label for="documento">Subir Documento de Solicitud</label>
+                  <input type="file" name="documentosolicitud" class="form-control" placeholder="Seleccione Documento Solicitud">
                 </div>
           
               <div class="box-footer">

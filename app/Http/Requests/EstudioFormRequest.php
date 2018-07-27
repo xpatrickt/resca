@@ -27,8 +27,8 @@ class EstudioFormRequest extends FormRequest
         'nombre'=>'required|max:100',
         'descripcion'=>'required|max:255',
         'idproyecto'=>'required',
-        'idtipoevaluacion'=>'required',
         'idtipoestudio'=>'required',
+        'documentosolicitud'=>'required|mimes:pdf|max:10240',
         ];
     }
 }
