@@ -134,18 +134,21 @@
         
         <li class="@yield('actmenu1')">
           @can('admin.registro.index')
-          <a href="{{url ('admin/registro')}}"><i class="fa fa-flag-o"></i><span>Registros Ambientales</span>@endcan
+          <a href="#"><i class="fa fa-flag-o"></i><span>Registros Ambientales</span>@endcan
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
            <ul class="treeview-menu">
+            @can('admin.registro.index')
+            <li class="@yield('actreg')"><a href="{{url ('admin/registro')}}">Solicitud de Registro Ambiental</a></li>
+            @endcan
             @can('admin.solicituduser.index')
-            <li class="@yield('actsol')"><a href="{{url ('admin/solicituduser')}}">Solicitud</a></li>
+            <li class="@yield('actsol')"><a href="{{url ('admin/solicituduser')}}">Estado de Solicitud de Registro</a></li>
             @endcan
             @can('admin.seguimientouser.index')
-            <li class="@yield('actsegu')"><a href="{{url ('admin/seguimientouser')}}">Seguimiento</a></li>            
+            <li class="@yield('actsegu')"><a href="{{url ('admin/seguimientouser')}}">Estado de Registro Ambiental</a></li>            
              @endcan 
-             @can('admin.protectouser.index')
-            <li class="@yield('actproy')"><a href="{{url ('admin/proyectouser')}}">Proyecto</a></li>            
+             @can('admin.proyectouser.index')
+            <li class="@yield('actproy')"><a href="{{url ('admin/proyectouser')}}">Listado de Proyecto</a></li>            
              @endcan        
           </ul>
         </li>

@@ -7,6 +7,8 @@ use resca\Proyecto;
 use resca\Departamento;
 use resca\Provincia;
 use resca\Distrito;
+use resca\User;
+use resca\Responsableproyecto;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use resca\Http\Requests\ProyectoFormRequest;
@@ -102,6 +104,10 @@ class ProyectouserController extends Controller
 
     
     public function store(ProyectoFormRequest $request){
+
+        $idusuario = Auth::user()->id;
+        $usuario=User::findOrFail($idusuario);
+
     	$proyecto=new Proyecto;
     	$proyecto->nombreproyecto=$request->get('nombre');
     	$proyecto->descripcionproyecto=$request->get('descripcion');
@@ -110,7 +116,10 @@ class ProyectouserController extends Controller
     	$proyecto->condicion='1';
         $proyecto->identidad=$request->get('identidad');
    		$proyecto->save();
-        
+         $responsableproyecto=new Responsableproyecto;
+        $responsableproyecto->idproyecto=$proyecto->idproyecto;
+        $responsableproyecto->idpersona=$usuario->idpersona;
+        $responsableproyecto->save();
    		return Redirect::to('admin/proyectouser');
        // return  redirect()->back();
     }

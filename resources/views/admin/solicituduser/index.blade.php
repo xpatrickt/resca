@@ -2,7 +2,7 @@
 @section('actmenu1')
 active treeview
 @endsection
-@section('actreg')
+@section('actsol')
 active
 @endsection
 @section('actmenu2')

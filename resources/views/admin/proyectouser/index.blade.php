@@ -1,7 +1,6 @@
 @extends('layouts.administrator')
 @section('actmenu1')
-active
-treeview
+active treeview
 @endsection
 @section('actproy')
 active
@@ -32,11 +31,11 @@ treeview
 			     <thead>
                 <tr>
                   <th width="1px">ID</th>
+                  <th>Entidad</th>
                   <th>Proyecto</th>
                   <th>Descripción</th>
                   <th>Objetivo</th>
                   <th>Beneficiarios</th>
-                  <th>Entidad</th>
                   <th>Opción</th>
                  </tr>
                 </thead>
@@ -44,11 +43,11 @@ treeview
                 @foreach ($proyectos as $pro)
                 <tr>
                   <td width="1px">{{ $pro->idproyecto}}</td>
+                  <td>{{ $pro->entidad}}</td>
                   <td>{{ $pro->nombreproyecto}}</td>
                   <td>{{ $pro->descripcionproyecto}}</td>
                   <td>{{ $pro->objetivoproyecto}}</td>
                   <td>{{ $pro->beneficiariosproyecto}}</td>          
-                  <td>{{ $pro->entidad}}</td>
                   <td>
                   <a href="" data-target="#modal-delete-{{$pro->idproyecto}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>  </button></a>
                 </td>
@@ -60,11 +59,11 @@ treeview
 				<tfoot>
                 <tr>
                   <th width="1px">ID</th>
+                  <th>Entidad</th>
                   <th>Proyecto</th>
                   <th>Descripción</th>
                   <th>Objetivo</th>
                   <th>Beneficiarios</th>
-                  <th>Entidad</th>
                   <th>Opción</th>
                 </tr>
                 </tfoot>

@@ -23,8 +23,22 @@ class ProyectoregistroController extends Controller
     }
     public function index(Request $request){
 
-      if($request){
-            $query=trim($request->get('searchText'));
+    if($request){
+
+        //sacar rol de usuario
+        $idusuario = Auth::user()->id;
+        $usuarios=DB::table('users as u')
+        ->join('role_user as ru','ru.user_id','=','u.id')
+        ->select('ru.role_id as idrol')
+        ->where('u.id','=',$idusuario)
+        ->where('u.condicion','=','1')
+        ->get();
+        foreach($usuarios as $us){
+          $rol=$us->idrol;
+        }
+        $query=trim($request->get('searchText'));
+         if($rol=='1'){
+            
             $proyectos=DB::table('proyecto as p')
             ->join('entidad as e','p.identidad','=','e.identidad')
             ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto',
@@ -33,7 +47,25 @@ class ProyectoregistroController extends Controller
             ->where('p.condicion','=','1')
             ->orderBy('p.idproyecto','desc')
             ->paginate(999999);
-            return view('admin.proyectoregistro.index',["proyectos"=>$proyectos,"searchText"=>$query]);
+            return view('admin.proyectouser.index',["proyectos"=>$proyectos,"searchText"=>$query]);
+        }
+        else{
+           $proyectos=DB::table('proyecto as p')
+            ->join('entidad as e','p.identidad','=','e.identidad')
+             ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
+            ->join('persona as pe','rp.idpersona','=','pe.idpersona')
+           ->join('users as u','u.idpersona','=','pe.idpersona')
+            ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto',
+                'e.nombreentidad as entidad')
+            ->where('p.nombreproyecto','LIKE','%'.$query.'%')
+            ->where('u.id','=',$idusuario)
+            ->where('p.condicion','=','1')
+            ->where('pe.condicion','=','1')
+           ->where('u.condicion','=','1')
+            ->orderBy('p.idproyecto','desc')
+            ->distinct()->get();
+            return view('admin.proyectouser.index',["proyectos"=>$proyectos,"searchText"=>$query]);
+        }
         }
     }
 
