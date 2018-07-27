@@ -1,4 +1,7 @@
 @extends('layouts.administrator')
+@section('actmenu1')
+treeview
+@endsection
 @section('actmenu2')
 treeview
 @endsection
@@ -8,71 +11,49 @@ treeview
 @section('actmenu4')
 treeview
 @endsection
+
 @section ('contenido')
 
 <div >
 
 <section class="content">
-	<div class="row">
-	<div class="col-xs-12">
-		<div class="box">
-		<div class="box-header">
-			<h3 class="box-title">Listado de Usuarios &nbsp &nbsp &nbsp <a href="{{ route('admin.user.create') }}"><button type="button" class="btn btn-primary">+ Nuevo Usuario </button></a></h3>
-			</div>
-		<div class="box-body">
-   <div class="table-responsive mailbox-messages">
-		<table id="tabla" class="table table-bordered table-striped">
-			     <thead>
-                <tr>
-                  <th width="1px">ID</th>
-                  <th>Usuario</th>
-                  <th>Email</th>
-                  <th>Privilegios</th>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
-                  <th>DNI</th>            
-                  <th>Opción</th>
-                 </tr>
-                </thead>
-                <tbody>
-                @foreach ($usuarios as $usu)
-                <tr>
-                  <td width="1px">{{$usu->id}}</td>
-                  <td>{{ $usu->name}}</td>
-                  <td>{{ $usu->email}}</td>
-                  <td>{{ $usu->privilegio}}</td>
-                  <td>{{ $usu->nombrepersona}}</td>
-                  <td>{{ $usu->apellidospersona}}</td>  
-                  <td>{{ $usu->dnipersona}}</td>                                           
-                  <td><a href="{{URL::action('UserController@edit',$usu->id)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
-                  <a href="" data-target="#modal-delete-{{$usu->id}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
-                </td>
-                </tr>
-         @include('admin.user.modal')
-				@endforeach
+<div class="row">
+  <div class="col-md-12">
+  <div class="box box-primary">
+    <div class="box-header with-border">
+    <h3 class="box-tittle">Perfil de Usuario</h3>
+    </div>
+              <div class="box-body">
+                @foreach ($usuarios as $user)
+                <div class="form-group">
+                  <input type="hidden" name="id" value="{{$user->id}}">
+                </div>
+                <div class="form-group">
+                  <label for="nombre">Nombre de Usuario: {{$user->name}}</label>
+                </div>
 
-                </tbody>
-				<tfoot>
-                <tr>
-                  <th width="1px">ID</th>
-                  <th>Usuario</th>
-                  <th>Email</th>
-                  <th>Privilegios</th>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
-                  <th>DNI</th>                                
-                  <th>Opción</th>
-                </tr>
-                </tfoot>
-		</table>
-   </div>
-	</div>
+                <div class="form-group">
+                  <label for="email">Email: {{$user->email}}</label>
+                </div>
 
-		</div>
+                <div class="form-group">
+                  <label for="email">Nombre: {{$user->nombre}}</label>
+                </div>
 
-	</div>
+                <div class="form-group">
+                  <label for="email">Apellidos: {{$user->apellido}}</label>
+                </div>
+                @endforeach
+                </div>
+              <div class="box-footer">
+                <a href="{{URL::action('DetalleusuarioController@edit',$user->id)}}"><button class="btn btn-primary"><span>Cambiar Contraseña</span></button></a>
+
+              </div>
+
+            </div>
+  </div>
+  </div>
 </div>
-
 </section>
 
 
