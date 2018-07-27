@@ -403,6 +403,23 @@ Route::delete('admin/user/{role}','UserController@destroy')->name('admin.user.de
 Route::get('admin/user/{role}/edit','UserController@edit')->name('admin.user.edit')
 ->middleware('permission:admin.user.edit');
 //FinUsuarios
+//
+//
+//DETALLE USUARIOS
+
+Route::get('admin/detalleusuario','DetalleusuarioController@index')->name('admin.detalleusuario.index')
+->middleware('permission:admin.detalleusuario.index');
+
+Route::put('admin/detalleusuario/{id}','DetalleusuarioController@update')->name('admin.detalleusuario.update')
+->middleware('permission:admin.detalleusuarios.edit');
+
+Route::get('admin/detalleusuario/{id}','DetalleusuarioController@show')->name('admin.detalleusuario.show')
+->middleware('permission:admin.detalleusuario.show');
+
+Route::get('admin/detalleusuario/{id}/edit','DetalleusuarioController@edit')->name('admin.detalleusuario.edit')
+->middleware('permission:admin.detalleusuario.edit');
+
+//FIN DETALLE USUARIOS
 //FIN MANTENIMIENTO DE USUARIOS
 
 
