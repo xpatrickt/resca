@@ -131,7 +131,19 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
         @can('admin.registro.index')
-        <li class="@yield('actmenu1')"><a href="{{url ('admin/registro')}}"><i class="fa fa-flag-o"></i> <span>Registros Ambientales</span></a></li>
+        <li class="@yield('actmenu1')"><a href="{{url ('admin/registro')}}"><i class="fa fa-flag-o"></i> <span>Registros Ambientales</span></a>
+           <ul class="treeview-menu">
+            @can('admin.registro.index')
+            <li class="@yield('actsol')"><a href="{{url ('admin/solicituduser')}}">Solicitud</a></li>
+            @endcan
+            @can('admin.registro.index')
+            <li class="@yield('actsegu')"><a href="{{url ('admin/seguimientouser')}}">Seguimiento</a></li>            
+             @endcan 
+             @can('admin.registro.index')
+            <li class="@yield('actproy')"><a href="{{url ('admin/proyectouser')}}">Proyecto</a></li>            
+             @endcan        
+          </ul>
+        </li>
        @endcan
 
         
