@@ -22,19 +22,21 @@ treeview
   <div class="col-xs-12">
    <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Registros Ambientales &nbsp &nbsp &nbsp <a href="registro/create"><button type="button" class="btn btn-primary">+ Nuevo Registro</button></a></h3>
+      <h3 class="box-title">Historial de Estado de Registro Ambiental</h3>
       </div>
     <div class="box-body">
         <div class="table-responsive mailbox-messages">
           <table id="tabla" class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th width="1px">ID</th>
+                  <th width="1px">Código Registro</th>
                   <th>Entidad</th>
                   <th>Proyecto</th>
                   <th>Estudio</th>
                   <th>Descripción</th>
                   <th>Estado</th>
+                  <th>Fecha</th>
+                  <th>Tiempo Restante</th>
                   <th>Opción</th>
                  </tr>
                 </thead>
@@ -47,13 +49,20 @@ treeview
                   <td>{{ $est->nombreestudio}}</td>
                   <td>{{ $est->descripcionestudio}}</td>
                   <td>{{ $est->estado}}</td>
-                  
+                  <td>{{ $est->fecha}}</td>
+                  @if($est->idestado=='3')
+                  <td>{{$est->tiempoevaluacion-$est->tiempo}} días</td>
+                  @endif
+                  @if($est->idestado=='4')
+                  <td>{{ $est->tiemposubsanacion-$est->tiempo}} días</td>
+                  @endif
+                  @if($est->idestado=='5')
+                  <td>{{ $est->tiempocertificacion-$est->tiempo}} días</td>
+                  @endif
                   <td>
                   <a href="" data-target="#modal-detalledelimitacion-{{$est->idestudio}}" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledelimitacion"><button class="btn btn-success"><span class="glyphicon glyphicon-map-marker"></span></button></a>
                   <a href="" data-target="#modal-detalledocumento-{{$est->idestudio}}" data-idd="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledocumento"><button class="btn btn-info"><span class="glyphicon glyphicon-folder-open"></span></button></a>
                   <a href="{{URL::action('RegistroController@show',$est->idestudio)}}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button></a>
-                   <a href="" data-target="#modal-enviar-{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal"><button class="btn btn-primary">ENVIAR SOLICITUD</button></a>
-                @include('admin.registro.modalenviar')
                 @include('admin.registro.modaldetalledocumento')
                 @include('admin.registro.modaldetalledelimitacion')
                
@@ -63,12 +72,14 @@ treeview
                 </tbody>
              <tfoot>
                 <tr>
-                  <th width="1px">ID</th>
+                  <th width="1px">Código Registro</th>
                   <th>Estudio</th>
                   <th>Descripción</th>
                   <th>Proyecto</th>
                   <th>Entidad</th>
                   <th>Estado</th>
+                  <th>Fecha</th>
+                  <th>Tiempo Restante</th>
                   <th>Opción</th>
                 </tr>
                 </tfoot>

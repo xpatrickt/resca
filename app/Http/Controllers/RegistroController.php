@@ -32,11 +32,21 @@ class RegistroController extends Controller
 
       if($request){
             $query=trim($request->get('searchText'));
-            $delimitacionesestudio=DB::table('delimitacionestudio')->where('condicion','=','1')->get();
-           $documentosestudio=DB::table('documentoestudio')->where('condicion','=','1')->get();
-           $documentos=DB::table('documento')->where('condicion','=','1')->get();
-           $departamentos=DB::table('departamento')->where('condicion','=','1')->get();
-           $provincias=DB::table('provincia')->where('iddepartamento','=','030000')->where('condicion','=','1')->get();
+           
+           //sacar rol de usuario
+        $rol="";
+        $idusuario = Auth::user()->id;
+        $usuarios=DB::table('users as u')
+        ->join('role_user as ru','ru.user_id','=','u.id')
+        ->select('ru.role_id as idrol')
+        ->where('u.id','=',$idusuario)
+        ->where('u.condicion','=','1')
+        ->get();
+        foreach($usuarios as $us){
+          $rol=$us->idrol;
+        }
+
+         if($rol=='1'){
             $estudios=DB::table('estudio as e')
             ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
             ->join('entidad as en','p.identidad','=','en.identidad')
@@ -48,8 +58,32 @@ class RegistroController extends Controller
             ->where('e.condicion','=','1')
             ->where('es.idestado','=','1')
             ->orderBy('e.idestudio','desc')
-            ->paginate(999999);
-            return view('admin.registro.index',["estudios"=>$estudios,"delimitacionesestudio"=>$delimitacionesestudio,"documentosestudio"=>$documentosestudio,"documentos"=>$documentos,"departamentos"=>$departamentos,"provincias"=>$provincias,"searchText"=>$query]);
+            ->get();
+            return view('admin.registro.index',["estudios"=>$estudios,"searchText"=>$query]);
+          }
+          else{
+            $estudios=DB::table('estudio as e')
+            ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
+            ->join('entidad as en','p.identidad','=','en.identidad')
+            ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
+            ->join('estado as est','es.idestado','=','est.idestado')
+            ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
+            ->join('persona as pe','rp.idpersona','=','pe.idpersona')
+            ->join('users as u','u.idpersona','=','pe.idpersona')
+            ->select('e.idestudio','e.nombreestudio','e.descripcionestudio','p.nombreproyecto as proyecto','en.nombreentidad as entidad', 'est.nombreestado as estado')
+            ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+            ->where('e.nombreestudio','LIKE','%'.$query.'%')
+            ->where('e.condicion','=','1')
+            ->where('es.idestado','=','1')
+            ->where('u.id','=',$idusuario)
+            ->where('p.condicion','=','1')
+            ->where('pe.condicion','=','1')
+            ->where('u.condicion','=','1')
+            ->orderBy('e.idestudio','desc')
+            ->get();
+            return view('admin.registro.index',["estudios"=>$estudios,"searchText"=>$query]);
+          }
+
         }
     }
 

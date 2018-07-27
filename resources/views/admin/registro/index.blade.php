@@ -29,7 +29,7 @@ treeview
           <table id="tabla" class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th width="1px">ID</th>
+                  <th width="1px">Código Registro</th>
                   <th>Entidad</th>
                   <th>Proyecto</th>
                   <th>Estudio</th>
@@ -63,7 +63,7 @@ treeview
                 </tbody>
              <tfoot>
                 <tr>
-                  <th width="1px">ID</th>
+                  <th width="1px">Código Registro</th>
                   <th>Estudio</th>
                   <th>Descripción</th>
                   <th>Proyecto</th>
