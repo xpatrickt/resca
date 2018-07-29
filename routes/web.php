@@ -411,7 +411,7 @@ Route::get('admin/detalleusuario','DetalleusuarioController@index')->name('admin
 ->middleware('permission:admin.detalleusuario.index');
 
 Route::put('admin/detalleusuario/{id}','DetalleusuarioController@update')->name('admin.detalleusuario.update')
-->middleware('permission:admin.detalleusuarios.edit');
+->middleware('permission:admin.detalleusuario.update');
 
 Route::get('admin/detalleusuario/{id}','DetalleusuarioController@show')->name('admin.detalleusuario.show')
 ->middleware('permission:admin.detalleusuario.show');

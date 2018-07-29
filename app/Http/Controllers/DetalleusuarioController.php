@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use resca\User;
 use resca\Persona;
 use resca\Rolusuario;
+use resca\Detalleusuario;
 use Illuminate\Support\Facades\Redirect;
 use resca\Http\Requests\DetalleusuarioFormRequest;
 use resca\Http\Requests\UserFormRequest;
