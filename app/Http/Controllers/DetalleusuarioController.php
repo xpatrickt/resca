@@ -11,6 +11,8 @@ use resca\Http\Requests\DetalleusuarioFormRequest;
 use resca\Http\Requests\UserFormRequest;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Illuminate\Support\Collection;
+
 
 class DetalleusuarioController extends Controller
 {

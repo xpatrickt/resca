@@ -74,9 +74,11 @@
               </li>
 
               <li class="user-footer">
-                <div class="pull-left">
+                @can('admin.detalleusuario.index')
+                <div class="pull-left"> 
                   <a href="{{url ('admin/detalleusuario')}}" class="btn btn-default btn-flat">Perfil</a>
                 </div>
+                @endcan
                 <div class="pull-right">
                   <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
                  document.getElementById('logout-form').submit();">
