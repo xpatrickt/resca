@@ -88,34 +88,32 @@ class SeguimientouserController extends Controller
 
     // LISTAR DOCUMENTOS  -------------
 
-    function listardocumento(Request $request)
+    function historial(Request $request)
     {
      
       $est = $request->get('idest'); // estudio
 
-    $data=DB::table('documentoestudio as d')
-    ->join('documento as do','d.iddocumento','=','do.iddocumento')
-        ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','do.nombredocumento as tipodocumento','d.idestudio','d.created_at')
-        ->where('d.idestudio','=',$est)
-        ->where('d.condicion','=','1')
-        ->orderBy('d.iddocumentoestudio','desc') ->get();
+    $data=DB::table('estadoestudio as e')
+    ->join('estado as es','e.idestado','=','es.idestado')
+        ->select('es.idestado','es.nombreestado','e.created_at')
+        ->where('e.idestudio','=',$est)
+        ->where('e.condicion','=','1')
+        ->orderBy('e.idestadoestudio','desc') ->get();
     
      $output = '<thead>
                   <tr>
-                  <th>Documento</th>
-                  <th>Tipo</th>
+                  <th>Id</th>
+                  <th>Estado</th>
                   <th>Fecha</th>
-                  <th></th>
                  </tr>
                 </thead>
                 <tbody>';
   
      foreach($data as $row)
      {
-   $output .= '<tr><td>'.$row->descdocumentoestudio.'</td>
-                 <td>'.$row->tipodocumento.'</td>
+   $output .= '<tr><td>'.$row->idestado.'</td>
+                 <td>'.$row->nombreestado.'</td>
                  <td>'.$row->created_at.'</td>
-                 <td><a  href="../admin'.$row->urldocumentoestudio.'"  target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
               </tr>';
      }
      $output .= '</tbody>';

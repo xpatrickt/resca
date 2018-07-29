@@ -411,7 +411,7 @@ Route::get('admin/detalleusuario','DetalleusuarioController@index')->name('admin
 ->middleware('permission:admin.detalleusuario.index');
 
 Route::put('admin/detalleusuario/{id}','DetalleusuarioController@update')->name('admin.detalleusuario.update')
-->middleware('permission:admin.detalleusuario.update');
+->middleware('permission:admin.detalleusuarios.edit');
 
 Route::get('admin/detalleusuario/{id}','DetalleusuarioController@show')->name('admin.detalleusuario.show')
 ->middleware('permission:admin.detalleusuario.show');
@@ -733,6 +733,7 @@ Route::get('admin/seguimientouser','SeguimientouserController@index')->name('adm
 
 Route::post('admin/proyecto/listar','ProyectoController@listar')->name('admin.proyecto.listar');
 Route::post('admin/proyectouser/listar','ProyectouserController@listar')->name('admin.proyectouser.listar');
+Route::post('admin/seguimientouser/historial','SeguimientouserController@historial')->name('admin.seguimientouser.historial');
 
 //Route Seguimiento
 Route::put('admin/seguimiento/{role}','SeguimientoController@update1')->name('admin.seguimiento.update1');

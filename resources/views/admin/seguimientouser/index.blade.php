@@ -113,6 +113,28 @@ treeview
 
 <script>
 
+//HISTORIAL DE REGISTRO AMBIENTAL
+
+  $(document).on("click", ".historial", function () {
+
+  var idest = $(this).data('idd'); 
+  var _token = $('input[name="_token"]').val();
+
+//DOCUMENTOS
+
+   $.ajax({
+    url:"{{ route('admin.seguimientouser.historial') }}",
+    method:"POST",
+    data:{idest:idest, _token:_token},
+  
+    success:function(result)
+    {
+      $(".modal-body #tablahistorial").html(result);
+    }
+   })
+
+});
+
 // MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
 
 $(document).on("click", ".opendetalledocumento", function () {

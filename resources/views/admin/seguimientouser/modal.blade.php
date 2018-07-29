@@ -1,5 +1,4 @@
  <div class="modal modal-default fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-historial-{{$est->idestudio}}">
-      {{Form::Open(array('action'=>array('RegistroController@destroy',$est->idestudio),'method'=>'delete'))}}
           <div class="modal-dialog">
             <div class="modal-content" >
               <div class="modal-header">
@@ -12,20 +11,20 @@
 
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#documentos" data-toggle="tab">Documentos de Estudio</a></li>
+              <li class="active"><a href="#historial" data-toggle="tab">Historial de Registro Ambiental</a></li>
             </ul>
             <div class="tab-content">
 
-      <!--TAB DOCUMENTO*******************************************************-->
-          <div class="active tab-pane" id="documentos">
+      <!--TAB HISTORIAL*******************************************************-->
+          <div class="active tab-pane" id="historial">
             <div class="box-body no-padding">
               <div class="table-responsive mailbox-messages">
-             <table id="tabladocumento" class="table table-hover table-striped">
+             <table id="tablahistorial" class="table table-hover table-striped">
             </table>
            </div>
            </div>
           </div>
-      <!-- FIN TAB DOCUMENTO-->
+      <!-- FIN TAB HISTORIAL-->
           </div>
           </div>
 
@@ -38,5 +37,4 @@
     </div>
     </div>
   </div>
- {{Form::Close()}}
 </div>
