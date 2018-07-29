@@ -54,7 +54,7 @@ treeview
                   <td>{{$est->tiempoevaluacion-$est->tiempo}} días</td>
                   @else
                     @if($est->idestado=='4')
-                    <td>{{ $est->tiemposubsanacion-$est->tiempo}} días</td>
+                    <td>{{ $est->tiemposubsanacion-$est->tiempo}} días <span class="badge bg-red">{{$est->tiempo*100/$est->tiemposubsanacion}}%</span></td>
                     @else
                       @if($est->idestado=='5')
                       <td>{{ $est->tiempocertificacion-$est->tiempo}} días</td>
