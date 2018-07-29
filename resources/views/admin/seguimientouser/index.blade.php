@@ -52,20 +52,25 @@ treeview
                   <td>{{ $est->fecha}}</td>
                   @if($est->idestado=='3')
                   <td>{{$est->tiempoevaluacion-$est->tiempo}} días</td>
-                  @endif
-                  @if($est->idestado=='4')
-                  <td>{{ $est->tiemposubsanacion-$est->tiempo}} días</td>
-                  @endif
-                  @if($est->idestado=='5')
-                  <td>{{ $est->tiempocertificacion-$est->tiempo}} días</td>
+                  @else
+                    @if($est->idestado=='4')
+                    <td>{{ $est->tiemposubsanacion-$est->tiempo}} días</td>
+                    @else
+                      @if($est->idestado=='5')
+                      <td>{{ $est->tiempocertificacion-$est->tiempo}} días</td>
+                      @else
+                      <td>Finalizado</td>
+                      @endif
+                    @endif
                   @endif
                   <td>
                   <a href="" data-target="#modal-detalledelimitacion-{{$est->idestudio}}" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledelimitacion"><button class="btn btn-success"><span class="glyphicon glyphicon-map-marker"></span></button></a>
                   <a href="" data-target="#modal-detalledocumento-{{$est->idestudio}}" data-idd="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledocumento"><button class="btn btn-info"><span class="glyphicon glyphicon-folder-open"></span></button></a>
-                  <a href="{{URL::action('RegistroController@show',$est->idestudio)}}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                  <a href="" data-target="#modal-historial-{{$est->idestudio}}" data-idd="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="historial"><button class="btn btn-warning"><span class="glyphicon glyphicon-list-alt"></span></button></a>
+
                 @include('admin.registro.modaldetalledocumento')
                 @include('admin.registro.modaldetalledelimitacion')
-               
+                 @include('admin.seguimientouser.modal')
                 </td>
                 </tr>
                @endforeach
@@ -208,70 +213,6 @@ $(document).ready(function(){
  });
 
 //*********************************************************************************************************************
-
-
-//CARGAR MAPA
-
-function cargarmapa(){
-//CARGAR MAPA BUSQUEDA Y PUNTERO
-
-var map = new google.maps.Map(document.getElementById('mapacanvas'),{
-    center:{
-      lat: -14.10,
-      lng: -73.13
-    },
-    zoom:7
-  });
-
-  var marker = new google.maps.Marker({
-    position: {
-      lat: -14.10,
-      lng: -73.13
-    },
-    map: map,
-    draggable: true
-  });
-
-
-  var lat = marker.getPosition().lat();
-    var lng = marker.getPosition().lng();
-
-   // $('#lat').val(lat);
-   // $('#lng').val(lng);
-
-
-  var searchBox = new google.maps.places.SearchBox(document.getElementById('buscarmapa'));
-
-
-  google.maps.event.addListener(searchBox,'places_changed',function(){
-
-
-    var places = searchBox.getPlaces();
-    var bounds = new google.maps.LatLngBounds();
-    var i, place;
-
-    for(i=0; place=places[i];i++){
-        bounds.extend(place.geometry.location);
-        marker.setPosition(place.geometry.location); //set marker position new...
-      }
-
-      map.fitBounds(bounds);
-      map.setZoom(15);
-
-  });
-
-  google.maps.event.addListener(marker,'position_changed',function(){
-
-    var lat = marker.getPosition().lat();
-    var lng = marker.getPosition().lng();
-
-    $('#lat').val(lat);
-    $('#lng').val(lng);
-
-
-  });
-
-}
 
 </script>
 
