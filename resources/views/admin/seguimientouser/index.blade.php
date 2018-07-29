@@ -49,7 +49,7 @@ treeview
                   <td>{{ $est->nombreestudio}}</td>
                   <td>{{ $est->descripcionestudio}}</td>
                   <td>{{ $est->estado}}</td>
-                  <td>{{ $est->fecha}}</td>
+                  <td>{{ \Carbon\Carbon::parse($est->fecha)->format('d/m/Y H:i:s')}}</td>
                   @if($est->idestado=='3')
                   <td>{{$est->tiempoevaluacion-$est->tiempo}} días</td>
                   @else
