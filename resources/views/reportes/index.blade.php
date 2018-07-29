@@ -19,6 +19,7 @@ Estado de Evaluación Ambiental
          
               <thead>
                 <tr>
+                  <th>Codigo</th>
                   <th>Actividad</th>
                   <th>Entidad</th>
                   <th>Proyecto</th>
@@ -30,7 +31,8 @@ Estado de Evaluación Ambiental
                 <tbody>
                 @foreach ($estudios as $est)
                 <tr>
-                  <td width="1px">{{$est->actividad}}</td>
+                  <td width="5px">{{$est->idestudio}}</td>
+                  <td>{{$est->actividad}}</td>
                   <td>{{ $est->entidad}}</td>
                   <td>{{ $est->proyecto}}</td>
                   <td>{{ $est->nombreestudio}}</td>

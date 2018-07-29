@@ -36,7 +36,7 @@ class EstadoEvaluacionController extends Controller
             ->join('actividad as a','en.idactividad','=','a.idactividad')
             ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
             ->join('estado as est','es.idestado','=','est.idestado')
-            ->select('a.nombreactividad as actividad','en.nombreentidad as entidad','p.nombreproyecto as proyecto','e.nombreestudio','e.descripcionestudio', 'est.nombreestado as estado')
+            ->select('e.idestudio as idestudio','a.nombreactividad as actividad','en.nombreentidad as entidad','p.nombreproyecto as proyecto','e.nombreestudio','e.descripcionestudio', 'est.nombreestado as estado')
             ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
             ->where('e.nombreestudio','LIKE','%'.$query.'%')
             ->where('e.condicion','=','1')
