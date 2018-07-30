@@ -344,7 +344,7 @@
             <li class="@yield('actsegu')"><a href="{{url ('admin/seguimientouser')}}">Estado de Registro Ambiental</a></li>            
              @endcan 
              @can('admin.proyectouser.index')
-            <li class="@yield('actproy')"><a href="{{url ('admin/proyectouser')}}">Listado de Proyecto</a></li>            
+            <li class="@yield('actproy')"><a href="{{url ('admin/proyectouser')}}">Listado de Proyectos Registrados</a></li>            
              @endcan        
           </ul>
         </li>
@@ -352,15 +352,15 @@
         
         <li class="@yield('actmenu2')">
           @can('admin.evaluacion.index')
-          <a href="#"><i class="fa fa-files-o"></i><span>Evaluación Ambiental</span>@endcan
+          <a href="#"><i class="fa fa-files-o"></i><span>Evaluación de Registro Ambiental</span>@endcan
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
             @can('admin.evaluacion.index')
-            <li class="@yield('acteva')"><a href="{{url ('admin/evaluacion')}}">Evaluación</a></li>
+            <li class="@yield('acteva')"><a href="{{url ('admin/evaluacion')}}">Evaluación de Registro Ambiental</a></li>
             @endcan
             @can('admin.certificacion.index')
-            <li class="@yield('actcer')"><a href="{{url ('admin/certificacion')}}">Certificación</a></li>            
+            <li class="@yield('actcer')"><a href="{{url ('admin/certificacion')}}">Resolucion de Registro Ambiental</a></li>            
              @endcan        
           </ul>
         </li>
@@ -422,7 +422,7 @@
           </a>
           <ul class="treeview-menu">
             @can('admin.evaluacionestudio.index')
-            <li class="@yield('acteve')"><a href="{{url ('admin/evaluacionestudio')}}">Asignar Evaluador</a></li>
+            <li class="@yield('acteve')"><a href="{{url ('admin/evaluacionestudio')}}">Gestionar Solicitud de Evaluación</a></li>
             @endcan
             @can('admin.responsableproyecto.index')
             <li class="@yield('actrep')"><a href="{{url ('admin/responsableproyecto')}}">Asignar Responsable de Proyecto</a></li>

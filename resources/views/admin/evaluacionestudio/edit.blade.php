@@ -20,7 +20,7 @@ active treeview
   <div class="col-md-12">
   <div class="box box-primary">
     <div class="box-header with-border">
-    <h3 class="box-tittle">Asignar Evaluador al Estudio: </h3>
+    <h3 class="box-tittle">Aprobar Solicitud de Estudio: </h3>
     @if(count($errors)>0)
     <div class="alert alert-danger">
       <ul>
@@ -41,11 +41,11 @@ active treeview
             
                 <div class="form-group">
 
-                  <label for="nombre">Nombre</label>
+                  <label for="nombre">Nombre del Estudio</label>
                   <input type="text" name="nombre" value="{{$estudio->nombreestudio}}" class="form-control" readonly="readonly">
                 </div>
                 <div class="form-group">
-                  <label for="persona">Evaluador</label>
+                  <label for="persona">Seleccionar Evaluador</label>
                   <select name="idpersona" class="form-control select2" data-placeholder="Selecione un Evaluador">
                     @foreach ($personas as $per)
                       <option value="{{$per->idpersona}}">{{$per->nombres}} </option>
@@ -60,8 +60,8 @@ active treeview
                   <input type="hidden" name="idestudio" value="{{$estudio->idestudio}}" class="form-control" placeholder="">
                 </div>   
                <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Registrar</button>
-                <a href="{{ url()->previous() }}" class="btn btn-danger">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="{{ url('admin/evaluacionestudio') }}" class="btn btn-danger">Cancelar</a>
               </div>
         {!!Form::close()!!}
             </div>
