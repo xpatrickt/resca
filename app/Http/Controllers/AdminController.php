@@ -473,7 +473,7 @@ class AdminController extends Controller
               $output.='</ul>
               </li>
               <li class="footer">
-                <a href="'.url ("admin/certificacion").'">Registrar resolución de registro ambiental</a>
+                <a href="'.url ("admin/certificacion").'">Asignar resolución de registro ambiental</a>
               </li>
             </ul>';
              }
