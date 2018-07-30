@@ -7,6 +7,7 @@ use resca\Persona;
 use resca\Estudio;
 use resca\Evaluacionestudio;
 use resca\Estadoestudio;
+use resca\Tipoevaluacion;
 use Illuminate\Support\Facades\Redirect;
 use resca\Http\Requests\EvaluacionestudioFormRequest;
 use DB;
@@ -35,14 +36,21 @@ class EvaluacionestudioController extends Controller
             ->orderBy('es.idestudio','desc')
             ->paginate(999999);
             return view('admin.evaluacionestudio.index',["estudios"=>$estudios,"searchText"=>$query]);
-        }
+        }       
     }
 
 
    public function edit($idestudio){
-         $estudio=Estudio::findOrFail($idestudio);
-        $personas=DB::table('persona')->select(DB::raw('CONCAT(persona.nombrepersona," ",persona.apellidospersona) AS nombres'),'persona.idpersona')->where('condicion','=','1')->get();
-        return view("admin.evaluacionestudio.edit",["estudio"=>$estudio,"personas"=>$personas]);
+        $tipoevaluaciones=DB::table('tipoevaluacion')->where('condicion','=','1')->get();
+        $estudio=Estudio::findOrFail($idestudio);
+        $personas=DB::table('persona as p')
+        ->join('users as u','p.idpersona','=','u.idpersona')
+        ->join('role_user as ru','ru.user_id','=','u.id')
+        ->select(DB::raw('CONCAT(p.nombrepersona," ",p.apellidospersona) AS nombres'),'p.idpersona')
+        ->where('p.condicion','=','1')
+        ->where('ru.role_id','=','2')
+        ->get();
+        return view("admin.evaluacionestudio.edit",["estudio"=>$estudio,"personas"=>$personas,"tipoevaluaciones"=>$tipoevaluaciones]);
     }
 
     public function update(EvaluacionestudioFormRequest $request,$idevaluacionestudio){
