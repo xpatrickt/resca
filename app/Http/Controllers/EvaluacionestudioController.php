@@ -62,6 +62,10 @@ class EvaluacionestudioController extends Controller
         $estadoestudio->idestudio=$request->get('idestudio');
         $estadoestudio->idestado=$request->get('idestado');
         $estadoestudio->save();
+        $idestudios=$request->get('idestudio');
+        $estudio=Estudio::findOrFail($idestudios);
+        $estudio->idtipoevaluacion=$request->get('idtipoevaluacion');
+        $estudio->update();
     	return Redirect::to('admin/evaluacionestudio'); 	
     }
 
