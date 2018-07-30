@@ -61,7 +61,13 @@ class EvaluacionestudioController extends Controller
         return view("admin.evaluacionestudio.show",["evaluacionestudio"=>evaluacionestudio::findOrFail($idevaluacionestudio)]);
     }
 
-
+    public function destroy($idestudio){
+        $estadoestudio=new Estadoestudio;
+        $estadoestudio->idestudio=$idestudio;
+        $estadoestudio->idestado='9';
+        $estadoestudio->save();
+        return Redirect::to('admin/evaluacionestudio');
+    }
 
 
 }

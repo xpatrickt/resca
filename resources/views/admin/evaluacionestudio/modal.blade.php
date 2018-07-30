@@ -1,23 +1,24 @@
-        <div class="modal modal-danger fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-create-{{$est->idestudio}}">
-              <div class="box-body">
-              	{!!Form::open(array('url'=>'admin/asignarevaluador','method'=>'POST','autocomplete'=>'off'))!!}
-              	{{Form::token()}}
-                     <div class="form-group">
-                  <label for="ruc">RUC</label>
-                  <input type="text" name="ruc" class="form-control" placeholder="Ingrese RUC">
-                </div>
-                <div class="form-group">
-                  <label for="persona">Persona</label>
-                  <select name="idpersona" class="form-control select2" data-placeholder="Seleccione un evaluador">
-                    @foreach ($personas as $per)
-                      <option value="{{$per->idpersona}}">{{$per->nombrepersona}} </option>
-                    @endforeach
-                  </select>
-                </div>
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Registrar</button>
-                 <button type="reset" class="btn btn-danger">Cancelar</button>
+        <div class="modal modal-danger fade" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$est->idestudio}}">
+      {{Form::Open(array('action'=>array('EvaluacionestudioController@destroy',$est->idestudio),'method'=>'delete'))}}
+          <div class="modal-dialog">
+            <div class="modal-content" >
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Rechazar Solicitud</h4>
               </div>
-				{!!Form::close()!!}
-	          </div>
+              <div class="modal-body">
+                <p>Desea Rechazar la solicitud de Evaluación Ambiental?</p>
+              </div>
+               <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-outline">Confirmar</button>
+              </div>
+     
+            
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      {{Form::Close()}}
         </div>

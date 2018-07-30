@@ -48,8 +48,10 @@ class SolicituduserController extends Controller
             ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
             ->where('e.nombreestudio','LIKE','%'.$query.'%')
             ->where('e.condicion','=','1')
-            ->where('es.idestado','=','2')
-            ->where('es.idestado','=','9')
+            ->where(function ($query2) {
+            $query2->where('es.idestado', '2')
+                  ->orWhere('es.idestado', '9');
+            })
             ->orderBy('e.idestudio','desc')
             ->get();
             return view('admin.solicituduser.index',["estudios"=>$estudios,"searchText"=>$query]);

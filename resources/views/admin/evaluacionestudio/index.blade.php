@@ -23,7 +23,7 @@ active treeview
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Asignar Evaluador a los estudios &nbsp &nbsp</h3>
+			<h3 class="box-title">Gestionar Solicitud de Evaluación &nbsp &nbsp</h3>
 			</div>
 		<div class="box-body">
         <div class="table-responsive mailbox-messages">
@@ -48,9 +48,12 @@ active treeview
                   <td>{{ $est->proyecto}}</td>
                   <td>{{ $est->entidad}}</td>
                   <td>{{ $est->estado}}</td>
-                  <td><a href="{{URL::action('EvaluacionestudioController@edit',$est->idestudio)}}"><button class="btn btn-success"><span class="glyphicon glyphicon-user"></span></button></a>
+                  <td><a href="{{URL::action('EvaluacionestudioController@edit',$est->idestudio)}}"><button class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span></button></a>
+                  <a href="" data-target="#modal-delete-{{$est->idestudio}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span></button></a>
                 </td>
+
                 </tr>
+                @include('admin.evaluacionestudio.modal')
                 @endforeach
                 </tbody>
               <tfoot>
