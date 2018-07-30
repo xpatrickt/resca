@@ -51,7 +51,8 @@ class SeguimientouserController extends Controller
             ->where('e.condicion','=','1')
             ->where('es.idestado','>','2')
             ->where('es.idestado','<','9')
-            ->orderBy('e.idestudio','desc')
+            ->orderBy('es.idestado','desc')
+            ->orderBy('fecha','asc')
             ->get();
             return view('admin.seguimientouser.index',["estudios"=>$estudios,"searchText"=>$query]);
           }
@@ -75,7 +76,8 @@ class SeguimientouserController extends Controller
             ->where('p.condicion','=','1')
             ->where('pe.condicion','=','1')
             ->where('u.condicion','=','1')
-            ->orderBy('e.idestudio','desc')
+            ->orderBy('es.idestado','desc')
+            ->orderBy('fecha','asc')
             ->get();
             return view('admin.seguimientouser.index',["estudios"=>$estudios,"searchText"=>$query]);
           }
