@@ -281,7 +281,7 @@ class SeguimientoController extends Controller
      $output = '<option value="">Seleccione '.ucfirst($estudio).'</option>';
      foreach($data as $row)
      {
-      $output .= '<option value="'.$row->idestudio.'">'.$row->nombreestudio.'</option>';
+      $output .= '<option value="'.$row->idestudio.'">'.$row->idestudio.'-'.$row->nombreestudio.'</option>';
      }
      echo $output;
     }

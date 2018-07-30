@@ -86,19 +86,21 @@ class AdminController extends Controller
                 ->join('entidad as en','p.identidad','=','en.identidad')
                 ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
                 ->join('estado as est','es.idestado','=','est.idestado')
-                ->select('e.idestudio','e.nombreestudio','e.descripcionestudio','en.nombreentidad as entidad', 'est.nombreestado as estado','est.idestado','es.created_at as fecha',DB::raw('count(e.idestudio) as numero'))
+                ->select('e.idestudio','e.nombreestudio','e.descripcionestudio','en.nombreentidad as entidad', 'est.nombreestado as estado','est.idestado','es.created_at as fecha')
                 ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
                 ->where('e.condicion','=','1')
                 ->where('es.idestado','=','2')
-                ->orderBy('e.idestudio','desc')
+                ->orderBy('fecha','asc')
                 ->get();
+
+                $numero=count($estudios);
 
                 $output='<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="label label-success">'.$estudios[0]->numero.'</span>
+                    <span class="label label-success">'.$numero.'</span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li class="header">Tienes '.$estudios[0]->numero.' Solicitud(es)</li>
+                      <li class="header">Tienes '.$numero.' Solicitud(es)</li>
                       <li>
                         <ul class="menu">';
                      foreach($estudios as $est)  
@@ -111,7 +113,7 @@ class AdminController extends Controller
                               <h4>
                                 '.$est->entidad.'
                               </h4>
-                              <p>'.$est->nombreestudio.'</p>
+                              <p>'.$est->idestudio.'-'.$est->nombreestudio.'</p>
                               <p><small><i class="fa fa-clock-o"></i>'.\Carbon\Carbon::parse($est->fecha)->format('d/m/Y H:i:s').'</small></p>
                             </a>
                           </li>';
@@ -143,12 +145,14 @@ class AdminController extends Controller
                     ->orderBy('es.created_as','asc')
                     ->get();
 
+                $numero=count($estudios);
+
                  $output='<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="label label-success">'.$estudios[0]->numero.'</span>
+                    <span class="label label-success">'.$numero.'</span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li class="header">Tienes '.$estudios[0]->numero.' Solicitud(es)</li>
+                      <li class="header">Tienes '.$numero.' Solicitud(es)</li>
                       <li>
                         <ul class="menu">';
                      foreach($estudios as $est)  
@@ -172,50 +176,52 @@ class AdminController extends Controller
                     </ul>';
                 }
                 else{
+                    
                     $estudios=DB::table('estudio as e')
                     ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
                     ->join('entidad as en','p.identidad','=','en.identidad')
                     ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
+                    ->join('estado as est','es.idestado','=','est.idestado')
                     ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
                     ->join('persona as pe','rp.idpersona','=','pe.idpersona')
                     ->join('users as u','u.idpersona','=','pe.idpersona')
-                    ->select('e.idestudio','e.nombreestudio','en.nombreentidad as entidad','es.created_at as fecha','count(e.idestudio) as numero')
+                    ->select('e.idestudio','e.nombreestudio','e.descripcionestudio','p.idproyecto','p.nombreproyecto', 'est.nombreestado as estado','est.idestado','es.created_at as fecha')
                     ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
-                    ->where('e.nombreestudio','LIKE','%'.$query.'%')
                     ->where('e.condicion','=','1')
                     ->where('u.id','=',$idusuario)
                     ->where('p.condicion','=','1')
                     ->where('pe.condicion','=','1')
                     ->where('u.condicion','=','1')
-                    ->whereIn('es.idestado','=','2')
-                    ->orderBy('es.created_as','asc')
+                    ->where('es.idestado','=','4')
+                    ->orderBy('fecha','asc')
                     ->get();
+                 $numero=count($estudios);
                  $output='<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="label label-success">'.$estudios[0]->numero.'</span>
+                    <span class="label label-success">'.$numero.'</span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li class="header">Tienes '.$estudios[0]->numero.' Solicitud(es)</li>
+                      <li class="header">Tienes '.$numero.' Observacion(es)</li>
                       <li>
                         <ul class="menu">';
                      foreach($estudios as $est)  
                         {
                         $output.='<li>
-                            <a href="'.url ("admin/evaluacionestudio").'">
+                            <a href="'.url ("admin/seguimiento").'">
                               <div class="pull-left">
                                 <img src="'.asset("adminlte/dist/img/resca1.jpg").'" class="img-circle" alt="User Image">
                               </div>
                               <h4>
-                                '.$est->entidad.'
+                                '.$est->idproyecto.'-'.$est->nombreproyecto.'
                               </h4>
-                              <p>'.$est->nombreestudio.'</p>
+                              <p>'.$est->idestudio.'-'.$est->nombreestudio.'</p>
                               <p><small><i class="fa fa-clock-o"></i>'.\Carbon\Carbon::parse($est->fecha)->format('d/m/Y H:i:s').'</small></p>
                             </a>
                           </li>';
                        }
                     $output.='</ul>
                       </li>
-                      <li class="footer"><a href="'.url ("admin/evaluacionestudio").'">Gestionar solicitud de evaluación</a></li>
+                      <li class="footer"><a href="'.url ("admin/seguimiento").'">Subsanar observación de registro ambiental</a></li>
                     </ul>';
                 }
              }
@@ -242,7 +248,7 @@ class AdminController extends Controller
              if($rol=='1'){
                 $estudiosaprobado=DB::table('estudio as e')
                 ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
-                ->select('e.idestudio','es.idestado','es.created_at as fecha',DB::raw('count(e.idestudio) as numero'))
+                ->select('e.idestudio','es.idestado','es.created_at as fecha')
                 ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
                 ->where('e.condicion','=','1')
                 ->where('es.idestado','=','5')
@@ -250,13 +256,15 @@ class AdminController extends Controller
                 ->get();
                 $estudiosdesaprobado=DB::table('estudio as e')
                 ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
-                ->select('e.idestudio','es.idestado','es.created_at as fecha',DB::raw('count(e.idestudio) as numero'))
+                ->select('e.idestudio','es.idestado','es.created_at as fecha')
                 ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
                 ->where('e.condicion','=','1')
                 ->where('es.idestado','=','6')
                 ->orderBy('e.idestudio','desc')
                 ->get();
-                $numerototal=$estudiosaprobado[0]->numero+$estudiosdesaprobado[0]->numero;
+                $numeroa=count($estudiosaprobado);
+                $numerod=count($estudiosdesaprobado);
+                $numerototal=$numeroa+$numerod;
                 $output='<a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning">'.$numerototal.'</span>
@@ -266,13 +274,13 @@ class AdminController extends Controller
               <li>
                 <ul class="menu">
                   <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i>'.$estudiosaprobado[0]->numero.' Registros ambientales Aprobados
+                    <a href="'.url ("admin/seguimientouser").'">
+                      <i class="fa fa-users text-aqua"></i>'.$numeroa.' Registros ambientales Aprobados
                     </a>
                   </li>
                   <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i>'.$estudiosdesaprobado[0]->numero.' Registros ambientales Desaprobados
+                    <a href="'.url ("admin/seguimientouser").'">
+                      <i class="fa fa-users text-red"></i>'.$numerod.' Registros ambientales Desaprobados
                     </a>
                   </li>
                 </ul>
@@ -285,7 +293,64 @@ class AdminController extends Controller
                   $numero='2';
                 }
                 else{
-                  $numero='3';
+                  $estudiosaprobado=DB::table('estudio as e')
+                  ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
+                    ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
+                    ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
+                    ->join('persona as pe','rp.idpersona','=','pe.idpersona')
+                    ->join('users as u','u.idpersona','=','pe.idpersona')
+                    ->select('e.idestudio','es.idestado','es.created_at as fecha')
+                    ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+                ->where('e.condicion','=','1')
+                ->where('u.id','=',$idusuario)
+                ->where('p.condicion','=','1')
+                ->where('pe.condicion','=','1')
+                ->where('u.condicion','=','1')
+                ->where('es.idestado','=','5')
+                ->orderBy('e.idestudio','desc')
+                ->get();
+                  $estudiosdesaprobado=DB::table('estudio as e')
+                  ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
+                    ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
+                    ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
+                    ->join('persona as pe','rp.idpersona','=','pe.idpersona')
+                    ->join('users as u','u.idpersona','=','pe.idpersona')
+                    ->select('e.idestudio','es.idestado','es.created_at as fecha')
+                    ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+                ->where('e.condicion','=','1')
+                ->where('u.id','=',$idusuario)
+                ->where('p.condicion','=','1')
+                ->where('pe.condicion','=','1')
+                ->where('u.condicion','=','1')
+                ->where('es.idestado','=','6')
+                ->orderBy('e.idestudio','desc')
+                ->get();
+            
+                $numeroa=count($estudiosaprobado);
+                $numerod=count($estudiosdesaprobado);
+                $numerototal=$numeroa+$numerod;
+                $output='<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">'.$numerototal.'</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">Tienes '.$numerototal.' Registro(s) Ambiental(es)</li>
+              <li>
+                <ul class="menu">
+                  <li>
+                    <a href="'.url ("admin/seguimientouser").'">
+                      <i class="fa fa-users text-aqua"></i>'.$numeroa.' Registros ambientales Aprobados
+                    </a>
+                  </li>
+                  <li>
+                    <a href="'.url ("admin/seguimientouser").'">
+                      <i class="fa fa-users text-red"></i>'.$numerod.' Registros ambientales Desaprobados
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="'.url ("admin/seguimientouser").'">Verificar estado de registro ambiental</a></li>
+            </ul>';
                 }
              }
              
@@ -314,41 +379,46 @@ class AdminController extends Controller
                 ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
                 ->join('estado as est','es.idestado','=','est.idestado')
                 ->join('tipoestudio as ti','e.idtipoestudio','=','ti.idtipoestudio')
-                ->select('e.idestudio','e.nombreestudio','e.descripcionestudio', 'est.nombreestado as estado','est.idestado','es.created_at as fecha',DB::raw('count(e.idestudio) as numero'),DB::raw('datediff(now(),es.created_at) as tiempo'),'ti.tiempocertificacion')
+                ->select('e.idestudio','e.nombreestudio','e.descripcionestudio', 'est.nombreestado as estado','est.idestado','es.created_at as fecha',DB::raw('datediff(now(),es.created_at) as tiempo'),'ti.tiempocertificacion')
                 ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
                 ->where('e.condicion','=','1')
                 ->whereIn('es.idestado',['5','6'])
                 ->orderBy('fecha','asc')
                 ->get();
+                $numero=count($estudios);
                 $output='<a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">'.$estudios[0]->numero.'</span>
+              <span class="label label-danger">'.$numero.'</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Tienes '.$estudios[0]->numero.' registros a certificar</li>
+              <li class="header">Tienes '.$numero.' registros a certificar</li>
               <li>
                 <ul class="menu">';
                 foreach($estudios as $est)  
                  {
-                  $porc=($est->tiempo*100/$est->tiempocertificacion);
+                 if($est->idestudio){
+                    $t=$est->tiempo;
+                    $ti=$est->tiempocertificacion;
+                  $porc=($t*100/$ti).'%';
                   $output.='<li>
-                    <a href="#">
+                    <a href="'.url ("admin/certificacion").'">
                       <h3>
-                        '.$est->nombreestudio.'
+                        '.$est->idestudio.'-'.$est->nombreestudio.'
                       </h3>
                       <p><small class="pull-right">'.$est->tiempo.'/'.$est->tiempocertificacion.' días</small></p>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-green" style="width: '.$porc.'" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">20% Complete</span>
                         </div>
                       </div>
                     </a>
                   </li>';
                 }
+                }
               $output.='</ul>
               </li>
               <li class="footer">
-                <a href="#">Certificar registro ambiental</a>
+                <a href="'.url ("admin/certificacion").'">Registrar resolución de registro ambiental</a>
               </li>
             </ul>';
              }
@@ -357,7 +427,61 @@ class AdminController extends Controller
                   $numero='2';
                 }
                 else{
-                  $numero='3';
+                  $estudios=DB::table('estudio as e')
+                ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
+                ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
+                ->join('estado as est','es.idestado','=','est.idestado')
+                ->join('tipoestudio as ti','e.idtipoestudio','=','ti.idtipoestudio')
+                ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
+                ->join('persona as pe','rp.idpersona','=','pe.idpersona')
+                ->join('users as u','u.idpersona','=','pe.idpersona')
+                ->select('e.idestudio','e.nombreestudio','e.descripcionestudio', 'est.nombreestado as estado','est.idestado','es.created_at as fecha',DB::raw('datediff(now(),es.created_at) as tiempo'),'ti.tiempocertificacion')
+                ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+                ->where('e.condicion','=','1')
+                ->where('u.id','=',$idusuario)
+                ->where('p.condicion','=','1')
+                ->where('pe.condicion','=','1')
+                ->where('u.condicion','=','1')
+                ->where('es.idestado','=','4')
+                ->orderBy('fecha','asc')
+                ->get();
+
+                $numero=count($estudios);
+                $output='<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-flag-o"></i>
+              <span class="label label-danger">'.$numero.'</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">Tienes '.$numero.' Observacion(es)</li>
+              <li>
+                <ul class="menu">';
+                foreach($estudios as $est)  
+                 {
+                 if($est->idestudio){
+                    $t=$est->tiempo;
+                    $ti=$est->tiempocertificacion;
+                  $porc=($t*100/$ti).'%';
+                  $output.='<li>
+                    <a href="'.url ("admin/certificacion").'">
+                      <h3>
+                        '.$est->idestudio.'-'.$est->nombreestudio.'
+                      </h3>
+                      <p><small class="pull-right">'.$est->tiempo.'/'.$est->tiempocertificacion.' días</small></p>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: '.$porc.'" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">20% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>';
+                }
+                }
+              $output.='</ul>
+              </li>
+              <li class="footer">
+                <a href="'.url ("admin/certificacion").'">Subsanar observación de registro ambiental</a>
+              </li>
+            </ul>';
                 }
              }
              
