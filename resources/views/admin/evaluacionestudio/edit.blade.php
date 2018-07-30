@@ -52,6 +52,15 @@ active treeview
                     @endforeach
                   </select>
                 </div>
+
+                <div class="form-group">
+                  <label for="tipoevaluacion">Seleccionar Tipo de Evaluación</label>
+                  <select name="idtipoevaluacion" class="form-control">
+                    @foreach ($tipoevaluaciones as $tev)
+                      <option value="{{$tev->idtipoevaluacion}}">{{$tev->nombretipoevaluacion}} </option>
+                    @endforeach
+                  </select>
+                </div>
                 <div class="form-group">
                   <input type="hidden" name="idestado" value="3" />
                 </div>
