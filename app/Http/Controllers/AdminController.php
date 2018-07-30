@@ -130,49 +130,47 @@ class AdminController extends Controller
                     ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
                     ->join('entidad as en','p.identidad','=','en.identidad')
                     ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
-                    ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
-                    ->join('persona as pe','rp.idpersona','=','pe.idpersona')
+                    ->join('estado as est','es.idestado','=','est.idestado')
+                    ->join('evaluacionestudio as ee','e.idestudio','=','ee.idestudio')
+                    ->join('persona as pe','pe.idpersona','=','ee.idpersona')
                     ->join('users as u','u.idpersona','=','pe.idpersona')
-                    ->select('e.idestudio','e.nombreestudio','en.nombreentidad as entidad','es.created_at as fecha','count(e.idestudio) as numero')
+                    ->select('e.idestudio','e.nombreestudio','e.descripcionestudio','p.idproyecto','p.nombreproyecto', 'est.nombreestado as estado','est.idestado','es.created_at as fecha')
                     ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
-                    ->where('e.nombreestudio','LIKE','%'.$query.'%')
                     ->where('e.condicion','=','1')
                     ->where('u.id','=',$idusuario)
                     ->where('p.condicion','=','1')
                     ->where('pe.condicion','=','1')
                     ->where('u.condicion','=','1')
-                    ->whereIn('es.idestado','=','2')
-                    ->orderBy('es.created_as','asc')
+                    ->where('es.idestado','=','3')
+                    ->orderBy('fecha','asc')
                     ->get();
-
-                $numero=count($estudios);
-
+                 $numero=count($estudios);
                  $output='<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-envelope-o"></i>
                     <span class="label label-success">'.$numero.'</span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li class="header">Tienes '.$numero.' Solicitud(es)</li>
+                      <li class="header">Tienes '.$numero.' Registro(s) para Evaluar</li>
                       <li>
                         <ul class="menu">';
                      foreach($estudios as $est)  
                         {
                         $output.='<li>
-                            <a href="'.url ("admin/evaluacionestudio").'">
+                            <a href="'.url ("admin/evaluacion").'">
                               <div class="pull-left">
                                 <img src="'.asset("adminlte/dist/img/resca1.jpg").'" class="img-circle" alt="User Image">
                               </div>
                               <h4>
-                                '.$est->entidad.'
+                                '.$est->idproyecto.'-'.$est->nombreproyecto.'
                               </h4>
-                              <p>'.$est->nombreestudio.'</p>
+                              <p>'.$est->idestudio.'-'.$est->nombreestudio.'</p>
                               <p><small><i class="fa fa-clock-o"></i>'.\Carbon\Carbon::parse($est->fecha)->format('d/m/Y H:i:s').'</small></p>
                             </a>
                           </li>';
                        }
                     $output.='</ul>
                       </li>
-                      <li class="footer"><a href="'.url ("admin/evaluacionestudio").'">Gestionar solicitud de evaluación</a></li>
+                      <li class="footer"><a href="'.url ("admin/evaluacion").'">Evaluar registro ambiental</a></li>
                     </ul>';
                 }
                 else{
@@ -290,7 +288,64 @@ class AdminController extends Controller
              }
              else{
                 if($rol=='2'){
-                  $numero='2';
+                  $estudiosaprobado=DB::table('estudio as e')
+                  ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
+                    ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
+                    ->join('evaluacionestudio as ee','e.idestudio','=','ee.idestudio')
+                    ->join('persona as pe','pe.idpersona','=','ee.idpersona')
+                    ->join('users as u','u.idpersona','=','pe.idpersona')
+                    ->select('e.idestudio','es.idestado','es.created_at as fecha')
+                    ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+                ->where('e.condicion','=','1')
+                ->where('u.id','=',$idusuario)
+                ->where('p.condicion','=','1')
+                ->where('pe.condicion','=','1')
+                ->where('u.condicion','=','1')
+                ->where('es.idestado','=','5')
+                ->orderBy('e.idestudio','desc')
+                ->get();
+                  $estudiosdesaprobado=DB::table('estudio as e')
+                  ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
+                    ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
+                    ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
+                    ->join('persona as pe','rp.idpersona','=','pe.idpersona')
+                    ->join('users as u','u.idpersona','=','pe.idpersona')
+                    ->select('e.idestudio','es.idestado','es.created_at as fecha')
+                    ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+                ->where('e.condicion','=','1')
+                ->where('u.id','=',$idusuario)
+                ->where('p.condicion','=','1')
+                ->where('pe.condicion','=','1')
+                ->where('u.condicion','=','1')
+                ->where('es.idestado','=','6')
+                ->orderBy('e.idestudio','desc')
+                ->get();
+            
+                $numeroa=count($estudiosaprobado);
+                $numerod=count($estudiosdesaprobado);
+                $numerototal=$numeroa+$numerod;
+                $output='<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">'.$numerototal.'</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">Tienes '.$numerototal.' Registro(s) Ambiental(es)</li>
+              <li>
+                <ul class="menu">
+                  <li>
+                    <a href="'.url ("admin/certificacion").'">
+                      <i class="fa fa-users text-aqua"></i>'.$numeroa.' Registros ambientales Aprobados
+                    </a>
+                  </li>
+                  <li>
+                    <a href="'.url ("admin/certificacion").'">
+                      <i class="fa fa-users text-red"></i>'.$numerod.' Registros ambientales Desaprobados
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="'.url ("admin/certificacion").'">Asignar resolución de registro ambiental</a></li>
+            </ul>';
                 }
                 else{
                   $estudiosaprobado=DB::table('estudio as e')
@@ -424,7 +479,61 @@ class AdminController extends Controller
              }
              else{
                 if($rol=='2'){
-                  $numero='2';
+                  $estudios=DB::table('estudio as e')
+                ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
+                ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
+                ->join('estado as est','es.idestado','=','est.idestado')
+                ->join('tipoestudio as ti','e.idtipoestudio','=','ti.idtipoestudio')
+                ->join('evaluacionestudio as ee','e.idestudio','=','ee.idestudio')
+                ->join('persona as pe','pe.idpersona','=','ee.idpersona')
+                ->join('users as u','u.idpersona','=','pe.idpersona')
+                ->select('e.idestudio','e.nombreestudio','e.descripcionestudio', 'est.nombreestado as estado','est.idestado','es.created_at as fecha',DB::raw('datediff(now(),es.created_at) as tiempo'),'ti.tiempocertificacion')
+                ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
+                ->where('e.condicion','=','1')
+                ->where('u.id','=',$idusuario)
+                ->where('p.condicion','=','1')
+                ->where('pe.condicion','=','1')
+                ->where('u.condicion','=','1')
+                ->where('es.idestado','=','3')
+                ->orderBy('fecha','asc')
+                ->get();
+
+                $numero=count($estudios);
+                $output='<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-flag-o"></i>
+              <span class="label label-danger">'.$numero.'</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">Tienes '.$numero.' Registro(s) para Evaluar</li>
+              <li>
+                <ul class="menu">';
+                foreach($estudios as $est)  
+                 {
+                 if($est->idestudio){
+                    $t=$est->tiempo;
+                    $ti=$est->tiempocertificacion;
+                  $porc=($t*100/$ti).'%';
+                  $output.='<li>
+                    <a href="'.url ("admin/evaluacion").'">
+                      <h3>
+                        '.$est->idestudio.'-'.$est->nombreestudio.'
+                      </h3>
+                      <p><small class="pull-right">'.$est->tiempo.'/'.$est->tiempocertificacion.' días</small></p>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: '.$porc.'" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">20% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>';
+                }
+                }
+              $output.='</ul>
+              </li>
+              <li class="footer">
+                <a href="'.url ("admin/evaluacion").'">Evaluar registro ambiental</a>
+              </li>
+            </ul>';
                 }
                 else{
                   $estudios=DB::table('estudio as e')
