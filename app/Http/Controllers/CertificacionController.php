@@ -36,7 +36,11 @@ class CertificacionController extends Controller
             ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
             ->where('e.nombreestudio','LIKE','%'.$query.'%')
             ->where('e.condicion','=','1')
-            ->where('es.idestado','=','5')
+         /*   ->where('es.idestado','=','5')*/
+            ->where(function ($query2) {
+            $query2->where('es.idestado', '5')
+                  ->orWhere('es.idestado', '6');
+            })
            // ->groupBy('es.idestudio','')
        //  ->having('es.idestudio','<','3')
             ->orderBy('es.idestudio','desc')

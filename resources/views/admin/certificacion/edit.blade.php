@@ -20,7 +20,7 @@ treeview
   <div class="col-md-12">
   <div class="box box-primary">
     <div class="box-header with-border">
-    <h3 class="box-tittle">Registrar Certificacion del Estudio: </h3>
+    <h3 class="box-tittle">Registrar Resolución del Estudio: </h3>
     @if(count($errors)>0)
     <div class="alert alert-danger">
       <ul>
