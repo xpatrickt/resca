@@ -63,10 +63,6 @@ treeview
                   <input type="text" name="nombre" class="form-control" placeholder="Ingrese Nombre">
                 </div>
                 <div class="form-group">
-                  <label for="descripcion">Descripción del Estudio</label>
-                  <input type="text" name="descripcion" class="form-control" placeholder="Ingrese Descripción">
-                </div>
-                <div class="form-group">
                   <label for="tiposestudio">Tipo de Estudio</label>
                   <select name="idtipoestudio" class="form-control">
                     @foreach ($tiposestudio as $test)

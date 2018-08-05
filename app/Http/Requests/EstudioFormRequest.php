@@ -25,7 +25,6 @@ class EstudioFormRequest extends FormRequest
     {
         return [
         'nombre'=>'required|max:100',
-        'descripcion'=>'required|max:255',
         'idproyecto'=>'required',
         'idtipoestudio'=>'required',
         'documentosolicitud'=>'required|mimes:pdf|max:10240',

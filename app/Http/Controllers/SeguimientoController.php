@@ -321,7 +321,6 @@ class SeguimientoController extends Controller
                   $output="";
      foreach($estudios as $est)
      {
-      $output .= '<label>Descripción: </label> '.$est->descripcionestudio.'<br>';
       $output .= '<label>Tipo evaluacion: </label> '.$est->tipoevaluacion.'<br>';
       $output .= '<label>Tipo estudio: </label> '.$est->tipoestudio.'<br>';
       $output .= '<label>Estado: </label> '.$est->nombreestado.'<br>';
