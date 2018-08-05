@@ -22,7 +22,7 @@ treeview
       <h3 class="box-title">Registros Ambientales &nbsp &nbsp &nbsp</h3>
       </div>
     <div class="box-body">
-
+    <div class="table-responsive mailbox-messages">
           <table id="tabla" class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -60,7 +60,7 @@ treeview
   
  
     </div>
-
+   </div>
   </div>
 </div>
 
