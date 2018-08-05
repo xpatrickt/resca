@@ -125,8 +125,9 @@ class RegistroController extends Controller
        }
        //END LISTAR PROYECTOS
         $tiposestudio=DB::table('tipoestudio')->where('condicion','=','1')->get();
+        $tipossolicitud=DB::table('tiposolicitud')->where('condicion','=','1')->get();
         
-        return view("admin.registro.create",["tiposestudio"=>$tiposestudio,"proyectos"=>$proyectos]);
+        return view("admin.registro.create",["tipossolicitud"=>$tipossolicitud,"tiposestudio"=>$tiposestudio,"proyectos"=>$proyectos]);
     }
 
 
@@ -237,6 +238,8 @@ class RegistroController extends Controller
       $estudio->condicion='1';
       $estudio->idproyecto=$request->get('idproyecto');
     	$estudio->idtipoestudio=$request->get('idtipoestudio');
+      $estudio->codigosige=$request->get('sige');
+      $estudio->idtiposolicitud=$request->get('idtiposolicitud');
    		$estudio->save();
 
       $documento=new Documentoestudio;

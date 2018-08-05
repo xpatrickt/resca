@@ -58,10 +58,6 @@ treeview
               </div>
 
                    <div class="box-body">
-                  <div class="form-group">
-                  <label for="">Nombre del Estudio</label>
-                  <input type="text" name="nombre" class="form-control" placeholder="Ingrese Nombre">
-                </div>
                 <div class="form-group">
                   <label for="tiposestudio">Tipo de Estudio</label>
                   <select name="idtipoestudio" class="form-control">
@@ -69,6 +65,24 @@ treeview
                       <option value="{{$test->idtipoestudio}}">{{$test->nombretipoestudio}} </option>
                     @endforeach
                   </select>
+                </div>
+                  <div class="form-group">
+                  <label for="">Nombre del Estudio</label>
+                  <input type="text" name="nombre" class="form-control" placeholder="Ingrese Nombre">
+                </div>
+
+                <div class="form-group">
+                  <label for="tiposolicitud">Tipo de Solicitud</label>
+                  <select name="idtiposolicitud" class="form-control">
+                    @foreach ($tipossolicitud as $tsol)
+                      <option value="{{$tsol->idtiposolicitud}}">{{$tsol->nombretiposolicitud}} </option>
+                    @endforeach
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="">Código SIGE</label>
+                  <input type="text" name="sige" class="form-control" placeholder="Ingrese Código SIGE">
                 </div>
                 <div class="form-group">
                   <label for="documento">Subir Documento de Solicitud</label>
