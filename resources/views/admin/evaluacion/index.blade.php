@@ -108,7 +108,6 @@ treeview
                 <div class="form-group">
                 <div id="testudio" name="testudio" style="margin: 10px 0 0 10px;">
                 @if($estudio!=null)
-                  <label>Descripción: </label> {{$estudio->descripcionestudio}}<br>
                   @foreach($detalleestudio as $det)
                    <label>Tipo evaluacion: </label> {{$det->tipoevaluacion}}<br>
                    <label>Tipo estudio: </label> {{$det->tipoestudio}}<br>
