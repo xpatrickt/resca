@@ -30,7 +30,6 @@ treeview
                   <th>Entidad</th>
                   <th>Proyecto</th>
                   <th>Estudio</th>
-                  <th>Descripción</th>
                   <th>Estado</th>
                  </tr>
                 </thead>
@@ -41,7 +40,6 @@ treeview
                   <td>{{ $est->entidad}}</td>
                   <td>{{ $est->proyecto}}</td>
                   <td>{{ $est->nombreestudio}}</td>
-                  <td>{{ $est->descripcionestudio}}</td>
                   <td>{{ $est->estado}}</td>
 
                 </tr>
@@ -53,7 +51,6 @@ treeview
                   <th>Entidad</th>
                   <th>Proyecto</th>
                   <th>Estudio</th>
-                  <th>Descripción</th>
                   <th>Estado</th>
                 </tr>
                 </tfoot>

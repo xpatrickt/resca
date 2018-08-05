@@ -33,7 +33,6 @@ treeview
                   <th>Entidad</th>
                   <th>Proyecto</th>
                   <th>Estudio</th>
-                  <th>Descripción</th>
                   <th>Estado</th>
                   <th>Fecha</th>
                   <th>Tiempo Restante</th>
@@ -47,7 +46,6 @@ treeview
                   <td>{{ $est->entidad}}</td>
                   <td>{{ $est->proyecto}}</td>
                   <td>{{ $est->nombreestudio}}</td>
-                  <td>{{ $est->descripcionestudio}}</td>
                   <td>{{ $est->estado}}</td>
                   <td>{{ \Carbon\Carbon::parse($est->fecha)->format('d/m/Y H:i:s')}}</td>
                   @if($est->idestado=='3')
@@ -79,7 +77,6 @@ treeview
                 <tr>
                   <th width="1px">Código Registro</th>
                   <th>Estudio</th>
-                  <th>Descripción</th>
                   <th>Proyecto</th>
                   <th>Entidad</th>
                   <th>Estado</th>

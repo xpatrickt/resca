@@ -36,7 +36,6 @@ active treeview
                   <th>Proyecto</th>
                   <th>Entidad</th>
                   <th>Estado</th>
-
                   <th>Opción</th>
                  </tr>
                 </thead>
@@ -67,7 +66,6 @@ active treeview
                   <th>Proyecto</th>
                   <th>Entidad</th>
                   <th>Estado</th>
-
                   <th>Opción</th>
                 </tr>
                 </tfoot>

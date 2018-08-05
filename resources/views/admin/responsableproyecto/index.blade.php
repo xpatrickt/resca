@@ -46,7 +46,7 @@ active treeview
                   @if(!$pro->responsable)
                   <a href="{{URL::action('ResponsableproyectoController@edit',$pro->idproyecto)}}"><button class="btn btn-success"><span class="glyphicon glyphicon-user"></span></button></a>
                   @else
-                  <a href=""><button class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-user"></span></button></a>
+                  <button class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-user"></span></button>
                   @endif
                 </td>
                 </tr>

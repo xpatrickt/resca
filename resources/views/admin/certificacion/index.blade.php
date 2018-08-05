@@ -32,7 +32,6 @@ treeview
                 <tr>
                   <th width="1px">ID</th>
                   <th>Estudio</th>
-                  <th>Descripción</th>
                   <th>Proyecto</th>
                   <th>Entidad</th>
                   <th>Estado</th>
@@ -44,7 +43,6 @@ treeview
                 <tr>
                   <td width="1px">{{ $est->idestudio}}</td>
                   <td>{{ $est->nombreestudio}}</td>
-                  <td>{{ $est->descripcionestudio}}</td>
                   <td>{{ $est->proyecto}}</td>
                   <td>{{ $est->entidad}}</td>
                   <td>{{ $est->estado}}</td>
@@ -57,7 +55,6 @@ treeview
                 <tr>
                   <th width="1px">ID</th>
                   <th>Estudio</th>
-                  <th>Descripción</th>
                   <th>Proyecto</th>
                   <th>Entidad</th>
                   <th>Estado</th>
