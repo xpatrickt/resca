@@ -163,13 +163,13 @@
           </a>
            <ul class="treeview-menu">
             @can('admin.registro.index')
-            <li class="@yield('actreg')"><a href="{{url ('admin/registro')}}">Solicitud de Registro Ambiental</a></li>
+            <li class="@yield('actreg')"><a href="{{url ('admin/registro')}}">Solicitud de Impacto Ambiental</a></li>
             @endcan
             @can('admin.solicituduser.index')
-            <li class="@yield('actsol')"><a href="{{url ('admin/solicituduser')}}">Estado de Solicitud de Registro</a></li>
+            <li class="@yield('actsol')"><a href="{{url ('admin/solicituduser')}}">Estado de Solicitud de I. A.</a></li>
             @endcan
             @can('admin.seguimientouser.index')
-            <li class="@yield('actsegu')"><a href="{{url ('admin/seguimientouser')}}">Estado de Registro Ambiental</a></li>            
+            <li class="@yield('actsegu')"><a href="{{url ('admin/seguimientouser')}}">Estado de Impacto Ambiental</a></li>            
              @endcan 
              @can('admin.proyectouser.index')
             <li class="@yield('actproy')"><a href="{{url ('admin/proyectouser')}}">Listado de Proyectos Registrados</a></li>            
