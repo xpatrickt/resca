@@ -30,12 +30,13 @@ active treeview
           <table id="tabla" class="table table-bordered table-striped">
            <thead>
                 <tr>
-                  <th width="1px">ID</th>
+                  <th width="1px">Código Registro</th>
                   <th>Estudio</th>
                   <th>Descripción</th>
                   <th>Proyecto</th>
                   <th>Entidad</th>
                   <th>Estado</th>
+
                   <th>Opción</th>
                  </tr>
                 </thead>
@@ -48,22 +49,25 @@ active treeview
                   <td>{{ $est->proyecto}}</td>
                   <td>{{ $est->entidad}}</td>
                   <td>{{ $est->estado}}</td>
+
                   <td><a href="{{URL::action('EvaluacionestudioController@edit',$est->idestudio)}}"><button class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span></button></a>
                   <a href="" data-target="#modal-delete-{{$est->idestudio}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span></button></a>
                 </td>
 
                 </tr>
+
                 @include('admin.evaluacionestudio.modal')
                 @endforeach
                 </tbody>
               <tfoot>
                 <tr>
-                  <th width="1px">ID</th>
+                  <th width="1px">Código Registro</th>
                   <th>Estudio</th>
                   <th>Descripción</th>
                   <th>Proyecto</th>
                   <th>Entidad</th>
                   <th>Estado</th>
+
                   <th>Opción</th>
                 </tr>
                 </tfoot>
