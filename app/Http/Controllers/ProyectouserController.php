@@ -39,11 +39,12 @@ class ProyectouserController extends Controller
             
             $proyectos=DB::table('proyecto as p')
             ->join('entidad as e','p.identidad','=','e.identidad')
-            ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto',
-                'e.nombreentidad as entidad')
+            ->leftjoin('estudio as es','p.idproyecto','=','es.idproyecto')
+            ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto', 'e.nombreentidad as entidad',DB::raw('count(idestudio) as estudio'))
             ->where('p.nombreproyecto','LIKE','%'.$query.'%')
             ->where('p.condicion','=','1')
             ->orderBy('p.idproyecto','desc')
+            ->groupBy('p.idproyecto')
             ->paginate(999999);
             return view('admin.proyectouser.index',["proyectos"=>$proyectos,"searchText"=>$query]);
         }

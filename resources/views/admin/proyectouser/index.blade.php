@@ -49,7 +49,11 @@ treeview
                   <td>{{ $pro->objetivoproyecto}}</td>
                   <td>{{ $pro->beneficiariosproyecto}}</td>          
                   <td>
+                  @if($pro->estudio=='0')
                   <a href="" data-target="#modal-delete-{{$pro->idproyecto}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>  </button></a>
+                  @else
+                  <button class="btn btn-danger" disabled='disabled'><span class="glyphicon glyphicon-trash"></span>  </button>
+                  @endif
                 </td>
                 </tr>
          @include('admin.proyectouser.modal')
