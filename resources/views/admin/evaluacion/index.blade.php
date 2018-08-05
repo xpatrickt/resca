@@ -45,14 +45,14 @@ treeview
               <option value="" >Seleccione Proyecto</option> 
               @if($proyecto==null) 
                @foreach($proyectos as $pro)
-                 <option value="{{ $pro->idproyecto}}">{{ $pro->nombreproyecto}}</option>
+                 <option value="{{ $pro->idproyecto}}">{{ $pro->idproyecto}}-{{ $pro->nombreproyecto}}</option>
                @endforeach
               @else
                 @foreach($proyectos as $pro)
                 @if($proyecto->idproyecto==$pro->idproyecto)
-                 <option value="{{ $pro->idproyecto}}" selected>{{ $pro->nombreproyecto}}</option>
+                 <option value="{{ $pro->idproyecto}}" selected>{{ $pro->idproyecto}}-{{ $pro->nombreproyecto}}</option>
                  @else
-                 <option value="{{ $pro->idproyecto}}">{{ $pro->nombreproyecto}}</option>
+                 <option value="{{ $pro->idproyecto}}">{{ $pro->idproyecto}}-{{ $pro->nombreproyecto}}</option>
                  @endif
                @endforeach
                @endif
@@ -90,9 +90,9 @@ treeview
                <option value="">Seleccione Estudio</option> 
                @foreach($estudios as $est)
                  @if($estudio->idestudio==$est->idestudio)
-                 <option value="{{ $est->idestudio}}" selected>{{ $est->nombreestudio}}</option>
+                 <option value="{{ $est->idestudio}}" selected>{{ $est->idestudio}}-{{ $est->nombreestudio}}</option>
                  @else
-                 <option value="{{ $est->idestudio}}">{{ $est->nombreestudio}}</option>
+                 <option value="{{ $est->idestudio}}">{{ $est->idestudio}}-{{ $est->nombreestudio}}</option>
                  @endif
                @endforeach
                @endif
