@@ -51,17 +51,18 @@ class ProyectouserController extends Controller
         else{
            $proyectos=DB::table('proyecto as p')
             ->join('entidad as e','p.identidad','=','e.identidad')
+            ->leftjoin('estudio as es','p.idproyecto','=','es.idproyecto')
              ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
             ->join('persona as pe','rp.idpersona','=','pe.idpersona')
            ->join('users as u','u.idpersona','=','pe.idpersona')
-            ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto',
-                'e.nombreentidad as entidad')
+            ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto', 'e.nombreentidad as entidad',DB::raw('count(idestudio) as estudio'))
             ->where('p.nombreproyecto','LIKE','%'.$query.'%')
             ->where('u.id','=',$idusuario)
             ->where('p.condicion','=','1')
             ->where('pe.condicion','=','1')
            ->where('u.condicion','=','1')
             ->orderBy('p.idproyecto','desc')
+            ->groupBy('p.idproyecto')
             ->distinct()->get();
             return view('admin.proyectouser.index',["proyectos"=>$proyectos,"searchText"=>$query]);
         }

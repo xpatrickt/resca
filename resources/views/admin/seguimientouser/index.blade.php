@@ -29,7 +29,9 @@ treeview
           <table id="tabla" class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th width="1px">Código Registro</th>
+                  <th width="1px">ID</th>
+                  <th>N° SIGE</th>
+                  <th>Solicitud</th>
                   <th>Entidad</th>
                   <th>Proyecto</th>
                   <th>Estudio</th>
@@ -43,24 +45,59 @@ treeview
                 @foreach ($estudios as $est)
                 <tr>
                   <td width="1px">{{$est->idestudio}}</td>
+                  <td>{{ $est->codigosige}}</td>
+                  <td>{{ $est->nombretiposolicitud}}</td>
                   <td>{{ $est->entidad}}</td>
                   <td>{{ $est->proyecto}}</td>
-                  <td>{{ $est->nombreestudio}}</td>
+                  <td>{{ $est->nombretipoestudio}}-{{ $est->nombreestudio}}</td>
                   <td>{{ $est->estado}}</td>
                   <td>{{ \Carbon\Carbon::parse($est->fecha)->format('d/m/Y H:i:s')}}</td>
+                @if($rol=='1')
                   @if($est->idestado=='3')
+                  <td>{{$est->tiempoevaluacion-$est->tiempo}} días</td>
+                  @else
+                    @if($est->idestado=='4')
+                    <td>{{ $est->tiemposubsanacion-$est->tiempo}} días</td>
+                    @else
+                      @if($est->idestado=='5' or $est->idestado=='6')
+                      <td>{{ $est->tiempocertificacion-$est->tiempo}} días<i class="fa fa-warning text-red"></i></td>
+                      @else
+                      <td>Finalizado</td>
+                      @endif
+                    @endif
+                  @endif
+
+                @else
+                @if($rol=='2')
+                 @if($est->idestado=='3')
                   <td>{{$est->tiempoevaluacion-$est->tiempo}} días</td>
                   @else
                     @if($est->idestado=='4')
                     <td>{{ $est->tiemposubsanacion-$est->tiempo}} días <i class="fa fa-warning text-red"></i></td>
                     @else
-                      @if($est->idestado=='5')
+                      @if($est->idestado=='5' or $est->idestado=='6')
                       <td>{{ $est->tiempocertificacion-$est->tiempo}} días</td>
                       @else
                       <td>Finalizado</td>
                       @endif
                     @endif
                   @endif
+                @else
+                @if($est->idestado=='3')
+                  <td>{{$est->tiempoevaluacion-$est->tiempo}} días<i class="fa fa-warning text-red"></i></td>
+                  @else
+                    @if($est->idestado=='4')
+                    <td>{{ $est->tiemposubsanacion-$est->tiempo}} días </i></td>
+                    @else
+                      @if($est->idestado=='5' or $est->idestado=='6')
+                      <td>{{ $est->tiempocertificacion-$est->tiempo}} días</td>
+                      @else
+                      <td>Finalizado</td>
+                      @endif
+                    @endif
+                  @endif
+                @endif
+                @endif
                   <td>
                   <a href="" data-target="#modal-detalledelimitacion-{{$est->idestudio}}" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledelimitacion"><button class="btn btn-success"><span class="glyphicon glyphicon-map-marker"></span></button></a>
                   <a href="" data-target="#modal-detalledocumento-{{$est->idestudio}}" data-idd="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledocumento"><button class="btn btn-info"><span class="glyphicon glyphicon-folder-open"></span></button></a>
@@ -75,7 +112,9 @@ treeview
                 </tbody>
              <tfoot>
                 <tr>
-                  <th width="1px">Código Registro</th>
+                  <th width="1px">ID</th>
+                  <th>N° SIGE</th>
+                  <th>Solicitud</th>
                   <th>Estudio</th>
                   <th>Proyecto</th>
                   <th>Entidad</th>

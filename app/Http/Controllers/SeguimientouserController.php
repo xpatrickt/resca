@@ -45,16 +45,17 @@ class SeguimientouserController extends Controller
             ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
             ->join('estado as est','es.idestado','=','est.idestado')
             ->join('tipoestudio as ti','e.idtipoestudio','=','ti.idtipoestudio')
-            ->select('e.idestudio','e.nombreestudio','e.descripcionestudio','p.nombreproyecto as proyecto','en.nombreentidad as entidad', 'est.nombreestado as estado','est.idestado','es.created_at as fecha',DB::raw('datediff(now(),es.created_at) as tiempo'),'ti.tiempoevaluacion','ti.tiemposubsanacion','ti.tiempocertificacion')
+            ->join('tiposolicitud as ts','e.idtiposolicitud','=','ts.idtiposolicitud')
+            ->select('e.idestudio','e.codigosige','ti.nombretipoestudio','e.nombreestudio','ts.nombretiposolicitud','e.descripcionestudio','p.nombreproyecto as proyecto','en.nombreentidad as entidad', 'est.nombreestado as estado','est.idestado','es.created_at as fecha',DB::raw('datediff(now(),es.created_at) as tiempo'),'ti.tiempoevaluacion','ti.tiemposubsanacion','ti.tiempocertificacion')
             ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
             ->where('e.nombreestudio','LIKE','%'.$query.'%')
             ->where('e.condicion','=','1')
             ->where('es.idestado','>','2')
             ->where('es.idestado','<','9')
-            ->orderBy('es.idestado','desc')
+            ->orderBy('es.idestado','asc')
             ->orderBy('fecha','asc')
             ->get();
-            return view('admin.seguimientouser.index',["estudios"=>$estudios,"searchText"=>$query]);
+            return view('admin.seguimientouser.index',["estudios"=>$estudios,"searchText"=>$query,"rol"=>$rol]);
           }
           else{
             $estudios=DB::table('estudio as e')
@@ -63,10 +64,11 @@ class SeguimientouserController extends Controller
             ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
             ->join('estado as est','es.idestado','=','est.idestado')
             ->join('tipoestudio as ti','e.idtipoestudio','=','ti.idtipoestudio')
+            ->join('tiposolicitud as ts','e.idtiposolicitud','=','ts.idtiposolicitud')
             ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
             ->join('persona as pe','rp.idpersona','=','pe.idpersona')
             ->join('users as u','u.idpersona','=','pe.idpersona')
-            ->select('e.idestudio','e.nombreestudio','e.descripcionestudio','p.nombreproyecto as proyecto','en.nombreentidad as entidad', 'est.nombreestado as estado','est.idestado','es.created_at as fecha',DB::raw('datediff(now(),es.created_at) as tiempo'),'ti.tiempoevaluacion','ti.tiemposubsanacion','ti.tiempocertificacion')
+            ->select('e.idestudio','e.codigosige','ti.nombretipoestudio','e.nombreestudio','ts.nombretiposolicitud','e.descripcionestudio','p.nombreproyecto as proyecto','en.nombreentidad as entidad', 'est.nombreestado as estado','est.idestado','es.created_at as fecha',DB::raw('datediff(now(),es.created_at) as tiempo'),'ti.tiempoevaluacion','ti.tiemposubsanacion','ti.tiempocertificacion')
             ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
             ->where('e.nombreestudio','LIKE','%'.$query.'%')
             ->where('e.condicion','=','1')
@@ -76,10 +78,10 @@ class SeguimientouserController extends Controller
             ->where('p.condicion','=','1')
             ->where('pe.condicion','=','1')
             ->where('u.condicion','=','1')
-            ->orderBy('es.idestado','desc')
+            ->orderBy('es.idestado','asc')
             ->orderBy('fecha','asc')
             ->get();
-            return view('admin.seguimientouser.index',["estudios"=>$estudios,"searchText"=>$query]);
+            return view('admin.seguimientouser.index',["estudios"=>$estudios,"searchText"=>$query,"rol"=>$rol]);
           }
 
         }

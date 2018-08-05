@@ -451,7 +451,6 @@ class AdminController extends Controller
                 <ul class="menu">';
                 foreach($estudios as $est)  
                  {
-                 if($est->idestudio){
                     $t=$est->tiempo;
                     $ti=$est->tiempocertificacion;
                   $porc=($t*100/$ti).'%';
@@ -468,7 +467,6 @@ class AdminController extends Controller
                       </div>
                     </a>
                   </li>';
-                }
                 }
               $output.='</ul>
               </li>
