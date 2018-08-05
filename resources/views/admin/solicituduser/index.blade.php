@@ -31,6 +31,7 @@ treeview
                 <tr>
                   <th width="1px">ID</th>
                   <th>N° SIGE</th>
+                  <th>Solicitud</th>
                   <th>Entidad</th>
                   <th>Proyecto</th>
                   <th>Estudio</th>
@@ -44,6 +45,7 @@ treeview
                 <tr>
                   <td width="1px">{{$est->idestudio}}</td>
                   <td>{{ $est->codigosige}}</td>
+                  <td>{{ $est->nombretiposolicitud}}</td>
                   <td>{{ $est->entidad}}</td>
                   <td>{{ $est->proyecto}}</td>
                   <td>{{ $est->nombretipoestudio}}-{{ $est->nombreestudio}}</td>
@@ -65,6 +67,7 @@ treeview
                 <tr>
                   <th width="1px">ID</th>
                   <th>N° SIGE</th>
+                  <th>Solicitud</th>
                   <th>Estudio</th>
                   <th>Proyecto</th>
                   <th>Entidad</th>
