@@ -125,28 +125,33 @@
                                     <a id="menu-doctor" class="mdl-button mdl-js-button mdl-js-ripple-effect">Información Pública<i class="fa fa-chevron-down"></i></a>
                                     <ul class="menu-megamenu">
                                         <li class="row">
-                                            <div class="col-lg-4">
-                                                <div class="megamenu-ttl">CERTIFICACION AMBIENTAL</div>
+                                            <div class="col-lg-3">
+                                                <div class="megamenu-ttl">INFORMACIÓN AMBIENTAL</div>
                                                 <ul>
                                                     <li><a href="{{ url('/certificacionambiental') }}">Certificación Ambiental</a></li>
                                                        <li><a href="{{ url('/pautasorientacion') }}">Pautas de Orientación</a></li>   
                                                 </ul>
                                             </div>
-                                            <div class="col-lg-4">
-                                                <div class="megamenu-ttl">DOCUMENTOS DE GESTIÓN</div>
+                                            <div class="col-lg-3">
+                                                <div class="megamenu-ttl">DOCUMENTO DE GESTIÓN</div>
                                                 <ul>
                                                     <li><a href="{{ url('/tupa') }}">TUPA</a></li>
                                                     <li><a href="{{ url('/Mapro') }}">MAPRO</a></li>
 
                                                 </ul>
                                             </div>
-                                            <div class="col-lg-4 d-none d-sm-none s-md-none d-lg-block d-xl-block">
-                                                <div class="megamenu-ttl">EVALUACION AMBIENTAL</div>
+                                             <div class="col-lg-3">
+                                                <div class="megamenu-ttl">CERTIFICACIÓN DE I. A.</div>
                                                 <ul>
-                                                    <li><a href="{{ url('/estadoevaluacion') }}">Estado de Evaluacion</a></li>
-                                                  <!--  <li><a href="{{ url('/rca') }}">Registro Administrativos de Certificaciones Ambientales</a></li>-->
+                                                    <li><a href="{{ url('/estadoevaluacion') }}">Estado de Certificación Ambiental</a></li>
+                                                    <li><a href="{{ url('/resultadoevaluacion') }}">Resultados de Certificación Ambiental</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-3 d-none d-sm-none s-md-none d-lg-block d-xl-block">
+                                                <div class="megamenu-ttl">EVALUACIÓN DE I. A.</div>
+                                                <ul>
+                                                    <li><a href="{{ url('/estadoevaluacion') }}">Estado de Evaluacion Ambiental</a></li>
                                                     <li><a href="{{ url('/resultadoevaluacion') }}">Resultados de Evaluación Ambiental</a></li>
-                                                    
                                                 </ul>
                                             </div>
                                         </li>
