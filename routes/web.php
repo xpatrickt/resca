@@ -732,6 +732,8 @@ Route::get('admin/seguimientouser','SeguimientouserController@index')->name('adm
 //Route::resource('admin/certificacion','CertificacionController');
 //Route::resource('admin/representante','RepresentanteController');
 
+Route::post('estadoevaluacion/listardocumento', 'EstadoEvaluacionController@listardocumento')->name('estadoevaluacion.listardocumento');
+
 // ROUTE ALERTA ADMINISTRADOR
 Route::post('admin/mensaje','AdminController@mensaje')->name('admin.mensaje');
 Route::post('admin/alerta','AdminController@alerta')->name('admin.alerta');

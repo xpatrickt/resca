@@ -50,7 +50,7 @@ class EstadoEvaluacionController extends Controller
                   ->orWhere('est.idestado', '10');
             })            
             ->orderBy('e.idestudio','desc')
-            ->paginate(999999);
+            ->get();
             return view('reportes.index',["estudios"=>$estudios,"searchText"=>$query]);
         }
     }
@@ -75,4 +75,41 @@ class EstadoEvaluacionController extends Controller
     }
 
 
+    // LISTAR DOCUMENTOS  -------------
+
+    function listardocumento(Request $request)
+    {
+     
+      $est = $request->get('idest'); // estudio
+
+    $data=DB::table('documentoestudio as d')
+    ->join('documento as do','d.iddocumento','=','do.iddocumento')
+        ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','do.nombredocumento as tipodocumento','d.idestudio','d.created_at')
+        ->where('d.idestudio','=',$est)
+        ->where('d.condicion','=','1')
+        ->orderBy('d.iddocumentoestudio','desc') ->get();
+    
+     $output = '<thead>
+                  <tr>
+                  <th>Documento</th>
+                  <th>Tipo</th>
+                  <th>Fecha</th>
+                  <th></th>
+                 </tr>
+                </thead>
+                <tbody>';
+  
+     foreach($data as $row)
+     {
+   $output .= '<tr><td>'.$row->descdocumentoestudio.'</td>
+                 <td>'.$row->tipodocumento.'</td>
+                 <td>'.$row->created_at.'</td>
+                 <td><a  href="../public/admin'.$row->urldocumentoestudio.'"  target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
+              </tr>';
+     }
+     $output .= '</tbody>';
+
+          
+     echo $output;
+    }
 }

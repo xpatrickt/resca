@@ -63,15 +63,19 @@ class SeguimientoController extends Controller
         }
         else{
           $proyectos=DB::table('proyecto as p')
-          
+          ->join('estudio as e','p.idproyecto','=','e.idproyecto')
+           ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
             ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
             ->join('persona as pe','rp.idpersona','=','pe.idpersona')
            ->join('users as u','u.idpersona','=','pe.idpersona')
            ->select('p.idproyecto','p.nombreproyecto','p.descripcionproyecto','p.objetivoproyecto','p.beneficiariosproyecto')
            ->where('u.id','=',$idusuario)
+           ->whereIn('es.idestado',['3','4'])
            ->where('p.condicion','=','1')
            ->where('pe.condicion','=','1')
            ->where('u.condicion','=','1')
+           ->where('e.condicion','=','1')
+           ->where('es.condicion','=','1')
           ->distinct()
            ->get();
        }

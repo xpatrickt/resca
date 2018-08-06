@@ -459,6 +459,6 @@ $('table.data-table').DataTable({
 });
 */
 </script>
-
+@yield('script')
 </body>
 </html>

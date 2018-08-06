@@ -39,10 +39,8 @@ Estado de Evaluación Ambiental
                   <td>{{ $est->proyecto}}</td>
                   <td>{{ $est->solicitud}}-{{ $est->nombreestudio}}</td>
                   <td>
-                  <a href="" data-target="#modal-detalledelimitacion-{{$est->idestudio}}" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledelimitacion"><button class="btn btn-warning"><span class="glyphicon glyphicon-map-marker"></span></button></a>
                   <a href="" data-target="#modal-detalledocumento-{{$est->idestudio}}" data-idd="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledocumento"><button class="btn btn-info"><span class="glyphicon glyphicon-folder-open"></span></button></a>
-                  @include('admin.registro.modaldetalledocumento')
-                 @include('admin.registro.modaldetalledelimitacion')
+                  @include('reportes.modaldetalledocumento')
                 </td>
                   <td>{{ $est->estado}}</td>
 
@@ -60,8 +58,6 @@ Estado de Evaluación Ambiental
 @section('script')
 
 <script>
-
-
 // MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
 
 $(document).on("click", ".opendetalledocumento", function () {
@@ -72,7 +68,7 @@ $(document).on("click", ".opendetalledocumento", function () {
 //DOCUMENTOS
 
    $.ajax({
-    url:"{{ route('admin.registro.listardocumento') }}",
+    url:"{{ route('estadoevaluacion.listardocumento') }}",
     method:"POST",
     data:{idest:idest, _token:_token},
   
@@ -83,34 +79,6 @@ $(document).on("click", ".opendetalledocumento", function () {
    })
 
 });
-
-
-$(document).on("click", ".opendetalledelimitacion", function () {
-
-  var idest = $(this).data('id'); 
-  var _token = $('input[name="_token"]').val();
-
-//DELIMITACION
-   
-   $.ajax({
-    url:"{{ route('admin.registro.listardelimitacion') }}",
-    method:"POST",
-    data:{idest:idest, _token:_token},
-  
-    success:function(result)
-    {
-      $(".modal-body #tabladelimitacion").html(result);
-
-    }
-   })
-
-});
-
-
-// FIN MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
-
-
-
 //*********************************************************************************************************************
 
 </script>
