@@ -73,6 +73,40 @@ class EstadoCertificacionController extends Controller
     public function destroy($id){
 
     }
+    function listardocumento(Request $request)
+    {
+     
+      $est = $request->get('idest'); // estudio
 
+    $data=DB::table('documentoestudio as d')
+    ->join('documento as do','d.iddocumento','=','do.iddocumento')
+        ->select('d.iddocumentoestudio','d.descdocumentoestudio','d.urldocumentoestudio','do.nombredocumento as tipodocumento','d.idestudio','d.created_at')
+        ->where('d.idestudio','=',$est)
+        ->where('d.condicion','=','1')
+        ->orderBy('d.iddocumentoestudio','desc') ->get();
+    
+     $output = '<thead>
+                  <tr>
+                  <th>Documento</th>
+                  <th>Tipo</th>
+                  <th>Fecha de Registro</th>
+                  <th> </th>
+                 </tr>
+                </thead>
+                <tbody>';
+  
+     foreach($data as $row)
+     {
+   $output .= '<tr><td>'.$row->descdocumentoestudio.'</td>
+                 <td>'.$row->tipodocumento.'</td>
+                 <td>'.\Carbon\Carbon::parse($row->created_at)->format('d/m/Y').'</td>
+                 <td><a  href="../public/admin'.$row->urldocumentoestudio.'"  target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
+              </tr>';
+     }
+     $output .= '</tbody>';
+
+          
+     echo $output;
+    }
 
 }

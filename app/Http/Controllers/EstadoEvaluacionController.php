@@ -93,8 +93,8 @@ class EstadoEvaluacionController extends Controller
                   <tr>
                   <th>Documento</th>
                   <th>Tipo</th>
-                  <th>Fecha</th>
-                  <th></th>
+                  <th>Fecha de Registro</th>
+                  <th> </th>
                  </tr>
                 </thead>
                 <tbody>';
@@ -103,7 +103,7 @@ class EstadoEvaluacionController extends Controller
      {
    $output .= '<tr><td>'.$row->descdocumentoestudio.'</td>
                  <td>'.$row->tipodocumento.'</td>
-                 <td>'.$row->created_at.'</td>
+                 <td>'.\Carbon\Carbon::parse($row->created_at)->format('d/m/Y').'</td>
                  <td><a  href="../public/admin'.$row->urldocumentoestudio.'"  target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
               </tr>';
      }

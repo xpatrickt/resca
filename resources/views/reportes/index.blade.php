@@ -24,8 +24,8 @@ Estado de Evaluación Ambiental
                   <th>Actividad</th>
                   <th>Entidad</th>
                   <th>Proyecto</th>
-                                    <th>Estudio</th>
                   <th>Estudio</th>
+                  <th>Documentos</th>
                   <th>Estado</th>
                  </tr>
                 </thead>

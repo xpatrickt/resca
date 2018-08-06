@@ -25,8 +25,8 @@ Route::get('estadocertificacion', 'EstadoCertificacionController@index')->name('
 Route::get('resultadocertificacion', 'ResultadoCertificacionController@index')->name('resultadoc.index');
 /*Route::get('rca', 'EstudiosevaluadosController@index')->name('rca.index');*/
 Route::get('entidadesr/{request}', 'EntidadesregistradasController@index')->name('entidadesr.index');
-
-
+Route::post('estadoevaluacion/listardocumento', 'EstadoEvaluacionController@listardocumento')->name('estadoevaluacion.listardocumento');
+Route::post('estadocertificacion/listardocumento', 'EstadoCertificacionController@listardocumento')->name('estadocertificacion.listardocumento');
 Auth::routes();
 Route::get('/admin/index', 'AdminController@index')->name('admin.index');
 //Route::get('/home', 'HomeController@index')->name('home');
@@ -732,7 +732,7 @@ Route::get('admin/seguimientouser','SeguimientouserController@index')->name('adm
 //Route::resource('admin/certificacion','CertificacionController');
 //Route::resource('admin/representante','RepresentanteController');
 
-Route::post('estadoevaluacion/listardocumento', 'EstadoEvaluacionController@listardocumento')->name('estadoevaluacion.listardocumento');
+
 
 // ROUTE ALERTA ADMINISTRADOR
 Route::post('admin/mensaje','AdminController@mensaje')->name('admin.mensaje');

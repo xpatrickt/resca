@@ -19,17 +19,29 @@ Resultados de Evaluacion Ambiental
               
               <thead>
                 <tr>
-                  <th style="width: 75%">Nombre del Estudio</th>
+                  <th style="width: 35%">Proyecto</th>
+                  <th style="width: 40%">Estudio</th>
                   <th>Fecha</th>
-                  <th>Resolución</th>
+                  <th>Opinión Técnica</th>
+                   <th>Resolución</th>
                  </tr>
                 </thead>
                 <tbody>
                 @foreach ($estudios as $est)
                 <tr>
-                  <td>{{$est->estudio}}</td>
+                  <td>{{$est->proyecto}}</td>
+                  <td>{{$est->tiposolicitud}}-{{$est->estudio}}</td>
                   <td>{{ \Carbon\Carbon::parse($est->fecha)->format('d/m/Y')}}</td>
-                  <td> <a href="../public{{$est->resolucion}}" target="_blank"><button class="btn btn-primary"><span class="fa fa-download">Descargar</span></button></a></td> 
+                  
+                  <td> 
+                  @if(!$est->opiniontecnica)
+                  <button class="btn btn-primary" disabled="disabled"><span class="fa fa-download">  Descargar </span></button>
+                  @else
+                    <a href="../public{{$est->opiniontecnica}}" target="_blank"><button class="btn btn-primary"><span class="fa fa-download">  Descargar </span></button></a>                  
+                  @endif
+
+                  </td>
+                  <td> <a href="../public{{$est->resolucion}}" target="_blank"><button class="btn btn-primary"><span class="fa fa-download">  Descargar </span></button></a></td> 
                 </tr>
                @endforeach
                 </tbody>
