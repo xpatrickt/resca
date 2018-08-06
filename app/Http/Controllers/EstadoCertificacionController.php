@@ -21,7 +21,7 @@ use Response;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
-class EstadoEvaluacionController extends Controller
+class EstadoCertificacionController extends Controller
 {
     public function __construct(){
 
@@ -41,13 +41,13 @@ class EstadoEvaluacionController extends Controller
             ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
             ->where('e.nombreestudio','LIKE','%'.$query.'%')
             ->where('e.condicion','=','1')
-            ->where('ts.idtiposolicitud','=','2')
+            ->where('ts.idtiposolicitud','=','1')
             ->where(function ($query2) {
             $query2->where('est.idestado', '3')
                   ->orWhere('est.idestado', '4')
                   ->orWhere('est.idestado', '5')
                   ->orWhere('est.idestado', '6')
-                  ->orWhere('est.idestado', '10');
+                  ->orWhere('est.idestado', '8');
             })            
             ->orderBy('e.idestudio','desc')
             ->paginate(999999);

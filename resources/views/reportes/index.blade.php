@@ -20,11 +20,12 @@ Estado de Evaluación Ambiental
               <thead>
                 <tr>
                   <th>Codigo</th>
+                  <th>Nº SIGE</th>
                   <th>Actividad</th>
                   <th>Entidad</th>
                   <th>Proyecto</th>
+                                    <th>Estudio</th>
                   <th>Estudio</th>
-                  <th>Descripción</th>
                   <th>Estado</th>
                  </tr>
                 </thead>
@@ -32,11 +33,17 @@ Estado de Evaluación Ambiental
                 @foreach ($estudios as $est)
                 <tr>
                   <td width="5px">{{$est->idestudio}}</td>
-                  <td>{{$est->actividad}}</td>
+                  <td>{{ $est->sige}}</td>
+                  <td>{{ $est->actividad}}</td>
                   <td>{{ $est->entidad}}</td>
                   <td>{{ $est->proyecto}}</td>
-                  <td>{{ $est->nombreestudio}}</td>
-                  <td>{{ $est->descripcionestudio}}</td>
+                  <td>{{ $est->solicitud}}-{{ $est->nombreestudio}}</td>
+                  <td>
+                  <a href="" data-target="#modal-detalledelimitacion-{{$est->idestudio}}" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledelimitacion"><button class="btn btn-warning"><span class="glyphicon glyphicon-map-marker"></span></button></a>
+                  <a href="" data-target="#modal-detalledocumento-{{$est->idestudio}}" data-idd="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledocumento"><button class="btn btn-info"><span class="glyphicon glyphicon-folder-open"></span></button></a>
+                  @include('admin.registro.modaldetalledocumento')
+                 @include('admin.registro.modaldetalledelimitacion')
+                </td>
                   <td>{{ $est->estado}}</td>
 
                 </tr>
@@ -48,4 +55,64 @@ Estado de Evaluación Ambiental
 
       
   </div>
+@endsection
+
+@section('script')
+
+<script>
+
+
+// MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
+
+$(document).on("click", ".opendetalledocumento", function () {
+
+  var idest = $(this).data('idd'); 
+  var _token = $('input[name="_token"]').val();
+
+//DOCUMENTOS
+
+   $.ajax({
+    url:"{{ route('admin.registro.listardocumento') }}",
+    method:"POST",
+    data:{idest:idest, _token:_token},
+  
+    success:function(result)
+    {
+      $(".modal-body #tabladocumento").html(result);
+    }
+   })
+
+});
+
+
+$(document).on("click", ".opendetalledelimitacion", function () {
+
+  var idest = $(this).data('id'); 
+  var _token = $('input[name="_token"]').val();
+
+//DELIMITACION
+   
+   $.ajax({
+    url:"{{ route('admin.registro.listardelimitacion') }}",
+    method:"POST",
+    data:{idest:idest, _token:_token},
+  
+    success:function(result)
+    {
+      $(".modal-body #tabladelimitacion").html(result);
+
+    }
+   })
+
+});
+
+
+// FIN MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
+
+
+
+//*********************************************************************************************************************
+
+</script>
+
 @endsection
