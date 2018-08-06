@@ -143,8 +143,8 @@
                                              <div class="col-lg-3">
                                                 <div class="megamenu-ttl">CERTIFICACIÓN DE I. A.</div>
                                                 <ul>
-                                                    <li><a href="{{ url('/estadoevaluacion') }}">Estado de Certificación Ambiental</a></li>
-                                                    <li><a href="{{ url('/resultadoevaluacion') }}">Resultados de Certificación Ambiental</a></li>
+                                                    <li><a href="{{ url('/estadocertificacion') }}">Estado de Certificación Ambiental</a></li>
+                                                    <li><a href="{{ url('/resultadocertificacion') }}">Resultados de Certificación Ambiental</a></li>
                                                 </ul>
                                             </div>
                                             <div class="col-lg-3 d-none d-sm-none s-md-none d-lg-block d-xl-block">
