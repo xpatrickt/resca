@@ -50,11 +50,20 @@ class SeguimientoController extends Controller
         $query=trim($request->get('searchText'));
 
        if($rol=='1'){
-           $proyectos=DB::table('proyecto')
-           ->where('condicion','=','1')->get();
+          $proyectos=DB::table('proyecto as p')
+           ->join('estudio as e','p.idproyecto','=','e.idproyecto')
+           ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
+           ->select('p.idproyecto','p.nombreproyecto')
+           ->whereIn('es.idestado',['3','4'])
+           ->where('p.condicion','=','1')
+           ->where('e.condicion','=','1')
+           ->where('es.condicion','=','1')
+           ->distinct()
+           ->get();
         }
         else{
           $proyectos=DB::table('proyecto as p')
+          
             ->join('responsableproyecto as rp','p.idproyecto','=','rp.idproyecto')
             ->join('persona as pe','rp.idpersona','=','pe.idpersona')
            ->join('users as u','u.idpersona','=','pe.idpersona')
