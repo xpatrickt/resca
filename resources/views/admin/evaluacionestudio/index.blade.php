@@ -30,11 +30,14 @@ active treeview
           <table id="tabla" class="table table-bordered table-striped">
            <thead>
                 <tr>
-                  <th width="1px">Código Registro</th>
-                  <th>Estudio</th>
-                  <th>Proyecto</th>
+                  <th width="1px">ID</th>
+                  <th>N° SIGE</th>
+                  <th>Solicitud</th>
                   <th>Entidad</th>
+                  <th>Proyecto</th>
+                  <th>Estudio</th>
                   <th>Estado</th>
+                  <th>Fecha</th>
                   <th>Opción</th>
                  </tr>
                 </thead>
@@ -42,13 +45,21 @@ active treeview
                 @foreach ($estudios as $est)
                 <tr>
                   <td width="1px">{{ $est->idestudio}}</td>
-                  <td>{{ $est->nombreestudio}}</td>
-                  <td>{{ $est->proyecto}}</td>
+                  <td>{{ $est->codigosige}}</td>
+                  <td>{{ $est->nombretiposolicitud}}</td>
                   <td>{{ $est->entidad}}</td>
+                  <td>{{ $est->proyecto}}</td>
+                  <td>{{ $est->nombretipoestudio}}-{{ $est->nombreestudio}}</td>
                   <td>{{ $est->estado}}</td>
+                  <td>{{ \Carbon\Carbon::parse($est->fecha)->format('d/m/Y H:i:s')}}</td>
 
-                  <td><a href="{{URL::action('EvaluacionestudioController@edit',$est->idestudio)}}"><button class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span></button></a>
+                  <td>
+                  <a href="{{URL::action('EvaluacionestudioController@edit',$est->idestudio)}}"><button class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span></button></a>
                   <a href="" data-target="#modal-delete-{{$est->idestudio}}" data-toggle="modal"><button class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span></button></a>
+                  <a href="" data-target="#modal-detalledelimitacion-{{$est->idestudio}}" data-id="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledelimitacion"><button class="btn btn-warning"><span class="glyphicon glyphicon-map-marker"></span></button></a>
+                  <a href="" data-target="#modal-detalledocumento-{{$est->idestudio}}" data-idd="{{$est->idestudio}}" data-nombre="{{$est->nombreestudio}}" data-toggle="modal" class="opendetalledocumento"><button class="btn btn-info"><span class="glyphicon glyphicon-folder-open"></span></button></a>
+                  @include('admin.registro.modaldetalledocumento')
+                  @include('admin.registro.modaldetalledelimitacion')
                 </td>
 
                 </tr>
@@ -58,11 +69,14 @@ active treeview
                 </tbody>
               <tfoot>
                 <tr>
-                  <th width="1px">Código Registro</th>
-                  <th>Estudio</th>
-                  <th>Proyecto</th>
+                  <th width="1px">ID</th>
+                  <th>N° SIGE</th>
+                  <th>Solicitud</th>
                   <th>Entidad</th>
+                  <th>Proyecto</th>
+                  <th>Estudio</th>
                   <th>Estado</th>
+                  <th>Fecha</th>
                   <th>Opción</th>
                 </tr>
                 </tfoot>
