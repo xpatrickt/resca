@@ -101,3 +101,62 @@ active treeview
 
 
 @endsection
+@section('script')
+
+<script>
+
+
+// MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
+
+$(document).on("click", ".opendetalledocumento", function () {
+
+  var idest = $(this).data('idd'); 
+  var _token = $('input[name="_token"]').val();
+
+//DOCUMENTOS
+
+   $.ajax({
+    url:"{{ route('admin.registro.listardocumento') }}",
+    method:"POST",
+    data:{idest:idest, _token:_token},
+  
+    success:function(result)
+    {
+      $(".modal-body #tabladocumento").html(result);
+    }
+   })
+
+});
+
+
+$(document).on("click", ".opendetalledelimitacion", function () {
+
+  var idest = $(this).data('id'); 
+  var _token = $('input[name="_token"]').val();
+
+//DELIMITACION
+   
+   $.ajax({
+    url:"{{ route('admin.registro.listardelimitacion') }}",
+    method:"POST",
+    data:{idest:idest, _token:_token},
+  
+    success:function(result)
+    {
+      $(".modal-body #tabladelimitacion").html(result);
+
+    }
+   })
+
+});
+
+
+// FIN MOSTRAR DELIMITACION Y DOCUMENTO DE ESTUDIO ***********************************
+
+
+
+//*********************************************************************************************************************
+
+</script>
+
+@endsection
