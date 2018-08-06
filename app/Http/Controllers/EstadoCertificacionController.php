@@ -51,7 +51,7 @@ class EstadoCertificacionController extends Controller
             })            
             ->orderBy('e.idestudio','desc')
             ->paginate(999999);
-            return view('reportes.index',["estudios"=>$estudios,"searchText"=>$query]);
+            return view('reportesc.index',["estudios"=>$estudios,"searchText"=>$query]);
         }
     }
 
