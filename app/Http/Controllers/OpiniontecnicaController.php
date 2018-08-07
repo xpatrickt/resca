@@ -43,8 +43,7 @@ class OpiniontecnicaController extends Controller
     }*/
 }
 
-  // MOSTRAR PARA AGREGAR OBSERVACION
-     
+  // MOSTRAR PARA AGREGAR OPINION TECNICA
 public function edit(Request $request,$idestudio){
         $estudio=Estudio::findOrFail($idestudio);
         $idproyecto=$estudio->idproyecto; 
@@ -55,7 +54,7 @@ public function edit(Request $request,$idestudio){
                    ->where('idobservacion','=','0')
                    ->where('condicion','=','1')->get();
 
-        return view("admin.observacionevaluacion.edit",["idestudio"=>$idestudio,"idproyecto"=>$idproyecto,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"documentos"=>$documentos]);
+        return view("admin.opiniontecnica.edit",["idestudio"=>$idestudio,"idproyecto"=>$idproyecto,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"documentos"=>$documentos]);
     }
 
     // GUARDAR OBSERVACION DE EVALUACION

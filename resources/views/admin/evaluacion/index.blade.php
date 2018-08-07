@@ -128,6 +128,7 @@ treeview
 
         @if($estudio!=null)
          <a href="{{URL::action('ObservacionevaluacionController@edit',$estudio->idestudio)}}"><button class="btn btn-primary btn-block margin-bottom">Agregar Observación</button></a>
+         <a href="{{URL::action('OpiniontecnicaController@edit',$estudio->idestudio)}}"><button class="btn btn-warning btn-block margin-bottom">Agregar Opinión Técnica</button></a>
         @endif
          <!--
              {{ Form::open(['route' =>'admin.observacionevaluacion.index']) }}

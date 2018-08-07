@@ -683,7 +683,37 @@ Route::get('admin/observacionevaluacion/{role}','ObservacionevaluacionController
 ->middleware('permission:admin.observacionevaluacion.edit');
 
 
+
+
 //Fin ObservacionEvaluacionestudio
+
+//opnion tecnica
+
+Route::post('admin/opiniontecnica/store','OpiniontecnicaController@store')->name('admin.opiniontecnica.store')
+->middleware('permission:admin.opiniontecnica.create');
+
+Route::post('admin/opiniontecnica','OpiniontecnicaController@index')->name('admin.opiniontecnica.index')
+->middleware('permission:admin.opiniontecnica.index');
+
+Route::get('admin/opiniontecnica/create','OpiniontecnicaController@create')->name('admin.opiniontecnica.create')
+->middleware('permission:admin.opiniontecnica.create');
+
+Route::put('admin/opiniontecnica/{role}','OpiniontecnicaController@update')->name('admin.opiniontecnica.update')
+->middleware('permission:admin.opiniontecnica.edit');
+
+Route::get('admin/opiniontecnica/{role}','OpiniontecnicaController@show')->name('admin.opiniontecnica.show')
+->middleware('permission:admin.opiniontecnica.show');
+
+Route::delete('admin/opiniontecnica/{role}','OpiniontecnicaController@destroy')->name('admin.opiniontecnica.destroy')
+->middleware('permission:admin.opiniontecnica.destroy');
+
+Route::get('admin/opiniontecnica/{role}','OpiniontecnicaController@edit')->name('admin.opiniontecnica.edit')
+->middleware('permission:admin.opiniontecnica.edit');
+
+
+
+
+//Fin opinion tecnica
 
 //RespuestaEvaluacionestudio
 
