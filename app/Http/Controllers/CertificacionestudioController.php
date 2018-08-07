@@ -38,7 +38,7 @@ class CertificacionestudioController extends Controller
        //  ->having('es.idestudio','<','3')
             ->orderBy('es.idestudio','desc')
             ->paginate(999999);
-            return view('admin.evaluacionestudio.index',["estudios"=>$estudios,"searchText"=>$query]);
+            return view('admin.certificacionestudio.index',["estudios"=>$estudios,"searchText"=>$query]);
         }       
     }
 
@@ -53,7 +53,7 @@ class CertificacionestudioController extends Controller
         ->where('p.condicion','=','1')
         ->where('ru.role_id','=','2')
         ->get();
-        return view("admin.evaluacionestudio.edit",["estudio"=>$estudio,"personas"=>$personas,"tipoevaluaciones"=>$tipoevaluaciones]);
+        return view("admin.certificacionestudio.edit",["estudio"=>$estudio,"personas"=>$personas,"tipoevaluaciones"=>$tipoevaluaciones]);
     }
 
     public function update(EvaluacionestudioFormRequest $request,$idevaluacionestudio){
@@ -69,7 +69,7 @@ class CertificacionestudioController extends Controller
         $estudio=Estudio::findOrFail($idestudios);
         $estudio->idtipoevaluacion=$request->get('idtipoevaluacion');
         $estudio->update();
-    	return Redirect::to('admin/evaluacionestudio'); 	
+    	return Redirect::to('admin/certificacionestudio'); 	
     }
 
     public function show($idevaluacionestudio){

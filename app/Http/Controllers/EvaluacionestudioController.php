@@ -32,7 +32,7 @@ class EvaluacionestudioController extends Controller
             ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
             ->where('e.nombreestudio','LIKE','%'.$query.'%')
             ->where('e.condicion','=','1')
-            ->where('ts.idtiposolicitud','=','1')            
+            ->where('ts.idtiposolicitud','=','2')            
             ->where('es.idestado','=','2')
            // ->groupBy('es.idestudio','')
        //  ->having('es.idestudio','<','3')

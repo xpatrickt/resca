@@ -35,7 +35,7 @@ active treeview
 
 
               <div class="box-body">
-                {!! Form::model($estudio, ['route' => ['admin.evaluacionestudio.update', $estudio->idestudio],'method' => 'PUT']) !!}
+                {!! Form::model($estudio, ['route' => ['admin.certificacionestudio.update', $estudio->idestudio],'method' => 'PUT']) !!}
 
                 {{Form::token()}}
             
