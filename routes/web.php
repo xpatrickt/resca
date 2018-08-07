@@ -511,6 +511,30 @@ Route::delete('admin/evaluacionestudio/{role}','EvaluacionestudioController@dest
 Route::get('admin/evaluacionestudio/{role}/edit','EvaluacionestudioController@edit')->name('admin.evaluacionestudio.edit')
 ->middleware('permission:admin.evaluacionestudio.edit');
 //Fin Evaluacionestudio
+//
+//Certificacionestudio
+
+Route::post('admin/certificacionestudio/store','CertificacionestudioController@store')->name('admin.certificacionestudio.store')
+->middleware('permission:admin.certificacionestudio.create');
+
+Route::get('admin/certificacionestudio','CertificacionestudioController@index')->name('admin.certificacionestudio.index')
+->middleware('permission:admin.certificacionestudio.index');
+
+Route::get('admin/certificacionestudio/create','CertificacionestudioController@create')->name('admin.certificacionestudio.create')
+->middleware('permission:admin.certificacionestudio.create');
+
+Route::put('admin/certificacionestudio/{role}','CertificacionestudioController@update')->name('admin.certificacionestudio.update')
+->middleware('permission:admin.certificacionestudio.edit');
+
+Route::get('admin/certificacionestudio/{role}','CertificacionestudioController@show')->name('admin.certificacionestudio.show')
+->middleware('permission:admin.certificacionestudio.show');
+
+Route::delete('admin/certificacionestudio/{role}','CertificacionestudioController@destroy')->name('admin.certificacionestudio.destroy')
+->middleware('permission:admin.certificacionestudio.destroy');
+
+Route::get('admin/certificacionestudio/{role}/edit','CertificacionestudioController@edit')->name('admin.certificacionestudio.edit')
+->middleware('permission:admin.certificacionestudio.edit');
+//Fin Certificacionestudio
 //Responsableproyecto
 
 Route::post('admin/responsableproyecto/store','ResponsableproyectoController@store')->name('admin.responsableproyecto.store')
@@ -558,6 +582,29 @@ Route::delete('admin/certificacion/{role}','CertificacionController@destroy')->n
 
 Route::get('admin/certificacion/{role}/edit','CertificacionController@edit')->name('admin.certificacion.edit')
 ->middleware('permission:admin.certificacion.edit');
+//Fin Certificacion
+//Resolucion
+
+Route::post('admin/resolucion/store','ResolucionController@store')->name('admin.resolucion.store')
+->middleware('permission:admin.resolucion.create');
+
+Route::get('admin/resolucion','ResolucionController@index')->name('admin.resolucion.index')
+->middleware('permission:admin.resolucion.index');
+
+Route::get('admin/resolucion/create','ResolucionController@create')->name('admin.resolucion.create')
+->middleware('permission:admin.resolucion.create');
+
+Route::put('admin/resolucion/{role}','ResolucionController@update')->name('admin.resolucion.update')
+->middleware('permission:admin.resolucion.edit');
+
+Route::get('admin/resolucion/{role}','ResolucionController@show')->name('admin.resolucion.show')
+->middleware('permission:admin.resolucion.show');
+
+Route::delete('admin/resolucion/{role}','ResolucionController@destroy')->name('admin.resolucion.destroy')
+->middleware('permission:admin.resolucion.destroy');
+
+Route::get('admin/resolucion/{role}/edit','ResolucionController@edit')->name('admin.resolucion.edit')
+->middleware('permission:admin.resolucion.edit');
 //Fin Certificacion
 //SEGUIMIENTO
 

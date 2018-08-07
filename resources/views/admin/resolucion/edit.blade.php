@@ -8,7 +8,7 @@ active treeview
 @section('treemenu')
 treeview
 @endsection
-@section('actcer')
+@section('actres')
 active
 @endsection
 @section('actmenu4')
@@ -20,7 +20,7 @@ treeview
   <div class="col-md-12">
   <div class="box box-primary">
     <div class="box-header with-border">
-    <h3 class="box-tittle">Registrar Certificación del Estudio: </h3>
+    <h3 class="box-tittle">Registrar Resolución del Estudio: </h3>
     @if(count($errors)>0)
     <div class="alert alert-danger">
       <ul>
@@ -44,8 +44,8 @@ treeview
                   <input type="text" name="nombree" value="{{$estudio->nombreestudio}}" class="form-control" readonly="readonly">
                 </div>
                 <div class="form-group">
-                  <label for="nombre">Nombre de Certificación</label>
-                  <input type="text" name="nombre" class="form-control" placeholder="Ingrese Nombre de Certificación">
+                  <label for="nombre">Nombre de Resolución</label>
+                  <input type="text" name="nombre" class="form-control" placeholder="Ingrese Nombre de Resolución">
                 </div>
 
                 <div class="form-group">
@@ -54,7 +54,7 @@ treeview
                 </div>
 
                 <div class="form-group">
-                  <label for="fecha">Fecha de Certificación</label>
+                  <label for="fecha">Fecha de Resolución</label>
                   <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
@@ -64,8 +64,8 @@ treeview
                 </div>
 
                 <div class="form-group">
-                  <label for="documento">Subir Documento de Certificación</label>
-                  <input type="file" name="documento" class="form-control" placeholder="Seleccione Documento de Certificación">
+                  <label for="documento">Subir Documento de Resolución</label>
+                  <input type="file" name="documento" class="form-control" placeholder="Seleccione Resolución">
                 </div>
                                                 
                 <div class="form-group">

@@ -18,7 +18,7 @@ use Illuminate\Support\Collection;
 use DateTime;
 
 
-class CertificacionController extends Controller
+class ResolucionController extends Controller
 {
     public function __construct(){
 
@@ -32,12 +32,12 @@ class CertificacionController extends Controller
             ->join('entidad as en','p.identidad','=','en.identidad')
             ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
             ->join('estado as est','es.idestado','=','est.idestado')
-            ->join('tiposolicitud as ts','ts.idtiposolicitud','=','e.idtiposolicitud')
+            ->join('tiposolicitud as ts','ts.idtiposolicitud','=','e.idtiposolicitud')            
             ->select('e.idestudio','e.nombreestudio','ts.nombretiposolicitud as solicitud','e.descripcionestudio','p.nombreproyecto as proyecto','en.nombreentidad as entidad','est.nombreestado as estado','es.idestudio')
             ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
             ->where('e.nombreestudio','LIKE','%'.$query.'%')
             ->where('e.condicion','=','1')
-            ->where('ts.idtiposolicitud','=','1')
+            ->where('ts.idtiposolicitud','=','2')
          /*   ->where('es.idestado','=','5')*/
             ->where(function ($query2) {
             $query2->where('es.idestado', '5')
@@ -47,13 +47,13 @@ class CertificacionController extends Controller
        //  ->having('es.idestudio','<','3')
             ->orderBy('es.idestudio','desc')
             ->paginate(999999);
-            return view('admin.certificacion.index',["estudios"=>$estudios,"searchText"=>$query]);
+            return view('admin.resolucion.index',["estudios"=>$estudios,"searchText"=>$query]);
         }
     }
 
    public function edit($idestudio){
          $estudio=Estudio::findOrFail($idestudio);
-        return view("admin.certificacion.edit",["estudio"=>$estudio]);
+        return view("admin.resolucion.edit",["estudio"=>$estudio]);
     }
 
     public function update(CertificacionFormRequest $request,$idresolucion){
@@ -80,11 +80,11 @@ class CertificacionController extends Controller
         $estadoestudio->idestudio=$request->get('idestudio');
         $estadoestudio->idestado=$request->get('idestado');
         $estadoestudio->save();
-    	return Redirect::to('admin/certificacion'); 	
+    	return Redirect::to('admin/resolucion'); 	
     }
 
     public function show($idresolucion){
-        return view("admin.certificacion.show",["certificacion"=>certificacion::findOrFail($idresolucion)]);
+        return view("admin.resolucion.show",["certificacion"=>certificacion::findOrFail($idresolucion)]);
     }
 
 

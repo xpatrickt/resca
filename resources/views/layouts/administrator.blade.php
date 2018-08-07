@@ -158,7 +158,7 @@
         
         <li class="@yield('actmenu1')">
           @can('admin.registro.index')
-          <a href="#"><i class="fa fa-flag-o"></i><span>Registros Ambientales</span>@endcan
+          <a href="#"><i class="fa fa-flag-o"></i><span>Registros de Impacto Ambiental</span>@endcan
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
            <ul class="treeview-menu">
@@ -188,8 +188,11 @@
             <li class="@yield('acteva')"><a href="{{url ('admin/evaluacion')}}">Evaluación de Registro Ambiental</a></li>
             @endcan
             @can('admin.certificacion.index')
-            <li class="@yield('actcer')"><a href="{{url ('admin/certificacion')}}">Resolucion de Registro Ambiental</a></li>            
-             @endcan        
+            <li class="@yield('actcer')"><a href="{{url ('admin/certificacion')}}">Certificación de Registro Ambiental</a></li>            
+             @endcan      
+            @can('admin.resolucion.index')
+            <li class="@yield('actres')"><a href="{{url ('admin/resolucion')}}">Resolución de Registro Ambiental</a></li>            
+             @endcan       
           </ul>
         </li>
       
@@ -249,9 +252,14 @@
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
+            @can('admin.certificacionestudio.index')
+            <li class="@yield('actcee')"><a href="{{url ('admin/certificacionestudio')}}">Gestionar Solicitud de Certificación</a></li>
+            @endcan 
+             
             @can('admin.evaluacionestudio.index')
-            <li class="@yield('acteve')"><a href="{{url ('admin/evaluacionestudio')}}">Gestionar Solicitud de Evaluación</a></li>
+            <li class="@yield('acteve')"><a href="{{url ('admin/evaluacionestudio')}}">Gestionar Solicitud de Resolución</a></li>
             @endcan
+          
             @can('admin.responsableproyecto.index')
             <li class="@yield('actrep')"><a href="{{url ('admin/responsableproyecto')}}">Asignar Responsable de Proyecto</a></li>
             @endcan   

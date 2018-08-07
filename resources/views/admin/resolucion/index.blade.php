@@ -8,7 +8,7 @@ active treeview
 @section('treemenu')
 treeview
 @endsection
-@section('actcer')
+@section('actres')
 active
 @endsection
 @section('actmenu4')
@@ -23,7 +23,7 @@ treeview
 	<div class="col-xs-12">
 		<div class="box">
 		<div class="box-header">
-			<h3 class="box-title">Agregar Certificación a los estudios &nbsp &nbsp</h3>
+			<h3 class="box-title">Agregar Resolución a los estudios &nbsp &nbsp</h3>
 			</div>
 		<div class="box-body">
         <div class="table-responsive mailbox-messages">
@@ -46,7 +46,7 @@ treeview
                   <td>{{ $est->solicitud}}-{{ $est->nombreestudio}}</td>
                   <td>{{ $est->entidad}}</td>
                   <td>{{ $est->estado}}</td>
-                  <td><a href="{{URL::action('CertificacionController@edit',$est->idestudio)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-file"></span></button></a>
+                  <td><a href="{{URL::action('ResolucionController@edit',$est->idestudio)}}"><button class="btn btn-info"><span class="glyphicon glyphicon-file"></span></button></a>
                 </td>
                 </tr>
                 @endforeach
