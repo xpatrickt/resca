@@ -150,6 +150,18 @@ treeview
                  </tr>
                 </thead>
                 <tbody>
+                  @if($opinion!=null)
+                @foreach ($opinion as $op)
+                <tr>
+                  <td>{{ $op->descopiniontecnica}}</td>
+                  <td>Opinión Técnica</td>
+                  <td>{{ $op->created_at}}</td>
+                  <td>
+                <a  href="..{{$op->urlopiniontecnica}}"  target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                </td>
+                </tr>
+             @endforeach
+             @endif
                 @if($documentos!=null)
                 @foreach ($documentos as $doc)
                 <tr>

@@ -43,6 +43,30 @@ class OpiniontecnicaController extends Controller
     }*/
 }
 
+
+//AGREGAR OPINION TECNICA
+public function update(OpiniontecnicaFormRequest $request,$idestudio){
+      $estudio=$request->get('estudioresp');
+      $proyecto=$request->get('proyectoresp');
+
+       // agregar respuesta observacion
+      $opinion=new Opiniontecnica;
+      $opinion->descopiniontecnica=$request->get('descripcion');
+       if(Input::hasFile('documento')){
+            $file=Input::file('documento');
+            $nombred=date("dmyHis"); 
+            $file->move(public_path().'/admin/documentos/opinion/',$nombred.'.pdf');
+             $opinion->urlopiniontecnica='/documentos/opinion/'.$nombred.'.pdf';
+        }
+      $opinion->condicion='1';
+      $opinion->idestudio=$estudio;
+      $opinion->save();
+
+
+      
+         return view("admin.observacionevaluacion.aceptar",["estudio"=>$estudio,"proyecto"=>$proyecto]);
+     }
+
   // MOSTRAR PARA AGREGAR OPINION TECNICA
 public function edit(Request $request,$idestudio){
         $estudio=Estudio::findOrFail($idestudio);
@@ -112,7 +136,7 @@ public function edit(Request $request,$idestudio){
    }
 
     // GUARDAR DOCUMENTOS OBSERVACION
-    public function update(DocumentoobservacionFormRequest $request,$idestudio){
+    /*public function update(DocumentoobservacionFormRequest $request,$idestudio){
       $documento=new Documentoobservacion;
       $documento->desdocumentoobservacion=$request->get('descripciondocumento');
       if(Input::hasFile('documento')){
@@ -136,7 +160,7 @@ public function edit(Request $request,$idestudio){
                    ->where('condicion','=','1')->get();
 
       return view("admin.observacionevaluacion.edit",["idestudio"=>$idestudio,"idproyecto"=>$idproyecto,"asuntoobservacion"=>$asuntoobservacion,"descripcionobservacion"=>$descripcionobservacion,"documentos"=>$documentos]);
-    }
+    }*/
 
       public function destroy(Request $request,$idestudio){
         $iddocumento=$request->get('iddocumento');

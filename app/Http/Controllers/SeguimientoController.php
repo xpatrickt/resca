@@ -83,6 +83,7 @@ class SeguimientoController extends Controller
         $estudios=null;
         // tabs
         $documentos=null;
+        $opinion=null;
         $observaciones=null;
         $respuestasobservacion=null;
         //datos estudio
@@ -91,7 +92,7 @@ class SeguimientoController extends Controller
         //datosproyecto
         $proyecto=null;
         $entidades=null;
-        return view("admin.seguimiento.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidades"=>$entidades,"estudio"=>$estudio,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion,"tipodocumento"=>$tipodocumento]);
+        return view("admin.seguimiento.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"opinion"=>$opinion,"query"=>$query,"entidades"=>$entidades,"estudio"=>$estudio,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion,"tipodocumento"=>$tipodocumento]);
     }
 
 }
@@ -177,6 +178,9 @@ class SeguimientoController extends Controller
                     ->where('d.condicion','=','1')
                     ->where('d.idestudio','=',$idestudio)
                     ->orderBy('d.iddocumentoestudio','desc')->get();
+       $opinion=DB::table('opiniontecnica')
+                    ->where('condicion','=','1')
+                    ->where('idestudio','=',$idestudio)->get();
         $observaciones=DB::table('observacion as o')
                     ->join('evaluacionestudio as e','o.idevaluacionestudio','=','e.idevaluacionestudio')
                     ->join('persona as p','e.idpersona','=','p.idpersona')
@@ -194,6 +198,7 @@ class SeguimientoController extends Controller
         $estudio=null;
         $detalleestudio=null;
         $documentos=null;
+        $opinion=null;
         $observaciones=null;
         $respuestasobservacion=null;
           }
@@ -205,11 +210,12 @@ class SeguimientoController extends Controller
         $estudio=null;
         $detalleestudio=null;
         $documentos=null;
+        $opinion=null;
         $observaciones=null;
         $respuestasobservacion=null;
         
     }
-    return view("admin.seguimiento.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidad"=>$entidad,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion,"tipodocumento"=>$tipodocumento]);
+    return view("admin.seguimiento.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"opinion"=>$opinion,"query"=>$query,"entidad"=>$entidad,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion,"tipodocumento"=>$tipodocumento]);
  }
  else{
      return Redirect::to('admin/seguimiento');

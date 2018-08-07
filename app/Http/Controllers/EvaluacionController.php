@@ -78,6 +78,7 @@ class EvaluacionController extends Controller
         $estudios=null;
         // tabs
         $documentos=null;
+        $opinion=null;
         $observaciones=null;
         $respuestasobservacion=null;
         //datos estudio
@@ -86,7 +87,7 @@ class EvaluacionController extends Controller
         //datosproyecto
         $proyecto=null;
         $entidades=null;
-        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidades"=>$entidades,"estudio"=>$estudio,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
+        return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudios"=>$estudios,"documentos"=>$documentos,"opinion"=>$opinion,"query"=>$query,"entidades"=>$entidades,"estudio"=>$estudio,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
     }
 
 }
@@ -173,6 +174,9 @@ class EvaluacionController extends Controller
                     ->where('d.condicion','=','1')
                     ->where('d.idestudio','=',$idestudio)
                     ->orderBy('d.iddocumentoestudio','desc')->get();
+        $opinion=DB::table('opiniontecnica')
+                    ->where('condicion','=','1')
+                    ->where('idestudio','=',$idestudio)->get();
         $observaciones=DB::table('observacion as o')
                     ->join('evaluacionestudio as e','o.idevaluacionestudio','=','e.idevaluacionestudio')
                     ->join('persona as p','e.idpersona','=','p.idpersona')
@@ -190,6 +194,7 @@ class EvaluacionController extends Controller
         $estudio=null;
         $detalleestudio=null;
         $documentos=null;
+        $opinion=null;
         $observaciones=null;
         $respuestasobservacion=null;
           }
@@ -201,11 +206,12 @@ class EvaluacionController extends Controller
         $estudio=null;
         $detalleestudio=null;
         $documentos=null;
+        $opinion=null;
         $observaciones=null;
         $respuestasobservacion=null;
         
     }
-    return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"query"=>$query,"entidad"=>$entidad,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
+    return view("admin.evaluacion.index",["proyectos"=>$proyectos,"proyecto"=>$proyecto,"estudio"=>$estudio,"estudios"=>$estudios,"documentos"=>$documentos,"opinion"=>$opinion,"query"=>$query,"entidad"=>$entidad,"detalleestudio"=>$detalleestudio,"observaciones"=>$observaciones,"respuestasobservacion"=>$respuestasobservacion]);
  }
  else{
      return Redirect::to('admin/evaluacion');

@@ -128,7 +128,11 @@ treeview
 
         @if($estudio!=null)
          <a href="{{URL::action('ObservacionevaluacionController@edit',$estudio->idestudio)}}"><button class="btn btn-primary btn-block margin-bottom">Agregar Observación</button></a>
+         @if(count($opinion)=="0")
          <a href="{{URL::action('OpiniontecnicaController@edit',$estudio->idestudio)}}"><button class="btn btn-warning btn-block margin-bottom">Agregar Opinión Técnica</button></a>
+         @else
+         <a href=""><button class="btn btn-warning btn-block margin-bottom" disabled="disabled">Agregar Opinión Técnica</button></a>
+         @endif
         @endif
          <!--
              {{ Form::open(['route' =>'admin.observacionevaluacion.index']) }}
@@ -174,6 +178,18 @@ treeview
                  </tr>
                 </thead>
                 <tbody>
+              @if($opinion!=null)
+                @foreach ($opinion as $op)
+                <tr>
+                  <td>{{ $op->descopiniontecnica}}</td>
+                  <td>Opinión Técnica</td>
+                  <td>{{ $op->created_at}}</td>
+                  <td>
+                <a  href="..{{$op->urlopiniontecnica}}"  target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                </td>
+                </tr>
+             @endforeach
+             @endif
                 @if($documentos!=null)
                 @foreach ($documentos as $doc)
                 <tr>
