@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 use resca\Http\Requests\EvaluacionestudioFormRequest;
 use DB;
 
-class EvaluacionestudioController extends Controller
+class CertificacionestudioController extends Controller
 {
     public function __construct(){
 
@@ -33,6 +33,7 @@ class EvaluacionestudioController extends Controller
             ->where('e.nombreestudio','LIKE','%'.$query.'%')
             ->where('e.condicion','=','1')
             ->where('es.idestado','=','2')
+             ->where('ts.idtiposolicitud','=','1')           
            // ->groupBy('es.idestudio','')
        //  ->having('es.idestudio','<','3')
             ->orderBy('es.idestudio','desc')
