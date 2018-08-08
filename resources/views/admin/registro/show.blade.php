@@ -93,8 +93,7 @@ treeview
                </select>
               </div>
                <div class="form-group">
-                <label for="">Buscar</label>
-                  <input type="text" name="buscarmapa" id="buscarmapa" class="form-control">
+                
                   <div class="table-responsive mailbox-messages">
                   <div id="mapacanvas" ></div>
                 </div>

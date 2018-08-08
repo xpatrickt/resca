@@ -35,7 +35,7 @@ treeview
 
 
               <div class="box-body">
-                {!! Form::model($estudio, ['route' => ['admin.certificacion.update', $estudio->idestudio],'method' => 'PUT','files'=>'true']) !!}                
+                {!! Form::model($estudio, ['route' => ['admin.resolucion.update', $estudio->idestudio],'method' => 'PUT','files'=>'true']) !!}                
               
                  {{Form::token()}}           
                 <div class="form-group">

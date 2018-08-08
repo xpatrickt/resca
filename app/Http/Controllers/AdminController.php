@@ -83,10 +83,9 @@ class AdminController extends Controller
              if($rol=='1'){
                 $estudios=DB::table('estudio as e')
                 ->join('proyecto as p','e.idproyecto','=','p.idproyecto')
-                ->join('entidad as en','p.identidad','=','en.identidad')
                 ->join('estadoestudio as es','e.idestudio','=','es.idestudio')
                 ->join('estado as est','es.idestado','=','est.idestado')
-                ->select('e.idestudio','e.nombreestudio','e.descripcionestudio','en.nombreentidad as entidad', 'est.nombreestado as estado','est.idestado','es.created_at as fecha')
+                ->select('e.idestudio','e.nombreestudio','e.descripcionestudio','p.idproyecto','p.nombreproyecto', 'est.nombreestado as estado','est.idestado','es.created_at as fecha')
                 ->whereRaw('idestadoestudio IN (select MAX(idestadoestudio) FROM estadoestudio GROUP BY idestudio)')
                 ->where('e.condicion','=','1')
                 ->where('es.idestado','=','2')
@@ -111,7 +110,7 @@ class AdminController extends Controller
                                 <img src="'.asset("adminlte/dist/img/resca1.jpg").'" class="img-circle" alt="User Image">
                               </div>
                               <h4>
-                                '.$est->entidad.'
+                                '.$est->idproyecto.'-'.$est->nombreproyecto.'
                               </h4>
                               <p>'.$est->idestudio.'-'.$est->nombreestudio.'</p>
                               <p><small><i class="fa fa-clock-o"></i>'.\Carbon\Carbon::parse($est->fecha)->format('d/m/Y H:i:s').'</small></p>

@@ -37,7 +37,7 @@ Resultados de Certificación Ambiental
                   @if(!$est->opiniontecnica)
                   <button class="btn btn-primary" disabled="disabled"><span class="fa fa-download">  Descargar </span></button>
                   @else
-                    <a href="../public{{$est->opiniontecnica}}" target="_blank"><button class="btn btn-primary"><span class="fa fa-download">  Descargar </span></button></a>                  
+                    <a href="../public/admin/{{$est->opiniontecnica}}" target="_blank"><button class="btn btn-primary"><span class="fa fa-download">  Descargar </span></button></a>                  
                   @endif
 
                   </td>
