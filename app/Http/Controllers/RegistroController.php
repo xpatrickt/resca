@@ -167,26 +167,28 @@ class RegistroController extends Controller
       $est = $request->get('idest'); // estudio
 
     $data=DB::table('delimitacionestudio as d')
-    ->join('distrito as di','d.iddistrito','=','di.iddistrito')
+      ->join('distrito as di','d.iddistrito','=','di.iddistrito')
         ->join('provincia as p','di.idprovincia','=','p.idprovincia')
-        ->select('d.iddelimitacionestudio','d.descripciondelimitacion','p.nombreprovincia as provincia','di.nombredistrito as distrito','d.coordenadasx', 'd.coordenadasy')
+        ->join('departamento as de','p.iddepartamento','=','de.iddepartamento')
+        ->select('d.iddelimitacionestudio','de.nombredepartamento as departamento','p.nombreprovincia as provincia','di.nombredistrito as distrito','d.coordenadasx', 'd.coordenadasy')
         ->where('d.idestudio','=',$est)->where('d.condicion','=','1')
         ->orderBy('d.iddelimitacionestudio','desc') ->get();
   
      $output = '<thead>
                   <tr>
+                  <th>Departamento</th>
                   <th>Provincia</th>
                   <th>Distrito</th>
-                  <th>Delimitación</th>
                  <th>Coordenadas</th>
                  </tr>
                 </thead>
                 <tbody>';
      foreach($data as $row)  
      {
-   $output .= '<tr><td>'.$row->provincia.'</td>
+   $output .= '<tr>
+                   <td>'.$row->departamento.'</td> 
+                   <td>'.$row->provincia.'</td>
                    <td>'.$row->distrito.'</td>
-                   <td>'.$row->descripciondelimitacion.'</td> 
                    <td>x: '.$row->coordenadasx.' y: '. $row->coordenadasy.'</td>
                 </tr>';
        }
@@ -290,7 +292,8 @@ class RegistroController extends Controller
     $delimitaciones=DB::table('delimitacionestudio as d')
     ->join('distrito as di','d.iddistrito','=','di.iddistrito')
         ->join('provincia as p','di.idprovincia','=','p.idprovincia')
-        ->select('d.iddelimitacionestudio','d.descripciondelimitacion','p.nombreprovincia as provincia','di.nombredistrito as distrito','d.coordenadasx', 'd.coordenadasy')
+        ->join('departamento as de','p.iddepartamento','=','de.iddepartamento')
+        ->select('d.iddelimitacionestudio','de.nombredepartamento as departamento','p.nombreprovincia as provincia','di.nombredistrito as distrito','d.coordenadasx', 'd.coordenadasy')
         ->where('d.idestudio','=',$idestudio)
         ->where('d.condicion','=','1')
         ->orderBy('d.iddelimitacionestudio','desc') ->get();
@@ -306,7 +309,6 @@ class RegistroController extends Controller
   // GUARDAR DELIMITACION ESTUDIO
      public function edit(RegistrodelimitacionFormRequest $request){
       $delimitacion=new Delimitacionestudio;
-      $delimitacion->descripciondelimitacion=$request->get('descripcion');
       $delimitacion->coordenadasx=$request->get('lat');
       $delimitacion->coordenadasy=$request->get('lng');
       $delimitacion->condicion='1';

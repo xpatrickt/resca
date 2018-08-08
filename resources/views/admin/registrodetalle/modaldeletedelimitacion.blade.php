@@ -12,7 +12,7 @@
               </div>
               <div class="modal-body">
                  <input type="hidden" id="idestudiodelimitacion" name="idestudiodelimitacion" class="form-control" value="{{$estudio->idestudio}}">
-                <p>Confirme si desea Eliminar la Delimitación: {{$delimitacion->descripciondelimitacion}}?</p>
+                <p>Confirme si desea Eliminar la Delimitación: {{$delimitacion->departamento}}-{{$delimitacion->provincia}}-{{$delimitacion->distrito}}?</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>

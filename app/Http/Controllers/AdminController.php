@@ -569,7 +569,7 @@ class AdminController extends Controller
                     $ti=$est->tiempocertificacion;
                   $porc=($t*100/$ti).'%';
                   $output.='<li>
-                    <a href="'.url ("admin/certificacion").'">
+                    <a href="'.url ("admin/seguimiento").'">
                       <h3>
                         '.$est->idestudio.'-'.$est->nombreestudio.'
                       </h3>
@@ -586,7 +586,7 @@ class AdminController extends Controller
               $output.='</ul>
               </li>
               <li class="footer">
-                <a href="'.url ("admin/certificacion").'">Subsanar observación de registro ambiental</a>
+                <a href="'.url ("admin/seguimiento").'">Subsanar observación de registro ambiental</a>
               </li>
             </ul>';
                 }

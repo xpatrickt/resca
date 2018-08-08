@@ -24,7 +24,6 @@ class RegistrodelimitacionFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'descripcion'=>'required|max:255',
         'lat'=>'required',
         'lng'=>'required',
         'distrito'=>'required',

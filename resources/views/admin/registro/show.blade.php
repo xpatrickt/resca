@@ -18,8 +18,10 @@ treeview
   }
 </style>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyB6K1CFUQ1RwVJ-nyXxd6W0rfiIBe12Q&libraries=places"
-  type="text/javascript"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyB6K1CFUQ1RwVJ-nyXxd6W0rfiIBe12Q&libraries=places" type="text/javascript"></script>  -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYwt8Vx6rdRAAq3JtGZb4qaDNHUnbVjOI&libraries=places" type="text/javascript"></script>
+  
 
 <section class="content">
 <div class="row">
@@ -62,10 +64,6 @@ treeview
             {{Form::token()}}
             <input type="hidden" id="idestudio1" name="idestudio1" class="form-control" value="{{$estudio->idestudio}}">
                <div class="col-md-5">
-                <div class="form-group">
-                  <label for="descripcion">Descripción</label>
-                  <input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="Ingrese Descripción">
-                </div>
                <div class="form-group">
                   <label for="departamento">Departamento</label>
                   <select name="departamento" id="departamento" class="form-control dynamic" 
@@ -122,9 +120,9 @@ treeview
                  <table id="tabla2" class="table table-hover table-striped">
                  <thead>
                   <tr>
+                  <th>Departamento</th>
                   <th>Provincia</th>
                   <th>Distrito</th>
-                  <th>Delimitación</th>
                  <th>Coordenadas</th>
                  <th></th>
                  </tr>
@@ -132,11 +130,12 @@ treeview
                 <tbody>
                @foreach($delimitaciones as $delimitacion)
                 <tr>
+                <td>{{$delimitacion->departamento}}</td>
                 <td>{{$delimitacion->provincia}}</td>
                 <td>{{$delimitacion->distrito}}</td>
-                <td>{{$delimitacion->descripciondelimitacion}}</td> 
+                 
                 <td>x: {{$delimitacion->coordenadasx}} y: {{$delimitacion->coordenadasy}}</td>
-                <td><a href="" data-target="#modal-deletedelimitacion-{{$delimitacion->iddelimitacionestudio}}" data-toggle="modal" data-delimitacion="{{$delimitacion->descripciondelimitacion}}" data-estudio="{{$estudio->idestudio}}"><i class="fa fa-trash-o"></i></a></td>
+                <td><a href="" data-target="#modal-deletedelimitacion-{{$delimitacion->iddelimitacionestudio}}" data-toggle="modal" data-delimitacion="{{$delimitacion->departamento}}-{{$delimitacion->provincia}}-{{$delimitacion->distrito}}" data-estudio="{{$estudio->idestudio}}"><i class="fa fa-trash-o"></i></a></td>
                 </tr>
                 @include('admin.registrodetalle.modaldeletedelimitacion')
                 @endforeach
